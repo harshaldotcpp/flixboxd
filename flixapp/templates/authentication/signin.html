@@ -9,7 +9,19 @@
   </head>
   <body>
       <h1> signin </h1>
-	 
-	  <button type="submit"> <a href="/signin">signup</a> </button></button>
+      
+	  <form action="/signin/" method=post>
+	      {% csrf_token %}
+	      
+	      <label for="username">username</label>
+	      <input type=text name=username placeholder="Enter Your Username">
+	      <br>
+	      
+	      <label for="password">Password</label>
+	      <input type=password name=password placeholder="Enter Your Password">
+	      <br>
+	      
+	      <button type="submit"> signin </button></button>
+	  </form>
   </body>
 </html>
