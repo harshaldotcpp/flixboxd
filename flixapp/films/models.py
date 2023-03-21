@@ -14,7 +14,7 @@ class WatchedMovie(models.Model):
     director = models.CharField(max_length=100)
 
     def get_reviews(self):
-        print(dir(self))
+        return self.review_set.all()
         
     def __str__(self):
         return f"Movie:{self.original_title},Director:{self.director}"
