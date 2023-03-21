@@ -12,6 +12,9 @@
       
 	  <form action="/signin/" method=post>
 	      {% csrf_token %}
+	      {% for message in messages %}
+	          <span>{{ message }} </span> <br>
+	       {% endfor %}
 	      
 	      <label for="username">username</label>
 	      <input type=text name=username placeholder="Enter Your Username">

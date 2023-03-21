@@ -11,6 +11,9 @@
       <h1> signup </h1>
 	  <form action="/signup/" method=post>
           {% csrf_token %}
+          {% for message in messages %}
+             <span> {{ message }} </span> <br>
+          {% endfor %}
 	      <label for="username">Username</label>
 	      <input type=text id=username name="username" placeholder="enter username">
 	      <br>

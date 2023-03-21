@@ -17,9 +17,8 @@ def home(request):
 #------------------------------------------------------------------------
 
 def signup(request):
-    
     if request.method == "POST":
-        print("hello")
+        
         user_details = {
             "username" : request.POST["username"],
             "first_name" : request.POST["first_name"],
@@ -29,13 +28,23 @@ def signup(request):
             "confirm_password" : request.POST["confirm_password"],
         }
         
+        if User.objects.filter(username=user_details["username"]):
+            messages.error(request,"username already exist!")
+            return redirect ("signup")
+            
+        if User.objects.filter(email=user_details["email_address"]):
+            messages.error(request,"Email Already Registered")
+            return redirect("signup")
+        
         new_user = User.objects.create_user(user_details["username"],user_details["email_address"],user_details["password"])
         new_user.first_name = user_details["first_name"]
         new_user.last_name = user_details["last_name"]
         
         new_user.save()
+        user = authenticate(username=user_details["username"], password=user_details["password"])
+        login(request,user)
         messages.success(request,"Your Account is Created")
-        return redirect("signin")
+        return redirect("home")
         
     return render(request,"authentication/signup.html")
 
@@ -54,8 +63,10 @@ def signin(request):
             login(request,user)
             print("ok")
             return redirect("home")
+            
         else: #rediect him signin page with error messages
-            messages.error(request,"bad Credentials")
+      
+            messages.error(request,"invalid username or password")
             return redirect("signin")
             
         
