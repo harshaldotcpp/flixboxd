@@ -54,7 +54,6 @@ def signin(request):
             print("ok")
             return redirect("home")
         else:
-            print("not ok")
             messages.error(request,"bad Credentials")
             return redirect("signin")
             

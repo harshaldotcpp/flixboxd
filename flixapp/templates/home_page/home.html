@@ -11,6 +11,7 @@
       <h1>this is home page</h1>
       <form action="/signout/" method=get>
           {% csrf_token %}
+          <h2> Welcome {{ user.username }} </h2>
           <button type="submit">signout</button>
   </body>
 </html>
