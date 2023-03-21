@@ -7,14 +7,14 @@ from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 def home(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated: #if user is already is_authenticated(looged in) then take user to home page
         return render(request,"home_page/home.html")
-    
-    
+   
+   #else user will to welcome page
     return render(request,"authentication/index.html")
     
     
-
+#------------------------------------------------------------------------
 
 def signup(request):
     
@@ -39,7 +39,7 @@ def signup(request):
         
     return render(request,"authentication/signup.html")
 
-
+#------------------------------------------------------------------------
 
 def signin(request):
     
@@ -49,11 +49,12 @@ def signin(request):
         
         user = authenticate(username=username,password=password)
         
-        if user is not None:
+        
+        if user is not None: #if user added right Credentials redirect user to root path again
             login(request,user)
             print("ok")
             return redirect("home")
-        else:
+        else: #rediect him signin page with error messages
             messages.error(request,"bad Credentials")
             return redirect("signin")
             
@@ -61,6 +62,7 @@ def signin(request):
     return render(request,"authentication/signin.html")
 
 
+#------------------------------------------------------------------------
 
 def signout(request):
     logout(request)
