@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = {extras = ["all"], version = "*"}
 tmdbv3api = "*"
+pillow = "*"
 
 [dev-packages]
 

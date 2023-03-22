@@ -8,3 +8,4 @@ def user_profile(request,username):
         "username":username
     }
     return render(request,"profile_page/profile.html",info)
+

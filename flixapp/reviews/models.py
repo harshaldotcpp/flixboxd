@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 
 class Review(models.Model):
     review = models.CharField(max_length=1000)
-    movie = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE,related_name="reviews")
+    movie = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE,related_name="get_reviews")
     date = models.DateTimeField(auto_now_add=True)
-    review_by = models.ForeignKey(User,on_delete=models.CASCADE,related_name="reviews")
+    review_by = models.ForeignKey(User,on_delete=models.CASCADE,related_name="get_reviews")
     
    
     

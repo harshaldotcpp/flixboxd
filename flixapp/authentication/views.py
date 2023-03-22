@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 def home(request):
     if request.user.is_authenticated: #if user is already is_authenticated(looged in) then take user to home page
-        return render(request,"home_page/home.html")
+        return render(request,"main/home.html")
    
    #else user will to welcome page
     return render(request,"authentication/index.html")
