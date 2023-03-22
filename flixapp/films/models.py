@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 
@@ -12,10 +13,13 @@ class WatchedMovie(models.Model):
     cover_path = models.CharField(max_length=100)
     release_date = models.DateField()
     director = models.CharField(max_length=100)
+    watched_by = models.ManyToManyField(User,related_name="movies")
+    liked_by = models.ManyToManyField(User,related_name="liked_movies")
 
     def get_reviews(self):
-        return self.review_set.all()
+        return self.reviews.all()
         
     def __str__(self):
         return f"Movie:{self.original_title},Director:{self.director}"
     
+
