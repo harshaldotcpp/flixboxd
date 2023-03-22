@@ -19,5 +19,6 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include("authentication.urls")),
-    path('<str:username>/',include("profiles.urls"))
+    path('<str:username>',include("profiles.urls")),
+    path('film/<str:film_name>',include("films.urls"))
 ]

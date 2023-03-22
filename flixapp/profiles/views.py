@@ -4,5 +4,7 @@ from django.shortcuts import render
 
 def user_profile(request,username):
     print(username)
-    print("profile page")
-    return render(request,"profile_page/profile.html",{"username":username})
+    info = {
+        "username":username
+    }
+    return render(request,"profile_page/profile.html",info)
