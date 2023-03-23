@@ -1,0 +1,9 @@
+{
+   "scripts":{
+       "dev": "tailwindcss -i src/static/tw/tailwind-input.css -o src/static/tailwindcss/flixapp.css --watch"
+   },
+  "devDependencies": {
+    "tailwindcss": "^1"
+  }
+}
+
