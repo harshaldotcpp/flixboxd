@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Profile, Top4,Userfollowing
+from .models import Profile, Top4, UserFollowing
 
 # Register your models here.
 
 
-admin.site.register([Profile,Top4,Userfollowing])
+admin.site.register([Profile,Top4,UserFollowing])
