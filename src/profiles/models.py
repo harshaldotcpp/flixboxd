@@ -79,4 +79,4 @@ class UserFollowing(models.Model):
     following_id = models.ForeignKey(User,related_name="follower_set",on_delete=models.CASCADE)
  
     class Meta:
-        unique_together = ("user_id", "following_id")
+        unique_together = (("user_id", "following_id"))
