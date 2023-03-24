@@ -31,7 +31,7 @@ class Profile(models.Model):
         return True
     
     def follow_user(self,user):
-        self.user.following_set.create(following_id=user)
+        self.user.following_set.create(user)
         
     
     def unfollow_user(self,username):
