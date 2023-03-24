@@ -1,6 +1,9 @@
 from django.db import models
 from films.models import WatchedMovie
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 # Create your models here.
 
 
@@ -16,11 +19,10 @@ class Profile(models.Model):
     def add_movie(self,tmdb_id,title, overview,tagline,rating,poster,cover,date,director,liked=False):
         self.user.movies_set.create(tmdb_id=tmdb_id,original_title=title, overview=overview, tagline=tagline,rating=rating,poster_path=poster,cover_path=cover,release_date=date, director=director)
     
-    def is_watched(tmdb_id):
-        if self.user.movies_set.filter(tmdb_id).count() == 0:
+    def is_watched(self,tmdb_id):
+        if self.user.movies_set.filter(tmdb_id=tmdb_id).count() == 0:
             return False
         return True
-
 
     def liked_movie(self):
         pass
@@ -34,3 +36,6 @@ class Top4(models.Model):
     three = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE,related_name="get_three",blank=True,null=True)
     four = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE,related_name="get_four",blank=True,null=True)
     user = models.OneToOneField(Profile,on_delete=models.CASCADE)
+
+
+

@@ -16,13 +16,12 @@ class WatchedMovie(models.Model):
     watched_by = models.ManyToManyField(User,related_name="movies_set")
     liked_by = models.ManyToManyField(User,related_name="get_liked_movies")
     
-    
-    
-
     def get_reviews(self):
         return self.get_reviews.all()
         
     def __str__(self):
         return f"Movie:{self.original_title},Director:{self.director}"
     
-
+    
+class Watchlist(models.Model):
+    pass
