@@ -17,7 +17,7 @@ class WatchedMovie(models.Model):
     liked_by = models.ManyToManyField(User,related_name="get_liked_movies")
     
     def get_reviews(self):
-        return self.get_reviews.all()
+        return self.reviews_set.all()
         
     def __str__(self):
         return f"Movie:{self.original_title},Director:{self.director}"
