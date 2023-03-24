@@ -13,8 +13,11 @@ class WatchedMovie(models.Model):
     cover_path = models.CharField(max_length=100)
     release_date = models.DateField()
     director = models.CharField(max_length=100)
-    watched_by = models.ManyToManyField(User,related_name="get_movies")
+    watched_by = models.ManyToManyField(User,related_name="movies_set")
     liked_by = models.ManyToManyField(User,related_name="get_liked_movies")
+    
+    
+    
 
     def get_reviews(self):
         return self.get_reviews.all()
