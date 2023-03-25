@@ -14,14 +14,21 @@ class WatchedMovie(models.Model):
     release_date = models.DateField()
     director = models.CharField(max_length=100)
     watched_by = models.ManyToManyField(User,related_name="movies_set")
-    liked_by = models.ManyToManyField(User,related_name="get_liked_movies")
+    liked_by = models.ManyToManyField(User,related_name="get_liked_movies",blank=True)
     
     def get_reviews(self):
         return self.reviews_set.all()
         
+    def post_review():
+        pass
+        
     def __str__(self):
         return f"Movie:{self.original_title},Director:{self.director}"
-    
-    
+ 
+ 
+ 
 class Watchlist(models.Model):
-    pass
+    tmdb_id = models.IntegerField(unique=True)
+    original_title = models.CharField(max_length=100,default="")
+    poster_path = models.CharField(max_length=100)
+    watch_listed = models.ManyToManyField(User,related_name="watchlist_set")

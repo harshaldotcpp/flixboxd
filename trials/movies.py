@@ -9,17 +9,4 @@ tmdb.debug = True
 
 movies = Movie()
 
-search = movies.search("the batman")
-
-movie_id  = 0
-
-for res in search:
-    if(res["original_title"] =="The Batman"):
-        movie_id = res.id
-
-
-movie_dir = movies.credits(movie_id)
-
-for i in movie_dir.crew:
-    if(i["job"] == "Director"):
-        print(i)
+print(movies.details(44363).release_date)

@@ -10,7 +10,7 @@
   <body>
       <h1> signin </h1>
       
-	  <form action="/signin/" method=post>
+	  <form action="{% url 'authentication:signin' %}" method=post>
 	      {% csrf_token %}
 	      {% for message in messages %}
 	          <span>{{ message }} </span> <br>

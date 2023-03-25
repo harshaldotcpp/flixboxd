@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 def home(request):
     if request.user.is_authenticated: #if user is already is_authenticated(looged in) then take user to home page
+        print(request)
         return render(request,"main/home.html")
    
    #else user will to welcome page
@@ -30,11 +31,11 @@ def signup(request):
         
         if User.objects.filter(username=user_details["username"]):
             messages.error(request,"username already exist!")
-            return redirect ("signup")
+            return redirect ("authentication:signup")
             
         if User.objects.filter(email=user_details["email_address"]):
             messages.error(request,"Email Already Registered")
-            return redirect("signup")
+            return redirect("authentication:signup")
         
         new_user = User.objects.create_user(user_details["username"],user_details["email_address"],user_details["password"])
         new_user.first_name = user_details["first_name"]
@@ -44,7 +45,7 @@ def signup(request):
         user = authenticate(username=user_details["username"], password=user_details["password"])
         login(request,user)
         messages.success(request,"Your Account is Created")
-        return redirect("home")
+        return redirect("authentication:home")
         
     return render(request,"authentication/signup.html")
 
@@ -62,12 +63,12 @@ def signin(request):
         if user is not None: #if user added right Credentials redirect user to root path again
             login(request,user)
             print("ok")
-            return redirect("home")
+            return redirect("authentication:home")
             
         else: #rediect him signin page with error messages
       
             messages.error(request,"invalid username or password")
-            return redirect("signin")
+            return redirect("authentication:signin")
             
         
     return render(request,"authentication/signin.html")
@@ -77,5 +78,5 @@ def signin(request):
 
 def signout(request):
     logout(request)
-    return redirect("home")
+    return redirect("authentication:home")
     

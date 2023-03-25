@@ -7,8 +7,7 @@ from django.dispatch import receiver
 # Create your models here.
 
 
-    
-    
+
     
 class Profile(models.Model):
     bio = models.CharField(max_length=1500,null=True,blank=True)
@@ -21,8 +20,30 @@ class Profile(models.Model):
     
     
     
-    def add_movie(self,tmdb_id,title, overview,tagline,rating,poster,cover,date,director,liked=False):
-        self.user.movies_set.create(tmdb_id=tmdb_id,original_title=title, overview=overview, tagline=tagline,rating=rating,poster_path=poster,cover_path=cover,release_date=date, director=director)
+    def add_watched_movie(self,movie):
+        db_movie = WatchedMovie.objects.filter(tmdb_id=movie["tmdb_id"])
+        if db_movie:
+            self.user.movies_set.add(db_movie[0])
+            return
+        
+        tmdb_id = movie["tmdb_id"]
+        title = movie["original_title"]
+        overview = movie['overview']
+        tagline = movie['tagline']
+        rating = movie['rating']
+        poster_path = movie['poster_path']
+        cover_path = movie['cover_path']
+        release_date = movie['release_date']
+        director = movie['director']
+        
+        self.user.movies_set.create(tmdb_id=tmdb_id,original_title=title,overview=overview,tagline=tagline,rating=rating,poster_path=poster_path,cover_path=cover_path,release_date=release_date, director=director)
+        return
+        
+    
+    
+    def remove_watched_movie(self,tmdb_id):
+        pass
+    
     
     
     def is_watched(self,tmdb_id):
@@ -41,7 +62,6 @@ class Profile(models.Model):
                 return follower.delete()
         return None
 
-
     def get_followers(self):
         followers = []
        
@@ -54,6 +74,8 @@ class Profile(models.Model):
         for f in self.user.following_set.all():
             following.append(f.following_id)
         return following
+
+
 
     def __str__(self):
         return f"Profile:{self.user.username}"
