@@ -3,7 +3,7 @@ from films.models import WatchedMovie
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+from django.core.exceptions import ValidationError
 # Create your models here.
 
 
@@ -17,9 +17,12 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    following = models.ManyToManyField("self", symmetrical=False,related_name="followers",blank=True,null=True)
     
     
-    
+  
+  
+            
     def add_watched_movie(self,movie):
         db_movie = WatchedMovie.objects.filter(tmdb_id=movie["tmdb_id"])
         if db_movie:
@@ -38,44 +41,32 @@ class Profile(models.Model):
         
         self.user.movies_set.create(tmdb_id=tmdb_id,original_title=title,overview=overview,tagline=tagline,rating=rating,poster_path=poster_path,cover_path=cover_path,release_date=release_date, director=director)
         return
-        
-    
     
     def remove_watched_movie(self,tmdb_id):
-        pass
-    
-    
+        db_movie = WatchedMovie.objects.filter(tmdb_id=tmdb_id)
+        if db_movie:
+            self.user.movies_set.remove(db_movie[0])
+            return True
+     
+        return False
+        
+
     
     def is_watched(self,tmdb_id):
         if self.user.movies_set.filter(tmdb_id=tmdb_id).count() == 0:
             return False
         return True
     
-    def follow_user(self,user):
-        self.user.following_set.create(user)
+    def follow_user(self,username):
+        user = User.objects.filter(username=username)[0]
+        self.following.add(user.profile)
+        return
+
+    def unfollow_user(self,username):
+        user = User.objects.filter(username=username)[0]
+        self.following.remove(user.profile)
         
     
-    def unfollow_user(self,username):
-        followings = self.user.following_set.all()
-        for follower in followings:
-            if(follower.following_id.username == username):
-                return follower.delete()
-        return None
-
-    def get_followers(self):
-        followers = []
-       
-        for f in self.user.follower_set.all():
-            followers.append(f.user_id)
-        return followers
-
-    def get_following(self):
-        following = []
-        for f in self.user.following_set.all():
-            following.append(f.following_id)
-        return following
-
-
 
     def __str__(self):
         return f"Profile:{self.user.username}"
@@ -95,10 +86,3 @@ class Top4(models.Model):
     four = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE,related_name="get_four",blank=True,null=True)
     user = models.OneToOneField(Profile,on_delete=models.CASCADE)
 
-
-class UserFollowing(models.Model):
-    user_id = models.ForeignKey(User,related_name="following_set",on_delete=models.CASCADE)
-    following_id = models.ForeignKey(User,related_name="follower_set",on_delete=models.CASCADE)
- 
-    class Meta:
-        unique_together = (("user_id", "following_id"))
