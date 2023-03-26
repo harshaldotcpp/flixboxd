@@ -32,3 +32,6 @@ class Watchlist(models.Model):
     original_title = models.CharField(max_length=100,default="")
     poster_path = models.CharField(max_length=100)
     watch_listed = models.ManyToManyField(User,related_name="watchlist_set")
+    
+    def __str__(self):
+        return f"movie:{self.original_title}"

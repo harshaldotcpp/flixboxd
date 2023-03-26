@@ -1,5 +1,5 @@
 from django.db import models
-from films.models import WatchedMovie
+from films.models import WatchedMovie,Watchlist
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -50,8 +50,31 @@ class Profile(models.Model):
      
         return False
         
-
     
+    def add_to_watchlist(self,movie):
+        tmdb_id = movie["tmdb_id"]
+        title = movie["original_title"]
+        poster_path = movie['poster_path']
+    
+        db_movie = Watchlist.objects.filter(tmdb_id=movie["tmdb_id"])
+        print(tmdb_id)
+        print(db_movie)
+        if db_movie:
+            self.user.watchlist_set.add(db_movie[0])
+            return
+
+        #self.user.watchlist_set.create(tmdb_id=tmdb_id,original_title=title,poster_path=poster_path)
+        #return
+        
+        
+    def remove_from_watchlist(self,tmdb_id):
+        db_movie = Watchlist.objects.filter(tmdb_id=tmdb_id)
+        if db_movie:
+            self.user.watchlist_set.remove(db_movie[0])
+            return True
+        return False
+
+        
     def is_watched(self,tmdb_id):
         if self.user.movies_set.filter(tmdb_id=tmdb_id).count() == 0:
             return False
