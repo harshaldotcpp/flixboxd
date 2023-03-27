@@ -11,177 +11,44 @@
    
   </head>
   <body class="bg-letterboxd-1">
-       <nav class="absolute z-50 bg-letterboxd-1 text-slate-100 w-screen">
-          <div class="p-2 md:px-9">
-          <!---- navbar content ----->
-              <div class=" w-full mx-auto shadow flex items-center justify-between">
-                  <!----- logo ----->
-                  <div class="logo">
-                    <!---  <img class="inline h-6" src="./images (9).jpeg">  --->
-                    <h1 class="font-myfont text-letterboxd-2">Flixld</h1>
-                  </div>
-                  
-                  <!---------  buttons --------->
-                  <div class="flex items-center space-x-5 ">
-                      <button id="signin_btn">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-letterboxd-3 fill-letterboxd-3 w-6 h-6">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                          </svg>
-                      </button>
-                       <button id="options_btn">
-                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-letterboxd-3 fill-letterboxd-3 w-6 h-6">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
-                           </svg>
-                       </button>
-                      <button id="search_btn">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-letterboxd-3 w-6 h-6">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                           </svg>
-                       </button>
-                   </div>
-              </div>
-           </div>
-         
-         <!----- signin menu ----->
-            <div id="signin_menu" class="w-screen bg-letterboxd-1 overflow-hidden hidden px-2 md:py-2 md:px-16 text-letterboxd-3 drop-shadow-2xl">
-                 <form action="{% url 'authentication:signin' %}" method="post">
-                     {% csrf_token %}
-                    <div class="m-2">
-                     <label class="text-xs" for="username">Username or Email </label> <br>
-                     <input name="username" class="px-2 focus:outline-0 focus:bg-white bg-letterboxd-2 h-9 w-full rounded-sm" type="text" name="username"> </input><br>
-                    </div>
-                    <div class="m-2">
-                     <label class="text-xs" for="Password">Password</label><br>
-                     <input name="password" class="px-2 focus:outline-0 focus:bg-white text-black bg-letterboxd-2 h-9 w-full rounded-sm" type="password">
-                    </div>
-                    <div class="my-5 mx-2 flex items-center justify-between text-xs md:justify-between">
-                      <div class="flex items-center">
-                          <input class="h-3 mr-1 bg-red-400 accent-letterboxd-3" type=checkbox>Remember
-                       </div>
-                       <div class="md:w-[650px]">
-                         <a class="text-letterboxd-4">forgotten?</a>
-                       </div>
-                      <button class="bg-letterboxd-4 py-1 px-3 font-bold rounded-sm text-white shadow-inner tracking-widest ">SIGN IN </button>
-                    </div>
-                </form>
-            </div>
-            <!----- search ------>
-            <div id="search_feild" class="hidden bg-letterboxd-1 p-4 text-gray-500 relative">
-                <input type="text" class="h-9 w-full rounded-sm focus:outline-0 focus:bg-white focus:text-slate-400 p-3 bg-letterboxd-2">
-                <button class="absolute right-6 top-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-amber-100 w-4 h-4">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                    </svg>
-
-                </button>
-                </input>
-            </div>
-            <!------ list ------>
-            <div id="menu_field" class="h-0 duration-100 overflow-hidden">
-            <div class="p-5 text-letterboxd-3 font-myfont tracking-wider">
-                <ul class="flex flex-col ">
-                    <li class="pb-2 border-b border-letterboxd-3">CREATE ACCOUNT</li>
-                    <li class="py-2 border-b border-letterboxd-3">FILMS</li>
-                    <li class="py-2 border-b border-letterboxd-3">LISTS</li>
-                    <li class="py-2 border-b border-letterboxd-3">MEMBERS</li>
-                    <li class="py-2 ">JOURNAL</li>
-                </ul>
-            </div>
-            </div>
-      </nav>
+      
+     {% include "main/navbar.html" %}
+      
+    
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-       <div class="w-screen relative">
-        <img src="{% static 'authentication/image/puss.jpeg' %}" class="h-60 w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
-        <div class="text-white bg-transparent min-h-screen min-w-screen relative z-10">
-            
-            <div class="h-44 w-screen md:h-96"></div>
-           
-            <div class="w-screen flex flex-col items-center content-center">
-                <h1 class="mb-5 font-myfont text-4xl font-bold md:text-5xl md:mb-7">
-                    Letterboxd
-                </h1>
-                <p class="mb-12 text-xl font-myfontLight w-72 text-center md:font-abrilbold md:w-[600px] md:text-4xl">
-                    Track films you’ve watched. <br>
-                    Save those you want to see.<br>
-                    Tell your friends what’s good.
-                </p>
+      <div id="content" class="text-white w-screen relative">
+          <img id="top_background_image" src="{% static 'authentication/image/puss.jpg' %}" class="h-60 w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
+          
+          <div id="intro_block" class="bg-transparent relative z-10">
+              
+              <div class="h-44 w-screen md:h-96"></div>
+               <div class="w-screen flex flex-col items-center content-center">
+                   <h1 class="mb-5 font-myfont text-4xl font-bold md:text-5xl md:mb-7">
+                        Letterboxd
+                   </h1>
+                   <p class="mb-12 text-xl font-myfontLight w-72 text-center md:font-abrilbold md:w-[600px] md:text-4xl">
+                        Track films you’ve watched. <br>
+                        Save those you want to see.<br>
+                        Tell your friends what’s good.
+                    </p>
                 
-                <button class="signup-btn mb-8 font-myfontLight tracking-widest w-64 rounded-md p-1 bg-letterboxd-4">
-                    GET STARTED - SIGN UP
-                </button>
-                <div class="text-md text-letterboxd-3  font-myfontLight"> The social network for film lovers </div>
-                
-            </div>
-            
-        </div>
-        
-        
-        
-        
-        
-       <div id="signup" class="hidden font-myfontLight flex items-center justify-center absolute z-40 top-0 h-screen w-screen bg-transparent">
-           <div id="signup-form" class="w-80 bg-letterboxd-3 p-4 rounded-md relative shadow-2xl shadow-black">
-                <div class="flex items-start">
-                   <h1 class="pb-4 text-slate-400 w-72  tracking-widest"> JOIN LETTERBOXD </h1>
-                   <button class="signup-btn">
-                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-slate-400 w-7 h-7">
-                           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                       </svg>
-                   <button>
-
-                </div>
-               <form action="{% url 'authentication:signup' %}" method="post" class="flex flex-col gap-4 text-sm text-white text-opacity-80">
-                   {% csrf_token %}
-                   <div>
-                   <label class="">Email Address</label> <br>
-                   <input name="email_address" type=email class="p-2 text-gray-700 my-1 h-8 w-full rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
-                  </div>
-                  
-                  <div>
-                   <label class="">First Name</label> <br>
-                   <input name="first_name" type=text class="p-2 text-gray-700 my-1 h-8 w-1/2 rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
-                  </div>
-                  
-                   <div>
-                   <label class="">Last Name</label> <br>
-                   <input name="last_name" type=text class="p-2 text-gray-700 my-1 h-8 w-1/2 rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
-                  </div>
-                  
-                  <div>
-                   <label class="">Username</label> <br>
-                   <input name="username" type=text class="p-2 text-gray-700 my-1 h-8 w-1/2 rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
-                  </div>
-                  
-                  <div>
-                   <label class="">Password</label> <br>
-                   <input name="password" type=password class="p-2 text-gray-700 my-1 h-8 w-1/2 rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
-                  </div>
-                  <div>
-                   <label class=""> Confirm Password </label> <br>
-                   <input name="confirm_password" type="password" class="p-2 text-gray-700 my-2 h-8 w-1/2 rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg">
-                 </div> 
-                 <div>
-                   <button type=submit class="font-myfont tracking-widest bg-letterboxd-4 text-xs px-3 py-2 rounded-sm">
-                       SIGN UP
+                    <button class="signup-btn mb-8 font-myfontLight tracking-widest w-64 rounded-md p-1 bg-letterboxd-4">
+                        GET STARTED - SIGN UP
                     </button>
-                   </div>
-               </form>
+                    <div class="text-md text-letterboxd-3  font-myfontLight"> 
+                        The social network for film lovers 
+                    </div>
+                
+                </div>
             
-           </div>
-        </div>
-        
+            </div>
+            
+            
+       {% include "authentication/signup.html" %}
     </div>
     
-    
+           
       
       
   </body>
