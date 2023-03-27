@@ -19,7 +19,7 @@ def home(request):
 
 def signup(request):
     if request.method == "POST":
-        
+        print(request.POST)
         user_details = {
             "username" : request.POST["username"],
             "first_name" : request.POST["first_name"],
@@ -30,11 +30,13 @@ def signup(request):
         }
         
         if User.objects.filter(username=user_details["username"]):
+            print("heelo1")
             messages.error(request,"username already exist!")
             return redirect ("authentication:signup")
             
         if User.objects.filter(email=user_details["email_address"]):
             messages.error(request,"Email Already Registered")
+            print("hello2")
             return redirect("authentication:signup")
         
         new_user = User.objects.create_user(user_details["username"],user_details["email_address"],user_details["password"])
@@ -45,14 +47,16 @@ def signup(request):
         user = authenticate(username=user_details["username"], password=user_details["password"])
         login(request,user)
         messages.success(request,"Your Account is Created")
+        print("hello3")
         return redirect("authentication:home")
         
-    return render(request,"authentication/signup.html")
+    print("hello")
+    return render(request,"authentication/index.html")
 
 #------------------------------------------------------------------------
 
 def signin(request):
-    
+   
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -68,10 +72,10 @@ def signin(request):
         else: #rediect him signin page with error messages
       
             messages.error(request,"invalid username or password")
-            return redirect("authentication:signin")
+            return redirect("authentication:home")
             
         
-    return render(request,"authentication/signin.html")
+    return render(request,"authentication/index.html")
 
 
 #------------------------------------------------------------------------

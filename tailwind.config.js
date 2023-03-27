@@ -9,10 +9,16 @@ module.exports = {
                 2:"#2C343F",
                 3:"#556678",
                 4:"#00B021",
-                5:"#F27405"
+                5:"#F27405",
+               6:"#CCDDED",
             }
         },
+        fontFamily:{
+            'myfont':['myfont','sans-serif'],
+            'myfontLight':['myfontlight','sans-serif'],
+            'abrilbold':['abrilbold','sans-serif']
+        }
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-gradient-mask-image")],
 }

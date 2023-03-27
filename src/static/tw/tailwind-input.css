@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+    *{
+        margin:0;
+        padding:0;
+        border-box: border-box;
+    }
+}
+
+
+@font-face{
+    font-family: "myfont";
+    src: url('./Fonts/freightSans.otf');
+   
+}
+
+
+
+@font-face{
+    font-family: "myfontlight";
+    src: url("./Fonts/ProximaNova/Proxima\ Nova\ Reg.otf")
+   
+}
+
+
+@font-face{
+    font-family: "abrilbold";
+    src: url("./Fonts/abril/Abril_Text_Bold.otf")
+}
+
+
+

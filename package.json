@@ -4,5 +4,8 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.2.7"
+  },
+  "dependencies": {
+    "tailwind-gradient-mask-image": "^1.0.0"
   }
 }
