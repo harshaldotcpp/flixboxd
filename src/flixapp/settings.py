@@ -143,3 +143,4 @@ APPEND_SLASH = False
 MEDIA_URL = "mediafiles/"
 MEDIA_ROOT = os.path.join(BASE_DIR,"mediafiles")
 
+#ALLOWED_HOSTS = ["100.126.53.22"]
