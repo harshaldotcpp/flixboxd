@@ -6,15 +6,14 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class WatchedMovie(models.Model):
     tmdb_id = models.IntegerField(unique=True)
     original_title = models.CharField(max_length=100)
-    overview = models.CharField(max_length=1000)
     tagline = models.CharField(max_length=50)
-    rating = models.IntegerField(default=0,validators=[MaxValueValidator(5), MinValueValidator(0)])
     poster_path = models.CharField(max_length=100)
     cover_path = models.CharField(max_length=100)
     release_date = models.DateField()
     director = models.CharField(max_length=100)
     watched_by = models.ManyToManyField(User,related_name="movies_set")
     liked_by = models.ManyToManyField(User,related_name="get_liked_movies",blank=True)
+   
     
     def get_reviews(self):
         return self.reviews_set.all()
@@ -27,6 +26,15 @@ class WatchedMovie(models.Model):
  
  
  
+class Rating(models.Model):
+     stars = models.FloatField()
+     user = models.ForeignKey(User,on_delete=models.CASCADE)
+     movie = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE)
+     
+     def __str__(self):
+         return f"rating:{self.stars} user:{self.user.username}"
+ 
+ 
 class Watchlist(models.Model):
     tmdb_id = models.IntegerField(unique=True)
     original_title = models.CharField(max_length=100,default="")
@@ -35,3 +43,15 @@ class Watchlist(models.Model):
     
     def __str__(self):
         return f"movie:{self.original_title}"
+        
+        
+class DiaryLog(models.Model):
+    date = models.DateField()
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    movies = models.ManyToManyField(WatchedMovie)
+    
+    
+class List(models.Model):
+    list_name = models.CharField(max_length=500)
+    movies = models.ManyToManyField(WatchedMovie)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)

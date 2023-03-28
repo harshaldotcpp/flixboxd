@@ -18,7 +18,7 @@ class Profile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     following = models.ManyToManyField("self", symmetrical=False,related_name="followers",blank=True,null=True)
-    
+ 
     
   
   
@@ -31,7 +31,6 @@ class Profile(models.Model):
         
         tmdb_id = movie["tmdb_id"]
         title = movie["original_title"]
-        overview = movie['overview']
         tagline = movie['tagline']
         rating = movie['rating']
         poster_path = movie['poster_path']

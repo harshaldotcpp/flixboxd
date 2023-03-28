@@ -1,26 +1,46 @@
-from django.shortcuts import render, redirect 
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from django.shortcuts import render, redirect 
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.contrib import messages
+from tmdbv3api import TMDb,Movie
+import pprint
+import random
+import os
+
+tmdb = TMDb()
+tmdb.api_key = os.environ.get("TMDB_API_KEY")
+tmdb.language = 'en'
+tmdb.debug = True
 
 
 # Create your views here.
 def home(request):
-   
+    
   
+    print(request.user.is_authenticated)
     if request.user.is_authenticated: #if user is already is_authenticated(looged in) then take user to home page
         return render(request,"main/home.html")
    
    #else user will to welcome page
-    return render(request,"authentication/index.html")
+    movie = Movie()
+    populer_movies = movie.popular()[0:4]
+    pprint.pprint(populer_movies)
+    #print(populer_movies)
+    context = {
+        "movies": populer_movies,
+        "list":[0,1,2,3],
+        "for_cover": movie.popular()[random.randint(0,len(movie.popular())-1)]
+    }
+    
+    return render(request,"authentication/index.html",context=context)
     
     
 #------------------------------------------------------------------------
 
 def signup(request):
     if request.method == "POST":
-        print(request.POST)
+        
         user_details = {
             "username" : request.POST["username"],
             "first_name" : request.POST["first_name"],
@@ -31,13 +51,11 @@ def signup(request):
         }
         
         if User.objects.filter(username=user_details["username"]):
-            print("heelo1")
             messages.error(request,"username already exist!")
             return redirect ("authentication:signup")
             
         if User.objects.filter(email=user_details["email_address"]):
             messages.error(request,"Email Already Registered")
-            print("hello2")
             return redirect("authentication:signup")
         
         new_user = User.objects.create_user(user_details["username"],user_details["email_address"],user_details["password"])
@@ -48,22 +66,24 @@ def signup(request):
         user = authenticate(username=user_details["username"], password=user_details["password"])
         login(request,user)
         messages.success(request,"Your Account is Created")
-        print("hello3")
-        return redirect("authentication:home")
         
-    print("hello")
-    return render(request,"authentication/index.html")
+        
+        
+    return redirect("authentication:home")
+        
+    
+    
 
 #------------------------------------------------------------------------
 
 def signin(request):
-   
+    print("signin")
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
         
         user = authenticate(username=username,password=password)
-        
+        print(user)
         
         if user is not None: #if user added right Credentials redirect user to root path again
             login(request,user)

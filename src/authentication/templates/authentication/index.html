@@ -18,7 +18,7 @@
       
       
       <div id="content" class="text-white w-screen relative mb-28">
-          <img id="top_background_image" src="{% static 'authentication/image/puss.jpg' %}" class="h-60 w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
+          <img id="top_background_image" src="https://image.tmdb.org/t/p/original{{for_cover.backdrop_path}}" class="h-60 w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
           
           <div id="intro_block" class="bg-transparent relative z-10 mb-10">
               
@@ -47,7 +47,7 @@
             
             
          {% include "authentication/trendingcard.html" %}
-          jeisjsh
+          
          
          
          {% include "authentication/signup.html" %}
