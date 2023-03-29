@@ -51,11 +51,11 @@ def signup(request):
         }
         
         if User.objects.filter(username=user_details["username"]):
-            messages.error(request,"username already exist!")
+            messages.error(request,f"Username:{user_details['username']} Already Exist! Try Different.")
             return redirect ("authentication:signup")
             
         if User.objects.filter(email=user_details["email_address"]):
-            messages.error(request,"Email Already Registered")
+            messages.error(request,f"{user_details['email_address']} This Email Already Registered!")
             return redirect("authentication:signup")
         
         new_user = User.objects.create_user(user_details["username"],user_details["email_address"],user_details["password"])

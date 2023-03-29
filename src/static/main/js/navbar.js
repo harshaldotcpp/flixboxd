@@ -8,6 +8,9 @@
         const signup_btn = document.querySelectorAll(".signup-btn");
         const signup_field = document.querySelector("#signup");
         const navbar = document.querySelector("nav")
+        const alert_ = document.querySelector("#alert");
+        const alert_btn = document.querySelector("#alert-btn");
+      
         
         //for login
         login_btn.addEventListener('click',(event)=>{
@@ -97,3 +100,10 @@
         
             });
         });
+if(alert_btn){
+    alert_btn.addEventListener("click",(event)=>{
+            alert_.classList.toggle("hidden");
+        });
+}
+        
+        
