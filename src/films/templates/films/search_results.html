@@ -1,0 +1,30 @@
+           <div id="results">
+          {% for movie in movies %} 
+               <div id="search_result" class="border-b border-letterboxd-3 flex gap-4 items-start py-3">
+                  
+                   <div class="grow-0">
+                    <div class="w-20 relative card rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
+                        <a href="{% url  'films:film' movie.id %}">
+                        <img class="object-cover " src="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}">
+                       <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
+                       </a>
+                    </div>
+                   </div>
+                
+                <div class="text-sm font-myfontLight flex flex-col">
+                    <div class="font-abrilbold mb-3">
+                        <a href="{% url  'films:film' movie.id %}"> {{ movie.original_title }} <span class="font-myfontLight"> {{ movie.release_year }} </span>
+                     </div>
+                    <div id="alternatives" class="mb-3" >
+                        Alternative titles: 
+                        {{ movie.a_titles }}
+                    </div>
+                    <div id="director" class="">
+                        Director: {{ movie.director }}
+                    </div>
+                 </div>
+        
+           </div>
+          {% endfor %}
+           </div>
+          
