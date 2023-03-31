@@ -13,11 +13,11 @@
       
         
         //for login
+    if(login_btn){
         login_btn.addEventListener('click',(event)=>{
             
-            if(menu_field.classList.contains("h-56")){
-                menu_field.classList.toggle("h-56");
-                menu_field.classList.toggle("h-0");
+            if(!menu_field.classList.contains("hidden")){
+                menu_field.classList.toggle("hidden");
             }
                 
             if(!search_field.classList.contains("hidden"))
@@ -31,7 +31,7 @@
             navbar.classList.toggle("shadow-black");
         
         });
- 
+    }
     
     
   
@@ -42,9 +42,8 @@
             if(!login_field.classList.contains("hidden"))
                 login_field.classList.toggle("hidden");
             
-            if(menu_field.classList.contains("h-56")){
-                menu_field.classList.toggle("h-56");
-                menu_field.classList.toggle("h-0");
+            if(!menu_field.classList.contains("hidden")){
+                menu_field.classList.toggle("hidden");
             }
             
             if(!signup_field.classList.contains("hidden"))
@@ -71,8 +70,7 @@
                 signup_field.classList.toggle("hidden");
             
             console.log("hello")
-            menu_field.classList.toggle("h-56");
-            menu_field.classList.toggle("h-0");
+            menu_field.classList.toggle("hidden");
             navbar.classList.toggle("shadow-lg");
             navbar.classList.toggle("shadow-black");
         
@@ -87,9 +85,9 @@
                     login_field.classList.toggle("hidden");
            
                 
-                if(menu_field.classList.contains("h-56")){
-                    menu_field.classList.toggle("h-56");
-                    menu_field.classList.toggle("h-0");
+                if(!menu_field.classList.contains("hidden")){
+                    menu_field.classList.toggle("hidden");
+              
                 }
                 
                 if(!search_field.classList.contains("hidden"))
@@ -100,10 +98,10 @@
         
             });
         });
-if(alert_btn){
-    alert_btn.addEventListener("click",(event)=>{
+    if(alert_btn){
+            alert_btn.addEventListener("click",(event)=>{
             alert_.classList.toggle("hidden");
         });
-}
+    }
         
         
