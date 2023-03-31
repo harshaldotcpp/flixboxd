@@ -16,22 +16,23 @@ tmdb.debug = True
 
 # Create your views here.
 def home(request):
-    
-  
-    print(request.user.is_authenticated)
-    if request.user.is_authenticated: #if user is already is_authenticated(looged in) then take user to home page
-        return render(request,"main/home.html")
-   
-   #else user will to welcome page
     movie = Movie()
     populer_movies = movie.popular()[0:4]
     pprint.pprint(populer_movies)
-    #print(populer_movies)
     context = {
+        "user_logged_in": request.user.is_authenticated,
         "movies": populer_movies,
         "list":[0,1,2,3],
         "for_cover": movie.popular()[random.randint(0,len(movie.popular())-1)]
     }
+    
+  
+    print(request.user.is_authenticated)
+    if request.user.is_authenticated: #if user is already is_authenticated(looged in) then take user to home page
+        return render(request,"main/home.html",context=context)
+   
+   #else user will to welcome page
+    #print(populer_movies)
     
     return render(request,"authentication/index.html",context=context)
     
@@ -52,11 +53,11 @@ def signup(request):
         
         if User.objects.filter(username=user_details["username"]):
             messages.error(request,f"Username:{user_details['username']} Already Exist! Try Different.")
-            return redirect ("authentication:signup")
+            return redirect("authentication:home")
             
         if User.objects.filter(email=user_details["email_address"]):
             messages.error(request,f"{user_details['email_address']} This Email Already Registered!")
-            return redirect("authentication:signup")
+            return redirect("authentication:home")
         
         new_user = User.objects.create_user(user_details["username"],user_details["email_address"],user_details["password"])
         new_user.first_name = user_details["first_name"]
@@ -95,8 +96,8 @@ def signin(request):
             messages.error(request,"invalid username or password")
             return redirect("authentication:home")
             
-        
-    return render(request,"authentication/index.html")
+      
+    return redirect("authentication:home")
 
 
 #------------------------------------------------------------------------

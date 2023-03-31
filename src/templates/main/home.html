@@ -10,16 +10,99 @@
     <title>Welcome Page of my App</title>
    
   </head>
-  <body>
-      <form action="/signout/" method=get>
-          {% csrf_token %}
-          <div class="">
-              <h1 >this is home page</h1>
-              <strong> Welcome: {{ user.username }} </strong>
-              </br>
-              <button type="submit">signout</button>
+  <body class="bg-letterboxd-1 font-myfontLight text-letterboxd-6">
+      {% include 'main/navbar.html' %}
+      
+            <div class="come-content relative top-11">
+          <div class="py-6 text-3xl text-center whitespace-normal mb-5">
+              Welcome back,  {{ user.username }}
           </div>
+          
+          
+         <div id="populer with friends">
+            <div class="px-4 grid grid-cols-3 grid-rows-[auto,1fr,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4">
+               <div class="text-sm font-bold text-letterboxd-3 col-span-3  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
+                   POLPULER WITH FRIENDS
+                </div>
+   
+                <div class="card relative rounded-md md:rounded-2xl  shadow-inner shadow-blue-500 overflow-hidden">
+                        <a href="">
+                        <img class="object-cover" src="https://image.tmdb.org/t/p/original/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg">
+                        <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
+                            <img class="w-4 object-cover rounded-full" src="./pfp.jpg">
+                            <div class="font-myfont text-xs"> chrysa </div>
+                        </div>
+                      </a>
+                       <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
+           
+                </div>
+                <div class=" relative card rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
+                        <a href="">
+                        <img class="object-cover " src="https://image.tmdb.org/t/p/original/cij4dd21v2Rk2YtUQbV5kW69WB2.jpg">
+                        <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
+                            <img class="w-4 object-cover rounded-full" src="./pfp.jpg">
+                            <div class="font-myfont text-xs"> chrysa </div>
+                        </div>
+                      </a>
+                       <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
+                 
+                </div>
+                <div class=" relative card  rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
+                        <a href="">
+                        <img class="object-cover " src="https://image.tmdb.org/t/p/original/nEufeZlyAOLqO2brrs0yeF1lgXO.jpg">
+                        <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
+                            <img class="w-4 object-cover rounded-full" src="">
+                            <div class="font-myfont text-xs"> chrysa </div>
+                        </div>
+                       </a>
+                       <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
+                 
+                </div> 
+                <div class=" relative card rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
+                        <a href="">
+                        <img class="object-cover " src="https://image.tmdb.org/t/p/original/hrATQE8ScQceohwInaMluluNEaf.jpg">
+                        <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
+                            <img class="w-4 object-cover rounded-full" src="./pfp.">
+                            <div class="font-myfont text-xs"> chrysa </div>
+                        </div>
+                       </a>
+                       <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
+                 
+                </div>
+                <div class=" relative card rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
+                        <a href="">
+                        <img class="object-cover " src="https://image.tmdb.org/t/p/original//t6HIqrRAclMCA60NsSmeqe9RmNV.jpg">
+                        <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
+                            <img class="w-4 object-cover rounded-full" src="./pfp.jpg">
+                            <div class="font-myfont text-xs"> chrysa </div>
+                        </div>
+                       </a>
+                       <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
+                 
+                </div>
+                <div class=" relative card rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
+                        <a href="">
+                        <img class="object-cover " src="https://image.tmdb.org/t/p/original/w3LxiVYdWWRvEVdn5RYq6jIqkb1.jpg">
+                        <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
+                            <img class="w-4 object-cover rounded-full" src="./pfp.jpg">
+                            <div class="font-myfont text-xs"> chrysa </div>
+                        </div>
+                       </a>
+                       <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
+                 
+                </div>
+            </div>
+        </div>
+           
+        
+       </div>
+ 
+
   </body>
-  
+    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
+    
+    <script src="{% static 'main/js/navbar.js' %}"></script>
+
   
 </html>
