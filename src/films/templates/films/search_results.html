@@ -1,6 +1,6 @@
-           <div id="results">
+      <div id="results">
           {% for movie in movies %} 
-               <div id="search_result" class="border-b border-letterboxd-3 flex gap-4 items-start py-3">
+               <div id="search_result" class="border-t border-letterboxd-3 flex gap-4 py-3">
                   
                    <div class="grow-0">
                     <div class="w-20 relative card rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
@@ -11,7 +11,7 @@
                     </div>
                    </div>
                 
-                <div class="text-sm font-myfontLight flex flex-col">
+                <div class="text-sm font-myfontLight flex flex-col justify-between ">
                     <div class="font-abrilbold mb-3">
                         <a href="{% url  'films:film' movie.id %}"> {{ movie.original_title }} <span class="font-myfontLight"> {{ movie.release_year }} </span>
                      </div>
@@ -24,7 +24,7 @@
                     </div>
                  </div>
         
-           </div>
+              </div>
           {% endfor %}
-           </div>
+       </div>
           
