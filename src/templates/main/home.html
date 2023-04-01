@@ -10,18 +10,18 @@
     <title>Welcome Page of my App</title>
    
   </head>
-  <body class="bg-letterboxd-1 font-myfontLight text-letterboxd-6">
+  <body class=" w-screen bg-gradient-to-tl from-letterboxd-1 to-letterboxd-2 font-myfontLight min-h-screen font-myfontLight text-letterboxd-6">
       {% include 'main/navbar.html' %}
       
             <div class="come-content relative top-11">
-          <div class="py-6 text-3xl text-center whitespace-normal mb-5">
+          <div class="py-6 text-3xl text-center whitespace-normal mb-5 md:mb-0">
               Welcome back,  {{ user.username }}
           </div>
           
           
-         <div id="populer with friends">
-            <div class="px-4 grid grid-cols-3 grid-rows-[auto,1fr,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4">
-               <div class="text-sm font-bold text-letterboxd-3 col-span-3  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
+         <div id="populer with friends" class="md:px-64">
+            <div class="px-4 grid grid-cols-3 grid-rows-[auto,1fr,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
+               <div class="text-sm font-bold text-letterboxd-3 col-span-3 md:col-span-6  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
                    POLPULER WITH FRIENDS
                 </div>
    

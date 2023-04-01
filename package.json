@@ -6,6 +6,7 @@
     "tailwindcss": "^3.2.7"
   },
   "dependencies": {
-    "tailwind-gradient-mask-image": "^1.0.0"
+    "tailwind-gradient-mask-image": "^1.0.0",
+    "yarn": "^1.22.19"
   }
 }
