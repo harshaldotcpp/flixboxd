@@ -13,7 +13,7 @@
         const search_content_btn = document.querySelector("#search_content_btn")
        
         //for login
-    if(login_btn){
+    if(login_field){
         console.log(login_btn)
         login_btn.addEventListener('click',(event)=>{
             if(!menu_field.classList.contains("hidden")){
@@ -43,9 +43,10 @@
 
         //for search
         search_btn.addEventListener('click',(event)=>{
-            
+           if(login_field){ 
             if(!login_field.classList.contains("hidden"))
                 login_field.classList.toggle("hidden");
+           }
             
             if(!menu_field.classList.contains("hidden")){
                 menu_field.classList.toggle("hidden");
@@ -64,8 +65,10 @@
     
         //for menu
         menu_btn.addEventListener('click',(event)=>{
+            if(login_field){
             if(!login_field.classList.contains("hidden"))
                 login_field.classList.toggle("hidden");
+            }
             
             
             if(!search_field.classList.contains("hidden"))
@@ -86,9 +89,10 @@
        if(signup_field){
         signup_btn.forEach((btn)=>{
             btn.addEventListener("click",(event)=>{
-                
+               if(login_field){ 
                 if(!login_field.classList.contains("hidden"))
                     login_field.classList.toggle("hidden");
+               }
            
                 
                 if(!menu_field.classList.contains("hidden")){

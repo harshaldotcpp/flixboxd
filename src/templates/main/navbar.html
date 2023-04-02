@@ -30,6 +30,9 @@
            </div>
          
          <!----- signin menu ----->
+          {% if user_logged_in %}
+              <div></div>
+          {% else %}
             <div id="signin_menu" class="w-screen bg-letterboxd-1 overflow-hidden hidden px-2 md:py-2 md:px-16 text-letterboxd-3 drop-shadow-2xl">
                  <form action="{% url 'authentication:signin' %}" method="post">
                      {% csrf_token %}
@@ -52,6 +55,7 @@
                     </div>
                 </form>
             </div>
+            {% endif %}
             <!----- search ------>
             <div id="search_feild" class="hidden bg-letterboxd-1 p-4 text-gray-500 relative">
                 <input id="search_content" type="text" class="h-9 w-full rounded-sm focus:outline-0 focus:bg-white focus:text-slate-400 p-3 bg-letterboxd-2">

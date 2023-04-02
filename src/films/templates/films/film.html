@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="bg-letterboxd-3 text-letterboxd-6 py-2 hover:shadow-lg hover:shadow-black rounded-md mt-12 px-4 flex gap-4">
-                                <img class="w-6 object-cover rounded-full" src="./pfp.jpg">
+                                <img class="w-6 object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
                                 <button id="maction">
                                     <div>Rate, log, Review + add</div>
                                 </button>
@@ -150,7 +150,7 @@
                         </div>
                         <div id="cast" class="flex flex-wrap gap-3">
                             {% for cast in movie.casts.cast %}
-                            <div class="bg-gray-700 text-xs rounded-sm py-1 px-2">{{cast.original_name}}</div>
+                            <div class="bg-gray-700 text-xs rounded-sm shadow-sm shadow-black y-1 px-2">{{cast.original_name}}</div>
                             {% endfor %}
                         </div>
                         <div id="crew",class="hidden"> 

@@ -22,10 +22,10 @@ def film(request,film_id):
         
     if len(directors) == 0:
         directors = [""]
-    print(directors)
+
     
     info = {
-        "user_logged_in": request.user.is_authenticated,
+        "user_logged_in": request.user.is_authenticated, 
         "film_name":film_id,
         "movie": m,
         "release_year": m.release_date[:4],
