@@ -43,7 +43,7 @@ class Profile(models.Model):
     
     def remove_watched_movie(self,tmdb_id):
         db_movie = WatchedMovie.objects.filter(tmdb_id=tmdb_id)
-        if db_movie:
+        if db_movie: #safety check
             self.user.movies_set.remove(db_movie[0])
             return True
      
