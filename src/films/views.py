@@ -10,12 +10,13 @@ tmdb.debug = True
 # Create your views here.
 
 
-def film(request,film_name):
-
+def film(request,film_id):
+    movie = Movie()
+    m = movie.search("the batman")
+    
     info = {
-        "film_name":film_name,
+        "film_name":film_id,
     }
-    print(type(film_name))
     return render(request,"films/film.html",info)
     
     
@@ -46,6 +47,7 @@ def search_films(request,film_name):
    
     
     context = {
+        "user_logged_in": request.user.is_authenticated,
         "search_value":film_name,
         "movies": movies,
         "user_logged_in": request.user.is_authenticated,

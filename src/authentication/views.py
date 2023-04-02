@@ -17,7 +17,7 @@ tmdb.debug = True
 # Create your views here.
 def home(request):
     movie = Movie()
-    populer_movies = movie.popular()[0:4]
+    populer_movies = movie.popular()[0:6]
     pprint.pprint(populer_movies)
     context = {
         "user_logged_in": request.user.is_authenticated,

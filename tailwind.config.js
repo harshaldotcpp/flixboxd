@@ -16,7 +16,8 @@ module.exports = {
         fontFamily:{
             'myfont':['myfont','sans-serif'],
             'myfontLight':['myfontlight','sans-serif'],
-            'abrilbold':['abrilbold','sans-serif']
+            'abrilbold':['abrilbold','sans-serif'],
+            'abril' : ['abril','sans-serif']
         }
     },
   },

@@ -1,17 +1,222 @@
 <!DOCTYPE html>
-
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'films/css/style.css' %}">
+     <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.css' %}">
     <title>Welcome Page of my App</title>
    
   </head>
-  <body>
-      <h1>this is film info page</h1>
-      <h1> film nme: </h1> {{ film_name }}
+  <body class="bg-letterboxd-1 font-myfontLight text-letterboxd-6">
+      {% include 'main/navbar.html' %}
+  
+
+             <div class="relative flex-cols" >
+            <img src="{% static '/authentication/image/puss.jpg' %}" class="h-64  w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
+            <div class="relative bg-transparent z-10">
+                <div class="relative h-52 md:h-96">
+                    
+                    <button class="z-50 absolute bg-white h-6 w-6 rounded-full top-12 right-4 shadow shadow-black">
+                     
+                     </button>
+                         
+                </div>
+                
+                <div class="flex gap-3 justify-between md:justify-center md:gap-32 p-4">
+                    
+                     <div id="movie-info" class="">
+                        <div class="text-white leading-7 font-abrilbold text-2xl">
+                            Puss in Boots: The Last Wish
+                        </div>
+                        <div class="mt-2 text-letterboxd-6 text-sm font-myfontLight tracking-wide">
+                             2023 • DIRECTED BY<br>
+                            
+                        </div>
+                           <div class="font-myfont"> Joel Crawford </div>
+                           <div class="mt-4 flex gap-3"> 
+                               <button class="flex items-center bg-letterboxd-3 tracking-widest text-xs py-1 px-3 rounded-md font-bold" >
+                                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3 h-3">
+                                      <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
+                                    </svg>
+                               <span> Trailer </span>
+                            </button>
+                                <span>
+                                128 mins
+                            </span>
+                           </div>
+                     </div>
+                     
+                     <div>
+                         <div class="w-28 card relative rounded-md md:rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
+                            <a href="">
+                            <img class="object-cover" src="{% static 'authentication/image/batman.jpg' %}">
+                           </a>
+                          <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
+                        </div>
+                    </div>
+                    
+                </div>   
+            </div>
+
+           <div class="p-4 md:px-32 font-myfontLight">
+               
+               <div id="content" class="flex flex-col md:px-24">
+                   
+                    <div id="tagline" class="text-sm tracking-widest font-bold text-letterboxd-6">
+                        SAY HOLA TO HIS LITTLE FRIENDS
+                     </div>
+                    <div id="synopsis" class="mt-4 font-abrilbold font-extralight pt-0">
+                          Puss in Boots discovers that his passion for adventure has taken its toll: He has burned through eight of his nine lives, leaving him with only one life left. Puss sets out on an epic journey to find the mythical Last Wish and restore his nine lives.
+                     </div>
+
+                  
+            
+                    <div id="rating_graph" class="text-sm mt-12">
+                        <div class="mb-2 pb-2 border-b border-letterboxd-3 flex justify-between">
+                            <span> RATINGS </span>
+                            <span> 65.k FANS </span>
+                        </div>
+
+                        <div class='flex justify-between'>
+                            <div class="h-12 w-100 bg-letterboxd-3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-letterboxd-3 text-letterboxd-6 py-2 rounded-md mt-12 px-4 flex gap-4">
+                                <img class="w-6 object-cover rounded-full" src="./pfp.jpg">
+                                <button id="maction">
+                                    <div>Rate, log, Review + add</div>
+                                </button>
+                    </div>
+            
+                    <div id="movie-add" class="hidden flex flex-col mt-5 bg-letterboxd-3 rounded-md shadow-md shadow-black">
+                        <div id="watch-like-watchlist" class="p-5 flex justify-evenly gap-14 border-b border-black">
+        
+                            <div class="flex flex-col items-center">
+        
+                                <button id="watch-btn" class="">
+                                    <svg id="watch-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-12 h-12">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                      </svg>
+                                      
+                                </button>
+                                Watch
+                            </div>
+        
+                            <div class="flex flex-col items-center">
+                                <button id="like_btn">
+            
+                                    <svg id="like-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-12 h-12">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                      </svg>
+                                </button>
+                                like
+                            </div>
+        
+                            <div class="flex flex-col items-center">             
+                                  <button id="watchlist_btn">        
+                                      <svg id="watchlist-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        
+                                  </button>
+                                  watchlist
+                            </div>
+        
+                        </div>
+                        <div id="review-log-again" class="tracking-wide font-myFontLight p-2 flex justify-center w-100 border-b border-black">
+                            <div> <button id="review-btn">Review or log again </button></div>
+                        </div>
+                        <div id="edit-review" class="tracking-wide font-myFontLight p-2 flex justify-center w-100 border-b border-black">
+                            <div>Edit your Review</div>
+                        </div>
+                        <div id="add-to-list" class="tracking-wide font-myFontLight p-2 flex justify-center w-100 border-b border-black">
+                            <div>Add to list</div>
+                        </div>
+                        <div class="flex">
+        
+                        </div>
+                    </div>
+                
+                    <div class="cast-crew-div">
+                        <div class="mb-3 text-letterboxd-4 mt-12 border-b border-letterboxd-3 flex gap-3 font-myfontLight">
+                            <div class=""> CAST </div>
+                            <div> CREW </div>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <div class="bg-gray-700 text-xs rounded-sm py-1 px-2"> Antonio Banderas  </div>
+                        </div>
+                    </div>
+                    
+                    <div id="populer_review" class="mt-12 border-letterboxd-3">
+                        <div class="flex justify-between py-1 border-b border-letterboxd-3">
+                            <div> POPULAR REVIEWS </div>
+                            <div> more </div>
+                         </div>
+                         
+                         <div id="reviews" class="py-3 border-b border-letterboxd-3">
+                             <div if="reviewer" class="mb-3 text-xs tracking-widest flex gap-1 items-center">
+                                 <img class="w-6 object-cover rounded-full" src="./pfp.jpg">
+                                 <div class="text-letterboxd-3 font-bold" id="username">Review by <span class="font-myfont text-letterboxd-6" > NicoPico </span> </div>
+                             </div>
+                             <div id="main_review" class=" text-sm text-gray-400  font-abril">
+                                 The most overrated animated film of all time.
+                                 
+                                 HE WILL NEVER BE MY FAVORITE FEARLESS HERO!!!
+                                 Lorem laborum ea laboris velit. Aliqua laborum amet irure ex laboris exercitation sunt non laboris non exercitation ea incididunt ex. Qui nisi anim cocaecat consectetur voluptate deserunt veniam ad. Ex laboris ipsum sunt culpa incididunt officia aliqua Lorem sit. Cillum nisi ea veniam pariatur duis enim et excepteur sit proident. Dolor consectetur veniam cupidatat tempor ad deserunt. Dolor anim minim velit id sunt nostrud fugiat anim pariatur reprehenderit reprehenderit mollit anim consequat.
+                             </div>
+                         </div>
+                    </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div id="movie-review-log" class="px-5 hidden text-myfontLight absolute z-50 bg-transparent top-0 flex justify-center items-center h-screen w-screen">
+        
+            <div class="bg-letterboxd-3 p-3">
+                <div class="flex items-start gap-3 ">
+                    <div>
+                        <div class="w-20 card relative rounded-md md:rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
+                           <a href="">
+                           <img class="object-cover" src="{% static 'authentication//image/batman.jpg' %}">
+                          </a>
+                         <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
+                       </div>
+                   </div>
+                   <div class="flex flex-col text-white ">
+                        <div class="font-abrilbold text-2xl">Puss in Boots: The Last Wise <span class="font-myfontLight">2022</span></div>
+                        <div class="mt-1 font-myfontLight text-bold tracking-wider"> <input type="checkbox" name="shouldlog" id="">
+                            Watched  on (add to diary) <input class="focus:outline-none text-letterboxd-6 bg-letterboxd-2 rounded-sm p-1 text-xs" type="date" name="" id="datePicker">
+                        </div>
+                    </div>
+                   <div class="">
+                        <button id="review-cancel-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                   </div>
+                </div>
+            <form action="" method="post">
+
+                <textarea class="focus:outline-none mt-4 text-gray-700 font-myfontLight p-3 peer block min-h-[auto] w-full rounded border-0 bg-white py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" id="reiview" rows="4" placeholder="Your review"></textarea>
+                <div class="mt-3">
+                    <button class="bg-letterboxd-4 font-myfont trakinking widest py-1 px-2 rounded-sm" type="submit">SAVE</button>
+                </div>
+            </form>
+        </div>
+
+            
+
+        </div>
+        <script src="{% static 'films/js/script.js' %}"></script>
+
+ 
   </body>
 </html>
