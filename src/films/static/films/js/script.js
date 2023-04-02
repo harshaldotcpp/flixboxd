@@ -23,8 +23,10 @@
         review_cancel_btn.addEventListener("click", event =>{
             document.getElementById("movie-review-log").classList.toggle("hidden")
         });
+
+
         watch_btn.addEventListener("click",(event)=>{
-            console.log("watch_btn played");
+            console.log("watch_btn ");
             const icon = document.querySelector("#watch-icon");
             icon.classList.toggle("fill-letterboxd-4");
         });
