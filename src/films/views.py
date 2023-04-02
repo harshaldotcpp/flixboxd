@@ -12,14 +12,16 @@ tmdb.debug = True
 
 def film(request,film_id):
     movie = Movie()
-    print(type(film_id)) 
+    m = movie.details(film_id)
+    print(dir(m)) 
     
 
     info = {
         "user_logged_in": request.user.is_authenticated,
         "film_name":film_id,
+        "movie": m,
     }
-    return render(request,"films/film.html",info)
+    return render(request,"films/film.html",context=info)
     
     
     
