@@ -21,8 +21,8 @@ class Profile(models.Model):
  
     
   
-  
-            
+    
+      
     def add_watched_movie(self,movie):
         db_movie = WatchedMovie.objects.filter(tmdb_id=movie["tmdb_id"])
         if db_movie:
@@ -56,8 +56,7 @@ class Profile(models.Model):
         poster_path = movie['poster_path']
     
         db_movie = Watchlist.objects.filter(tmdb_id=movie["tmdb_id"])
-        print(tmdb_id)
-        print(db_movie)
+        
         if db_movie:
             self.user.watchlist_set.add(db_movie[0])
             return
@@ -72,6 +71,11 @@ class Profile(models.Model):
             self.user.watchlist_set.remove(db_movie[0])
             return True
         return False
+    
+    def is_in_watchlist(self,tmdb_id):
+        if self.user.watchlist_set.filter(tmdb_id=tmdb_id).count() == 0:
+            return False
+        return True
 
         
     def is_watched(self,tmdb_id):

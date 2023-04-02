@@ -12,9 +12,11 @@ tmdb.debug = True
 
 def film(request,film_id):
     movie = Movie()
-    m = movie.search("the batman")
+    print(type(film_id)) 
     
+
     info = {
+        "user_logged_in": request.user.is_authenticated,
         "film_name":film_id,
     }
     return render(request,"films/film.html",info)

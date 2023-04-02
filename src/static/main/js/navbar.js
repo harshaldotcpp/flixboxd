@@ -14,18 +14,23 @@
        
         //for login
     if(login_btn){
+        console.log(login_btn)
         login_btn.addEventListener('click',(event)=>{
-            
             if(!menu_field.classList.contains("hidden")){
                 menu_field.classList.toggle("hidden");
             }
                 
             if(!search_field.classList.contains("hidden"))
                 search_field.classList.toggle("hidden");
-                
-            if(!signup_field.classList.contains("hidden"))
+            
+            if(signup_field){
+                if(!signup_field.classList.contains("hidden"))
                 signup_field.classList.toggle("hidden");
-                
+             
+            }
+            
+
+               
             login_field.classList.toggle("hidden");
             navbar.classList.toggle("shadow-lg");
             navbar.classList.toggle("shadow-black");
