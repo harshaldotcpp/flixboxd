@@ -14,12 +14,11 @@ def film(request,film_id):
     movie = Movie()
     m = movie.details(film_id)
    
-    for cast in m.casts.cast:
-        print(cast.original_name)
     info = {
         "user_logged_in": request.user.is_authenticated,
         "film_name":film_id,
         "movie": m,
+        "release_year": m.release_date[:4],
     }
     return render(request,"films/film.html",context=info)
     
