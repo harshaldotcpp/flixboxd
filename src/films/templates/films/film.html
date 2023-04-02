@@ -85,6 +85,8 @@
                             </div>
                         </div>
                     </div>
+                    
+                    {% if user_logged_in %}
 
                     <div class="bg-letterboxd-3 text-letterboxd-6 py-2 hover:shadow-lg hover:shadow-black rounded-md mt-12 px-4 flex gap-4">
                                 <img class="w-6 object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
@@ -142,7 +144,7 @@
         
                         </div>
                     </div>
-                
+                    {% endif %}
                     <div class="cast-crew-div">
                         <div class="mb-3 text-letterboxd-4 mt-12 border-b border-letterboxd-3 flex gap-3 font-myfontLight">
                             <div class=""> CAST </div>
