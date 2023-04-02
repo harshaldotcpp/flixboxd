@@ -13,7 +13,7 @@
                 
                 <div class="text-sm font-myfontLight flex flex-col justify-between ">
                     <div class="font-abrilbold mb-3">
-                        <a href="{% url  'films:film' movie.id %}"> {{ movie.original_title }} <span class="font-myfontLight"> {{ movie.release_year }} </span>
+                        <a href="{% url  'films:film' movie.id %}"> {{ movie.title }} <span class="font-myfontLight"> {{ movie.release_year }} </span>
                      </div>
                     <div id="alternatives" class="mb-3" >
                         Alternative titles: 
