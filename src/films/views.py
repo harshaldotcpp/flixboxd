@@ -13,12 +13,23 @@ tmdb.debug = True
 def film(request,film_id):
     movie = Movie()
     m = movie.details(film_id)
-   
+    mc = movie.credits(film_id)
+    
+    directors = []
+    for credit in mc.crew:
+        if credit["job"] == "Director":
+            directors.append(credit.original_name)
+        
+    if len(directors) == 0:
+        directors = [""]
+    print(directors)
+    
     info = {
         "user_logged_in": request.user.is_authenticated,
         "film_name":film_id,
         "movie": m,
         "release_year": m.release_date[:4],
+        "director": directors[0]
     }
     return render(request,"films/film.html",context=info)
     
