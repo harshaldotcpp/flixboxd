@@ -13,9 +13,9 @@ tmdb.debug = True
 def film(request,film_id):
     movie = Movie()
     m = movie.details(film_id)
-    print(dir(m)) 
-    
-
+   
+    for cast in m.casts.cast:
+        print(cast.original_name)
     info = {
         "user_logged_in": request.user.is_authenticated,
         "film_name":film_id,

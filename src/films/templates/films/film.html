@@ -15,7 +15,7 @@
   
 
              <div class="relative flex-cols" >
-            <img src="{% static '/authentication/image/puss.jpg' %}" class="h-64  w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
+            <img src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}" class="h-64  w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
             <div class="relative bg-transparent z-10">
                 <div class="relative h-52 md:h-96">
                     
@@ -44,7 +44,7 @@
                                <span> Trailer </span>
                             </button>
                                 <span>
-                                128 mins
+                                128 mins 
                             </span>
                            </div>
                      </div>
@@ -52,7 +52,7 @@
                      <div>
                          <div class="w-28 card relative rounded-md md:rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
                             <a href="">
-                            <img class="object-cover" src="{% static 'authentication/image/batman.jpg' %}">
+                            <img class="object-cover" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}">
                            </a>
                           <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
                         </div>
@@ -66,11 +66,11 @@
                <div id="content" class="flex flex-col md:px-24">
                    
                     <div id="tagline" class="text-sm tracking-widest font-bold text-letterboxd-6">
-                        SAY HOLA TO HIS LITTLE FRIENDS
+                        {{ movie.tagline }}
                      </div>
                     <div id="synopsis" class="mt-4 font-abrilbold font-extralight pt-0">
-                          Puss in Boots discovers that his passion for adventure has taken its toll: He has burned through eight of his nine lives, leaving him with only one life left. Puss sets out on an epic journey to find the mythical Last Wish and restore his nine lives.
-                     </div>
+                        {{ movie.overview }}
+                   </div>
 
                   
             
@@ -148,8 +148,12 @@
                             <div class=""> CAST </div>
                             <div> CREW </div>
                         </div>
-                        <div class="flex flex-wrap gap-3">
-                            <div class="bg-gray-700 text-xs rounded-sm py-1 px-2"> Antonio Banderas  </div>
+                        <div id="cast" class="flex flex-wrap gap-3">
+                            {% for cast in movie.casts.cast %}
+                            <div class="bg-gray-700 text-xs rounded-sm py-1 px-2">{{cast.original_name}}</div>
+                            {% endfor %}
+                        </div>
+                        <div id="crew",class="hidden"> 
                         </div>
                     </div>
                     

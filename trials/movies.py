@@ -9,5 +9,5 @@ tmdb.debug = True
 
 movie = Movie()
 
-print(movie.details(268).encode("utf-8") )
+print(movie.details(268))
 
