@@ -75,11 +75,24 @@
             fetch("http://localhost:8000/film/watchedadd",options)
              
         });
+        
         like_btn.addEventListener("click",(event)=>{
-            console.log("liked played");
+            console.log("l played");
                 const icon = document.querySelector("#like-icon");
                 icon.classList.toggle("fill-letterboxd-5");
+               
+                options.body = JSON.stringify({ 
+                    add: watch_btn.checked,
+                    tmdb_id: getCookie('id'),
+                    title: getCookie('movie_name'),
+                    poster_path: getCookie('poster_path'),
+                    director: getCookie('director'),
+                });
+                console.log("hello")
+                fetch("http://localhost:8000/film/likedadd",options)
+       
         });
+        
         watchlist_btn.addEventListener("click",(event)=>{
             console.log("watchlist played");
             const icon = document.querySelector("#watchlist-icon");

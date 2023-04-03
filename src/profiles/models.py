@@ -98,7 +98,33 @@ class Profile(models.Model):
 
     def get_user_movies(self):
         pass
+
+    def liked(self,movie):
+        db_movie = WatchedMovie.objects.filter(tmdb_id=movie["tmdb_id"])
+        
+        if db_movie:
+            self.user.liked_movies_set.add(db_movie[0])
+            return
+        
+        tmdb_id = movie["tmdb_id"]
+        title = movie["original_title"]
+        poster_path = movie['poster_path']
+        director = movie['director']
+        
+        return self.user.liked_movie_set.create(tmdb_id=tmdb_id,original_title=title,poster_path=poster_path, director=director)
+        
+    def unlike(self,movie_id):
+        db_movie = self.user.liked_movies_set.filter(tmdb_id = movie_id)
+       
+        if db_movie:
+            self.user.liked_movies_set.remove(db_movie)
+            return True
+        return False
   
+    def is_liked(self,movie_id):
+        if self.user.liked_movies_set.filter(tmdb_id = movie_id):
+            return True
+        return False
   
     
 class Top4(models.Model):

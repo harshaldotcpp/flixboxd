@@ -9,7 +9,7 @@ class WatchedMovie(models.Model):
     poster_path = models.CharField(max_length=100)
     director = models.CharField(max_length=100)
     watched_by = models.ManyToManyField(User,related_name="movies_set")
-    liked_by = models.ManyToManyField(User,related_name="get_liked_movies",blank=True)
+    liked_by = models.ManyToManyField(User,related_name="liked_movies_set",blank=True)
    
     
     def get_reviews(self):
@@ -51,4 +51,4 @@ class DiaryLog(models.Model):
 class List(models.Model):
     list_name = models.CharField(max_length=500)
     movies = models.ManyToManyField(WatchedMovie)
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE) 
