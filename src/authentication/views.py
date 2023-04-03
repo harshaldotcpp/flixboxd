@@ -18,10 +18,12 @@ tmdb.debug = True
 def home(request):
     movie = Movie()
     populer_movies = movie.popular()[0:6]
+    populer_movies_mobile = movie.popular()[:4]
     
     context = {
         "user_logged_in": request.user.is_authenticated,
         "movies": populer_movies,
+        "movies_mobile": populer_movies_mobile,
         "list":[0,1,2,3],
         "for_cover": movie.popular()[random.randint(0,len(movie.popular())-1)]
     }

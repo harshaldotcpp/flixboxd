@@ -27,7 +27,7 @@ def watched(request):
             
             }
             request.user.profile.add_watched_movie(movieInfo)
-            v = request.user.profile.remove_from_watchlist(obj["tmdb_id"])
+            request.user.profile.remove_from_watchlist(obj["tmdb_id"])
             
             response_data = {
                 "status": "succesfull",
@@ -35,9 +35,9 @@ def watched(request):
             }
             return HttpResponse(json.dumps(response_data),content_type='application/json')
            
-        r = request.user.profile.remove_watched_movie(obj["tmdb_id"])
+        request.user.profile.remove_watched_movie(obj["tmdb_id"])
         
-        print("hello",r)
+       
     return HttpResponse("error")
 
 
