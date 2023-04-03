@@ -104,7 +104,7 @@ class Profile(models.Model):
         
         if db_movie:
             self.user.liked_movies_set.add(db_movie[0])
-            return
+            return "added"
         
         tmdb_id = movie["tmdb_id"]
         title = movie["original_title"]
@@ -115,9 +115,9 @@ class Profile(models.Model):
         
     def unlike(self,movie_id):
         db_movie = self.user.liked_movies_set.filter(tmdb_id = movie_id)
-       
+        print(db_movie) 
         if db_movie:
-            self.user.liked_movies_set.remove(db_movie)
+            self.user.liked_movies_set.remove(db_movie[0])
             return True
         return False
   

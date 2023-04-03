@@ -62,6 +62,7 @@
             const icon = document.querySelector("#watch-icon");
             icon.classList.toggle("fill-letterboxd-4");
             
+                console.log(watch_btn.checked) 
             options.body = JSON.stringify({ 
                 add: watch_btn.checked,
                 tmdb_id: getCookie('id'),
@@ -80,9 +81,9 @@
             console.log("l played");
                 const icon = document.querySelector("#like-icon");
                 icon.classList.toggle("fill-letterboxd-5");
-               
+                console.log(like_btn.checked)
                 options.body = JSON.stringify({ 
-                    add: watch_btn.checked,
+                    add: like_btn.checked,
                     tmdb_id: getCookie('id'),
                     title: getCookie('movie_name'),
                     poster_path: getCookie('poster_path'),

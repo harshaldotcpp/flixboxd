@@ -43,12 +43,12 @@ def watched(request):
 
 
 def liked(request):
-    print("hello")
     if request.method == "POST":
        
         obj = json.load(request)
         movie_add = obj["add"]
-        
+        print("buuton" ,movie_add)
+        print("hello" ,movie_add) 
         if movie_add:
             movieInfo = {
                 "tmdb_id": obj["tmdb_id"],
@@ -62,12 +62,11 @@ def liked(request):
             
             response_data = {
                 "status": "succesfull",
-                "message": "added_to_watched"
+                    "message": "added_to_watched"
             }
             return HttpResponse(json.dumps(response_data),content_type='application/json')
-        
-        request.user.profile_unliked(obj["tmdb_id"])
-        
+        print("im bug") 
+        request.user.profile.unlike(obj["tmdb_id"])
     return HttpResponse("error")   
         
 
@@ -89,6 +88,7 @@ def film(request,film_id):
     watch_btn = ""
     w_checked = ""
     l_checked = ""
+    liked_btn = ""
     if request.user.is_authenticated:
         if(request.user.profile.is_watched(film_id)):
             watch_btn = "fill-letterboxd-4"
@@ -97,7 +97,6 @@ def film(request,film_id):
             liked_btn = "fill-letterboxd-5"
             l_checked = "checked"
         
-    
     info = {
         "user_logged_in": request.user.is_authenticated, 
         "movie": m,
@@ -105,7 +104,8 @@ def film(request,film_id):
         "director": directors[0],
         "watch_btn": watch_btn,
         "watched_checked" : w_checked,
-        "liked_check": l_checked
+        "liked_check": l_checked,
+        "liked_btn": liked_btn 
     }
     response = render(request,"films/film.html",context=info)
     response.set_cookie(key="movie_name",value=m.title)
