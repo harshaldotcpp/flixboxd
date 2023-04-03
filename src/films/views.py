@@ -73,6 +73,30 @@ def liked(request):
         
 
 
+def watchlist(request):
+    if request.method == "POST":
+        print("hello world")
+        obj = json.load(request)
+        movie_add = obj["add"]
+
+        if movie_add:
+            movie_info = {
+                "tmdb_id": obj["tmdb_id"],
+                "original_title": obj["title"],
+                "poster_path": obj["poster_path"]
+            }
+            request.user.profile.add_to_watchlist(movie_info)
+            response_data = {
+                "status": "succesfull",
+                "message": "added_to_watched"
+            }
+            return HttpResponse(json.dumps(response_data),content_type='application/json')
+
+        request.user.profile.remove_from_watchlist(obj["tmdb_id"])
+
+    return HttpResponse("watchlist error")
+
+
 def film(request,film_id):
     
     movie = Movie()
@@ -89,8 +113,10 @@ def film(request,film_id):
     
     watch_btn = ""
     watch_checked = ""
-    liked_checked = "none"
+    liked_checked = ""
     liked_btn = ""
+    watchlist_checked = ""
+    watchlist_btn = ""
     if request.user.is_authenticated:
         if(request.user.profile.is_watched(film_id)):
             watch_btn = "fill-letterboxd-4"
@@ -98,8 +124,11 @@ def film(request,film_id):
         if(request.user.profile.is_liked(film_id)):
             liked_btn = "fill-letterboxd-5"
             liked_checked = "checked"
+        if(request.user.profile.is_in_watchlist(film_id)):
+            watchlist_checked = "checked"
+            watchlist_btn = "fill-letterboxd-4"
             
-       
+        print(watchlist_checked,watchlist_btn)     
         
    
     info = {
@@ -111,6 +140,8 @@ def film(request,film_id):
         "watched_checked" : watch_checked,
         "liked_check": liked_checked,
         "liked_btn": liked_btn,
+        "watchlist_checked": watchlist_checked,
+        "watchlist_btn": watchlist_btn,
     }
     response = render(request,"films/film.html",context=info)
     response.set_cookie(key="movie_name",value=m.title)
@@ -120,7 +151,11 @@ def film(request,film_id):
    
     return response
     
-    
+
+
+
+
+
 def search_films(request,film_name):
   
     movie = Movie()

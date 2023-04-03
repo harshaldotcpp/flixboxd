@@ -113,6 +113,15 @@
             console.log("watchlist played");
             const icon = document.querySelector("#watchlist-icon");
             icon.classList.toggle("fill-letterboxd-4");
+            options.body = JSON.stringify({ 
+                    add: watchlist_btn.checked,
+                    tmdb_id: getCookie('id'),
+                    title: getCookie('movie_name'),
+                    poster_path: getCookie('poster_path'),
+                    director: getCookie('director'),
+                });
+
+                fetch("http://localhost:8000/film/watchlist",options)
         });
 
         document.querySelector("#maction").addEventListener("click",()=>{

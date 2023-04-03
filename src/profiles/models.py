@@ -57,8 +57,8 @@ class Profile(models.Model):
             self.user.watchlist_set.add(db_movie[0])
             return
 
-        #self.user.watchlist_set.create(tmdb_id=tmdb_id,original_title=title,poster_path=poster_path)
-        #return
+        self.user.watchlist_set.create(tmdb_id=tmdb_id,original_title=title,poster_path=poster_path)
+        return
         
         
     def remove_from_watchlist(self,tmdb_id):
@@ -93,11 +93,7 @@ class Profile(models.Model):
     def __str__(self):
         return f"Profile:{self.user.username}"
 
-    def liked_movie(self):
-        pass
 
-    def get_user_movies(self):
-        pass
 
     def liked(self,movie):
         db_movie = WatchedMovie.objects.filter(tmdb_id=movie["tmdb_id"])
