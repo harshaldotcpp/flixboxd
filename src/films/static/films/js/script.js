@@ -61,8 +61,13 @@
             console.log("watch_btn ");
             const icon = document.querySelector("#watch-icon");
             icon.classList.toggle("fill-letterboxd-4");
-            
-                console.log(watch_btn.checked) 
+           console.log("im in")
+            if(!watch_btn.checked && like_btn.checked){
+                console.log("in if")
+                const icon = document.querySelector("#like-icon");
+                icon.classList.toggle("fill-letterboxd-5")
+                like_btn.checked = false;
+            }
             options.body = JSON.stringify({ 
                 add: watch_btn.checked,
                 tmdb_id: getCookie('id'),
@@ -72,16 +77,26 @@
                 
              });
             
-            console.log('body')
+           
             fetch("http://localhost:8000/film/watchedadd",options)
              
         });
         
         like_btn.addEventListener("click",(event)=>{
-            console.log("l played");
+            console.log(" played");
                 const icon = document.querySelector("#like-icon");
                 icon.classList.toggle("fill-letterboxd-5");
-                console.log(like_btn.checked)
+                
+                //if film liked and unwatched mark as watched liking movie also add into watched
+                if(like_btn.checked && !watch_btn.checked){
+                    
+                   watch_btn.checked = true;
+                   const icon = document.querySelector("#watch-icon");
+                   icon.classList.toggle("fill-letterboxd-4")
+                   
+                }
+                
+              
                 options.body = JSON.stringify({ 
                     add: like_btn.checked,
                     tmdb_id: getCookie('id'),
@@ -89,7 +104,7 @@
                     poster_path: getCookie('poster_path'),
                     director: getCookie('director'),
                 });
-                console.log("hello")
+               
                 fetch("http://localhost:8000/film/likedadd",options)
        
         });
