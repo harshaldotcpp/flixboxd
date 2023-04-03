@@ -59,9 +59,11 @@ def film(request,film_id):
     
     watch_btn = ""
     checked = ""
-    if(request.user.profile.is_watched(film_id)):
-        watch_btn = "fill-letterboxd-4"
-        checked = "checked"
+    
+    if request.user.is_authenticated:
+        if(request.user.profile.is_watched(film_id)):
+            watch_btn = "fill-letterboxd-4"
+            checked = "checked"
     
     info = {
         "user_logged_in": request.user.is_authenticated, 
