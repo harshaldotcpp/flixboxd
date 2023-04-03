@@ -66,7 +66,7 @@ def liked(request):
                 "message": "added_to_watched"
             }
             return HttpResponse(json.dumps(response_data),content_type='application/json')
-       
+        
         request.user.profile.unlike(obj["tmdb_id"])
         
     return HttpResponse("error")   
