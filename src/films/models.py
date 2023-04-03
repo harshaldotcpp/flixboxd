@@ -6,10 +6,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class WatchedMovie(models.Model):
     tmdb_id = models.IntegerField(unique=True)
     original_title = models.CharField(max_length=100)
-    tagline = models.CharField(max_length=50)
     poster_path = models.CharField(max_length=100)
-    cover_path = models.CharField(max_length=100)
-    release_date = models.DateField()
     director = models.CharField(max_length=100)
     watched_by = models.ManyToManyField(User,related_name="movies_set")
     liked_by = models.ManyToManyField(User,related_name="get_liked_movies",blank=True)

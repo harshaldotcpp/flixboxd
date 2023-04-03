@@ -84,7 +84,7 @@ def signin(request):
         password = request.POST["password"]
         
         user = authenticate(username=username,password=password)
-        print(user)
+        
         
         if user is not None: #if user added right Credentials redirect user to root path again
             login(request,user)

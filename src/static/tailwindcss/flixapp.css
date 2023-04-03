@@ -833,6 +833,10 @@ video {
   width: 100vw;
 }
 
+.w-10 {
+  width: 2.5rem;
+}
+
 .grow-0 {
   flex-grow: 0;
 }
@@ -1068,11 +1072,15 @@ video {
 }
 
 .fill-letterboxd-4 {
-    fill: #00B021;
+  fill: #00B021;
 }
 
 .fill-letterboxd-5 {
-    fill: #F27405;
+  fill: #F27405;
+}
+
+.fill-transparent {
+  fill: transparent;
 }
 
 .stroke-gray-700 {

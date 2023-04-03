@@ -31,18 +31,14 @@ class Profile(models.Model):
         
         tmdb_id = movie["tmdb_id"]
         title = movie["original_title"]
-        tagline = movie['tagline']
-        rating = movie['rating']
         poster_path = movie['poster_path']
-        cover_path = movie['cover_path']
-        release_date = movie['release_date']
         director = movie['director']
         
-        self.user.movies_set.create(tmdb_id=tmdb_id,original_title=title,overview=overview,tagline=tagline,rating=rating,poster_path=poster_path,cover_path=cover_path,release_date=release_date, director=director)
-        return
+        return self.user.movies_set.create(tmdb_id=tmdb_id,original_title=title,poster_path=poster_path, director=director)
+        
     
     def remove_watched_movie(self,tmdb_id):
-        db_movie = WatchedMovie.objects.filter(tmdb_id=tmdb_id)
+        db_movie = self.user.movies_set.filter(tmdb_id=tmdb_id)
         if db_movie: #safety check
             self.user.movies_set.remove(db_movie[0])
             return True
@@ -66,7 +62,7 @@ class Profile(models.Model):
         
         
     def remove_from_watchlist(self,tmdb_id):
-        db_movie = Watchlist.objects.filter(tmdb_id=tmdb_id)
+        db_movie = self.user.watchlist_set.filter(tmdb_id=tmdb_id)
         if db_movie:
             self.user.watchlist_set.remove(db_movie[0])
             return True
