@@ -57,29 +57,31 @@
             </div>
             {% endif %}
             <!----- search ------>
-            <div id="search_feild" class="hidden bg-letterboxd-1 p-4 text-gray-500 relative">
-                <input id="search_content" type="text" class="h-9 w-full rounded-sm focus:outline-0 focus:bg-white focus:text-slate-400 p-3 bg-letterboxd-2">
-                <button id="search_content_btn" type="submit" class="absolute hover:shadow-md hover:shadow-letterbox-3 right-6 top-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-gray-700 w-4 h-4">
+            <div id="search_feild" class="hidden bg-letterboxd-1 p-4 md:px-20 text-gray-500 ">
+                <div class="relative ">
+                <input id="search_content" type="text" class="h-9 w-full relative   rounded-sm focus:outline-0 focus:bg-white focus:text-slate-400 p-3 bg-letterboxd-2">
+                <button id="search_content_btn" type="submit" class="absolute hover:shadow-md hover:shadow-letterbox-3 right-2 top-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-white w-5 h-5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
 
                 </button>
                 </input>
+                </div>
             </div>
             <!------ list ------>
             <div id="menu_field" class="hidden duration-1000 overflow-hidden">
                 {% if user.is_authenticated %}
-                <div id="loggedinMenu" class="flex flex-col font-myfontLight text-letterboxd-3 text-sm">
+                <div id="loggedinMenu" class="md:px-20 flex flex-col font-myfontLight text-letterboxd-3 text-sm md:text-lg">
                     
                     <div class="flex items-center gap-x-2 py-2 px-3">
-                        <img class="w-7 object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
-                        <div id="username" class="text-lg font-myfont">
+                        <img class="w-7 md:w-8 object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
+                        <div id="username" class="text-lg md:text-2xl font-myfont">
                             {{ user.username }}
                         </div>
                     </div>
                     
-                    <div id="" class="py-3 border-t border-letterboxd-3 grid grid-cols-2 grid-rows-4 mx-10 text-sm tracking-wide">
+                    <div id="" class="py-3 border-t border-letterboxd-3 grid grid-cols-2 grid-rows-4 mx-10 tracking-wide">
                         <div>
                           <a href="/"> HOME  </a> 
                         </div>
@@ -113,7 +115,7 @@
                         </div>
                         
                     </div>
-                    <div class="mx-10 border-t text-sm tracking-wide border-letterboxd-3 py-3 grid grid-cols-2 grid-rows-1">
+                    <div class="mx-10 border-t mb-14 tracking-wide border-letterboxd-3 py-3 grid grid-cols-2 grid-rows-1">
                         <div>
                             <a href="{% url 'authentication:signout' %}">SIGNOUT</a>
                         </div>
@@ -124,7 +126,8 @@
                     
                 </div>
                 {% endif %}
-            <div class="px-5 pb-5 md:p-12 text-letterboxd-3 font-myfont tracking-wider">
+                {% if user.is_authenticated == False %}
+            <div class="px-5 pb-5 md:px-20 text-letterboxd-3 font-myfont tracking-wider">
                 <ul class="flex flex-col ">
                     <li class="py-2 border-b border-t border-letterboxd-3"> <button class="signup-btn">CREATE ACCOUNT</button></li>
                     <li class="py-2 border-b border-letterboxd-3">FILMS</li>
@@ -133,12 +136,13 @@
                     <li class="py-2 ">JOURNAL</li>
                 </ul>
             </div>
+            {% endif %}
             </div>
             
+            <div id="alert" class="absolute py-4 z-50 w-screen">
             {% if messages %}
               {% for message in messages %}
-            <div id="alert" class="absolute py-4 z-50 w-screen">
-                <div class="relative bg-letterboxd-5 py-3 px-3 w-80 m-auto text-myfontlight text-sm rounded-md shadow-lg shadow-black flex items-center justify-between">
+                <div id="" class="relative bg-letterboxd-5 py-3 px-3 w-80 m-auto text-myfontlight text-sm rounded-md shadow-lg shadow-black flex items-center justify-between">
                     {{ message }}
                     <button id="alert-btn" class="">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -146,9 +150,18 @@
                         </svg>
                     </button>  
                 </div>
+                {% endfor %}
+                {% endif %}
             </div>
-              {% endfor %}
-            {% endif %}
+
+            <div id="frontend-alert" class="hidden absolute py-4 z-50 w-screen">
+                <div id="" class="relative bg-letterboxd-5 py-3 px-3 w-80 m-auto text-myfontlight text-sm rounded-md shadow-lg shadow-black flex items-center justify-between">
+                    <div id="alert-msg">
+                        {{ message }}
+                    </div>
+                    </button>  
+                </div>
+            </div>
       </nav>
       
       

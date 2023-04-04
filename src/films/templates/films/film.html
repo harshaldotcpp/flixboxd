@@ -88,12 +88,12 @@
                     
                     {% if user.is_authenticated %}
                     <div>
+                        <button id="maction" class="w-full">
                         <div class="bg-letterboxd-3 text-letterboxd-6 py-2 hover:shadow-lg hover:shadow-black rounded-md mt-12 px-4 flex gap-4">
-                                <img class="w-6  object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
-                                <button id="maction">
+                            <img class="w-6  object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
                                     <div>Rate, log, Review + add</div>
-                                </button>
-                    </div>
+                                </div>
+                            </button>
             
                         <div id="movie-add" class="hidden flex flex-col mt-5 bg-letterboxd-3 rounded-md shadow-md shadow-black">
                         <div id="watch-like-watchlist" class="p-5 flex justify-evenly gap-14 border-b border-black">
@@ -161,32 +161,55 @@
                         <div id="crew",class="hidden"> 
                         </div>
                     </div>
-                    
+                   {% if reviews_len == 0%} 
+
+                     <div class="flex justify-center text-lg font-myfontLight mt-12 py-4 border-y border-letterboxd-3">
+                        No Reviews Yet our site is new :D be first one to do so
+                    </div>
+
+                   {% else %}
                     <div id="populer_reviews" class="mt-12 border-letterboxd-3">
                         <div class="flex justify-between py-1 border-b border-letterboxd-3">
                             <div> POPULAR REVIEWS </div>
                             <div> more </div>
                          </div>
-                         
-                         <div id="review_card" class="py-3 border-b border-letterboxd-3">
-                             <div if="reviewer" class="mb-3 text-xs tracking-widest flex gap-1 items-center">
-                                 <img class="w-6 object-cover rounded-full" src="">
-                                 <div class="text-letterboxd-3 font-bold" id="username">Review by <span class="font-myfont text-letterboxd-6" > NicoPico </span> </div>
+                        {% for review in reviews %}                         
+                         <div id="review_card" class="pt-3 pb-6 border-b border-letterboxd-3">
+                             <div if="reviewer" class="mb-4 px-4 text-sm tracking-widest flex gap-2 items-center">
+                                 <img class="w-8 object-cover rounded-full" src="{{ review.review_by.profile.profile_picture.url }} ">
+                                 <div class="text-letterboxd-3 font-bold" id="username">Review by <span class="font-myfont text-letterboxd-6" > {{review.review_by.username }} </span> </div>
                              </div>
-                             <div id="review" class=" text-sm text-gray-400  font-abril">
-                                 The most overrated animated film of all time.
-                                 
-                                 HE WILL NEVER BE MY FAVORITE FEARLESS HERO!!!
-                                 Lorem laborum ea laboris velit. Aliqua laborum amet irure ex laboris exercitation sunt non laboris non exercitation ea incididunt ex. Qui nisi anim cocaecat consectetur voluptate deserunt veniam ad. Ex laboris ipsum sunt culpa incididunt officia aliqua Lorem sit. Cillum nisi ea veniam pariatur duis enim et excepteur sit proident. Dolor consectetur veniam cupidatat tempor ad deserunt. Dolor anim minim velit id sunt nostrud fugiat anim pariatur reprehenderit reprehenderit mollit anim consequat.
+                             <div id="review" class="px-8 text-md text-gray-400  font-abril">
+                                    {{ review.review }} 
                              </div>
                          </div>
+                         {% endfor %}
                     </div>
+
+                         <!-- <div id="populer_reviews" class="mt-12 border-letterboxd-3"> -->
+                        <div class="flex justify-between py-1 border-b border-letterboxd-3">
+                            <div>your reviews</div>
+                            <div> more </div>
+                         </div>
+                        {% for review in reviews %}                         
+                         <div id="review_card" class="pt-3 pb-6 border-b border-letterboxd-3">
+                             <div if="reviewer" class="mb-4 px-4 text-sm tracking-widest flex gap-2 items-center">
+                                 <img class="w-8 object-cover rounded-full" src="{{ review.review_by.profile.profile_picture.url }} ">
+                                 <div class="text-letterboxd-3 font-bold" id="username">Review by <span class="font-myfont text-letterboxd-6" > {{review.review_by.username }} </span> </div>
+                             </div>
+                             <div id="review" class="px-8 text-md text-gray-400  font-abril">
+                                    {{ review.review }} 
+                             </div>
+                         </div>
+                         {% endfor %}
+                        <!-- </div> -->
+                    {% endif %}
             </div>
           </div>
         </div>
 
 
-        <div id="movie-review-log" class="px-5 hidden text-myfontLight absolute z-50 bg-transparent top-0 flex justify-center items-center h-screen w-screen">
+        <div id="movie-review-log" class="px-5 hidden text-myfontLight fixed z-50 bg-transparent top-0 flex justify-center items-center h-screen w-screen">
         
             <div class="bg-letterboxd-3 p-3">
                 <div class="flex items-start gap-3 ">
@@ -228,6 +251,7 @@
             
 
         </div>
+        {% include 'main/footer.html' %}
         
     </body>
     <script src="//cdn.jsdelivr.net/npm/eruda"></script>

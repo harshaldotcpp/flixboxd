@@ -11,6 +11,7 @@
         const alert_ = document.querySelector("#alert");
         const alert_btn = document.querySelector("#alert-btn");
         const search_content_btn = document.querySelector("#search_content_btn")
+        const frontend_alert_btn = document.querySelector("frontend-alert-btn");
        
         //for login
     if(login_field){
@@ -115,11 +116,24 @@
             alert_.classList.toggle("hidden");
         });
     }
-       
+    if(frontend_alert_btn){
+    frontend_alert_btn.addEventListener("click",(event)=>{
+        document.querySelector("#frontend-alert").classList.toggle("hidden")
+    })
+    }
        
     search_content_btn.addEventListener("click",(event)=>{
         const content = document.querySelector("#search_content").value
-        const action_url = "http://localhost:8000/search/film/" + content;
-        location.href = action_url
+
+        if(content.length === 0){
+            document.querySelector("#alert-msg").innerHTML = "you forgot to type movie name lol";
+
+            document.querySelector("#frontend-alert").classList.remove("hidden")
+            setTimeout(()=>{
+                document.querySelector("#frontend-alert").classList.add("hidden");
+            },1300);
+        }
+        //const action_url = "http://localhost:8000/search/film/" + content;
+        //location.href = action_url
     });
         

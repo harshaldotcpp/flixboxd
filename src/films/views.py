@@ -151,7 +151,7 @@ def film(request,film_id):
             watchlist_checked = "checked"
             watchlist_icon = "fill-letterboxd-4"
             
-
+        
    
     info = {
         "movie": m,
@@ -164,6 +164,16 @@ def film(request,film_id):
         "watchlist_checked": watchlist_checked,
         "watchlist_btn": watchlist_icon,
     }
+
+    reviews = []
+    requested_movie = WatchedMovie.objects.filter(tmdb_id=m.id)
+    if requested_movie:
+        reviews = requested_movie[0].reviews_set.all()
+
+    review_len = len(reviews)
+    info["reviews"] = reviews
+    info["reviews_len"] = len(reviews)
+
     response = render(request,"films/film.html",context=info)
     response.set_cookie(key="movie_name",value=m.title)
     response.set_cookie(key="id",value=m.id)
