@@ -111,24 +111,23 @@ def film(request,film_id):
     if len(directors) == 0:
         directors = [""]
     
-    watch_btn = ""
+    watch_icon = ""
     watch_checked = ""
     liked_checked = ""
-    liked_btn = ""
+    liked_icon = ""
     watchlist_checked = ""
-    watchlist_btn = ""
+    watchlist_icon = ""
     if request.user.is_authenticated:
         if(request.user.profile.is_watched(film_id)):
-            watch_btn = "fill-letterboxd-4"
+            watch_icon = "fill-letterboxd-4"
             watch_checked = "checked"
         if(request.user.profile.is_liked(film_id)):
-            liked_btn = "fill-letterboxd-5"
+            liked_icon = "fill-letterboxd-5"
             liked_checked = "checked"
         if(request.user.profile.is_in_watchlist(film_id)):
             watchlist_checked = "checked"
-            watchlist_btn = "fill-letterboxd-4"
+            watchlist_icon = "fill-letterboxd-4"
             
-        print(watchlist_checked,watchlist_btn)     
         
    
     info = {
@@ -136,12 +135,12 @@ def film(request,film_id):
         "movie": m,
         "release_year": m.release_date[:4],
         "director": directors[0],
-        "watch_btn": watch_btn,
+        "watch_btn": watch_icon,
         "watched_checked" : watch_checked,
         "liked_check": liked_checked,
-        "liked_btn": liked_btn,
+        "liked_btn": liked_icon,
         "watchlist_checked": watchlist_checked,
-        "watchlist_btn": watchlist_btn,
+        "watchlist_btn": watchlist_icon,
     }
     response = render(request,"films/film.html",context=info)
     response.set_cookie(key="movie_name",value=m.title)

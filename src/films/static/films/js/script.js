@@ -70,7 +70,7 @@
             }
 
 
-            if(watch_btn && watchlist_btn){
+            if(watch_btn.checked && watchlist_btn.checked){
                 const icon = document.querySelector("#watchlist-icon");
                 icon.classList.toggle("fill-letterboxd-4");
                 watchlist_btn.checked = false;
