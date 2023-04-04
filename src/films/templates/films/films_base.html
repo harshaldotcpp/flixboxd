@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.css' %}">
+    <title>films</title>
+</head>
+<body class="bg-gradient-to-tl from-letterboxd-1 to-letterboxd-3 max-w-screen min-h-screen">
+    {% include "main/navbar.html" %}
+    <div class="mt-10 text-white mx-6 sm:mx-12 md:mx-20 lg:mx-44">
+
+        <div id="use" class="flex rounded-md mt-16 bg-white/20 backdrop-blur-md px-3 py-3 gap-x-5 text-2xl">
+            <img class="w-8 gap-10 object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
+            <div id="username" class="font-myfont tracking-wide"> {{ user.username }} </div>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+    
+</body>
+ <script src="{% static 'main/js/navbar.js' %}"></script>
+</html>

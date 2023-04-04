@@ -1,4 +1,4 @@
-       <nav class="absolute  z-50 bg-letterboxd-1 text-slate-100 w-screen">
+       <nav class="absolute top-0 z-50 bg-letterboxd-1 text-slate-100 w-screen">
           <div class="p-2 md:px-16 ">
           <!---- navbar content ----->
               <div class=" w-full mx-auto shadow flex items-center justify-between">
@@ -89,7 +89,7 @@
                         </div>
                         
                         <div>
-                            FILMS
+                           <a href="{% url 'filmsabout:showWatched' user.username %}"> FILMS </a>
                         </div>
                         
                         <div>
@@ -101,7 +101,7 @@
                         </div>
                         
                         <div>
-                            WATCHLIST
+                            <a href="{% url 'filmsabout:showWatchlist' user.username %}">WATCHLIST</a>
                         </div>
                         
                         <div>

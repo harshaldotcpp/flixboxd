@@ -1,9 +1,10 @@
+from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 from tmdbv3api import TMDb,Movie
-import os
-from django.http import JsonResponse
 import json
-from django.http import HttpResponse
+import os
 
 tmdb = TMDb()
 tmdb.api_key = os.environ.get("TMDB_API_KEY")
@@ -21,9 +22,9 @@ def watched(request):
         if movie_add:
             movieInfo = {
                 "tmdb_id": obj["tmdb_id"],
-                "original_title": obj["title"],
-                "poster_path" : obj["poster_path"],
-                "director": obj["director"]
+                "original_title": obj["title"].strip("\""),
+                "poster_path" : obj["poster_path"].strip("\""),
+                "director": obj["director"].strip("\"")
             
             }
             request.user.profile.add_watched_movie(movieInfo)
@@ -53,9 +54,9 @@ def liked(request):
         if movie_add:
             movieInfo = {
                 "tmdb_id": obj["tmdb_id"],
-                "original_title": obj["title"],
-                "poster_path" : obj["poster_path"],
-                "director": obj["director"]
+                "original_title": obj["title"].strip("\""),
+                "poster_path" : obj["poster_path"].strip("\""),
+                "director": obj["director"].strip("\"")
             
             }
             request.user.profile.liked(movieInfo)
@@ -82,8 +83,8 @@ def watchlist(request):
         if movie_add:
             movie_info = {
                 "tmdb_id": obj["tmdb_id"],
-                "original_title": obj["title"],
-                "poster_path": obj["poster_path"]
+                "original_title": obj["title"].strip("\""),
+                "poster_path": obj["poster_path"].strip("\"")
             }
             request.user.profile.add_to_watchlist(movie_info)
             response_data = {
@@ -98,7 +99,7 @@ def watchlist(request):
 
 
 def film(request,film_id):
-    
+
     movie = Movie()
     m = movie.details(film_id)
     mc = movie.credits(film_id)
@@ -176,7 +177,6 @@ def search_films(request,film_name):
         m["release_year"] = m.release_date[:4]
         m["a_titles"] = a_titles
         
-   
     
    
     
@@ -192,15 +192,31 @@ def search_films(request,film_name):
 
 
 def  showWatchlist(request,username):
-    context = { "username": username }
+    user = User.objects.get(username=username)
+    movies = user.watchlist_set.all()
 
+
+    context = { 
+        "user_logged_in": request.user.is_authenticated,
+        "username": username,
+        "movies": movies,
+        "len": len(movies),
+        
+    }
     return render(request,"films/watchlist.html",context=context)
 
 
 def showWatched(request,username):
+    user = User.objects.get(username=username)
+    movies = user.movies_set.all()
+    print(movies)
     context={
+        "user_logged_in": request.user.is_authenticated,
         "username": username,
+        "movies": movies,
+        "len" : len(movies),
     }
+
     return render(request,"films/watched_films.html",context=context);
 
 

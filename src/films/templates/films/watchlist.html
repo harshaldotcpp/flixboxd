@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>watchlist - {{ username }}</title>
-    <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.html' %}">
-  </head>
-  <body>
-    <h1>watchlist of {{ username }}</h1>
-	<script src="index.js"></script>
-  </body>
-</html>
+{% extends "films/films_base.html" %}
+
+{% block content %}
+   <div id="grid-section" class="grid grid-cols-4 mt-20 sm:grid-cols-5 md:grid-cols-6  lg:grid-cols-10 gap-3 grid-row-[auto]">
+
+            <div class="col-span-4 md:col-span-6 sm:col-span-5 lg:col-span-10 flex gap-x-6 py-1 border-b font-myfontLight tracking-wider   border-gray-400">
+                <div class=""> <a href="{% url 'filmsabout:showWatched' username %}"> Watched</a></div>
+                <div>Diary</div>
+                <div class="text-letterboxd-4"> <a href="">Watchlist</a></div>
+            </div>  
+            {% for movie in movies %}
+                {% include "films/cards.html" %}
+            {% endfor %}
+
+           
+
+
+    </div>
+
+          {% if len == 0 %}
+             <div class="flex h-64    justify-center items-center center h-33 text-2xl font-myfontLight text-gray-300">
+                <div>No Movies in Watchlist </div>
+             </div>
+           {% endif %}
+{% endblock %}

@@ -4,12 +4,11 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 
-
+app_name = "flixapp"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include("authentication.urls")),
     path('<str:username>',include("profiles.urls")),
-    path('film/<int:film_id>',include("films.urls")),
     path('film/',include("films.urls")),
     path('search/',include("films.urls")),
     
