@@ -1,4 +1,5 @@
 from django.http import JsonResponse, HttpResponse
+from django.contrib.auth.models import User
 from django.shortcuts import redirect  
 from .models import WatchedMovie
 from django.shortcuts import render
