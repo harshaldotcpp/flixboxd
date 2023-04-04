@@ -14,3 +14,4 @@ class List(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE) 
     liked_by = models.ManyToManyField(User,related_name="liked_list_set")
     description = models.CharField(max_length=1000)
+    date = models.DateField(auto_now=True)
