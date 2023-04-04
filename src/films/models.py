@@ -48,7 +48,3 @@ class DiaryLog(models.Model):
     movies = models.ManyToManyField(WatchedMovie)
     
     
-class List(models.Model):
-    list_name = models.CharField(max_length=500)
-    movies = models.ManyToManyField(WatchedMovie)
-    user = models.ForeignKey(User,on_delete=models.CASCADE) 
