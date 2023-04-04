@@ -10,7 +10,7 @@
     <title>Welcome Page of my App</title>
    
   </head>
-  <body class="bg-letterboxd-1 font-myfontLight text-letterboxd-6">
+  <body class="bg-letterboxd-1 font-myfontLight text-letterboxd-6 overflow-x-hidden">
       {% include 'main/navbar.html' %}
   
 
@@ -228,11 +228,10 @@
             
 
         </div>
-          <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+        
+    </body>
+    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
 <script>eruda.init();</script>
-        <script src="{% static 'films/js/script.js' %}"></script>
-        <script src="{% static 'main/js/navbar.js' %}"></script>
-
- 
-  </body>
+  <script src="{% static 'films/js/script.js' %}"></script>
+  <script src="{% static 'main/js/navbar.js' %}"></script>
 </html>
