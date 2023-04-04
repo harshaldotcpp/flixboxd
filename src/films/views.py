@@ -188,3 +188,22 @@ def search_films(request,film_name):
         "len": len(movies),
     }
     return render(request,"films/search_page.html",context=context)
+
+
+
+def  showWatchlist(request,username):
+    context = { "username": username }
+
+    return render(request,"films/watchlist.html",context=context)
+
+
+def showWatched(request,username):
+    context={
+        "username": username,
+    }
+    return render(request,"films/watched_films.html",context=context);
+
+
+
+def showLiked(request,username):
+   pass

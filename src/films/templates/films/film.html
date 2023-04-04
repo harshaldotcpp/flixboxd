@@ -15,7 +15,7 @@
   
 
              <div class="relative flex-cols" >
-            <img src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}" class="h-64  w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
+            <img src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}" class="h-64  mt-10 w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
             <div class="relative bg-transparent z-10">
                 <div class="relative h-52 md:h-96">
                     
@@ -89,7 +89,7 @@
                     {% if user_logged_in %}
                     <div>
                         <div class="bg-letterboxd-3 text-letterboxd-6 py-2 hover:shadow-lg hover:shadow-black rounded-md mt-12 px-4 flex gap-4">
-                                <img class="w-6 object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
+                                <img class="w-6  object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
                                 <button id="maction">
                                     <div>Rate, log, Review + add</div>
                                 </button>
