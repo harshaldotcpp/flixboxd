@@ -78,7 +78,7 @@
             if(!signup_field.classList.contains("hidden"))
                 signup_field.classList.toggle("hidden");
             }
-            console.log("hello")
+            
             menu_field.classList.toggle("hidden");
             navbar.classList.toggle("shadow-lg");
             navbar.classList.toggle("shadow-black");
@@ -88,6 +88,7 @@
         });
        if(signup_field){
         signup_btn.forEach((btn)=>{
+            console.log("gello");
             btn.addEventListener("click",(event)=>{
                if(login_field){ 
                 if(!login_field.classList.contains("hidden"))

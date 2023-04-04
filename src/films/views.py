@@ -132,7 +132,6 @@ def film(request,film_id):
         
    
     info = {
-        "user_logged_in": request.user.is_authenticated, 
         "movie": m,
         "release_year": m.release_date[:4],
         "director": directors[0],
@@ -181,7 +180,6 @@ def search_films(request,film_name):
    
     
     context = {
-        "user_logged_in": request.user.is_authenticated,
         "search_value":film_name,
         "movies": movies,
         "user_logged_in": request.user.is_authenticated,
@@ -196,8 +194,7 @@ def  showWatchlist(request,username):
     movies = user.watchlist_set.all()
 
 
-    context = { 
-        "user_logged_in": request.user.is_authenticated,
+    context = {
         "username": username,
         "movies": movies,
         "len": len(movies),
@@ -211,7 +208,6 @@ def showWatched(request,username):
     movies = user.movies_set.all()
     print(movies)
     context={
-        "user_logged_in": request.user.is_authenticated,
         "username": username,
         "movies": movies,
         "len" : len(movies),

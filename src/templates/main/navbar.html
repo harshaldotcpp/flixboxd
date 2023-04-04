@@ -30,7 +30,7 @@
            </div>
          
          <!----- signin menu ----->
-          {% if user_logged_in %}
+          {% if user.is_authenticated %}
               <div></div>
           {% else %}
             <div id="signin_menu" class="w-screen bg-letterboxd-1 overflow-hidden hidden px-2 md:py-2 md:px-16 text-letterboxd-3 drop-shadow-2xl">
@@ -69,7 +69,7 @@
             </div>
             <!------ list ------>
             <div id="menu_field" class="hidden duration-1000 overflow-hidden">
-                {% if user_logged_in %}
+                {% if user.is_authenticated %}
                 <div id="loggedinMenu" class="flex flex-col font-myfontLight text-letterboxd-3 text-sm">
                     
                     <div class="flex items-center gap-x-2 py-2 px-3">
@@ -126,7 +126,7 @@
                 {% endif %}
             <div class="px-5 pb-5 md:p-12 text-letterboxd-3 font-myfont tracking-wider">
                 <ul class="flex flex-col ">
-                    <li class="py-2 border-b border-t border-letterboxd-3">CREATE ACCOUNT</li>
+                    <li class="py-2 border-b border-t border-letterboxd-3"> <button class="signup-btn">CREATE ACCOUNT</button></li>
                     <li class="py-2 border-b border-letterboxd-3">FILMS</li>
                     <li class="py-2 border-b border-letterboxd-3">LISTS</li>
                     <li class="py-2 border-b border-letterboxd-3">MEMBERS</li>
