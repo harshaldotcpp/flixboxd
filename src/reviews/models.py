@@ -8,6 +8,7 @@ class Review(models.Model):
     movie = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE,related_name="reviews_set")
     date = models.DateTimeField(auto_now_add=True)
     review_by = models.ForeignKey(User,on_delete=models.CASCADE,related_name="reviews_set")
+    liked_by = models.ManyToManyField(User,related_name="liked_review")
     
    
     
