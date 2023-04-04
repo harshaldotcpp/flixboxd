@@ -15,8 +15,9 @@ class WatchedMovie(models.Model):
     def get_reviews(self):
         return self.reviews_set.all()
         
-    def post_review():
-        pass
+    def post_review(self,review,user):
+        return self.reviews_set.create(review=review,review_by=user)
+
         
     def __str__(self):
         return f"Movie:{self.original_title},Director:{self.director}"

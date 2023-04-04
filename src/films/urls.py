@@ -8,6 +8,7 @@ urlpatterns = [
     path('watchedadd',views.watched, name="watched"),
     path('likedadd',views.liked,name="liked"),
     path('watchlistadd',views.watchlist,name="watchlist"),
+    path('reviewadd',views.addReview,name="addReview"),
     path('watched/<str:username>',views.showWatched,name="showWatched"),
     path('watchlist/<str:username>',views.showWatchlist,name="showWatchlist"),
     path('film/<str:film_name>',views.search_films,name="search_films"),

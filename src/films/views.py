@@ -1,6 +1,6 @@
-from django.contrib.auth.models import User
-from django.http import JsonResponse
-from django.http import HttpResponse
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import redirect  
+from .models import WatchedMovie
 from django.shortcuts import render
 from tmdbv3api import TMDb,Movie
 import json
@@ -98,6 +98,27 @@ def watchlist(request):
     return HttpResponse("watchlist error")
 
 
+def addReview(request):
+    if(request.method == "POST"):
+        movie_info = {
+            "tmdb_id": request.POST["tmdb_id"],
+            "original_title": request.POST["title"],
+            "poster_path": request.POST["poster_path"],
+            "director": request.POST["director"],
+            "review": request.POST['review'],
+        }
+        
+        print(movie_info) 
+        movie = request.user.profile.add_watched_movie(movie_info)
+        movie.post_review(movie_info["review"],request.user)
+    
+    url = f"/film/{request.POST['tmdb_id']}"
+    return redirect(url)
+
+    
+     
+
+
 def film(request,film_id):
 
     movie = Movie()
@@ -129,7 +150,7 @@ def film(request,film_id):
             watchlist_checked = "checked"
             watchlist_icon = "fill-letterboxd-4"
             
-        
+
    
     info = {
         "movie": m,

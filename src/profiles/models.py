@@ -27,7 +27,7 @@ class Profile(models.Model):
         db_movie = WatchedMovie.objects.filter(tmdb_id=movie["tmdb_id"])
         if db_movie:
             self.user.movies_set.add(db_movie[0])
-            return
+            return db_movie[0]
         
         tmdb_id = movie["tmdb_id"]
         title = movie["original_title"]

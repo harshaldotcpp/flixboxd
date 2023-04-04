@@ -162,18 +162,18 @@
                         </div>
                     </div>
                     
-                    <div id="populer_review" class="mt-12 border-letterboxd-3">
+                    <div id="populer_reviews" class="mt-12 border-letterboxd-3">
                         <div class="flex justify-between py-1 border-b border-letterboxd-3">
                             <div> POPULAR REVIEWS </div>
                             <div> more </div>
                          </div>
                          
-                         <div id="reviews" class="py-3 border-b border-letterboxd-3">
+                         <div id="review_card" class="py-3 border-b border-letterboxd-3">
                              <div if="reviewer" class="mb-3 text-xs tracking-widest flex gap-1 items-center">
                                  <img class="w-6 object-cover rounded-full" src="">
                                  <div class="text-letterboxd-3 font-bold" id="username">Review by <span class="font-myfont text-letterboxd-6" > NicoPico </span> </div>
                              </div>
-                             <div id="main_review" class=" text-sm text-gray-400  font-abril">
+                             <div id="review" class=" text-sm text-gray-400  font-abril">
                                  The most overrated animated film of all time.
                                  
                                  HE WILL NEVER BE MY FAVORITE FEARLESS HERO!!!
@@ -212,9 +212,13 @@
                         </button>
                    </div>
                 </div>
-            <form action="" method="post">
-
-                <textarea class="focus:outline-none mt-4 text-gray-700 font-myfontLight p-3 peer block min-h-[auto] w-full rounded border-0 bg-white py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" id="reiview" rows="4" placeholder="Your review"></textarea>
+            <form action="/film/reviewadd" method="post">
+                {% csrf_token %}
+                <textarea name="review" class="focus:outline-none mt-4 text-black font-myfontLight p-3 peer block min-h-[auto] w-full rounded border-0 bg-white py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" id="reiview" rows="4" placeholder="Your review"></textarea>
+                <input type="hidden" name="tmdb_id" value="{{ movie.id }}">
+                <input type="hidden" name="title" value="{{ movie.title }}">
+                <input type="hidden" name="poster_path" value="{{ movie.poster_path }}">
+                <input type="hidden" name="director" value="{{ director }}">
                 <div class="mt-3">
                     <button class="bg-letterboxd-4 font-myfont trakinking widest py-1 px-2 rounded-sm" type="submit">SAVE</button>
                 </div>
