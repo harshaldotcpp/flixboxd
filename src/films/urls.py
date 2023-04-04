@@ -7,6 +7,6 @@ urlpatterns = [
     path('',views.film,name="film"),
     path('watchedadd',views.watched, name="watched"),
     path('likedadd',views.liked,name="liked"),
-    path('watchlist',views.watchlist,name="watchlist"),
+    path('watchlistadd',views.watchlist,name="watchlist"),
     path('film/<str:film_name>',views.search_films,name="search_films"),
 ]

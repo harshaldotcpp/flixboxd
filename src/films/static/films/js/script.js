@@ -68,6 +68,14 @@
                 icon.classList.toggle("fill-letterboxd-5")
                 like_btn.checked = false;
             }
+
+
+            if(watch_btn && watchlist_btn){
+                const icon = document.querySelector("#watchlist-icon");
+                icon.classList.toggle("fill-letterboxd-4");
+                watchlist_btn.checked = false;
+            }
+
             options.body = JSON.stringify({ 
                 add: watch_btn.checked,
                 tmdb_id: getCookie('id'),
@@ -121,7 +129,7 @@
                     director: getCookie('director'),
                 });
 
-                fetch("http://localhost:8000/film/watchlist",options)
+                fetch("http://localhost:8000/film/watchlistadd",options)
         });
 
         document.querySelector("#maction").addEventListener("click",()=>{
