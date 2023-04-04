@@ -185,8 +185,8 @@
                          </div>
                          {% endfor %}
                     </div>
-
-                         <!-- <div id="populer_reviews" class="mt-12 border-letterboxd-3"> -->
+                    {% if user.is_authenticated %}
+                      <div id="your_reviews" class="mt-12 border-letterboxd-3">
                         <div class="flex justify-between py-1 border-b border-letterboxd-3">
                             <div>your reviews</div>
                             <div> more </div>
@@ -202,7 +202,8 @@
                              </div>
                          </div>
                          {% endfor %}
-                        <!-- </div> -->
+                         </div> 
+                     {% endif %}
                     {% endif %}
             </div>
           </div>
