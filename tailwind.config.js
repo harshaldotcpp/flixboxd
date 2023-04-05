@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*{.html,js}"],
+  content: ["./src/**/*{.html,js,py}"],
   theme: {
     extend: {
         colors: {
@@ -21,5 +21,8 @@ module.exports = {
         }
     },
   },
-  plugins: [require("tailwind-gradient-mask-image")],
+  plugins: [
+    require("tailwind-gradient-mask-image"),
+    require('tailwind-scrollbar'),
+  ],
 }

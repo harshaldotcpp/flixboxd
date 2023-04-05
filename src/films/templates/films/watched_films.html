@@ -1,5 +1,4 @@
 {% extends "films/films_base.html" %}
-
 {% block content %}
    <div id="grid-section" class="grid grid-cols-4 mt-20 sm:grid-cols-5 md:grid-cols-6  lg:grid-cols-10 gap-3 grid-row-[auto]">
 
@@ -12,6 +11,7 @@
            {% for movie in movies %} 
             {% include "films/cards.html" %}
            {% endfor %}
+
     </div>
 
         {% if len == 0 %}

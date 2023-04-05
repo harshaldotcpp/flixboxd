@@ -9,5 +9,5 @@ tmdb.debug = True
 
 movie = Movie()
 
-print(movie.details(268).crew)
+print(dir(movie))
 

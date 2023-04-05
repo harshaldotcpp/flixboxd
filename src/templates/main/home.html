@@ -10,7 +10,7 @@
     <title>Welcome Page of my App</title>
    
   </head>
-  <body class=" w-screen bg-gradient-to-tl from-letterboxd-1 to-letterboxd-2 font-myfontLight min-h-screen font-myfontLight text-letterboxd-6">
+  <body class="overflow-x-hidden w-screen h-auto bg-letterboxd-1 font-myfontLight min-h-screen font-myfontLight text-letterboxd-6">
       {% include 'main/navbar.html' %}
       
             <div class="come-content relative top-11">
@@ -18,10 +18,10 @@
               Welcome back,  {{ user.username }}
           </div>
           
-         <div class="px-6 sm:px-16 md:px-20 lg:px-56">
+         <div class="px-6 sm:px-16 md:px-20 lg:px-44">
 
                 <div id="populer with friends" class="">
-                    <div class="px-4 grid grid-cols-3 grid-rows-[auto,1fr,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
+                    <div class="px-4 grid grid-cols-3 grid-rows-[auto,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
                         <div class="text-sm font-bold text-letterboxd-3 col-span-3 md:col-span-6  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
                     POLPULER WITH FRIENDS
                         </div>
@@ -94,9 +94,21 @@
                     </div>
                 </div>
 
-
+                <div id="upcoming_movies" class="mt-16">
+                    <div class="px-4 grid grid-cols-3 grid-rows-[auto,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
+                        <div class="text-sm font-bold text-letterboxd-3 col-span-3 md:col-span-6  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
+                        UPCOMING MOVIES
+                        </div>
+                        {% for movie in upcoming %}
+                            {% include "main/cards.html" %} 
+                        {% endfor %}
+                       
+                </div>
 
          </div>
+         </div>
+         {% include 'main/footer.html' %}
+
   </body>
     <script src="//cdn.jsdelivr.net/npm/eruda"></script>
     <script>eruda.init();</script>

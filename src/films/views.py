@@ -47,7 +47,7 @@ def watched(request):
 
 
 def liked(request):
-    print("hello")
+
     if request.method == "POST":
        
         obj = json.load(request)
@@ -127,6 +127,7 @@ def film(request,film_id):
     movie = Movie()
     m = movie.details(film_id)
     mc = movie.credits(film_id)
+    similar_movies = movie.similar(film_id)
    
     directors = []
     for credit in mc.crew:
@@ -165,6 +166,7 @@ def film(request,film_id):
         "liked_btn": liked_icon,
         "watchlist_checked": watchlist_checked,
         "watchlist_btn": watchlist_icon,
+        "similar_movies": similar_movies,
     }
 
     reviews = []
@@ -240,7 +242,7 @@ def  showWatchlist(request,username):
 def showWatched(request,username):
     user = User.objects.get(username=username)
     movies = user.movies_set.all()
-    print(movies)
+
     context={
         "username": username,
         "movies": movies,

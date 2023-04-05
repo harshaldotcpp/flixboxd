@@ -18,23 +18,26 @@ tmdb.debug = True
 def home(request):
     movie = Movie()
     populer_movies = movie.popular()[0:6]
+
+  
+    print(request.user.is_authenticated)
+    if request.user.is_authenticated: #if user is already is_authenticated(looged in) then take user to home page
+        context = {
+            "upcoming": movie.upcoming(),
+        }
+
+        return render(request,"main/home.html",context=context)
+
+
+
     populer_movies_mobile = movie.popular()[:4]
     
     context = {
-        "user_logged_in": request.user.is_authenticated,
         "movies": populer_movies,
         "movies_mobile": populer_movies_mobile,
         "list":[0,1,2,3],
         "for_cover": movie.popular()[random.randint(0,len(movie.popular())-1)]
     }
-    
-  
-    print(request.user.is_authenticated)
-    if request.user.is_authenticated: #if user is already is_authenticated(looged in) then take user to home page
-        return render(request,"main/home.html",context=context)
-   
-   #else user will to welcome page
-    #print(populer_movies)
     
     return render(request,"authentication/index.html",context=context)
     

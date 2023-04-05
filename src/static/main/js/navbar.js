@@ -138,7 +138,7 @@
             },1300);
             return;
         }
-        const action_url = "http://localhost:8000/search/film/" + content;
+        const action_url = "/search/film/" + content;
         location.href = action_url
     });
         
