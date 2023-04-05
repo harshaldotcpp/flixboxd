@@ -111,10 +111,14 @@
             });
         });
        }
-    if(alert_btn){
-            alert_btn.addEventListener("click",(event)=>{
-            alert_.classList.toggle("hidden");
-        });
+    if(alert_){
+
+            setTimeout(()=>{
+                alert_.classList.add("hidden")
+            },1700);
+            // alert_btn.addEventListener("click",(event)=>{
+            //     alert_.classList.toggle("hidden");
+            // });
     }
     if(frontend_alert_btn){
     frontend_alert_btn.addEventListener("click",(event)=>{

@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from .models import WatchedMovie
 from django.shortcuts import render
 from tmdbv3api import TMDb,Movie
+from django.contrib import messages
 import json
 import os
 
@@ -92,6 +93,7 @@ def watchlist(request):
                 "status": "succesfull",
                 "message": "added_to_watched"
             }
+
             return HttpResponse(json.dumps(response_data),content_type='application/json')
 
         request.user.profile.remove_from_watchlist(obj["tmdb_id"])
