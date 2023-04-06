@@ -1,10 +1,10 @@
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import redirect  
-from .models import WatchedMovie
 from django.shortcuts import render
-from tmdbv3api import TMDb,Movie
 from django.contrib import messages
+from .models import Rating,WatchedMovie
+from tmdbv3api import TMDb,Movie
 import random
 import json
 import os
@@ -39,8 +39,14 @@ def watched(request):
             }
             return HttpResponse(json.dumps(response_data),content_type='application/json')
         
+        movie = WatchedMovie.objects.filter(tmdb_id=obj["tmdb_id"])
+        rating = Rating.objects.filter(movie=movie[0],user=request.user)
+        if rating:
+            return HttpResponse(json.dumps({"status":"failed","message":"theres activity on this movie"}),content_type="application/json")
+
         request.user.profile.unlike(obj["tmdb_id"])   
         request.user.profile.remove_watched_movie(obj["tmdb_id"])
+        return HttpResponse(json.dumps({"status":"succesfull","message":"removed from watched"}),content_type="application/json")
         
        
     return HttpResponse("error")
@@ -234,3 +240,54 @@ def showWatched(request,username):
 
 def showLiked(request,username):
    pass
+
+
+
+def rating(request):
+    if request.method == "POST":
+        obj = json.load(request)
+
+        movieInfo = {
+            "rating":obj["rating"],
+            "tmdb_id": obj["tmdb_id"],
+            "original_title": obj["title"].strip("\""),
+            "poster_path" : obj["poster_path"].strip("\""),
+            "director": obj["director"].strip("\"")
+        }
+    
+        movie = request.user.profile.add_watched_movie(movieInfo)
+        user_rating = Rating.objects.filter(movie=movie,user=request.user)
+
+        if user_rating:
+            user_rating[0].stars = movieInfo["rating"]
+            user_rating[0].save()
+            return HttpResponse(json.dumps({"status":"succesfull","message":"rating updated"}),content_type="application/json")
+
+        rating = Rating.objects.create(stars=movieInfo["rating"],movie=movie,user=request.user)
+        rating.save()
+        return HttpResponse(json.dumps({"status":"succusfull","message":"rating added"}),content_type="application/json")
+
+
+    return HttpResponse(json.dumps({"status":"failed","message":"get request not allowed"}),content_type='application/json')
+
+
+def removeRating(request):
+    if request.method == "POST":
+        obj = json.load(request)
+        movie = WatchedMovie.objects.filter(tmdb_id=obj["tmdb_id"])
+        if movie:
+            rating = Rating.objects.filter(movie=movie[0],user=request.user)
+            if rating:
+                rating.delete()
+                return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
+
+
+        return HttpResponse(json.dumps({"status":"failed","message":"there is no rating for this movie"}),content_type='application/json')
+
+
+
+
+
+
+
+

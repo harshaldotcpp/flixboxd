@@ -37,3 +37,13 @@ def is_watchlist_tmdb(tmdb_id,user,true,false):
     if user.watchlist_set.filter(tmdb_id=tmdb_id):
         return true
     return false
+
+
+@register.simple_tag
+def what_rated(user,tmdb_id,star):
+    movie = user.movies_set.filter(tmdb_id = tmdb_id)
+    if movie:
+        rating = user.rating_set.filter(movie=movie[0])
+        if rating and rating[0].stars == star:
+            return "checked"
+    return "unchecked"

@@ -422,9 +422,9 @@ video {
 * {
   scrollbar-color: initial;
   scrollbar-width: initial;
-  margin:0;
-  padding:0;
-  border-box: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 *, ::before, ::after {
@@ -1194,12 +1194,6 @@ video {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-.from-letterboxd-4 {
-  --tw-gradient-from: #00B021;
-  --tw-gradient-to: rgb(0 176 33 / 0);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
 .to-letterboxd-1 {
   --tw-gradient-to: #14171C;
 }
@@ -1210,10 +1204,6 @@ video {
 
 .to-letterboxd-3 {
   --tw-gradient-to: #556678;
-}
-
-.to-letterboxd-5 {
-  --tw-gradient-to: #F27405;
 }
 
 .fill-letterboxd-3 {
@@ -1625,25 +1615,25 @@ video {
   display: none;
 }
 
-@font-face{
+@font-face {
   font-family: "myfont";
 
   src: url('./Fonts/freightSans.otf');
 }
 
-@font-face{
+@font-face {
   font-family: "myfontlight";
 
   src: url("./Fonts/ProximaNova/Proxima\ Nova\ Reg.otf")
 }
 
-@font-face{
+@font-face {
   font-family: "abrilbold";
 
   src: url("./Fonts/abril/Abril_Text_Bold.otf")
 }
 
-@font-face{
+@font-face {
   font-family: "abril";
 
   src: url("./Fonts/abril/Abril_Text_Regular.otf")
@@ -1984,4 +1974,3 @@ video {
 .\[\&\:not\(\[data-te-input-placeholder-active\]\)\]\:placeholder\:opacity-0:not([data-te-input-placeholder-active])::placeholder {
   opacity: 0;
 }
-
