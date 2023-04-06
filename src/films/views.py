@@ -5,6 +5,7 @@ from .models import WatchedMovie
 from django.shortcuts import render
 from tmdbv3api import TMDb,Movie
 from django.contrib import messages
+import random
 import json
 import os
 
@@ -137,13 +138,14 @@ def film(request,film_id):
     if len(directors) == 0:
         directors = [""]
     
-        
-   
+    
     info = {
         "movie": m,
         "release_year": m.release_date[:4],
         "director": directors[0],
         "similar_movies": similar_movies,
+
+        
     }
 
     reviews = []
@@ -208,9 +210,9 @@ def  showWatchlist(request,username):
 
 
     context = {
-        "username": username,
         "movies": movies,
         "len": len(movies),
+        "user": user,
         
     }
     return render(request,"films/watchlist.html",context=context)
@@ -221,9 +223,9 @@ def showWatched(request,username):
     movies = user.movies_set.all()
 
     context={
-        "username": username,
         "movies": movies,
         "len" : len(movies),
+        "user": user
     }
 
     return render(request,"films/watched_films.html",context=context);
