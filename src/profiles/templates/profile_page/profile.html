@@ -1,5 +1,5 @@
- <!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,18 +7,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile</title>
- <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.css' %}">
-     
+    <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.css' %}">
 </head>
 
-<body class="h-[69px] border-4 border-letterboxd-5 font-abril">
-    <div class="border-5 border-black ">
-        jkjsdlka
+<body class="bg-gradient-to-tl from-letterboxd-2 to-letterboxd-1 min-h-screen  font-myfontLight text-xs sm:text-sm md:text-md lg:text-lg text-white">
+
+
+
+  {% include 'main/navbar.html' %}
+
+
+
+
+
+
+
+
+
+    <div class="my-24 px-5 sm:px-12 md:px-28 lg:px-56 ">
+        <div id="profile-intro" class="flex flex-col gap-11  lg:flex-row justify-center md:justify-between items-center">
+            <div id="pfp-name" class="shrink-0 grid grid-cols-2 grid-rows-1 gap-4">
+                <div id="pfp">
+                    <img class="w-24 object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
+                </div>
+                <div id="name-profile" class="flex flex-col gap-1 items-start justify-center">
+                    <div class="font-myfont text-2xl p-0">{{ user.username }}</div>
+                    <div class="text-letterboxd-3 font-bold m-0">india</div>
+                    <div class="bg-letterboxd-3 rounded-md text-sm tracking-widest px-2 py-1 font-myfont"><button>EDIT PROFILE</button></div>
+                </div>
+            </div>
+
+
+            <div id="profile-numbers" class="flex flex-wrap justify-center text-letterboxd-3 font-myfontLight">
+                <div class="px-4 border-letterboxd-3  text-center"> <div class="text-white font-abrilbold">23</div><div class="text-sm">FILMS</div>   </div>
+                <div class="px-4 border-l border-letterboxd-3 text-center"> <div class="text-white font-abrilbold">45</div> <div class="text-sm">THIS YEAR</div>  </div>
+                <div class="px-4 border-l border-letterboxd-3 text-center"> <div class="text-white font-abrilbold">0</div> <div class="text-sm">LISTS</div>  </div>
+                <div class="px-4 border-l border-letterboxd-3 text-center"> <div class="text-white font-abrilbold">21</div> <div class="text-sm">FOLLOWING</div>  </div>
+                <div class="px-4 border-l border- border-letterboxd-3 text-center"> <div class="text-white font-abrilbold">21</div> <div class="text-sm">FOLLOWERS</div>  </div> 
+            </div>
+        </div>
+
     </div>
-
-
-
-
 </body>
+<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+<script>
+    eruda.init();
+</script>
+<script src="{% static 'main/js/navbar.js' %}"></script>
+
 
 </html>
