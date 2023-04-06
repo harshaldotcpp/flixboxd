@@ -4,10 +4,10 @@ from films.models import WatchedMovie,Watchlist
 register = template.Library()
 
 @register.simple_tag
-def is_liked(movie,username):
+def is_liked(movie,username,true,false):
     if movie.liked_by.filter(username=username).exists():
-        return ""
-    return "hidden" 
+        return true
+    return false 
 
 @register.simple_tag
 def is_watched(movie,username):
@@ -17,28 +17,23 @@ def is_watched(movie,username):
 
 
 @register.simple_tag
-def is_watched_tmdb(tmdb_id,username):
-    movie = WatchedMovie.objects.filter(tmdb_id=tmdb_id)
+def is_watched_tmdb(tmdb_id,user,true,false):
+    if user.movies_set.filter(tmdb_id=tmdb_id):
+        return true
+    
+    return false
 
-    if movie:
-        if movie[0].watched_by.filter(username=username):
-            return ""
-    return "hidden"
-
-
-@register.simple_tag
-def is_liked_tmdb(tmdb_id,username):
-    movie = WatchedMovie.objects.filter(tmdb_id=tmdb_id)
-    if movie:
-        if movie[0].liked_by.filter(username=username):
-            return ""
-    return "hidden"
 
 
 @register.simple_tag
-def is_watchlist_tmdb(tmdb_id,username):
-    movie = Watchlist.objects.filter(tmdb_id = tmdb_id) 
-    if movie:
-        if movie[0].watch_listed.filter(username=username):
-            return ""
-    return "hidden"
+def is_liked_tmdb(tmdb_id,user,true,false):
+    if user.liked_movies_set.filter(tmdb_id = tmdb_id):
+        return true
+    return false
+
+
+@register.simple_tag
+def is_watchlist_tmdb(tmdb_id,user,true,false):
+    if user.watchlist_set.filter(tmdb_id=tmdb_id):
+        return true
+    return false

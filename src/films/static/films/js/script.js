@@ -86,7 +86,7 @@
              });
             
            
-            fetch("http://localhost:8000/film/watchedadd",options)
+            fetch("/film/watchedadd",options)
              
         });
         
@@ -112,8 +112,8 @@
                     poster_path: getCookie('poster_path'),
                     director: getCookie('director'),
                 });
-               
-                fetch("http://localhost:8000/film/likedadd",options)
+                console.log("new")
+                fetch("/film/likedadd",options)
        
         });
         
@@ -129,7 +129,7 @@
                     director: getCookie('director'),
                 });
 
-                fetch("http://localhost:8000/film/watchlistadd",options)
+                fetch("/film/watchlistadd",options)
         });
 
         document.querySelector("#maction").addEventListener("click",()=>{

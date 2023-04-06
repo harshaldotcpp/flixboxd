@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HTML 5 Boilerplate</title>
-    <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.css' %}">
-  </head>
-  <body class="min-h-screen w-screen bg-gradient-to-tl from-letterboxd-1 to-letterboxd-2 font-myfontLight text-letterboxd-6">
-      
-        {% include 'main/navbar.html' %}
-        
-      <div class="come-content relative top-11 py-1 px-4">
-          
-           <div id="search_info" class="mb-6 flex flex-col gap-y-4 text-sm">
-               <div class="border-b border-letterboxd-3">
-                    FOUND AT LEAST {{ len }} MATCHES FOR {{ search_value }} 
-               </div>
-               <div class="py-2 px-3  bg-gray-700 rounded-md">
-                   <button>
-                       SHOW RESULTS FOR ALL
-                    </button>
-                </div>
-           </div>
-           
-           {% include "films/search_results.html" %}
-           
-          {% if len == 0 %}
-          <div class="h-100 w-100 flex items-center justify-center" id="no search found">
-              <div> No result found </div>
-          </div>
-          {% endif %}
-          
-          
-       </div>
-       {% include "main/footer.html" %}
-     
-  </body>
-  <script src="//cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init();</script>
-    <script src="{% static 'main/js/navbar.js' %}"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HTML 5 Boilerplate</title>
+  <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.css' %}">
+</head>
+
+<body
+  class="min-h-screen w-screen bg-gradient-to-tl scrollbar-none from-letterboxd-1 to-letterboxd-2 font-myfontLight text-letterboxd-6">
+
+  {% include 'main/navbar.html' %}
+
+  <div class="come-content min-h-screen relative top-11 py-1 px-4">
+
+    <div id="search_info" class="mb-6 flex flex-col gap-y-4 text-sm">
+      <div class="border-b border-letterboxd-3">
+        FOUND AT LEAST {{ len }} MATCHES FOR {{ search_value }}
+      </div>
+      <div class="py-2 px-3  bg-gray-700 rounded-md">
+        <button>
+          SHOW RESULTS FOR ALL
+        </button>
+      </div>
+    </div>
+
+    {% include "films/search_results.html" %}
+
+    {% if len == 0 %}
+    <div class="h-100 w-100 flex items-center justify-center" id="no search found">
+      <div> No result found </div>
+    </div>
+    {% endif %}
+
+
+  </div>
+
+</body>
+<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+<script>
+  eruda.init();
+</script>
+<script src="{% static 'main/js/navbar.js' %}"></script>
 
 </html>
