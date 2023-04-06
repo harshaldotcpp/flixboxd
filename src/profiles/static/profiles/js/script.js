@@ -34,7 +34,6 @@ const follow_btn = document.getElementById("follow-btn")
 
 
 follow_btn.addEventListener("click", (event) => {
-    console.log(follow_btn.checked)
     const follow_btn_text = document.getElementById("follow-btn-text")
 
     if (follow_btn.checked)

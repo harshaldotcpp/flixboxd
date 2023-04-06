@@ -26,11 +26,11 @@ def get_lists_count(username):
     return user.list_set.count()
 
 @register.simple_tag
-def is_following(follower,username):
+def is_following(follower,username,true,false):
     user = User.objects.get(username=username)
     if follower.profile.following.filter(user=user):
-        return "checked"
-    return "unchecked"
+        return true 
+    return false 
 
 
 @register.simple_tag

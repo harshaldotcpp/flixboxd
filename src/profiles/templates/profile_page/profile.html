@@ -44,8 +44,9 @@
                     <label>
                         <div id="followuser"
                             class="bg-letterboxd-3 rounded-md text-sm tracking-widest px-2 py-1 font-myfont">
-                            <div id="follow-btn-text">{% is_following_tag user user_profile.username %} </div> <input {% is_following user user_profile.username %} id="follow-btn" type="checkbox" class="hidden"
-                                name="follow" id="">
+                            <div id="follow-btn-text">{% is_following user user_profile.username "unfollow" "follow" %}
+                            </div> <input {% is_following user user_profile.username "checked" "unchecked" %}
+                                id="follow-btn" type="checkbox" class="hidden" name="follow" id="">
                         </div>
                     </label>
                     {% endif %}
