@@ -116,6 +116,7 @@ def watchlist(request):
 
 
 def addReview(request):
+    url = f"/film/{request.POST['tmdb_id']}"
     if(request.method == "POST"):
         movie_info = {
             "tmdb_id": request.POST["tmdb_id"],
@@ -125,22 +126,31 @@ def addReview(request):
             "review": request.POST['review'],
             "date" : request.POST['date'],
         }
-        print(request.POST)
-        
-        movie = request.user.profile.add_watched_movie(movie_info)
-        movie.post_review(movie_info["review"],request.user)
-        if request.POST.get("shouldlog") is not None:
-           log_date = datetime.datetime.strptime(movie_info["date"],'%Y-%m-%d').date()
-           user_diary = request.user.diary_log.filter(date=log_date)
-           
-           diaryLog = DiaryLog.objects.create(date=log_date,user=request.user)
-           diaryLog.movies.add(movie)
-           diaryLog.save()
+        message  = ""
 
-        else:
-            print("dont log")
-    
-    url = f"/film/{request.POST['tmdb_id']}"
+        if len(movie_info["review"]) != 0:
+            movie = request.user.profile.add_watched_movie(movie_info)
+            movie.post_review(movie_info["review"],request.user)
+            message = "Reviwed this film"
+
+        if request.POST.get("shouldlog") is not None:
+            movie = request.user.profile.add_watched_movie(movie_info)
+            log_date = datetime.datetime.strptime(movie_info["date"],'%Y-%m-%d').date()
+            user_diary = request.user.diary_log.filter(date=log_date)
+            if user_diary:
+                if user_diary.filter(movies = movie):
+                    message += " already logged on this day"
+                    messages.error(request,message)
+                    return redirect(url)
+            diaryLog = DiaryLog.objects.create(date=log_date,user=request.user)
+            diaryLog.movies.add(movie)
+            diaryLog.save()
+            message += " added in logs"
+            messages.success(request,message)
+        if len(message) == 0:
+            message = "no action" 
+        messages.success(request,message)
+ 
     return redirect(url)
 
     
@@ -178,7 +188,6 @@ def film(request,film_id):
     if requested_movie:
         reviews = requested_movie[0].reviews_set.all()
         myReviews = request.user.reviews_set.filter(movie=requested_movie[0])
-        print("woooooooooo",myReviews)
 
     review_len = len(reviews)
     info["reviews"] = reviews
