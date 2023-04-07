@@ -49,93 +49,136 @@ const options = {
     body: "",
 }
 
-document.getElementById('datePicker').value = today;
-document.getElementById('datePicker').ariaPlaceholder = today;
+const date_picker = document.getElementById('datePicker')
+if (date_picker) {
+    date_picker.value = today;
+    date_picker.ariaPlaceholder = today;
+}
 
-review_btn.addEventListener("click", (event) => {
-    document.getElementById("movie-review-log").classList.toggle("hidden");
-});
+if (review_btn) {
+    review_btn.addEventListener("click", (event) => {
+        document.getElementById("movie-review-log").classList.toggle("hidden");
+    });
+}
 
-review_cancel_btn.addEventListener("click", event => {
-    document.getElementById("movie-review-log").classList.toggle("hidden")
-});
+if (review_cancel_btn) {
+    review_cancel_btn.addEventListener("click", event => {
+        document.getElementById("movie-review-log").classList.toggle("hidden")
+    });
+}
+
+if (watch_btn) {
+    watch_btn.addEventListener("click", (event) => {
+        console.log("watch_btn ");
+        const icon = document.querySelector("#watch-icon");
+        icon.classList.toggle("fill-letterboxd-4");
+
+        if (!watch_btn.checked && like_btn.checked) {
+
+            const icon = document.querySelector("#like-icon");
+            icon.classList.toggle("fill-letterboxd-5")
+            like_btn.checked = false;
+        }
 
 
-watch_btn.addEventListener("click", (event) => {
-    console.log("watch_btn ");
-    const icon = document.querySelector("#watch-icon");
-    icon.classList.toggle("fill-letterboxd-4");
-   
-    if (!watch_btn.checked && like_btn.checked) {
-      
+        if (watch_btn.checked && watchlist_btn.checked) {
+            const icon = document.querySelector("#watchlist-icon");
+            icon.classList.toggle("fill-letterboxd-4");
+            watchlist_btn.checked = false;
+        }
+
+
+        options.body = JSON.stringify({
+            add: watch_btn.checked,
+            tmdb_id: getCookie('id'),
+            title: getCookie('movie_name'),
+            poster_path: getCookie('poster_path'),
+            director: getCookie('director'),
+
+        });
+
+
+        fetch("/film/watchedadd", options)
+            .then(response => {
+                return response.json()
+            }).then(response => {
+                document.querySelector("#alert-msg").innerHTML = response["message"];
+                document.querySelector("#frontend-alert").classList.remove("hidden")
+
+                setTimeout(() => {
+                    document.querySelector("#frontend-alert").classList.add("hidden");
+                }, 1300);
+                return;
+            })
+    });
+}
+
+if (like_btn) {
+    like_btn.addEventListener("click", (event) => {
+
         const icon = document.querySelector("#like-icon");
-        icon.classList.toggle("fill-letterboxd-5")
-        like_btn.checked = false;
-    }
+        icon.classList.toggle("fill-letterboxd-5");
+
+        //if film liked and unwatched mark as watched liking movie also add into watched
+        if (like_btn.checked && !watch_btn.checked) {
+
+            watch_btn.checked = true;
+            const icon = document.querySelector("#watch-icon");
+            icon.classList.toggle("fill-letterboxd-4")
+
+        }
 
 
-    if (watch_btn.checked && watchlist_btn.checked) {
+        options.body = JSON.stringify({
+            add: like_btn.checked,
+            tmdb_id: getCookie('id'),
+            title: getCookie('movie_name'),
+            poster_path: getCookie('poster_path'),
+            director: getCookie('director'),
+        });
+
+        fetch("/film/likedadd", options)
+            .then(response => response.json())
+            .then((response) => {
+                document.querySelector("#alert-msg").innerHTML = response["message"];
+                document.querySelector("#frontend-alert").classList.remove("hidden")
+
+                setTimeout(() => {
+                    document.querySelector("#frontend-alert").classList.add("hidden");
+                }, 1300);
+                return;
+            })
+
+    });
+}
+if (watchlist_btn) {
+    watchlist_btn.addEventListener("click", (event) => {
+
         const icon = document.querySelector("#watchlist-icon");
         icon.classList.toggle("fill-letterboxd-4");
-        watchlist_btn.checked = false;
-    }
+        options.body = JSON.stringify({
+            add: watchlist_btn.checked,
+            tmdb_id: getCookie('id'),
+            title: getCookie('movie_name'),
+            poster_path: getCookie('poster_path'),
+            director: getCookie('director'),
+        });
 
-    options.body = JSON.stringify({
-        add: watch_btn.checked,
-        tmdb_id: getCookie('id'),
-        title: getCookie('movie_name'),
-        poster_path: getCookie('poster_path'),
-        director: getCookie('director'),
+        fetch("/film/watchlistadd", options)
+            .then(response => response.json())
+            .then((response) => {
+                document.querySelector("#alert-msg").innerHTML = response["message"];
+                document.querySelector("#frontend-alert").classList.remove("hidden")
+
+                setTimeout(() => {
+                    document.querySelector("#frontend-alert").classList.add("hidden");
+                }, 1300);
+                return;
+            })
 
     });
 
-
-    fetch("/film/watchedadd", options)
-
-});
-
-like_btn.addEventListener("click", (event) => {
-    
-    const icon = document.querySelector("#like-icon");
-    icon.classList.toggle("fill-letterboxd-5");
-
-    //if film liked and unwatched mark as watched liking movie also add into watched
-    if (like_btn.checked && !watch_btn.checked) {
-
-        watch_btn.checked = true;
-        const icon = document.querySelector("#watch-icon");
-        icon.classList.toggle("fill-letterboxd-4")
-
-    }
-
-
-    options.body = JSON.stringify({
-        add: like_btn.checked,
-        tmdb_id: getCookie('id'),
-        title: getCookie('movie_name'),
-        poster_path: getCookie('poster_path'),
-        director: getCookie('director'),
+    document.querySelector("#maction").addEventListener("click", () => {
+        document.querySelector("#movie-add").classList.toggle("hidden");
     });
-    
-    fetch("/film/likedadd", options)
-
-});
-
-watchlist_btn.addEventListener("click", (event) => {
-    
-    const icon = document.querySelector("#watchlist-icon");
-    icon.classList.toggle("fill-letterboxd-4");
-    options.body = JSON.stringify({
-        add: watchlist_btn.checked,
-        tmdb_id: getCookie('id'),
-        title: getCookie('movie_name'),
-        poster_path: getCookie('poster_path'),
-        director: getCookie('director'),
-    });
-
-    fetch("/film/watchlistadd", options)
-});
-
-document.querySelector("#maction").addEventListener("click", () => {
-    document.querySelector("#movie-add").classList.toggle("hidden");
-})
+}

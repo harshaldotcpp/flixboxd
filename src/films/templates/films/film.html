@@ -10,6 +10,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.css' %}">
     <link rel="stylesheet" href="{% static 'films/css/style.css' %}">
+    <script src="{% static 'main/js/lazyload.js' %}"></script>
     <title>Welcome Page of my App</title>
 
 </head>
@@ -19,8 +20,9 @@
 
 
     <div class="relative flex-cols">
-        <img src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}"
-            class="h-64  mt-10 w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
+        <img data-src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}"
+            src="https://image.tmdb.org/t/p/w200{{movie.backdrop_path}}"
+            class="lozad h-64  mt-10 w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
         <div class="relative bg-transparent z-10">
             <div class="relative h-52 md:h-96">
 
@@ -62,7 +64,9 @@
                     <div
                         class="w-28 md:w-32 card relative rounded-md md:rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
                         <a href="">
-                            <img class="object-cover" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}">
+                            <img class="lozad object-cover"
+                                data-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
+                                src="https://image.tmdb.org/t/p/w200{{movie.poster_path}}">
                         </a>
                         <div
                             class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
@@ -110,8 +114,8 @@
                     {% include 'films/movie_navigation.html' %}
                 </div>
                 {% endif %}
-                
-                
+
+
 
                 <div class="cast-crew-div">
                     <div class="mb-3 text-letterboxd-4 mt-12 border-b border-letterboxd-3 flex gap-3 font-myfontLight">
@@ -120,7 +124,8 @@
                     </div>
                     <div id="cast" class="flex flex-wrap gap-3">
                         {% for cast in movie.casts.cast %}
-                        <div class="bg-gray-700 text-xs sm:text-sm md:text-md rounded-md shadow-md shadow-black y-1 px-2">
+                        <div
+                            class="bg-gray-700 text-xs sm:text-sm md:text-md rounded-md shadow-md shadow-black y-1 px-2">
                             {{cast.original_name}}</div>
                         {% endfor %}
                     </div>
@@ -129,7 +134,8 @@
                 </div>
                 {% if reviews_len == 0%}
 
-                <div class="flex justify-center text-xs sm:text-sm md:text-md lg:text-lg font-myfontLight mt-12 py-4 border-y border-letterboxd-3">
+                <div
+                    class="flex justify-center text-xs sm:text-sm md:text-md lg:text-lg font-myfontLight mt-12 py-4 border-y border-letterboxd-3">
                     No Reviews Yet our site is new :D be first one to do so
                 </div>
 
@@ -187,8 +193,9 @@
                             <div
                                 class="card relative hover:scale-95 duration-300 hover:shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] hover:shadow:black rounded-md md:rounded-lg  shadow-inner shadow-blue-500 overflow-hidden">
                                 <a href="{% url 'filmsabout:film' smovies.id %}">
-                                    <img class="object-cover "
-                                        src="https://image.tmdb.org/t/p/original{{ smovies.poster_path }}">
+                                    <img class="object-cover lozad" 
+                                        data-src="https://image.tmdb.org/t/p/original{{ smovies.poster_path }}" src="https://image.tmdb.org/t/p/w200{{ smovies.poster_path }}" >
+
                                     <div
                                         class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                                     </div>
@@ -213,13 +220,13 @@
     <div id="movie-review-log"
         class="px-5 hidden text-myfontLight fixed z-50 bg-transparent top-0 flex justify-center items-center h-screen w-screen">
 
-        <div class="bg-letterboxd-3 p-3">
+        <div class="bg-letterboxd-3 shadow-lg shadow-black p-3">
             <div class="flex items-start gap-3 ">
                 <div>
                     <div
                         class="w-20 card relative rounded-md md:rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
                         <a href="">
-                            <img class="object-cover" src="https://image.tmdb.org/t/p/original{{movie.poster_path}}">
+                            <img class="object-cover lozad" data-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}" src="https://image.tmdb.org/t/p/w200{{movie.poster_path}}">
                         </a>
                         <div
                             class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">

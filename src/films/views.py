@@ -35,7 +35,7 @@ def watched(request):
             
             response_data = {
                 "status": "succesfull",
-                "message": "added_to_watched"
+                "message": "Added to watched"
             }
             return HttpResponse(json.dumps(response_data),content_type='application/json')
         
@@ -73,11 +73,12 @@ def liked(request):
             
             response_data = {
                 "status": "succesfull",
-                "message": "added_to_watched"
+                "message": "liked the movie"
             }
             return HttpResponse(json.dumps(response_data),content_type='application/json')
         
         request.user.profile.unlike(obj["tmdb_id"])
+        return HttpResponse(json.dumps({"status":"succesfull","message":"unlike the movie"}),content_type='application/json')
         
     return HttpResponse("error")   
         
@@ -98,12 +99,14 @@ def watchlist(request):
             request.user.profile.add_to_watchlist(movie_info)
             response_data = {
                 "status": "succesfull",
-                "message": "added_to_watched"
+                "message": "Added to watched"
             }
 
             return HttpResponse(json.dumps(response_data),content_type='application/json')
 
         request.user.profile.remove_from_watchlist(obj["tmdb_id"])
+        return HttpResponse(json.dumps({"status":"succusfull","message":"Removed from watchlist"}),content_type='application/json')
+        
 
     return HttpResponse("watchlist error")
 

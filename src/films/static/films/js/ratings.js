@@ -9,9 +9,9 @@ Array.from(stars_btns).forEach(btn => {
             "poster_path": getCookie("poster_path"),
             "director": getCookie("director")
         })
-        fetch("/film/ratingadd",options);
+        fetch("/film/ratingadd", options);
 
-        if( !watch_btn.checked){
+        if (!watch_btn.checked) {
             watch_btn.checked = true;
             const icon = document.querySelector("#watch-icon");
             icon.classList.toggle("classList");
@@ -19,16 +19,17 @@ Array.from(stars_btns).forEach(btn => {
     })
 })
 
+if (rating_remove) {
+    rating_remove.addEventListener("click", event => {
+        options.body = JSON.stringify({
+            tmdb_id: getCookie("id"),
+        });
 
-rating_remove.addEventListener("click",event=>{
-    options.body = JSON.stringify({
-        tmdb_id: getCookie("id"),
-    });
+        Array.from(stars_btns).forEach(element => {
+            element.checked = false
+            console.log(element)
+        })
+        fetch("/film/ratingremove", options);
 
-    Array.from(stars_btns).forEach(element=>{
-        element.checked = false
-        console.log(element)
     })
-    fetch("/film/ratingremove",options);
-
-})
+}

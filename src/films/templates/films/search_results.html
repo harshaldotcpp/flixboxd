@@ -1,33 +1,35 @@
-      <div id="results" class="p-4 md:p-7">
-          {% for movie in movies %}
-          <div id="search_result" class="border-t border-letterboxd-3 flex py-3">
+<div id="results" class="p-4 md:p-7">
+    {% for movie in movies %}
+    <div id="search_result" class="border-t border-letterboxd-3 flex py-3">
 
-              <div class="grow-0 mr-6">
-                  <div class="w-20 relative card rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
-                      <a href="{% url  'filmsabout:film' movie.id %}">
-                          <img class="object-cover " src="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}">
-                          <div
-                              class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
-                          </div>
-                      </a>
-                  </div>
+        <div class="grow-0 mr-6">
+            <div class="w-20 relative card rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
+                <a href="{% url  'filmsabout:film' movie.id %}">
+                    <img class="object-cover lodaz"
+                        data-src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}"
+                        src="https://image.tmdb.org/t/p/w200{{ movie.poster_path }}">
+                    <div
+                        class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                    </div>
+                </a>
+            </div>
 
-              </div>
+        </div>
 
-              <div class="text-sm font-myfontLight flex flex-col justify-between ">
-                  <div class="font-abrilbold mb-3">
-                      <a href="{% url  'filmsabout:film' movie.id %}"> {{ movie.title }} <span class="font-myfontLight">
-                              {{ movie.release_year }} </span>
-                  </div>
-                  <div id="alternatives" class="mb-3">
-                      Alternative titles:
-                      {{ movie.a_titles }}
-                  </div>
-                  <div id="director" class="">
-                      Director: {{ movie.director }}
-                  </div>
-              </div>
+        <div class="text-sm font-myfontLight flex flex-col justify-between ">
+            <div class="font-abrilbold mb-3">
+                <a href="{% url  'filmsabout:film' movie.id %}"> {{ movie.title }} <span class="font-myfontLight">
+                        {{ movie.release_year }} </span>
+            </div>
+            <div id="alternatives" class="mb-3">
+                Alternative titles:
+                {{ movie.a_titles }}
+            </div>
+            <div id="director" class="">
+                Director: {{ movie.director }}
+            </div>
+        </div>
 
-          </div>
-          {% endfor %}
-      </div>
+    </div>
+    {% endfor %}
+</div>
