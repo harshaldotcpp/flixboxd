@@ -18,7 +18,17 @@ if (day < 10) day = "0" + day;
 
 var today = year + "-" + month + "-" + day;
 
+function myAlert(message) {
+    document.querySelector("#alert-msg").innerHTML = message;
+    document.querySelector("#frontend-alert").classList.remove("hidden")
 
+    setTimeout(() => {
+        document.querySelector("#frontend-alert").classList.add("hidden");
+    }, 1299);
+    return;
+
+
+}
 
 
 function getCookie(name) {
@@ -69,9 +79,7 @@ if (review_cancel_btn) {
 
 if (watch_btn) {
     watch_btn.addEventListener("click", (event) => {
-        console.log("watch_btn ");
-        const icon = document.querySelector("#watch-icon");
-        icon.classList.toggle("fill-letterboxd-4");
+
 
         if (!watch_btn.checked && like_btn.checked) {
 
@@ -86,6 +94,16 @@ if (watch_btn) {
             icon.classList.toggle("fill-letterboxd-4");
             watchlist_btn.checked = false;
         }
+        let isRated = false;
+        Array.from(stars_btns).forEach(element => {
+            if (element.checked === true)
+                isRated = true
+        })
+        if (!watch_btn.checked && isRated) {
+            watch_btn.checked = true;
+            myAlert("there is a Activity on this film")
+            return;
+        }
 
 
         options.body = JSON.stringify({
@@ -96,19 +114,14 @@ if (watch_btn) {
             director: getCookie('director'),
 
         });
-
+        const icon = document.querySelector("#watch-icon");
+        icon.classList.toggle("fill-letterboxd-4");
 
         fetch("/film/watchedadd", options)
             .then(response => {
                 return response.json()
             }).then(response => {
-                document.querySelector("#alert-msg").innerHTML = response["message"];
-                document.querySelector("#frontend-alert").classList.remove("hidden")
-
-                setTimeout(() => {
-                    document.querySelector("#frontend-alert").classList.add("hidden");
-                }, 1300);
-                return;
+                myAlert(response.message);
             })
     });
 }
@@ -140,13 +153,7 @@ if (like_btn) {
         fetch("/film/likedadd", options)
             .then(response => response.json())
             .then((response) => {
-                document.querySelector("#alert-msg").innerHTML = response["message"];
-                document.querySelector("#frontend-alert").classList.remove("hidden")
-
-                setTimeout(() => {
-                    document.querySelector("#frontend-alert").classList.add("hidden");
-                }, 1300);
-                return;
+                myAlert(response.message);
             })
 
     });
@@ -167,13 +174,7 @@ if (watchlist_btn) {
         fetch("/film/watchlistadd", options)
             .then(response => response.json())
             .then((response) => {
-                document.querySelector("#alert-msg").innerHTML = response["message"];
-                document.querySelector("#frontend-alert").classList.remove("hidden")
-
-                setTimeout(() => {
-                    document.querySelector("#frontend-alert").classList.add("hidden");
-                }, 1300);
-                return;
+                myAlert(response.message);
             })
 
     });

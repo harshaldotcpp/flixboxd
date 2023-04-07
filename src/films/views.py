@@ -214,30 +214,37 @@ def search_films(request,film_name):
 
 
 def  showWatchlist(request,username):
-    user = User.objects.get(username=username)
-    movies = user.watchlist_set.all()
+    user = User.objects.filter(username=username)
 
+    if user:
 
-    context = {
-        "movies": movies,
-        "len": len(movies),
-        "user": user,
-        
-    }
-    return render(request,"films/watchlist.html",context=context)
+        movies = user[0].watchlist_set.all()
+        context = {
+            "movies": movies,
+            "len": len(movies),
+            "user": user[0],
+            
+        }
+        return render(request,"films/watchlist.html",context=context)
+
+    return render(request,"profile_page/error.html") 
 
 
 def showWatched(request,username):
-    user = User.objects.get(username=username)
-    movies = user.movies_set.all()
+    user = User.objects.filter(username=username)
 
-    context={
-        "movies": movies,
-        "len" : len(movies),
-        "user": user
-    }
+    if user:
+        movies = user[0].movies_set.all()
 
-    return render(request,"films/watched_films.html",context=context);
+        context={
+            "movies": movies,
+            "len" : len(movies),
+            "user": user[0]
+        }
+    
+        return render(request,"films/watched_films.html",context=context);
+
+    return render(request,"profile_page/error.html") 
 
 
 
