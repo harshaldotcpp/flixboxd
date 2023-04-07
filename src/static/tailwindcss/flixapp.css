@@ -1218,6 +1218,10 @@ video {
   fill: #F27405;
 }
 
+.fill-white {
+  fill: #fff;
+}
+
 .stroke-letterboxd-3 {
   stroke: #556678;
 }

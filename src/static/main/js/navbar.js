@@ -1,4 +1,5 @@
-
+const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+observer.observe();
  const login_btn = document.querySelector("#signin_btn");
         const login_field = document.querySelector("#signin_menu");
         const search_btn = document.querySelector("#search_btn");
@@ -141,4 +142,5 @@
         const action_url = "/search/film/" + content;
         location.href = action_url
     });
+        
         

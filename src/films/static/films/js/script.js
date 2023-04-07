@@ -65,9 +65,9 @@ watch_btn.addEventListener("click", (event) => {
     console.log("watch_btn ");
     const icon = document.querySelector("#watch-icon");
     icon.classList.toggle("fill-letterboxd-4");
-    console.log("im in")
+   
     if (!watch_btn.checked && like_btn.checked) {
-        console.log("in if")
+      
         const icon = document.querySelector("#like-icon");
         icon.classList.toggle("fill-letterboxd-5")
         like_btn.checked = false;
@@ -95,7 +95,7 @@ watch_btn.addEventListener("click", (event) => {
 });
 
 like_btn.addEventListener("click", (event) => {
-    console.log(" played");
+    
     const icon = document.querySelector("#like-icon");
     icon.classList.toggle("fill-letterboxd-5");
 
@@ -116,13 +116,13 @@ like_btn.addEventListener("click", (event) => {
         poster_path: getCookie('poster_path'),
         director: getCookie('director'),
     });
-    console.log("new")
+    
     fetch("/film/likedadd", options)
 
 });
 
 watchlist_btn.addEventListener("click", (event) => {
-    console.log("watchlist played");
+    
     const icon = document.querySelector("#watchlist-icon");
     icon.classList.toggle("fill-letterboxd-4");
     options.body = JSON.stringify({

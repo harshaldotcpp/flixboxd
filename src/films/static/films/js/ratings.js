@@ -1,4 +1,3 @@
-const stars_btns = document.getElementsByClassName("star-btn")
 const rating_remove = document.getElementById("clear-rating")
 
 Array.from(stars_btns).forEach(btn => {
