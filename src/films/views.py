@@ -3,11 +3,15 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect  
 from django.shortcuts import render
 from django.contrib import messages
-from .models import Rating,WatchedMovie
+from .models import Rating,WatchedMovie,DiaryLog
 from tmdbv3api import TMDb,Movie
+import datetime
 import random
 import json
 import os
+
+
+
 
 tmdb = TMDb()
 tmdb.api_key = os.environ.get("TMDB_API_KEY")
@@ -119,11 +123,22 @@ def addReview(request):
             "poster_path": request.POST["poster_path"],
             "director": request.POST["director"],
             "review": request.POST['review'],
+            "date" : request.POST['date'],
         }
+        print(request.POST)
         
-        print(movie_info) 
         movie = request.user.profile.add_watched_movie(movie_info)
         movie.post_review(movie_info["review"],request.user)
+        if request.POST.get("shouldlog") is not None:
+           log_date = datetime.datetime.strptime(movie_info["date"],'%Y-%m-%d').date()
+           user_diary = request.user.diary_log.filter(date=log_date)
+           
+           diaryLog = DiaryLog.objects.create(date=log_date,user=request.user)
+           diaryLog.movies.add(movie)
+           diaryLog.save()
+
+        else:
+            print("dont log")
     
     url = f"/film/{request.POST['tmdb_id']}"
     return redirect(url)
@@ -158,13 +173,17 @@ def film(request,film_id):
     }
 
     reviews = []
+    myReviews = []
     requested_movie = WatchedMovie.objects.filter(tmdb_id=m.id)
     if requested_movie:
         reviews = requested_movie[0].reviews_set.all()
+        myReviews = request.user.reviews_set.filter(movie=requested_movie[0])
+        print("woooooooooo",myReviews)
 
     review_len = len(reviews)
     info["reviews"] = reviews
     info["reviews_len"] = len(reviews)
+    info['my_reviews'] = myReviews
 
     response = render(request,"films/film.html",context=info)
     response.set_cookie(key="movie_name",value=m.title)

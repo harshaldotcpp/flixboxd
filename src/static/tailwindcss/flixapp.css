@@ -573,18 +573,6 @@ video {
   top: 0.5rem;
 }
 
-.top-28 {
-  top: 7rem;
-}
-
-.top-8 {
-  top: 2rem;
-}
-
-.top-10 {
-  top: 2.5rem;
-}
-
 .top-4 {
   top: 1rem;
 }
@@ -785,16 +773,16 @@ video {
   height: 3.5rem;
 }
 
+.h-2 {
+  height: 0.5rem;
+}
+
 .h-28 {
   height: 7rem;
 }
 
 .h-3 {
   height: 0.75rem;
-}
-
-.h-4 {
-  height: 1rem;
 }
 
 .h-44 {
@@ -841,10 +829,6 @@ video {
   height: 100vh;
 }
 
-.h-2 {
-  height: 0.5rem;
-}
-
 .min-h-\[auto\] {
   min-height: auto;
 }
@@ -863,6 +847,10 @@ video {
 
 .w-14 {
   width: 3.5rem;
+}
+
+.w-2 {
+  width: 0.5rem;
 }
 
 .w-20 {
@@ -919,10 +907,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-2 {
-  width: 0.5rem;
 }
 
 .shrink-0 {
@@ -1031,6 +1015,14 @@ video {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-12 {
+  gap: 3rem;
+}
+
+.gap-20 {
+  gap: 5rem;
 }
 
 .gap-x-1 {
@@ -1618,10 +1610,6 @@ video {
   transition-duration: 300ms;
 }
 
-.duration-150 {
-  transition-duration: 150ms;
-}
-
 .duration-500 {
   transition-duration: 500ms;
 }
@@ -1728,26 +1716,6 @@ video {
   --tw-scale-x: .95;
   --tw-scale-y: .95;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.hover\:border:hover {
-  border-width: 1px;
-}
-
-.hover\:border-2:hover {
-  border-width: 2px;
-}
-
-.hover\:border-4:hover {
-  border-width: 4px;
-}
-
-.hover\:border-\[2px\]:hover {
-  border-width: 2px;
-}
-
-.hover\:border-\[4px\]:hover {
-  border-width: 4px;
 }
 
 .hover\:border-\[3px\]:hover {
@@ -1862,8 +1830,8 @@ video {
     display: none;
   }
 
-  .md\:h-6 {
-    height: 1.5rem;
+  .md\:h-4 {
+    height: 1rem;
   }
 
   .md\:h-96 {
@@ -1874,20 +1842,12 @@ video {
     height: 500px;
   }
 
-  .md\:h-3 {
-    height: 0.75rem;
-  }
-
-  .md\:h-4 {
-    height: 1rem;
-  }
-
   .md\:w-32 {
     width: 8rem;
   }
 
-  .md\:w-6 {
-    width: 1.5rem;
+  .md\:w-4 {
+    width: 1rem;
   }
 
   .md\:w-8 {
@@ -1900,14 +1860,6 @@ video {
 
   .md\:w-\[650px\] {
     width: 650px;
-  }
-
-  .md\:w-3 {
-    width: 0.75rem;
-  }
-
-  .md\:w-4 {
-    width: 1rem;
   }
 
   .md\:grid-cols-2 {
@@ -1932,6 +1884,14 @@ video {
 
   .md\:gap-32 {
     gap: 8rem;
+  }
+
+  .md\:gap-48 {
+    gap: 12rem;
+  }
+
+  .md\:gap-80 {
+    gap: 20rem;
   }
 
   .md\:gap-x-4 {
