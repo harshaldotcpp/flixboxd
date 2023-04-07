@@ -142,18 +142,18 @@
                 {% else %}
                 <div id="populer_reviews" class="mt-28 border-letterboxd-3">
                     <div class="flex justify-between py-1 border-b border-letterboxd-3">
-                        <div> POPULAR REVIEWS </div>
+                        <div class="text-sm"> POPULAR REVIEWS </div>
                         <div> more </div>
                     </div>
                     {% for review in reviews %}
                     <div id="review_card" class="pt-3 pb-6 border-b border-letterboxd-3">
-                        <div if="reviewer" class="mb-4 px-4 text-sm tracking-widest flex gap-2 items-center">
-                            <img class="w-8 object-cover rounded-full"
+                        <div if="reviewer" class="mb-3 text-sm tracking-wide flex gap-2 items-center">
+                            <img class="w-6 object-cover rounded-full"
                                 src="{{ review.review_by.profile.profile_picture.url }} ">
-                            <div class="text-letterboxd-3 font-bold" id="username">Review by <span
+                            <div class="text-letterboxd-3 font-myfontLight" id="username">Review by <span
                                     class="font-myfont text-letterboxd-6"> {{review.review_by.username }} </span> </div>
                         </div>
-                        <div id="review" class="px-8 text-md text-gray-400  font-abril">
+                        <div id="review" class="text-sm text-gray-400  font-abril font-light">
                             {{ review.review }}
                         </div>
                     </div>
@@ -162,18 +162,18 @@
                 {% if user.is_authenticated %}
                 <div id="your_reviews" class="mt-12 border-letterboxd-3">
                     <div class="flex justify-between py-1 border-b border-letterboxd-3">
-                        <div>your reviews</div>
+                        <div class="text-sm">Your Reviews</div>
                         <div> more </div>
                     </div>
                     {% for review in my_reviews %}
                     <div id="review_card" class="pt-3 pb-6 border-b border-letterboxd-3">
-                        <div if="reviewer" class="mb-4 px-4 text-sm tracking-widest flex gap-2 items-center">
-                            <img class="w-8 object-cover rounded-full"
+                        <div if="reviewer" class="mb-3 text-sm tracking-wide flex gap-2 items-center">
+                            <img class="w-6 object-cover rounded-full"
                                 src="{{ review.review_by.profile.profile_picture.url }} ">
-                            <div class="text-letterboxd-3 font-bold" id="username">Review by <span
-                                    class="font-myfont text-letterboxd-6"> {{review_by.username }} </span> </div>
+                            <div class="text-letterboxd-3  font-myfontLight" id="username">Review by <span
+                                    class="font-myfont text-letterboxd-6"> {{review.review_by.username }} </span> </div>
                         </div>
-                        <div id="review" class="px-8 text-md text-gray-400  font-abril">
+                        <div id="review" class="text-sm text-gray-400  font-abril">
                             {{ review.review }}
                         </div>
                     </div>
@@ -223,7 +223,7 @@
     
     <form action="/film/reviewadd" method="post">
             {% csrf_token %}
-            <div class="bg-letterboxd-3 shadow-lg shadow-black p-3">
+            <div class="bg-letterboxd-3 drop-shadow-lg shadow-black p-3 rounded-md">
                 <div class="flex items-start gap-3 ">
                     <div>
                         <div

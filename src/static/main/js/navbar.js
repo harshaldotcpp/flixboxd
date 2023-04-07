@@ -116,10 +116,7 @@ observer.observe();
 
             setTimeout(()=>{
                 alert_.classList.add("hidden")
-            },1700);
-            // alert_btn.addEventListener("click",(event)=>{
-            //     alert_.classList.toggle("hidden");
-            // });
+            },2000);
     }
     if(frontend_alert_btn){
     frontend_alert_btn.addEventListener("click",(event)=>{

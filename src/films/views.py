@@ -126,12 +126,12 @@ def addReview(request):
             "review": request.POST['review'],
             "date" : request.POST['date'],
         }
-        message  = ""
+       
 
         if len(movie_info["review"]) != 0:
             movie = request.user.profile.add_watched_movie(movie_info)
             movie.post_review(movie_info["review"],request.user)
-            message = "Reviwed this film"
+            messages.success(request,"Review Added")
 
         if request.POST.get("shouldlog") is not None:
             movie = request.user.profile.add_watched_movie(movie_info)
@@ -139,17 +139,15 @@ def addReview(request):
             user_diary = request.user.diary_log.filter(date=log_date)
             if user_diary:
                 if user_diary.filter(movies = movie):
-                    message += " already logged on this day"
-                    messages.error(request,message)
+                    messages.error(request,"This Movie Already Logged on This Day")
                     return redirect(url)
             diaryLog = DiaryLog.objects.create(date=log_date,user=request.user)
             diaryLog.movies.add(movie)
             diaryLog.save()
-            message += " added in logs"
-            messages.success(request,message)
-        if len(message) == 0:
-            message = "no action" 
-        messages.success(request,message)
+            messages.success(request,"Added in logs")
+            return redirect(url)
+            
+       
  
     return redirect(url)
 
