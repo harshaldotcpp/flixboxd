@@ -17,7 +17,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    following = models.ManyToManyField("self", symmetrical=False,related_name="followers",blank=True,null=True)
+    following = models.ManyToManyField("self", symmetrical=False,related_name="followers",blank=True)
  
     
   

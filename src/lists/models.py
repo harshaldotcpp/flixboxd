@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class ListMovie(models.Model):
     tmdb_id = models.IntegerField()
-    note = models.IntegerField(max_length=500)
+    note = models.CharField(max_length=500)
     poster_path = models.CharField(max_length=100)
 
 class List(models.Model):
