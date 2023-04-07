@@ -9,7 +9,11 @@ Array.from(stars_btns).forEach(btn => {
             "poster_path": getCookie("poster_path"),
             "director": getCookie("director")
         })
-        fetch("/film/ratingadd", options);
+        fetch("/film/ratingadd", options).then(response => response.json())
+        .then(response => {
+            myAlert(response.message);
+        });
+
 
         if (!watch_btn.checked) {
             watch_btn.checked = true;
@@ -29,7 +33,11 @@ if (rating_remove) {
             element.checked = false
             console.log(element)
         })
-        fetch("/film/ratingremove", options);
+        fetch("/film/ratingremove", options)
+        .then(response => response.json())
+        .then(response=>{
+            myAlert(response.message)
+        }) 
 
     })
 }
