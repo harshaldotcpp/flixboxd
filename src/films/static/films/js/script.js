@@ -19,9 +19,10 @@ if (day < 10) day = "0" + day;
 var today = year + "-" + month + "-" + day;
 
 function myAlert(message) {
+    console.log("hii")
     document.querySelector("#alert-msg").innerHTML = message;
     document.querySelector("#frontend-alert").classList.remove("hidden")
-
+    console.log(document.querySelector("#frontend-alert"))
     setTimeout(() => {
         document.querySelector("#frontend-alert").classList.add("hidden");
     }, 1299);
@@ -121,6 +122,7 @@ if (watch_btn) {
             .then(response => {
                 return response.json()
             }).then(response => {
+                console.log("wow")
                 myAlert(response.message);
             })
     });

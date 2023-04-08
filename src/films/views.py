@@ -283,7 +283,7 @@ def diary(request,username):
             diary_len = len(diary_logs)
         
         for logs in diary_logs:
-            print(logs.date.day)
+            print(logs.movie.poster_path)
         context = {
             "page" : "diary",
             "diary_log": diary_logs,

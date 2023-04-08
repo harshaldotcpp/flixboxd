@@ -43,7 +43,7 @@
                 <div class="flex items-start md:items-center text-sm md:text-lg gap-x-4 ">
                     <div class="card relative rounded-sm md:rounded-sm  shadow-inner shadow-blue-500 overflow-hidden">
                         <a href="">
-                            <img class="object-cover lozad w-9 md:w-10" src="https://image.tmdb.org/t/p/w200{{ movie.poster_path }}"
+                            <img class="object-cover lozad w-9 md:w-10" src="https://image.tmdb.org/t/p/w200{{ log.movie.poster_path }}"
                                 date-src="https://image.tmdb.org/t/p/original{{ log.movie.poster_path }}">
                             <div
                                 class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
@@ -51,7 +51,7 @@
                         </a>
                     </div>
                     <div class="font-abrilbold tracking-wide ">
-                        John Wick: Chapter 2
+                        {{ log.movie.original_title }}
                     </div>
                 </div>
             </td>

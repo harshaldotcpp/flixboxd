@@ -46,6 +46,6 @@ class Watchlist(models.Model):
 class DiaryLog(models.Model):
     date = models.DateField()
     user = models.ForeignKey(User,related_name='diary_log',on_delete=models.CASCADE)
-    movies = models.ForeignKey(WatchedMovie,related_name='diary_logs',on_delete=models.CASCADE)
+    movie = models.ForeignKey(WatchedMovie,related_name='diary_logs',on_delete=models.CASCADE)
     
     
