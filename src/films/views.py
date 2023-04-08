@@ -116,8 +116,8 @@ def watchlist(request):
 
 
 def addReview(request):
-    url = f"/film/{request.POST['tmdb_id']}"
     if(request.method == "POST"):
+        url = f"/film/{request.POST['tmdb_id']}"
         movie_info = {
             "tmdb_id": request.POST["tmdb_id"],
             "original_title": request.POST["title"],
@@ -149,7 +149,7 @@ def addReview(request):
             
        
  
-    return redirect(url)
+    return redirect("/")
 
     
      
@@ -249,6 +249,7 @@ def  showWatchlist(request,username):
             "movies": movies,
             "len": len(movies),
             "user": user[0],
+            "page": "watchlist"
             
         }
         return render(request,"films/watchlist.html",context=context)
@@ -265,14 +266,23 @@ def showWatched(request,username):
         context={
             "movies": movies,
             "len" : len(movies),
-            "user": user[0]
+            "user": user[0],
+            "page": "watched"
         }
     
         return render(request,"films/watched_films.html",context=context);
 
     return render(request,"profile_page/error.html") 
 
-
+def diary(request,username):
+    user = User.objects.filter(username=username)
+    if user:
+        context = {
+            "page" : "diary",
+            "user":user[0]
+        }
+        return render(request,"films/diary.html",context=context)
+    return render(request,"profile_page/error.html")
 
 def showLiked(request,username):
    pass

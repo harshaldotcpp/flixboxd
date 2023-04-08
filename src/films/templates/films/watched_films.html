@@ -4,7 +4,7 @@
 
             <div class="col-span-4 md:col-span-6 sm:col-span-5 lg:col-span-10 flex gap-x-6 py-1 border-b font-myfontLight tracking-wider  border-gray-400">
                 <div class="text-letterboxd-4">Watched</div>
-                <div>Diary</div>
+                <div><a class="{% url 'filmsabout:diary' user.username %}">Diary</a></div>
                 <div> <a href="{% url 'filmsabout:showWatchlist' user.username %}">Watchlist</a></div>
             </div> 
 

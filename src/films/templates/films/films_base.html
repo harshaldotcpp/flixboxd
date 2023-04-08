@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.css' %}">
+    <link rel="stylesheet" href="{% static 'films/css/diary.css' %}">
     <script src="{% static 'main/js/lazyload.js' %}"></script>
-    <title>films</title>
+    <title>films - {{ page }} </title>
 </head>
 <body class="bg-gradient-to-tl overflow-x-hidden from-letterboxd-1 to-letterboxd-2 max-w-screen min-h-screen">
     {% include "main/navbar.html" %}
