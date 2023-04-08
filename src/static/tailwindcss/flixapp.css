@@ -901,11 +901,6 @@ video {
   width: 2.25rem;
 }
 
-.w-fit {
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
 .w-full {
   width: 100%;
 }
@@ -1361,6 +1356,10 @@ video {
   padding-left: 0px;
 }
 
+.pl-1 {
+  padding-left: 0.25rem;
+}
+
 .pl-4 {
   padding-left: 1rem;
 }
@@ -1373,20 +1372,16 @@ video {
   padding-top: 0.75rem;
 }
 
-.pl-2 {
-  padding-left: 0.5rem;
-}
-
-.pl-1 {
-  padding-left: 0.25rem;
-}
-
 .text-left {
   text-align: left;
 }
 
 .text-center {
   text-align: center;
+}
+
+.align-top {
+  vertical-align: top;
 }
 
 .font-abril {
@@ -1871,6 +1866,10 @@ video {
     display: none;
   }
 
+  .md\:h-14 {
+    height: 3.5rem;
+  }
+
   .md\:h-4 {
     height: 1rem;
   }
@@ -1883,8 +1882,12 @@ video {
     height: 500px;
   }
 
-  .md\:h-14 {
-    height: 3.5rem;
+  .md\:w-12 {
+    width: 3rem;
+  }
+
+  .md\:w-14 {
+    width: 3.5rem;
   }
 
   .md\:w-32 {
@@ -1907,14 +1910,6 @@ video {
     width: 650px;
   }
 
-  .md\:w-14 {
-    width: 3.5rem;
-  }
-
-  .md\:w-12 {
-    width: 3rem;
-  }
-
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1925,6 +1920,10 @@ video {
 
   .md\:grid-rows-\[auto\2c auto\2c auto\2c auto\] {
     grid-template-rows: auto auto auto auto;
+  }
+
+  .md\:items-center {
+    align-items: center;
   }
 
   .md\:justify-center {
@@ -2000,6 +1999,14 @@ video {
     padding-bottom: 0.5rem;
   }
 
+  .md\:align-top {
+    vertical-align: top;
+  }
+
+  .md\:align-middle {
+    vertical-align: middle;
+  }
+
   .md\:font-abrilbold {
     font-family: abrilbold, sans-serif;
   }
@@ -2007,6 +2014,11 @@ video {
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 
   .md\:text-4xl {
@@ -2022,11 +2034,6 @@ video {
   .md\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
-  }
-
-  .md\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
   }
 }
 
