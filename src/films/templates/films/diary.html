@@ -10,9 +10,9 @@
     <div class=""> <a href="">Watchlist</a></div>
 </div>
 
-<table cellpading="0" cellspacing="0" class="table-auto w-full text-left font-myfontLight text-xs">
+<table cellpading="0" cellspacing="0" class="w-full font-myfontLight text-xs">
     <thead class="font-myfontLight text-letterboxd-3"></thead>
-    <tr class="bg-letterboxd-1 hidden md:table-row">
+    <tr class="text-left bg-letterboxd-1 hidden md:table-row">
         <th class="uppercase border-b border-letterboxd-3 py-1 pl-0">Month</th>
         <th class="uppercase border-b border-letterboxd-3 py-1 pl-0">date</th>
         <th class="uppercase border-b border-letterboxd-3 py-1 pl-4">Film</th>
@@ -24,17 +24,18 @@
 
     <tbody>
         <tr class="border-b border-letterboxd-3">
-            <td class="py-2 align-top md:align-middle ">
-                <div class="py-2 px-5 rounded-md w-fit bg-letterboxd-3  ">
+            <td class="py-2 whitespace-nowrap align-top md:align-middle ">
+                <div class="py-2 px-4 md:py-2 mr-0 md:px-5 rounded-md w-fit bg-letterboxd-3  ">
                     <div class="text-center">
                     <strong>Apr</strong> <br>
-                    <strong>2022</strong>
+                    <strong class="hidden md:inline-block">2022</strong>
                     </div>
-               </div>
+                </div>
 
+                    <div class="pl-3  md:hidden">2022</div>
             </td>
             <td
-                class="w-fit h-fit text-lg md:text-2xl text-left py-2 pl-4 sm:pl-0 align-top md:align-middle  text-letterboxd-3  font-myfontLight">
+                class="w-fit h-fit text-lg md:text-2xl text-left py-2 md:pl-4 sm:pl-0 align-top md:align-middle  text-letterboxd-3  font-myfontLight">
                 <a>17</a></td>
 
             <td class="py-2 pl-4 align-top md:align-middle">
