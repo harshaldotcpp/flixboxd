@@ -11,8 +11,8 @@
 </div>
 
 <table cellpading="0" cellspacing="0" class="table-auto w-full text-left font-myfontLight text-xs">
-    <thead class=" font-myfontLight text-letterboxd-3"></thead>
-    <tr class="bg-letterboxd-1">
+    <thead class="font-myfontLight text-letterboxd-3"></thead>
+    <tr class="bg-letterboxd-1 hidden md:table-row">
         <th class="uppercase border-b border-letterboxd-3 py-1 pl-0">Month</th>
         <th class="uppercase border-b border-letterboxd-3 py-1 pl-0">date</th>
         <th class="uppercase border-b border-letterboxd-3 py-1 pl-4">Film</th>
@@ -26,20 +26,20 @@
         <tr class="border-b border-letterboxd-3">
             <td class="py-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-14 h-14 m-0 ">
+                    stroke="currentColor" class="w-8 h-8 md:w-14 md:h-14 m-0 ">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
                 </svg>
 
             </td>
-            <td class="text-3xl text-left py-2  text-letterboxd-3  w-fit  font-myfontLight"><a>17</a></td>
+            <td class="text-lg md:text-3xl text-left py-2 pl-1 sm:pl-0  text-letterboxd-3  font-myfontLight"><a>17</a></td>
 
             <td class="py-2 pl-4">
-                <div class="flex items-center text-lg gap-x-4 ">
+                <div class="flex items-center text-sm md:text-lg gap-x-4 ">
                     <div
-                        class="card relative hover:scale-105 duration-300 hover:shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] hover:shadow:black rounded-md md:rounded-sm  shadow-inner shadow-blue-500 overflow-hidden">
+                        class="card relative rounded-sm md:rounded-sm  shadow-inner shadow-blue-500 overflow-hidden">
                         <a href="">
-                            <img class="object-cover lozad w-9" date-src="{% static 'john3.jpg' %}"
+                            <img class="object-cover lozad w-9 md:w-12" date-src="{% static 'john3.jpg' %}"
                                 src="{% static 'john3.jpg' %}">
                             <div
                                 class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
@@ -52,7 +52,7 @@
                 </div>
             </td>
 
-            <td class="py-2 pl-4 text-letterboxd-3 text-lg">
+            <td class="py-2 pl-4 text-letterboxd-3 hidden md:table-cell text-lg">
                 2022
 
             </td>
