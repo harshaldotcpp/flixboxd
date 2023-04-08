@@ -278,7 +278,7 @@ def diary(request,username):
     diary_len = 0
 
     if user:
-        diary_logs = user[0].diary_log.order_by('-date')
+        diary_logs = user[0].diary_log.order_by('-date','-created_at')
         if diary_logs:
             diary_len = len(diary_logs)
         

@@ -1,5 +1,6 @@
 from django import template
 from films.models import WatchedMovie,Watchlist
+import calendar
 
 register = template.Library()
 
@@ -38,7 +39,6 @@ def is_watchlist_tmdb(tmdb_id,user,true,false):
         return true
     return false
 
-
 @register.simple_tag
 def what_rated(user,tmdb_id,star):
     movie = user.movies_set.filter(tmdb_id = tmdb_id)
@@ -47,3 +47,9 @@ def what_rated(user,tmdb_id,star):
         if rating and rating[0].stars == star:
             return "checked"
     return "unchecked"
+
+
+
+@register.simple_tag
+def get_month_name(number):
+    return calendar.month_abbr[number]

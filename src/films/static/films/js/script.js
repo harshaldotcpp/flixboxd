@@ -63,6 +63,7 @@ const options = {
 const date_picker = document.getElementById('datePicker')
 if (date_picker) {
     date_picker.value = today;
+    console.log(date_picker.value)
     date_picker.ariaPlaceholder = today;
 }
 
