@@ -138,11 +138,10 @@ def addReview(request):
             log_date = datetime.datetime.strptime(movie_info["date"],'%Y-%m-%d').date()
             user_diary = request.user.diary_log.filter(date=log_date)
             if user_diary:
-                if user_diary.filter(movies = movie):
+                if user_diary.filter(movie = movie):
                     messages.error(request,"This Movie Already Logged on This Day")
                     return redirect(url)
-            diaryLog = DiaryLog.objects.create(date=log_date,user=request.user)
-            diaryLog.movies.add(movie)
+            diaryLog = DiaryLog.objects.create(date=log_date,user=request.user,movie=movie)
             diaryLog.save()
             messages.success(request,"Added in logs")
             return redirect(url)
@@ -276,9 +275,18 @@ def showWatched(request,username):
 
 def diary(request,username):
     user = User.objects.filter(username=username)
+    diary_len = 0
+
     if user:
+        diary_logs = user[0].diary_log.order_by('-date')
+        if diary_logs:
+            diary_len = len(diary_logs)
+        
+        for logs in diary_logs:
+            print(logs.date.day)
         context = {
             "page" : "diary",
+            "diary_log": diary_logs,
             "user":user[0]
         }
         return render(request,"films/diary.html",context=context)
