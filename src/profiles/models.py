@@ -33,8 +33,9 @@ class Profile(models.Model):
         title = movie["original_title"]
         poster_path = movie['poster_path']
         director = movie['director']
+        release_year = movie['release_year']
         
-        return self.user.movies_set.create(tmdb_id=tmdb_id,original_title=title,poster_path=poster_path, director=director)
+        return self.user.movies_set.create(tmdb_id=tmdb_id,original_title=title,release_year=release_year,poster_path=poster_path, director=director)
         
     
     def remove_watched_movie(self,tmdb_id):
@@ -106,8 +107,9 @@ class Profile(models.Model):
         title = movie["original_title"]
         poster_path = movie['poster_path']
         director = movie['director']
+        release_year = movie['release_year']
         
-        return self.user.liked_movie_set.create(tmdb_id=tmdb_id,original_title=title,poster_path=poster_path, director=director)
+        return self.user.liked_movies_set.create(tmdb_id=tmdb_id,original_title=title,release_year=release_year,poster_path=poster_path, director=director)
         
     def unlike(self,movie_id):
         db_movie = self.user.liked_movies_set.filter(tmdb_id = movie_id)

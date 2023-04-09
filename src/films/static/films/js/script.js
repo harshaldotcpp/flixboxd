@@ -7,6 +7,7 @@ const review_cancel_btn = document.querySelector("#review-cancel-btn");
 
 
 
+console.log(getCookie('release_year'));
 var today = getTodaysDate(); 
 console.log(today)
 
@@ -64,8 +65,10 @@ if (watch_btn) {
             title: getCookie('movie_name'),
             poster_path: getCookie('poster_path'),
             director: getCookie('director'),
+            release_year: getCookie('release_year'),
 
         });
+
         const icon = document.querySelector("#watch-icon");
         icon.classList.toggle("fill-letterboxd-4");
 
@@ -101,6 +104,7 @@ if (like_btn) {
             title: getCookie('movie_name'),
             poster_path: getCookie('poster_path'),
             director: getCookie('director'),
+            release_year: getCookie('release_year'),
         });
 
         fetch("/film/likedadd", options)

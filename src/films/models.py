@@ -9,6 +9,7 @@ class WatchedMovie(models.Model):
     director = models.CharField(max_length=100)
     watched_by = models.ManyToManyField(User,related_name="movies_set")
     liked_by = models.ManyToManyField(User,related_name="liked_movies_set",blank=True)
+    release_year = models.IntegerField() 
    
     
     def get_reviews(self):

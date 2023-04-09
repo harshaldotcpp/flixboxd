@@ -31,7 +31,8 @@ def watched(request):
                 "tmdb_id": obj["tmdb_id"],
                 "original_title": obj["title"].strip("\""),
                 "poster_path" : obj["poster_path"].strip("\""),
-                "director": obj["director"].strip("\"")
+                "director": obj["director"].strip("\""),
+                "release_year": obj["release_year"]
             
             }
             request.user.profile.add_watched_movie(movieInfo)
@@ -63,14 +64,15 @@ def liked(request):
        
         obj = json.load(request)
         movie_add = obj["add"]
+        print(obj)
         
         if movie_add:
             movieInfo = {
                 "tmdb_id": obj["tmdb_id"],
                 "original_title": obj["title"].strip("\""),
                 "poster_path" : obj["poster_path"].strip("\""),
-                "director": obj["director"].strip("\"")
-            
+                "director": obj["director"].strip("\""),
+                "release_year": obj["release_year"]
             }
             request.user.profile.liked(movieInfo)
             request.user.profile.add_watched_movie(movieInfo)
@@ -125,6 +127,7 @@ def addReview(request):
             "director": request.POST["director"],
             "review": request.POST['review'],
             "date" : request.POST['date'],
+            "release_year" : request.POST['release_year'],
         }
        
 
@@ -191,11 +194,13 @@ def film(request,film_id):
     info["reviews_len"] = len(reviews)
     info['my_reviews'] = myReviews
 
+
     response = render(request,"films/film.html",context=info)
     response.set_cookie(key="movie_name",value=m.title)
     response.set_cookie(key="id",value=m.id)
     response.set_cookie(key="poster_path",value = m.poster_path)
     response.set_cookie(key="director",value= directors[0])
+    response.set_cookie(key="release_year",value= info['release_year'])
    
     return response
     
