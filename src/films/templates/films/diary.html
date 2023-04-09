@@ -25,6 +25,7 @@
 
     <tbody>
         {% for log in diary_log %}
+        {% rating_to_stars user log.movie.tmdb_id as stars%}
         <tr class="border-b border-letterboxd-3">
             <td id="calender" class="py-2 whitespace-nowrap align-top md:align-middle ">
                 <div class="py-1 text-xs px-3 md:py-2 mr-0 md:px-5 rounded-md w-fit bg-letterboxd-3  ">
@@ -52,8 +53,17 @@
                             </div>
                         </a>
                     </div>
-                    <div class="font-abrilbold tracking-wide ">
+                    <div class="font-abrilbold tracking-wide flex flex-col ">
+                        <div>
                         {{ log.movie.original_title }}
+                        <div class="flex md:hidden font-starrating text-sm gap-x-1 text-letterboxd-4">
+                            {% for star in stars %}
+                            <div class="star">
+                                {{star}}
+                            </div>
+                            {% endfor %}
+                        </div>
+
                     </div>
                 </div>
             </td>
@@ -71,15 +81,14 @@
             </td>
 
             <td class="py-2 pl-4 align-middle hidden md:table-cell">
-        
-                   {% rating_to_stars user log.movie.tmdb_id as stars%}
+
                 <div class="flex font-starrating text-lg gap-x-2 text-letterboxd-4">
 
-                   {% for star in stars %}
-                   <div class="star">
-                    {{star}}
-                    </div> 
-                   {% endfor %}
+                    {% for star in stars %}
+                    <div class="star">
+                        {{star}}
+                    </div>
+                    {% endfor %}
                 </div>
 
             </td>
