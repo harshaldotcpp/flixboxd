@@ -30,7 +30,7 @@ class Rating(models.Model):
      movie = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE)
      
      def __str__(self):
-         return f"rating:{self.stars} user:{self.user.username}"
+         return f"rating:{self.stars} movie: {self.movie} user:{self.user.username}"
  
  
 class Watchlist(models.Model):
