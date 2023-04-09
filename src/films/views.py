@@ -187,7 +187,8 @@ def film(request,film_id):
     requested_movie = WatchedMovie.objects.filter(tmdb_id=m.id)
     if requested_movie:
         reviews = requested_movie[0].reviews_set.all()
-        myReviews = request.user.reviews_set.filter(movie=requested_movie[0])
+        if request.user.is_authenticated:
+            myReviews = request.user.reviews_set.filter(movie=requested_movie[0])
 
     review_len = len(reviews)
     info["reviews"] = reviews
