@@ -42,6 +42,7 @@
                     <div class="bg-letterboxd-3 rounded-md text-sm tracking-widest px-2 py-1 font-myfont"><button>EDIT
                             PROFILE</button></div>
                     {% else %}
+                    {% if user.is_authenticated %}
                     <label>
                         <div id="followuser"
                             class="bg-letterboxd-3 rounded-md text-sm tracking-widest px-2 py-1 font-myfont">
@@ -50,6 +51,7 @@
                                 id="follow-btn" type="checkbox" class="hidden" name="follow" id="">
                         </div>
                     </label>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>

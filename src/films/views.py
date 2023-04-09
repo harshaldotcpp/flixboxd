@@ -247,7 +247,7 @@ def  showWatchlist(request,username):
         context = {
             "movies": movies,
             "len": len(movies),
-            "user": user[0],
+            "search_user": user[0],
             "page": "watchlist"
             
         }
@@ -265,7 +265,7 @@ def showWatched(request,username):
         context={
             "movies": movies,
             "len" : len(movies),
-            "user": user[0],
+            "search_user": user[0],
             "page": "watched"
         }
     
@@ -287,7 +287,7 @@ def diary(request,username):
         context = {
             "page" : "diary",
             "diary_log": diary_logs,
-            "user":user[0]
+            "search_user":user[0]
         }
         return render(request,"films/diary.html",context=context)
     return render(request,"profile_page/error.html")

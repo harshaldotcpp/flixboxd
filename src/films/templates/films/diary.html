@@ -6,8 +6,8 @@
 {% block content %}
 <div
     class="col-span-4 mt-20 md:col-span-6 sm:col-span-5 lg:col-span-10 flex gap-x-6 py-1 border-b font-myfontLight tracking-wider   border-gray-400">
-    <div class=""> <a href="{% url 'filmsabout:showWatched' user.username %}"> Watched</a></div>
-    <div class="text-letterboxd-4"> <a href="{% url 'filmsabout:diary' user.username %}">Diary</a></div>
+    <div class=""> <a href="{% url 'filmsabout:showWatched' search_user.username %}"> Watched</a></div>
+    <div class="text-letterboxd-4"> <a href="{% url 'filmsabout:diary' search_user.username %}">Diary</a></div>
     <div class=""> <a href="">Watchlist</a></div>
 </div>
 
@@ -25,7 +25,7 @@
 
     <tbody>
         {% for log in diary_log %}
-        {% rating_to_stars user log.movie.tmdb_id as stars%}
+        {% rating_to_stars search_user log.movie.tmdb_id as stars%}
         <tr class="border-b border-letterboxd-3">
             <td id="calender" class="py-2 whitespace-nowrap align-top md:align-middle ">
                 <div class="py-1 text-xs px-3 md:py-2 mr-0 md:px-5 rounded-md w-fit bg-letterboxd-3  ">
