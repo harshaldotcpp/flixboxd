@@ -27,10 +27,14 @@
         {% rating_to_stars search_user log.movie.tmdb_id as stars%}
         <tr class="border-b border-letterboxd-3">
             <td id="calender" class="py-2 whitespace-nowrap align-top md:align-middle ">
-                <div class="py-1  {% isNewMonth log.date.month new_month '' 'hidden' %}  text-xs px-3 md:py-2 mr-0 md:px-5 rounded-md w-fit bg-letterboxd-3  ">
+                <div class="py-1 relative  {% isNewMonth log.date.month new_month '' 'hidden' %}  text-xs px-3 py-2 md:py-2 mr-0 md:px-5 rounded-md w-fit bg-letterboxd-3  ">
                     <div class="text-center">
                         <strong>{% get_month_name log.date.month %}</strong> <br>
                         <strong class="hidden  md:inline-block">{{ log.date.year }}</strong>
+                    </div>
+                    <div class="absolute left-0 justify-evenly right-0 top-0 flex">
+                        <div class="h-2 border-[2px] md:border-[3px]  border-letterboxd-2"></div>
+                        <div class="h-2 border-[2px] md:border-[3px] border-letterboxd-2"></div>
                     </div>
                 </div>
                 
