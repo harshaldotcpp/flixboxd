@@ -3,62 +3,12 @@ const like_btn = document.querySelector("#like_btn");
 const watchlist_btn = document.querySelector("#watchlist_btn");
 const review_btn = document.querySelector("#review-btn");
 const review_cancel_btn = document.querySelector("#review-cancel-btn");
-const stars_btns = document.getElementsByClassName("star-btn")
 
 
 
-var date = new Date();
 
-var day = date.getDate();
-var month = date.getMonth() + 1;
-var year = date.getFullYear();
-
-if (month < 10) month = "0" + month;
-if (day < 10) day = "0" + day;
-
-var today = year + "-" + month + "-" + day;
-
-function myAlert(message) {
-    console.log("hii")
-    document.querySelector("#alert-msg").innerHTML = message;
-    document.querySelector("#frontend-alert").classList.remove("hidden")
-    console.log(document.querySelector("#frontend-alert"))
-    setTimeout(() => {
-        document.querySelector("#frontend-alert").classList.add("hidden");
-    }, 1299);
-    return;
-
-
-}
-
-
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-
-}
-const csrftoken = getCookie('csrftoken');
-
-const options = {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': csrftoken,
-    },
-    mode: 'same-origin',
-    body: "",
-}
+var today = getTodaysDate(); 
+console.log(today)
 
 const date_picker = document.getElementById('datePicker')
 if (date_picker) {
@@ -97,7 +47,7 @@ if (watch_btn) {
             watchlist_btn.checked = false;
         }
         let isRated = false;
-        Array.from(stars_btns).forEach(element => {
+        Array.from(document.getElementsByClassName("star-btn")).forEach(element => {
             if (element.checked === true)
                 isRated = true
         })
@@ -123,8 +73,8 @@ if (watch_btn) {
             .then(response => {
                 return response.json()
             }).then(response => {
-                console.log("wow")
                 myAlert(response.message);
+                return;
             })
     });
 }

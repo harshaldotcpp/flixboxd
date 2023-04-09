@@ -20,6 +20,9 @@
     font-family: FontAwesome;
     content: "\f005 ";
 }
+.star-size-diary > label:before {
+    font-size: 1rem !important;
+}
 
 .rate .half:before {
     content: "\f089 "; 

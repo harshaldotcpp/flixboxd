@@ -53,3 +53,35 @@ def what_rated(user,tmdb_id,star):
 @register.simple_tag
 def get_month_name(number):
     return calendar.month_abbr[number]
+
+
+def get_rating(user,tmdb_id):
+    movie = user.movies_set.filter(tmdb_id = tmdb_id)
+    if movie:
+        rating = user.rating_set.filter(movie=movie[0])
+        if rating:
+            return  rating[0].stars 
+    return 0 
+
+
+
+
+
+@register.simple_tag
+def rating_to_stars(user,tmdb_id):
+    rating = get_rating(user,tmdb_id) 
+    star = {
+        0:[""],
+        0.5:["◐"],
+        1:["●"],
+        1.5:["●","◐"],
+        2:["●","●"],
+        2.5:["●","●","◐"],
+        3:["●","●","●"],
+        3.5:["●","●","●","◐"],
+        4:["●","●","●","●"],
+        4.5:["●","●","●","●","◐"],
+        5:["●","●","●","●","●"],
+    }
+
+    return star[rating]

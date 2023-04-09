@@ -1,4 +1,6 @@
 const rating_remove = document.getElementById("clear-rating")
+const stars_btns = document.getElementsByClassName("star-btn")
+
 
 Array.from(stars_btns).forEach(btn => {
     btn.addEventListener("click", event => {
@@ -10,15 +12,16 @@ Array.from(stars_btns).forEach(btn => {
             "director": getCookie("director")
         })
         fetch("/film/ratingadd", options).then(response => response.json())
-        .then(response => {
-            myAlert(response.message);
-        });
+            .then(response => {
+                myAlert(response.message);
+            });
 
-
-        if (!watch_btn.checked) {
-            watch_btn.checked = true;
-            const icon = document.querySelector("#watch-icon");
-            icon.classList.toggle("classList");
+        if (document.querySelector("#watch-btn")) {
+            if (! document.querySelector("#watch-btn").checked) {
+                watch_btn.checked = true;
+                const icon = document.querySelector("#watch-icon");
+                icon.classList.toggle("classList");
+            }
         }
     })
 })
@@ -34,10 +37,10 @@ if (rating_remove) {
             console.log(element)
         })
         fetch("/film/ratingremove", options)
-        .then(response => response.json())
-        .then(response=>{
-            myAlert(response.message)
-        }) 
+            .then(response => response.json())
+            .then(response => {
+                myAlert(response.message)
+            })
 
     })
 }
