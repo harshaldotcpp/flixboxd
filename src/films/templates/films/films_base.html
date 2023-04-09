@@ -11,9 +11,9 @@
 </head>
 <body class="bg-gradient-to-tl overflow-x-hidden from-letterboxd-1 to-letterboxd-2 max-w-screen min-h-screen">
     {% include "main/navbar.html" %}
-    <div class="mt-28  text-white mx-6 sm:mx-12 md:mx-24 lg:mx-52">
+    <div class="mt-20 md:mt-28  text-white mx-6 sm:mx-12 md:mx-24 lg:mx-52">
 
-        <div id="use" class="flex rounded-lg mt-16 bg-gray-400/10 backdrop-blur-md px-3 py-2 drop-shadow-lg shadow-black gap-x-5 text-2xl">
+        <div id="use" class="flex rounded-lg  bg-gray-400/10 backdrop-blur-md px-3 py-2 drop-shadow-lg shadow-black gap-x-5 text-2xl">
        
             <a href="{% url 'profiles:user_profile' search_user.username %}"> <img class="w-8 gap-10 object-cover rounded-full" src="{{ search_user.profile.profile_picture.url }}"></a>
             <a href="{% url 'profiles:user_profile' search_user.username %}"> <div id="username" class="font-myfont tracking-wide"> {{ search_user.username }} </div></a>
