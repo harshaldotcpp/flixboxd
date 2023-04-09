@@ -32,7 +32,7 @@
 
             </div>
 
-            <div class="flex gap-9 sm:mx-9 md:mx-16 justify-evenly md:justify-center md:gap-48 p-4">
+            <div class="flex gap-9 justify-evenly md:justify-center md:gap-48 p-4">
 
                 <div id="movie-info" class="">
                     <div class="text-white leading-7 font-abrilbold text-2xl md-text-3xl">
@@ -84,7 +84,7 @@
                 <div id="tagline" class="text-sm md:text:md tracking-widest font-bold text-letterboxd-6">
                     {{ movie.tagline }}
                 </div>
-                <div id="synopsis" class="mt-4 font-abrilbold font-extralight pt-0">
+                <div id="synopsis" class="mt-4 font-abril font-extralight pt-0">
                     {{ movie.overview }}
                 </div>
 
@@ -108,7 +108,7 @@
                         <div
                             class="bg-letterboxd-3 text-letterboxd-6 py-2 hover:shadow-lg hover:shadow-black rounded-md mt-12 px-4 flex items-center gap-3">
                             <img class="w-6  object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
-                            <div class="text-xs">Rate, log, Review + add to list + more </div>
+                            <div class="text-xs sm:text-sm md:text-md lg:text-lg">Rate, log, Review + add to list + more </div>
                         </div>
                     </button>
                     {% include 'films/movie_navigation.html' %}
@@ -219,9 +219,9 @@
 
 
     <div id="movie-review-log"
-        class="px-5 hidden text-myfontLight fixed z-50 bg-transparent top-0 flex justify-center items-center h-screen w-screen">
-
-        <form action="/film/reviewadd" method="post">
+    class="px-5 hidden text-myfontLight fixed z-50 bg-transparent top-0 flex justify-center items-center h-screen w-screen">
+    
+    <form action="/film/reviewadd" method="post">
             {% csrf_token %}
             <div class="bg-letterboxd-3 drop-shadow-lg shadow-black p-3 rounded-md">
                 <div class="flex items-start gap-3 ">
@@ -265,7 +265,6 @@
                     <input type="hidden" name="title" value="{{ movie.title }}">
                     <input type="hidden" name="poster_path" value="{{ movie.poster_path }}">
                     <input type="hidden" name="director" value="{{ director }}">
-                    <input type="hidden" name="release_year" value="{{ release_year }}">
                     <div class="mt-3">
                         <button class="bg-letterboxd-4 font-myfont trakinking widest py-1 px-2 rounded-sm"
                             type="submit">SAVE</button>
@@ -284,7 +283,6 @@
 <script>
     eruda.init();
 </script>
-<script src="{% static 'main/js/utilitesFunction.js' %}"></script>
 <script src="{% static 'films/js/script.js' %}"></script>
 <script src="{% static 'films/js/ratings.js' %}"></script>
 <script src="{% static 'main/js/navbar.js' %}"></script>
