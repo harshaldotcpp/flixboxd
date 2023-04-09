@@ -88,7 +88,7 @@
                         </div>
                            
                         <div>
-                            <a href="{% url 'profiles:user_profile' user.username %}">PROFILE</a>
+                            <a href="{% url 'user_profile' user.username %}">PROFILE</a>
                         </div>
                         
                         <div>
@@ -121,7 +121,7 @@
                             <a href="{% url 'authentication:signout' %}">SIGNOUT</a>
                         </div>
                         <div>
-                            SETTINGS
+                            <a href="{% url 'profiles:settings' %}">SETTINGS</a>
                         </div>
                     </div>
                     

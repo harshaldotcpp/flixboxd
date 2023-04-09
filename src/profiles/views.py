@@ -36,3 +36,7 @@ def follow_user(request,username):
 
         request.user.profile.unfollow_user(username)
         return HttpResponse(json.dumps(response_data),content_type='application/json') 
+
+
+def settings(request):
+    return render(request,"profile_page/settings.html")
