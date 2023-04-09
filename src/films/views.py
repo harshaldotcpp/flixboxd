@@ -119,6 +119,7 @@ def watchlist(request):
 
 def addReview(request):
     if(request.method == "POST"):
+        print(request.POST)
         url = f"/film/{request.POST['tmdb_id']}"
         movie_info = {
             "tmdb_id": request.POST["tmdb_id"],
@@ -144,6 +145,7 @@ def addReview(request):
                 if user_diary.filter(movie = movie):
                     messages.error(request,"This Movie Already Logged on This Day")
                     return redirect(url)
+
             diaryLog = DiaryLog.objects.create(date=log_date,user=request.user,movie=movie)
             diaryLog.save()
             messages.success(request,"Added in logs")
@@ -293,7 +295,8 @@ def diary(request,username):
         context = {
             "page" : "diary",
             "diary_log": diary_logs,
-            "search_user":user[0]
+            "search_user":user[0],
+            "new_month":0
         }
         return render(request,"films/diary.html",context=context)
     return render(request,"profile_page/error.html")

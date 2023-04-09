@@ -265,6 +265,7 @@
                     <input type="hidden" name="title" value="{{ movie.title }}">
                     <input type="hidden" name="poster_path" value="{{ movie.poster_path }}">
                     <input type="hidden" name="director" value="{{ director }}">
+                    <input type="hidden" name="release_year" value="{{ release_year }}">
                     <div class="mt-3">
                         <button class="bg-letterboxd-4 font-myfont trakinking widest py-1 px-2 rounded-sm"
                             type="submit">SAVE</button>
@@ -283,6 +284,7 @@
 <script>
     eruda.init();
 </script>
+<script src="{% static 'main/js/utilitesFunction.js' %}"></script>
 <script src="{% static 'films/js/script.js' %}"></script>
 <script src="{% static 'films/js/ratings.js' %}"></script>
 <script src="{% static 'main/js/navbar.js' %}"></script>

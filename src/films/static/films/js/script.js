@@ -7,7 +7,6 @@ const review_cancel_btn = document.querySelector("#review-cancel-btn");
 
 
 
-console.log(getCookie('release_year'));
 var today = getTodaysDate(); 
 console.log(today)
 

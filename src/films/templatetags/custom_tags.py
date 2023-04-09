@@ -85,3 +85,17 @@ def rating_to_stars(user,tmdb_id):
     }
 
     return star[rating]
+
+
+@register.simple_tag
+def isNewMonth(current_month,new_month,true,false):
+    if current_month != new_month:
+        return true
+    return false
+
+
+@register.simple_tag
+def updateNewMonth(current_month,new_month):
+    if current_month != new_month:
+        return current_month
+    return new_month
