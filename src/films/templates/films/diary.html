@@ -44,7 +44,7 @@
             <td class="py-2 pl-4 align-top md:align-middle">
                 <div class="flex items-start md:items-center text-sm md:text-lg gap-x-4 ">
                     <div class="card relative rounded-sm md:rounded-sm  shadow-inner shadow-blue-500 overflow-hidden">
-                        <a href="">
+                        <a href="{% url 'filmsabout:film' log.movie.tmdb_id %}">
                             <img class="object-cover lozad w-9 md:w-10"
                                 src="https://image.tmdb.org/t/p/w200{{ log.movie.poster_path }}"
                                 date-src="https://image.tmdb.org/t/p/original{{ log.movie.poster_path }}">
@@ -55,17 +55,20 @@
                     </div>
                     <div class="font-abrilbold tracking-wide flex flex-col gap-x-1 ">
                         <div>
-                        {{ log.movie.original_title }}
-                        <div class="flex md:hidden font-starrating text-md gap-x-1 text-letterboxd-4">
-                            {% for star in stars %}
-                            <div class="star">
-                                {{star}}
-                            </div>
-                            {% endfor %}
-                        </div>
 
+                            <a href="{% url 'filmsabout:film' log.movie.tmdb_id %}">
+                                {{ log.movie.original_title }}
+                            </a>
+                            <div class="flex md:hidden font-starrating text-md gap-x-1 text-letterboxd-4">
+                                {% for star in stars %}
+                                <div class="star">
+                                    {{star}}
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
                     </div>
-                </div>
             </td>
             <td class="md:hidden md:align-middle align-top py-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0"

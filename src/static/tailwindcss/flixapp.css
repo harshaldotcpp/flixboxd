@@ -653,6 +653,21 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.mx-12 {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.mx-16 {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.mx-24 {
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+
 .mb-10 {
   margin-bottom: 2.5rem;
 }
@@ -1578,6 +1593,10 @@ video {
   --tw-text-opacity: 0.8;
 }
 
+.underline {
+  text-decoration-line: underline;
+}
+
 .accent-letterboxd-3 {
   accent-color: #556678;
 }
@@ -1852,6 +1871,16 @@ video {
     margin-right: 3rem;
   }
 
+  .sm\:mx-10 {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+
+  .sm\:mx-9 {
+    margin-left: 2.25rem;
+    margin-right: 2.25rem;
+  }
+
   .sm\:table-cell {
     display: table-cell;
   }
@@ -1896,6 +1925,11 @@ video {
   .md\:mx-24 {
     margin-left: 6rem;
     margin-right: 6rem;
+  }
+
+  .md\:mx-16 {
+    margin-left: 4rem;
+    margin-right: 4rem;
   }
 
   .md\:mb-0 {

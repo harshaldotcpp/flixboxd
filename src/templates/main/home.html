@@ -11,12 +11,12 @@
     <title>Welcome Page of my App</title>
    
   </head>
-  <body class="overflow-x-hidden w-screen h-auto bg-letterboxd-1 font-myfontLight min-h-screen font-myfontLight text-letterboxd-6">
+  <body class="overflow-x-hidden w-screen h-auto bg-letterboxd-1 font-myfontLight min-h-screen  text-letterboxd-6">
       {% include 'main/navbar.html' %}
       
             <div class="come-content relative top-11">
           <div class="py-6 text-3xl text-center whitespace-normal mb-5 md:mb-0">
-              Welcome back,  {{ user.username }}
+              Welcome back, <a href="{% url 'profiles:user_profile' user.username %}" class="text-white underline">{{ user.username }}</a> 
           </div>
           
          <div class="px-6 sm:px-16 md:px-20 lg:px-44">
