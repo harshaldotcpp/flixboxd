@@ -1,9 +1,9 @@
 {% extends "films/films_base.html" %}
 {% block content %}
-   <div id="grid-section" class="grid grid-cols-4 mt-20 sm:grid-cols-5 md:grid-cols-6  lg:grid-cols-10 gap-3 grid-row-[auto]">
+   <div id="grid-section" class="grid grid-cols-4 mt-14 sm:grid-cols-5 md:grid-cols-6  lg:grid-cols-10 gap-3 grid-row-[auto]">
 
-            <div class="col-span-4 md:col-span-6 sm:col-span-5 lg:col-span-10 flex gap-x-6 py-1 border-b font-myfontLight tracking-wider  border-gray-400">
-                <div class="text-letterboxd-4">Watched</div>
+            <div class="col-span-4 md:col-span-6 sm:col-span-5 lg:col-span-10 flex gap-x-6 border-b font-myfontLight tracking-wider  border-gray-400">
+                <div class="text-letterboxd-4 border-b m-0  border-letterboxd-5">Watched</div>
                 <div><a href="{% url 'filmsabout:diary' search_user.username %}">Diary</a></div>
                 <div> <a href="{% url 'filmsabout:showWatchlist' search_user.username %}">Watchlist</a></div>
             </div> 

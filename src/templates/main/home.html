@@ -14,7 +14,7 @@
   <body class="overflow-x-hidden w-screen h-auto bg-letterboxd-1 font-myfontLight min-h-screen  text-letterboxd-6">
       {% include 'main/navbar.html' %}
       
-            <div class="come-content relative top-11">
+            <div class="come-content relative mt-16 md:mt-20">
           <div class="py-6 text-3xl text-center whitespace-normal mb-5 md:mb-0">
               Welcome back, <a href="{% url 'profiles:user_profile' user.username %}" class="text-white underline">{{ user.username }}</a> 
           </div>
