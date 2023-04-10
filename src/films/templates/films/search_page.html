@@ -12,11 +12,11 @@
 </head>
 
 <body
-  class="min-h-screen w-screen bg-gradient-to-tl scrollbar-none from-letterboxd-1 to-letterboxd-2 font-myfontLight text-letterboxd-6">
+  class="min-h-screen  bg-gradient-to-tl scrollbar-none from-letterboxd-1 to-letterboxd-2 font-myfontLight text-letterboxd-6">
 
   {% include 'main/navbar.html' %}
 
-  <div class="come-content min-h-screen relative top-11 py-1 px-4">
+  <div class="come-content  relative mt-14 md:mt-20 py-1 px-4">
 
     <div id="search_info" class="mb-6 flex flex-col gap-y-4 text-sm">
       <div class="border-b border-letterboxd-3">
@@ -37,9 +37,10 @@
     </div>
     {% endif %}
 
+        <div id="end-spacing" class="h-16 w-scrren"></div>
 
   </div>
-
+{% include 'main/footer.html' %}
 </body>
 <script src="//cdn.jsdelivr.net/npm/eruda"></script>
 <script>

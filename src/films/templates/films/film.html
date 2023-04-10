@@ -108,7 +108,8 @@
                         <div
                             class="bg-letterboxd-3 text-letterboxd-6 py-2 hover:shadow-lg hover:shadow-black rounded-md mt-12 px-4 flex items-center gap-3">
                             <img class="w-6  object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
-                            <div class="text-xs sm:text-sm md:text-md lg:text-lg">Rate, log, Review + add to list + more </div>
+                            <div class="text-xs sm:text-sm md:text-md lg:text-lg">Rate, log, Review + add to list + more
+                            </div>
                         </div>
                     </button>
                     {% include 'films/movie_navigation.html' %}
@@ -219,9 +220,9 @@
 
 
     <div id="movie-review-log"
-    class="px-5 hidden text-myfontLight fixed z-50 bg-transparent top-0 flex justify-center items-center h-screen w-screen">
-    
-    <form action="/film/reviewadd" method="post">
+        class="px-5 hidden text-myfontLight fixed z-50 bg-transparent top-0 flex justify-center items-center h-screen w-screen">
+
+        <form action="/film/reviewadd" method="post">
             {% csrf_token %}
             <div class="bg-letterboxd-3 drop-shadow-lg shadow-black p-3 rounded-md">
                 <div class="flex items-start gap-3 ">
@@ -277,6 +278,7 @@
 
 
     </div>
+    <div id="end-spacing" class="h-16 w-screen"></div>
     {% include 'main/footer.html' %}
 
 </body>

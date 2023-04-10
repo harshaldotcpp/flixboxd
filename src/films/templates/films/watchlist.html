@@ -1,7 +1,7 @@
 {% extends "films/films_base.html" %}
 
 {% block content %}
-   <div id="grid-section" class="grid grid-cols-4 mt-6 md:mt-12  sm:grid-cols-5 md:grid-cols-6  lg:grid-cols-10 gap-3 grid-row-[auto]">
+   <div id="grid-section" class="grid grid-cols-4 mt-6 md:mt-12  sm:grid-cols-5 md:grid-cols-6  lg:grid-cols-10 gap-x-3 gap-y-2 grid-row-[auto]">
 
             <div class="col-span-4 md:col-span-6 sm:col-span-5 lg:col-span-10 flex gap-x-6 border-b font-myfontLight tracking-wider   border-gray-400">
                 <div class=""> <a href="{% url 'filmsabout:showWatched' search_user.username %}"> Watched</a></div>
