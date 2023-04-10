@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.contrib.auth.models import  User
 from django.http import JsonResponse,HttpResponse
 from django.shortcuts import redirect
-from .utilities import validatePayload
+from .utilities import validatePayload,addInTopFour
 from django.contrib import messages
 import json
+
 # Create your views here.
 
 def user_profile(request,username):
@@ -42,6 +43,9 @@ def follow_user(request,username):
 
 
 def settings(request):
+    context = {
+         "top4": request.user.top4,
+    }
     return render(request,"profile_page/settings.html")
 
 def settingsUpdate(request):
@@ -67,3 +71,14 @@ def settingsUpdate(request):
         return redirect("/profile/settings")
 
     return render(request,"profie_page/error.html")
+
+def updatetop(request):
+    if request.method == "POST":
+        top4 = json.load(request)
+        print(top4)
+        addInTopFour(request.user,top4[0],"one")
+        addInTopFour(request.user,top4[1],"two")
+        addInTopFour(request.user,top4[2],"three")
+        addInTopFour(request.user,top4[3],"four")
+
+    return render(request,"profile_page/error.html")

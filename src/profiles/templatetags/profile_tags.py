@@ -2,6 +2,7 @@ from django import template
 from django.contrib.auth.models import User
 from films.models import WatchedMovie,Watchlist
 import datetime
+from django.templatetags.static import static
 
 register = template.Library()
 
@@ -47,3 +48,39 @@ def get_year_films_count(user):
     current_year = datetime.datetime.today().year
     print(current_year)
     return  user.diary_log.filter(date__year=current_year).count()
+
+
+@register.simple_tag
+def checkTop(pos,true,false):
+    if pos == None:
+        return false
+    return true
+
+@register.simple_tag
+def topImage(pos,res):
+    if pos == None:
+        return static('image/defaultposter.png')
+    url = f"https://image.tmdb.org/t/p/{res}" + pos.poster_path
+    return url
+
+
+
+@register.simple_tag
+def isnone(obj):
+    if obj == None:
+        return "true"
+    return "false"
+
+
+@register.simple_tag
+def get_tmdb_id(top):
+    if top:
+        return top.tmdb_id
+    return None
+
+
+@register.simple_tag
+def get_poster_path(top):
+    if top:
+        return top.poster_path
+    return None

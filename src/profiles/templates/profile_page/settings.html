@@ -1,4 +1,5 @@
 {% load static %}
+{% load profile_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +17,7 @@
     {% include 'main/navbar.html' %}
     <div id="settings-page" class="mt-10 md:mt-16 p-6 md:p-12 sm:mx-16 md:mx-10 lg:mx-28">
         <h1 class="text-2xl   md:text-3xl  font-myfontLight ">Account Settings</h1>
-        <form  enctype="multipart/form-data" action="{% url 'profiles:settingUpdate' %}" method="POST" >
+        <form enctype="multipart/form-data" action="{% url 'profiles:settingUpdate' %}" method="POST">
             {% csrf_token %}
             <h2
                 class="text-2xl   md:text-3xl text-letterboxd-3  font-myfontLight mt-8 md:mt-12 border-b border-letterboxd-3">
@@ -42,66 +43,125 @@
                         </div>
 
                     </div>
-                    <label for="email"  class="">Email</label>
+                    <label for="email" class="">Email</label>
                     <input type="email" disbaled name="email" placeholder="{{ user.email }}"
                         class="focus:outline-none p-3 w-full mb-6 mt-1 h-9 bg-letterboxd-2 rounded-md">
 
                     <label for="email" class="">Bio</label><br>
-                    <textarea  placeholder="{{ user.profile.bio }}"  rows="4" name="bio" class="resize-none  p-3 focus:outline-none w-full rounded-md bg-letterboxd-2"></textarea>
+                    <textarea placeholder="{{ user.profile.bio }}" rows="4" name="bio"
+                        class="resize-none  p-3 focus:outline-none w-full rounded-md bg-letterboxd-2"></textarea>
 
                 </div>
                 <div id="top4-settings">
                     <label class="font-myfont">Favroite Films</label>
                     <div id="grid-container" class="grid-container grid grid-cols-4 mt-1 gap-3">
 
-                        <div draggable="true" id="1" class="grid-item cursor-move">
-                            <div
+                        <div data-isnone="{% isnone user.top4.one %}" data-id="{% get_tmdb_id user.top4.one%}" data-poster_path="{% get_poster_path user.top4.one %}" draggable="true" id="1" class=" grid-item cursor-move">
+                            <div 
                                 class="card relative rounded-md md:rounded-lg  shadow-inner shadow-blue-500 overflow-hidden">
-                                    <img class="object-cover lozad" date-src="https://image.tmdb.org/t/p/original/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg"
-                                        src="https://image.tmdb.org/t/p/w200/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg">
+                                <img id="img1" class="object-cover lozad"
+                                    data-src="{% topImage user.top4.one 'original' %}"
+                                    src="{% topImage user.top4.one 'w200' %}">
+                                <div 
+                                    class=" absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                </div>
+                                <div id="add1"
+                                    class="{% checkTop user.top4.one 'hidden' '' %} flex justify-center items-center absolute bg-letterboxd-1 top-0 left-0 right-0 bottom-0">
                                     <div
-                                        class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                        class="w-14 h-14 flex justify-center items-center  rounded-full bg-letterboxd-2">
+                                        <div data-position="1" class="top4add">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="3" stroke="currentColor"
+                                                class="w-6 h-6 fill-letterboxd-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 4.5v15m7.5-7.5h-15" />
+                                            </svg>
+                                        </div>
                                     </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div draggable="true" id="2" class="grid-item cursor-move">
+                        <div data-isnone="{% isnone user.top4.two %}" data-id="{% get_tmdb_id user.top4.two %}" data-poster_path="{% get_poster_path user.top4.two %}" draggable="true" id="2" class="grid-item cursor-move">
                             <div
                                 class="card relative  rounded-md md:rounded-lg  shadow-inner shadow-blue-500 overflow-hidden">
-                                    <img class="object-cover lozad" date-src="https://image.tmdb.org/t/p/original/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
-                                        src="https://image.tmdb.org/t/p/w200/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg">
+                                <img id="img2" class="object-cover lozad"
+                                    data-src="{% topImage user.top4.two 'original' %}"
+                                    src="{% topImage user.top4.two 'original' %}">
+                                <div
+                                    class=" absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                </div>
+                                <div id="add2"
+                                    class="{% checkTop user.top4.two 'hidden' '' %} flex justify-center items-center absolute bg-letterboxd-1 top-0 left-0 right-0 bottom-0">
                                     <div
-                                        class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                        class=" w-14 h-14 flex justify-center items-center  rounded-full bg-letterboxd-2">
+                                        <div data-position="2" class="top4add">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="3" stroke="currentColor"
+                                                class="w-6 h-6 fill-letterboxd-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 4.5v15m7.5-7.5h-15" />
+                                            </svg>
+                                        </div>
                                     </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div draggable="true" id="3" class="grid-item cursor-move">
+                        <div data-isnone="{% isnone user.top4.three %}" data-id="{% get_tmdb_id user.top4.three %}" data-poster_path="{% get_poster_path user.top4.three %}"  draggable="true" id="3" class=" grid-item cursor-move">
                             <div
                                 class="card relative   rounded-md md:rounded-lg  shadow-inner shadow-blue-500 overflow-hidden">
-                                    <img class="object-cover lozad" date-src="https://image.tmdb.org/t/p/original/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg"
-                                        src="https://image.tmdb.org/t/p/w200/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg">
+                                <img id="img3" class="object-cover lozad"
+                                    data-src="{% topImage user.top4.three 'original' %}"
+                                    src="{% topImage user.top4.three 'w200' %}">
+                                <div
+                                    class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                </div>
+                                <div id="add3"
+                                    class="{% checkTop user.top4.three 'hidden' '' %} flex justify-center items-center absolute bg-letterboxd-1 top-0 left-0 right-0 bottom-0">
                                     <div
-                                        class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                        class="w-14 h-14 flex justify-center items-center  rounded-full bg-letterboxd-2">
+                                        <div data-position="3" class="top4add">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="3" stroke="currentColor"
+                                                class="w-6 h-6 fill-letterboxd-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 4.5v15m7.5-7.5h-15" />
+                                            </svg>
+                                        </div>
                                     </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div draggable="true" id="4" class="grid-item cursor-move">
+                        <div data-isnone="{% isnone user.top4.four %}" data-id="{% get_tmdb_id user.top4.four %}" data-poster_path="{% get_poster_path user.top4.four%}"  draggable="true" id="4" class=" grid-item cursor-move">
                             <div
-                                class="card relative  rounded-md md:rounded-lg  shadow-inner shadow-blue-500 overflow-hidden">
-                                    <img class="object-cover lozad" date-src="{% static 'john3.jpg' %}"
-                                        src="{% static 'john3.jpg' %}">
+                                class="card relative   rounded-md md:rounded-lg  shadow-inner shadow-blue-500 overflow-hidden">
+                                <img id="img4" class="object-cover lozad" data-src="{% topImage user.top4.four 'original' %}"
+                                    src="{% topImage user.top4.four 'w200' %}">
+                                <div
+                                    class="hidden absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                </div>
+                                <div id="add4"
+                                    class="{% checkTop user.top4.four 'hidden' '' %} flex justify-center items-center absolute bg-letterboxd-1 top-0 left-0 right-0 bottom-0">
                                     <div
-                                        class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                        class=" w-14 h-14 flex justify-center items-center  rounded-full bg-letterboxd-2">
+                                        <div data-position="4" class="top4add">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="3" stroke="currentColor"
+                                                class="w-6 h-6 fill-letterboxd-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 4.5v15m7.5-7.5h-15" />
+                                            </svg>
+                                        </div>
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </div>
-
 
 
                     </div>
+
 
                 </div>
             </div>
@@ -118,6 +178,13 @@
     </div>
 
     </form>
+    <div id="search-field" class="hidden flex flex-col fixed rounded-md top-0 left-24 p-3 z-50 shadow-lg shadow-black bg-letterboxd-2">
+        <input id="movie-search" type="text" class="p-2 text-sm   bg-letterboxd-6 h-8 text-letterboxd-1">
+        <div id="search-reults" class="bg-letterboxd-3 text-sm  font-myfontLight">
+            <ul id="result_list" class=" search-list text-letterboxd-6">
+            </ul>
+        </div>
+    </div>
     {% include 'main/footer.html' %}
 </body>
 <script src="{% static 'main/js/utilitesFunction.js' %}"></script>
