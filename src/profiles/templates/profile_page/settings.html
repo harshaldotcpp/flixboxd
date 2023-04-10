@@ -1,15 +1,54 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Settings - {{ user.username }}</title>
+    <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.css' %}">
+    <script src="{% static 'main/js/lazyload.js' %}"></script>
 </head>
-<body>
-    {% include 'main/navbar.hmtl' %}
+
+<body class="min-h-screen bg-gradient-to-tl  text-letterboxd-6 from-[#2A394E] to-[#0E0E0F]">
+    {% include 'main/navbar.html' %}
+    <div id="settings-page" class="mt-10 md:mt-16 p-6 md:p-12">
+        <h1 class="text-2xl   md:text-3xl  font-myfontLight ">Account Settings</h1>
+        <form method="POST">
+            <h2
+                class="text-2xl   md:text-3xl text-letterboxd-3  font-myfontLight mt-8 md:mt-12 border-b border-letterboxd-3">
+                Profile</h2>
+
+
+            <div id="content-wrapper"
+                class="grid grid-cols-[auto] grid-rows-[auto] md:grid-cols-[auto,auto] md:grid-rows-[auto] py-3 gap-20">
+                <div id="edit-form">
+                    <label for="username" class=""> Username </label>
+                    <input type="text" name="username" class="w-full mt-1 mb-6 h-9 bg-letterboxd-2 rounded-md">
+                    <div class="flex gap-x-2">
+                        <div class="grow-1">
+                            <label for="username" class=""> First Name </label>
+                            <input type="text" name="username"
+                                class="w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
+                        </div>
+                        <div class="grow-1">
+                            <label for="username" class=""> Family Name </label>
+                            <input type="text" name="username" class="w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
+                        </div>
+                    </div>
+                </div>
+                <div id="top4-settings">
+                    <label class="font-myfont">Favroite Films</label>
+                </div>
+            </div>
+
+            <div id="submit settings"></div>
+    </div>
+
+    </form>
 </body>
 <script src="{% static 'main/js/utilitesFunction.js' %}"></script>
 <script src="{% static 'main/js/navbar.js' %}"></script>
+
 </html>
