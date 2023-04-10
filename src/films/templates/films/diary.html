@@ -5,7 +5,7 @@
 
 {% block content %}
 <div
-    class="col-span-4 mt-14 md:col-span-6 sm:col-span-5 lg:col-span-10 flex gap-x-6 py-1 border-b font-myfontLight tracking-wider   border-gray-400">
+    class="col-span-4 mt-6 md:mt-12 md:col-span-6 sm:col-span-5 lg:col-span-10 flex gap-x-6 py-1 border-b font-myfontLight tracking-wider   border-gray-400">
     <div class=""> <a href="{% url 'filmsabout:showWatched' search_user.username %}"> Watched</a></div>
     <div class="text-letterboxd-4"> <a href="{% url 'filmsabout:diary' search_user.username %}">Diary</a></div>
     <div class=""> <a href="{% url 'filmsabout:showWatchlist' search_user.username %}">Watchlist</a></div>

@@ -16,7 +16,7 @@
     {% include 'main/navbar.html' %}
     <div id="settings-page" class="mt-10 md:mt-16 p-6 md:p-12 sm:mx-16 md:mx-10 lg:mx-28">
         <h1 class="text-2xl   md:text-3xl  font-myfontLight ">Account Settings</h1>
-        <form method="POST" enctype="multipart/form-data">
+        <form  enctype="multipart/form-data" action="{% url 'profiles:settingUpdate' %}" method="POST" >
             {% csrf_token %}
             <h2
                 class="text-2xl   md:text-3xl text-letterboxd-3  font-myfontLight mt-8 md:mt-12 border-b border-letterboxd-3">
@@ -27,7 +27,7 @@
                 class="grid grid-cols-[auto] grid-rows-[auto] md:grid-cols-[auto,auto] md:grid-rows-[auto] py-3 sm:gap-x-12 gap-x-20 gap-y-5">
                 <div id="edit-form">
                     <label for="username" class=""> Username </label>
-                    <input type="text" name="username" placeholder="{{ user.username }}"
+                    <input type="text" disabled name="username" placeholder="{{ user.username }}"
                         class="focus:outline-none p-3 w-full mt-1 mb-6 h-9 bg-letterboxd-2 rounded-md">
                     <div class="flex gap-x-3 mb-6">
                         <div class="grow-1 basis-full">
@@ -37,20 +37,17 @@
                         </div>
                         <div class="grow-1 basis-full">
                             <label for="family_name" class=""> Family Name </label>
-                            <input type="text" name="family_name" placeholder="{{ user.last_name }}"
+                            <input type="text" name="last_name" placeholder="{{ user.last_name }}"
                                 class="focus:outline-none p-3 w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
                         </div>
 
                     </div>
-                    <label for="email" class="">Email</label>
-                    <input type="email" name="email" placeholder="{{ user.email }}"
+                    <label for="email"  class="">Email</label>
+                    <input type="email" disbaled name="email" placeholder="{{ user.email }}"
                         class="focus:outline-none p-3 w-full mb-6 mt-1 h-9 bg-letterboxd-2 rounded-md">
 
                     <label for="email" class="">Bio</label><br>
-                    <textarea placeholder="{{ user.profile.bio}}" rows="4"
-                        class="resize-none  p-3 focus:outline-none w-full rounded-md bg-letterboxd-2">
-
-                    </textarea>
+                    <textarea  placeholder="{{ user.profile.bio }}"  rows="4" name="bio" class="resize-none  p-3 focus:outline-none w-full rounded-md bg-letterboxd-2"></textarea>
 
                 </div>
                 <div id="top4-settings">
@@ -111,16 +108,17 @@
 
             <div id="upload-pfp">
                 <label for="pfp">Uplade profile picture</label><br>
-                <input type="file" name="pfp" class="mt-2 bg-letterboxd-2 text-letterboxd-3 rounded-md">
+                <input type="file" name="pfp" class="mt-2 bg-letterboxd-2 text-letterboxd-3 rounded-md" id="pfp">
             </div>
 
             <div id="submit settings" class="mt-5">
-                <button
+                <button type="submit"
                     class="font-myfont text-white tracking-widest hover:filter hover:grayscale py-2 px-3 text-sm rounded-sm bg-letterboxd-4">SUBMIT</button>
             </div>
     </div>
 
     </form>
+    {% include 'main/footer.html' %}
 </body>
 <script src="{% static 'main/js/utilitesFunction.js' %}"></script>
 <script src="{% static 'main/js/navbar.js' %}"></script>
