@@ -39,4 +39,5 @@ def follow_user(request,username):
 
 
 def settings(request):
+    print(dir(request.user))
     return render(request,"profile_page/settings.html")

@@ -1,0 +1,10 @@
+.grid-item {
+  cursor: move;
+}
+.grid-item.over {
+  border: 2px solid green;
+}
+
+[draggable] {
+  user-select: none;
+}

@@ -124,11 +124,15 @@ class Profile(models.Model):
             return True
         return False
   
-    
+class Top4Movies(models.Model):
+    tmdb_id = models.IntegerField(unique=True) 
+    poster_path = models.CharField(max_length=200)
+
+
 class Top4(models.Model):
-    one = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE,related_name="get_one",blank=True,null=True)
-    two = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE,related_name="get_two",blank=True,null=True)
-    three = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE,related_name="get_three",blank=True,null=True)
-    four = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE,related_name="get_four",blank=True,null=True)
-    user = models.OneToOneField(Profile,on_delete=models.CASCADE)
+    one = models.ForeignKey(Top4Movies,on_delete=models.CASCADE,related_name="get_one",blank=True,null=True)
+    two = models.ForeignKey(Top4Movies,on_delete=models.CASCADE,related_name="get_two",blank=True,null=True)
+    three = models.ForeignKey(Top4Movies,on_delete=models.CASCADE,related_name="get_three",blank=True,null=True)
+    four = models.ForeignKey(Top4Movies,on_delete=models.CASCADE,related_name="get_four",blank=True,null=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
 

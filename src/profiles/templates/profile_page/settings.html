@@ -8,47 +8,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - {{ user.username }}</title>
     <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.css' %}">
+    <link rel="stylesheet" href="{% static 'profiles/css/drap.css' %}">
     <script src="{% static 'main/js/lazyload.js' %}"></script>
 </head>
 
-<body class="min-h-screen bg-gradient-to-tl  text-letterboxd-6 from-[#2A394E] to-[#0E0E0F]">
+<body class="min-h-screen   text-letterboxd-6 bg-gradient-to-tl from-[#2A394E] to-[#0E0E0F]">
     {% include 'main/navbar.html' %}
-    <div id="settings-page" class="mt-10 md:mt-16 p-6 md:p-12">
+    <div id="settings-page" class="mt-10 md:mt-16 p-6 md:p-12 sm:mx-16 md:mx-10 lg:mx-28">
         <h1 class="text-2xl   md:text-3xl  font-myfontLight ">Account Settings</h1>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             <h2
                 class="text-2xl   md:text-3xl text-letterboxd-3  font-myfontLight mt-8 md:mt-12 border-b border-letterboxd-3">
                 Profile</h2>
 
 
             <div id="content-wrapper"
-                class="grid grid-cols-[auto] grid-rows-[auto] md:grid-cols-[auto,auto] md:grid-rows-[auto] py-3 gap-20">
+                class="grid grid-cols-[auto] grid-rows-[auto] md:grid-cols-[auto,auto] md:grid-rows-[auto] py-3 sm:gap-x-12 gap-x-20 gap-y-5">
                 <div id="edit-form">
                     <label for="username" class=""> Username </label>
-                    <input type="text" name="username" class="w-full mt-1 mb-6 h-9 bg-letterboxd-2 rounded-md">
-                    <div class="flex gap-x-2">
-                        <div class="grow-1">
-                            <label for="username" class=""> First Name </label>
-                            <input type="text" name="username"
-                                class="w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
+                    <input type="text" name="username" placeholder="{{ user.username }}"
+                        class="focus:outline-none p-3 w-full mt-1 mb-6 h-9 bg-letterboxd-2 rounded-md">
+                    <div class="flex gap-x-3 mb-6">
+                        <div class="grow-1 basis-full">
+                            <label for="first_name" class=""> First Name </label>
+                            <input type="text" name="first_name" placeholder="{{ user.first_name }}"
+                                class="focus:outline-none p-3 w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
                         </div>
-                        <div class="grow-1">
-                            <label for="username" class=""> Family Name </label>
-                            <input type="text" name="username" class="w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
+                        <div class="grow-1 basis-full">
+                            <label for="family_name" class=""> Family Name </label>
+                            <input type="text" name="family_name" placeholder="{{ user.last_name }}"
+                                class="focus:outline-none p-3 w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
                         </div>
+
                     </div>
+                    <label for="email" class="">Email</label>
+                    <input type="email" name="email" placeholder="{{ user.email }}"
+                        class="focus:outline-none p-3 w-full mb-6 mt-1 h-9 bg-letterboxd-2 rounded-md">
+
+                    <label for="email" class="">Bio</label><br>
+                    <textarea placeholder="{{ user.profile.bio}}" rows="4"
+                        class="resize-none  p-3 focus:outline-none w-full rounded-md bg-letterboxd-2">
+
+                    </textarea>
+
                 </div>
                 <div id="top4-settings">
                     <label class="font-myfont">Favroite Films</label>
+                    <div id="grid-container" class="grid-container grid grid-cols-4 mt-1 gap-3">
+
+                        <div draggable="true" id="1" class="grid-item cursor-move">
+                            <div
+                                class="card relative rounded-md md:rounded-lg  shadow-inner shadow-blue-500 overflow-hidden">
+                                    <img class="object-cover lozad" date-src="https://image.tmdb.org/t/p/original/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg"
+                                        src="https://image.tmdb.org/t/p/w200/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg">
+                                    <div
+                                        class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div draggable="true" id="2" class="grid-item cursor-move">
+                            <div
+                                class="card relative  rounded-md md:rounded-lg  shadow-inner shadow-blue-500 overflow-hidden">
+                                    <img class="object-cover lozad" date-src="https://image.tmdb.org/t/p/original/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
+                                        src="https://image.tmdb.org/t/p/w200/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg">
+                                    <div
+                                        class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div draggable="true" id="3" class="grid-item cursor-move">
+                            <div
+                                class="card relative   rounded-md md:rounded-lg  shadow-inner shadow-blue-500 overflow-hidden">
+                                    <img class="object-cover lozad" date-src="https://image.tmdb.org/t/p/original/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg"
+                                        src="https://image.tmdb.org/t/p/w200/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg">
+                                    <div
+                                        class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div draggable="true" id="4" class="grid-item cursor-move">
+                            <div
+                                class="card relative  rounded-md md:rounded-lg  shadow-inner shadow-blue-500 overflow-hidden">
+                                    <img class="object-cover lozad" date-src="{% static 'john3.jpg' %}"
+                                        src="{% static 'john3.jpg' %}">
+                                    <div
+                                        class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
                 </div>
             </div>
 
-            <div id="submit settings"></div>
+            <div id="upload-pfp">
+                <label for="pfp">Uplade profile picture</label><br>
+                <input type="file" name="pfp" class="mt-2 bg-letterboxd-2 text-letterboxd-3 rounded-md">
+            </div>
+
+            <div id="submit settings" class="mt-5">
+                <button
+                    class="font-myfont text-white tracking-widest hover:filter hover:grayscale py-2 px-3 text-sm rounded-sm bg-letterboxd-4">SUBMIT</button>
+            </div>
     </div>
 
     </form>
 </body>
 <script src="{% static 'main/js/utilitesFunction.js' %}"></script>
 <script src="{% static 'main/js/navbar.js' %}"></script>
+<script src="{% static 'profiles/js/dragdrop.js' %}"></script>
 
 </html>
