@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.css' %}">
+    <script src="{% static 'main/js/lazyload.js' %}"></script>
+    <title>new list </title>
+</head>
+
+<body
+    class="bg-gradient-to-tl text-letterboxd-6 from-[#2A394E] to-[#0E0E0F] overflow-x-hidden  max-w-screen min-h-screen scrollbar-thin scrollbar-track-[#2A394E] scrollbar-thumb-letterboxd-1">
+    {% include 'main/navbar.html' %}
+    <div class="mt-7 md:mt-16 px-5 sm:px-20 lg:px-32 borde border-white">
+        <h1 class="pt-12 pb-3 font-myfontLight text-letterboxd-3 text-2xl lg:text-3xl border-b border-letterboxd-2">New
+            List</h1>
+
+        <section class="grid md:grid-cols-[auto,auto] gap-3  md:gap-8 md:grid-rows-[auto,auto,auto] grid-cols-[auto] grid-rows-[auto,auto,auto,auto]">
+            <div id="name_of_list" class="mt-2">
+                <label class="text-sm text-letterboxd-3">Name of list</label>
+                <input type="text" name="first_name" placeholder="{{ user.first_name }}"
+                    class="focus:outline-none p-3 w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
+            </div>
+            <div class="mt-2 md:row-span-3">
+                <label class="text-sm text-letterboxd-3">Discription for list</label>
+                <textarea placeholder="{{ user.profile.bio }}" rows="4" name="bio"
+                    class="resize-none  p-3 focus:outline-none mt-1 w-full  rounded-md bg-letterboxd-2 h-full"></textarea>
+
+            </div>
+            <div class="flex gap-2 items-start overflow-visible mt-8 md:mt-0">
+                <a id="addmoviebtn" class="bg-letterboxd-4 text-xs font-myfont px-5 py-2">Add movie</a>
+                <div class="relative">
+                    <input type="text" name="" id="movie-search"
+                        class="text-letterboxd-2 focus:outline-none p-3 w-full h-9 bg-white">
+                    <div id="search-reults" class="bg-letterboxd-3 absolute w-full z-50 text-xs text-letterboxd-6">
+                        <u id="result_list" class="list-none no-underline">
+                        </u>
+
+                    </div>
+                </div>
+            </div>
+            <div class="flex gap-2 font-myfont text-sm tracking-wider text-letterboxd-6">
+                <a class="bg-letterboxd-3 px-2 py-1">Delete</a>
+                <a class="bg-letterboxd-3 px-2 py-1">Cancel</a>
+                <a class="bg-letterboxd-4 px-2 py-1">Save</a>
+            </div>
+        </section>
+    </div>
+
+</body>
+<script src="{% static 'main/js/utilitesFunction.js' %}"></script>
+<script src="{% static 'main/js/navbar.js' %}"></script>
+<script src="{% static 'lists/js/script.js' %}"></script>
+
+</html>

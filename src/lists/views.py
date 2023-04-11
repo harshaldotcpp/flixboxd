@@ -10,3 +10,6 @@ def showlists(request,username):
         }
         return render(request,"lists/list_page.html",context=context)
     return render(request,"profile_page/error.html")
+
+def newlist(request):
+    return render(request,"lists/new_list.html")

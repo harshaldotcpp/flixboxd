@@ -9,11 +9,15 @@
     <div id="list-addbttn"
         class="grid grid-cols-[auto] grid-rows-[auto,auto,auto] sm:grid-cols-[auto,auto]  sm:grid-rows-[auto] gap-x-4">
         <h1 class="text-letterboxd-3 px-3 py-2 ">All Lists</h1>
+        {% if search_user.username == user.username%}
         <div id="addbtn" class="py-4 md:row-span-2">
+            <a href="{% url 'list:newlist' %}">
             <div class="bg-letterboxd-3 text-center text-letterboxd-6 px-6    py-2 rounded-md  text-xs">
                 start a new list
             </div>
+            </a>
         </div>
+        {% endif %}
         <div id=lists class="border-t border-letterboxd-2">
 
             <div id="list-item"
