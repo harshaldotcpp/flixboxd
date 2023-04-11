@@ -22,9 +22,9 @@ function updateTopFour() {
 
     });
 
-    options.body = JSON.stringify(top4)
-    myAlert("top list updated") 
-    fetch("/profile/updatetop", options)
+    options.body = JSON.stringify(top4);
+    myAlert("top list updated");
+    fetch("/profile/updatetop", options);
 }
 
 
