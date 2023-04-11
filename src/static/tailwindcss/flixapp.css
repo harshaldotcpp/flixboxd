@@ -645,6 +645,14 @@ video {
   grid-column: span 6 / span 6;
 }
 
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+.row-span-2 {
+  grid-row: span 2 / span 2;
+}
+
 .m-0 {
   margin: 0px;
 }
@@ -794,6 +802,14 @@ video {
 
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.mb-28 {
+  margin-bottom: 7rem;
+}
+
+.mb-24 {
+  margin-bottom: 6rem;
 }
 
 .block {
@@ -1132,6 +1148,10 @@ video {
   grid-template-columns: auto auto auto auto;
 }
 
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
 .grid-rows-1 {
   grid-template-rows: repeat(1, minmax(0, 1fr));
 }
@@ -1158,6 +1178,10 @@ video {
 
 .grid-rows-2 {
   grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.grid-rows-\[auto\2c auto\2c auto\] {
+  grid-template-rows: auto auto auto;
 }
 
 .flex-row-reverse {
@@ -2315,6 +2339,10 @@ video {
     margin-top: 2.5rem;
   }
 
+  .sm\:mt-8 {
+    margin-top: 2rem;
+  }
+
   .sm\:table-cell {
     display: table-cell;
   }
@@ -2325,6 +2353,14 @@ video {
 
   .sm\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-\[auto\2c auto\] {
+    grid-template-columns: auto auto;
+  }
+
+  .sm\:grid-rows-\[auto\] {
+    grid-template-rows: auto;
   }
 
   .sm\:gap-x-12 {
@@ -2359,6 +2395,10 @@ video {
 
   .md\:col-span-6 {
     grid-column: span 6 / span 6;
+  }
+
+  .md\:row-span-2 {
+    grid-row: span 2 / span 2;
   }
 
   .md\:mx-10 {
@@ -2401,6 +2441,14 @@ video {
 
   .md\:mt-6 {
     margin-top: 1.5rem;
+  }
+
+  .md\:mt-11 {
+    margin-top: 2.75rem;
+  }
+
+  .md\:mt-10 {
+    margin-top: 2.5rem;
   }
 
   .md\:inline-block {
