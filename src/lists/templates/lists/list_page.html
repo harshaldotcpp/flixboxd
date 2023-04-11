@@ -3,31 +3,31 @@
 
 {% block content %}
 
-<section class="text-letterboxd-6 mt-5 sm:mt-8 md:mt-10 text-2xl font-myfontLight mb-24">
+<section class="text-letterboxd-6 mt-5 sm:mt-6 md:mt-9 text-2xl font-myfontLight mb-24">
 
 
     <div id="list-addbttn"
-        class="grid grid-cols-[auto] grid-rows-[auto,auto,auto] sm:grid-cols-[auto,auto]  sm:grid-rows-[auto] gap-x-6">
+        class="grid grid-cols-[auto] grid-rows-[auto,auto,auto] sm:grid-cols-[auto,auto]  sm:grid-rows-[auto] gap-x-4">
         <h1 class="text-letterboxd-3 px-3 py-2 ">All Lists</h1>
         <div id="addbtn" class="py-4 md:row-span-2">
-            <div class="bg-letterboxd-3 text-center text-letterboxd-6 px-12 rounded-md  py-2 text-sm">
+            <div class="bg-letterboxd-3 text-center text-letterboxd-6 px-6    py-2 rounded-md  text-xs">
                 start a new list
             </div>
         </div>
         <div id=lists class="border-t border-letterboxd-2">
 
             <div id="list-item"
-                class="flex flex-col md:flex-row gap-x-12 mb-4 gap-y-4 border-b py-4 border-letterboxd-2 ">
+                class="flex flex-col md:flex-row gap-x-16 mb-4 gap-y-4 border-b py-4 border-letterboxd-2 ">
 
-                <div class=" grid grid-cols-5 w-44  shrink-0 ">
-                    <div class="card self-start relative w-16 z-50 rounded-md  shadow-sm shadow-black  overflow-hidden">
+                <div class=" grid grid-cols-5 w-52  shrink-0 ">
+                    <div class="card self-start relative w-20 z-50 rounded-md   overflow-hidden">
                         <img class="object-cover lozad" data-src="{% static 'john3.jpg' %}"
                             src="{% static 'john3.jpg' %}">
                         <div
                             class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                         </div>
                     </div>
-                    <div class="card relative  self-start w-16 z-40 rounded-md shadow-lg shadow-black  overflow-hidden">
+                    <div class="card relative  self-start w-20 z-40 rounded-md   overflow-hidden">
                         <img class="object-cover lozad" data-src="{% static 'authentication/image/batman.jpg' %}"
                             src="{% static 'authentication/image/batman.jpg' %}">
                         <div
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div
-                        class="card relative self-start   w-16 z-30 shadow-lg rounded-md shadow-black  overflow-hidden">
+                        class="card relative self-start   w-20 z-30 shadow-lg rounded-md   overflow-hidden">
                         <img class="object-cover lozad" data-src="{% static 'authentication/image/parasite.jpg' %}"
                             src="{% static 'authentication/image/parasite.jpg' %}">
                         <div
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div
-                        class=" card relative self-start  w-16 z-20 shadow-lg shadow-black rounded-md  overflow-hidden">
+                        class=" card relative self-start  w-20 z-20 shadow-lg  rounded-md  overflow-hidden">
                         <img class="object-cover lozad" data-src="{% static 'authentication/image/pastl.jpg' %}"
                             src="{% static 'authentication/image/pastl.jpg' %}">
                         <div
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div
-                        class="card relative self-start   w-16 z-10 shadow-lg rounded-md shadow-black  overflow-hidden">
+                        class="card relative self-start   w-20 z-10 shadow-lg rounded-md   overflow-hidden">
                         <img class="object-cover lozad" data-src="{% static 'authentication/image/parasite.jpg' %}"
                             src="{% static 'authentication/image/parasite.jpg' %}">
                         <div
