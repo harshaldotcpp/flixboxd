@@ -80,5 +80,10 @@ def updatetop(request):
         addInTopFour(request.user,top4[1],"two")
         addInTopFour(request.user,top4[2],"three")
         addInTopFour(request.user,top4[3],"four")
+        response_data = {
+            "status": "succesfull",
+            "message": "Top List Updated",
+        }
+        return HttpResponse(json.dumps(response_data),content_type='application/json') 
 
     return render(request,"profile_page/error.html")
