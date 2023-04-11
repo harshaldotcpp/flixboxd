@@ -1,12 +1,10 @@
 // function to populate alerts
 function myAlert(message) {
-    console.log("hii")
     document.querySelector("#alert-msg").innerHTML = message;
     document.querySelector("#frontend-alert").classList.remove("hidden")
-    console.log(document.querySelector("#frontend-alert"))
     setTimeout(() => {
         document.querySelector("#frontend-alert").classList.add("hidden");
-    }, 1299);
+    }, 1500);
     return;
 }
 

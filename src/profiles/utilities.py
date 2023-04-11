@@ -34,6 +34,8 @@ def addInTopFour(user,top,pos):
             return
         else:
             user.top4.one = None
+            user.top4.save()
+
     if pos == "two":
         if top["is_present"]:
             m = Top4Movies.objects.filter(tmdb_id = top["id"])
@@ -48,6 +50,8 @@ def addInTopFour(user,top,pos):
             return
         else:
             user.top4.two = None
+            user.top4.save()
+            
     if pos == "three":
         if top["is_present"]:
             m = Top4Movies.objects.filter(tmdb_id = top['id'])
@@ -78,6 +82,7 @@ def addInTopFour(user,top,pos):
             return
         else:
             user.top4.four = None
+            user.top4.save()
     return
 
 

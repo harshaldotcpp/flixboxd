@@ -1,6 +1,33 @@
 var dragSrcEl = null;
 console.log("hello")
 
+function updateTopFour() {
+
+    const cards = document.querySelectorAll(".grid-container .grid-item");
+
+    let top4 = [];
+    Array.from(cards).forEach((card, i) => {
+        if (card.dataset.isnone == "false")
+            top4.push({
+                is_present: true,
+                id: card.dataset.id,
+                poster_path: card.dataset.poster_path
+            })
+        else
+            top4.push({
+                is_present: false,
+                id: "none",
+                poster_path: "none"
+            })
+
+    });
+
+    options.body = JSON.stringify(top4)
+    myAlert("top list updated") 
+    fetch("/profile/updatetop", options)
+}
+
+
 function handleDragStart(e) {
     this.style.opacity = "0.4";
     dragSrcEl = this;
@@ -31,6 +58,7 @@ function handleDrop(e) {
     if (dragSrcEl != this) {
         this.replaceWith(this, dragSrcEl);
     }
+    updateTopFour()
     return false;
 }
 
@@ -51,22 +79,28 @@ items.forEach(function (item) {
 });
 
 
-function updateTopFour(top4){
-    options.body = JSON.stringify(top4)
-    console.log(options)
-    fetch("/profile/updatetop",options)
-}
 
+const top_remove_btn = document.getElementsByClassName("top-remove-btn");
+Array.from(top_remove_btn).forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+        console.log('remove card no ' + btn.dataset.cardno)
+        const node = document.getElementById(btn.dataset.cardno);
+        node.setAttribute("data-isnone", "true")
+        const addbtn = document.getElementById("add" + btn.dataset.cardno)
+        addbtn.classList.remove("hidden");
+        btn.classList.add("hidden");
+        updateTopFour();
 
+    })
+})
 
 
 
 let position_to_be_inserted;
-
 let addButtons = document.querySelectorAll(".top4add");
+
 Array.from(addButtons).forEach(btn => {
     btn.addEventListener("click", event => {
-        console.log(btn.dataset.position);
         document.getElementById("search-field").classList.toggle("hidden")
         position_to_be_inserted = btn.dataset.position;
     })
@@ -89,18 +123,9 @@ function movieSelected(event) {
     image.setAttribute("src", poster_path);
     addBtn.classList.add("hidden");
     document.getElementById("search-field").classList.toggle("hidden")
+    document.getElementById("top-remove-btn-" + position_to_be_inserted).classList.remove("hidden");
 
-    const cards = document.querySelectorAll(".grid-container .grid-item");
-
-    let top4 = [];
-    Array.from(cards).forEach((card,i)=>{
-        if (card.dataset.isnone == "false")
-            top4.push({is_present: true,id:card.dataset.id,poster_path:card.dataset.poster_path})
-        else
-            top4.push({is_present: false,id:card.dataset.id,poster_path:card.dataset.poster_path})
-            
-    });
-    updateTopFour(top4)
+    updateTopFour();
 }
 search_input.addEventListener("input", (event) => {
     const input_value = search_input.value.replaceAll(" ", "%20");
@@ -108,17 +133,22 @@ search_input.addEventListener("input", (event) => {
 
     fetch(url).then(response => response.json())
         .then(response => {
+            document.getElementById("result_list").innerHTML = "";
             movies = []
+            if (response.total_results == 0)
+                return;
+
             for (let i = 0; i < 8; i++) {
-                movies.push({
-                    name: response.results[i].title,
-                    release_date: response.results[i].release_date.slice(0, 4),
-                    poster_path: response.results[i].poster_path,
-                    id: response.results[i].id,
-                })
+                if (response.results[i]) {
+                    movies.push({
+                        name: response.results[i].title,
+                        release_date: response.results[i].release_date.slice(0, 4),
+                        poster_path: response.results[i].poster_path,
+                        id: response.results[i].id,
+                    });
+                }
             }
 
-            document.getElementById("result_list").innerHTML = "";
             movies.forEach(movie => {
                 const classes = ["hover:bg-letterboxd-4", "py-2", "px-2"];
                 const li = document.createElement('li');
