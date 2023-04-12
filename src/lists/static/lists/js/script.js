@@ -1,8 +1,8 @@
 const search_input = document.getElementById("movie-search")
 
 
-function movieSelected(){
-    console.log("selected");
+function movieSelected(event){
+    console.log(event.target);
 }
 search_input.addEventListener("input", (event) => {
     const input_value = search_input.value.replaceAll(" ", "%20");
@@ -19,7 +19,7 @@ search_input.addEventListener("input", (event) => {
                 if (response.results[i]) {
                     movies.push({
                         name: response.results[i].title,
-                        release_date: response.results[i].release_date.slice(0, 4),
+                        release_year: response.results[i].release_date.slice(0, 4),
                         poster_path: response.results[i].poster_path,
                         id: response.results[i].id,
                     });
@@ -32,11 +32,13 @@ search_input.addEventListener("input", (event) => {
 
                 li.setAttribute("data-id", movie.id);
                 li.setAttribute("data-poster_path", movie.poster_path);
+                li.setAttribute("data-name",movie.name);
+                li.setAttribute("data-release_year",movie.release_year);
                 li.addEventListener('click', movieSelected);
                 classes.forEach(c => {
                     li.classList.add(c);
                 })
-                const li_content = document.createTextNode(`${movie.name} (${movie.release_date})`);
+                const li_content = document.createTextNode(`${movie.name} (${movie.release_year})`);
                 li.appendChild(li_content);
 
                 const ul = document.getElementById("result_list");
