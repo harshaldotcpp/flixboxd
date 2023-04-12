@@ -98,15 +98,16 @@ Array.from(top_remove_btn).forEach((btn) => {
 
 let position_to_be_inserted;
 let addButtons = document.querySelectorAll(".top4add");
+const search_input = document.getElementById("movie-search")
 
 Array.from(addButtons).forEach(btn => {
     btn.addEventListener("click", event => {
         document.getElementById("search-field").classList.toggle("hidden")
         position_to_be_inserted = btn.dataset.position;
+        search_input.focus()
     })
 })
 
-const search_input = document.getElementById("movie-search")
 
 function movieSelected(event) {
     const id = event.target.dataset.id;
