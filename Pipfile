@@ -8,6 +8,7 @@ django = {extras = ["all"], version = "*"}
 tmdbv3api = "*"
 pillow = "*"
 django-dotenv = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
