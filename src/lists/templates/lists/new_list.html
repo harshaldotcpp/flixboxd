@@ -51,35 +51,26 @@
         </section>
         <section id="list" class="mt-11 ">
             <div id="list-item"
-                class="list-section border border-letterboxd-2 p-2 flex gap-x-3 font-abrilbold text-letterboxd-6 text-lg">
-                <div
-                    class="card relative rounded-sm self-start hover:scale-105 duration-200 hover:shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] hover:shadow:black r shadow-inner shadow-blue-500 overflow-hidden">
+                class="list-section border border-letterboxd-2 p-2 flex items-center gap-x-3 font-abrilbold text-letterboxd-6 text-lg">
+                <div class="card relative rounded-sm self-start  overflow-hidden">
                     <img class="lozad object-cover w-9" data-src="{% static 'john3.jpg' %}"
                         src="https://image.tmdb.org/t/p/w200/{{movie.poster_path}}">
                     <div
                         class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                     </div>
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col basis-full">
                     <span>John Wick 4 (2022) </span>
                     <a class="text-sm w-fit p-1 font-myfontLight border border-letterboxd-2">Add Note</a>
                 </div>
+                <a class="self-center p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </a>
             </div>
-            <div id="list-item"
-                class="list-section  border border-letterboxd-2 p-2 flex gap-x-3 font-abrilbold text-letterboxd-6 text-lg">
-                <div
-                    class="card relative rounded-sm self-start hover:scale-105 duration-200 hover:shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] hover:shadow:black r shadow-inner shadow-blue-500 overflow-hidden">
-                    <img class="lozad object-cover w-9" data-src="{% static 'authentication/image/batman.jpg' %}"
-                        src="{% static 'authentication/image/batman.jpg' %}">
-                    <div
-                        class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
-                    </div>
-                </div>
-                <div class="flex flex-col">
-                    <span>The Batman (2022)</span>
-                    <a class="text-sm w-fit p-1 font-myfontLight border border-letterboxd-2">Add Note</a>
-                </div>
-            </div>
+            
         </section>
 
     </div>
