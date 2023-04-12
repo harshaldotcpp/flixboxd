@@ -2,6 +2,7 @@ const search_input = document.getElementById("movie-search")
 
 
 function movieSelected(event){
+    console.log("movie selected")
     console.log(event.target);
 }
 search_input.addEventListener("input", (event) => {

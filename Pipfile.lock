@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f6fe7a3764e60dc4f412442cfe08737d5c4b30aafa8a271c8f7bb644b6583016"
+            "sha256": "9be7e1517dc1158a5e56588092f400cb1d746ffdd246c4b65ee76cf917e58013"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -234,14 +234,6 @@
             "index": "pypi",
             "version": "==9.5.0"
         },
-        "python-dotenv": {
-            "hashes": [
-                "sha256:a8df96034aae6d2d50a4ebe8216326c61c3eb64836776504fcca410e5937a3ba",
-                "sha256:f5971a9226b701070a4bf2c38c89e5a3f0d64de8debda981d1db98583009122a"
-            ],
-            "index": "pypi",
-            "version": "==1.0.0"
-        },
         "requests": {
             "hashes": [
                 "sha256:64299f4909223da747622c030b781c0d7811e359c37124b4bd368fb8c6518baa",
@@ -255,7 +247,7 @@
                 "sha256:0323c0ec29cd52bceabc1b4d9d579e311f3e4961b98d174201d5622a23b85e34",
                 "sha256:69ca804846bb114d2ec380e4360a8a340db83f0ccf3afceeb1404df028f57268"
             ],
-            "markers": "python_version >= '3.5'",
+            "index": "pypi",
             "version": "==0.4.3"
         },
         "tmdbv3api": {
@@ -271,7 +263,7 @@
                 "sha256:11ef1e08e54acb0d4f95bdb1be05da659673de4acbd21bf9c69e94cc5e907a3a",
                 "sha256:7e65763eef3120314099b6939b5546db7adce1e7d6f2e179e3df563c70511eda"
             ],
-            "markers": "sys_platform == 'win32'",
+            "index": "pypi",
             "version": "==2023.3"
         },
         "urllib3": {
