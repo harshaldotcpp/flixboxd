@@ -5,6 +5,11 @@ const search_input = document.getElementById("movie-search")
 </svg>
 **/
 
+
+function saveHandle(event){
+   return "nothing for now"; 
+}
+
 const getAncestors = el => {
   let ancestors = [];
   while (el) {
