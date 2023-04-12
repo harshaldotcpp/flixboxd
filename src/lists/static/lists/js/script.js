@@ -5,6 +5,20 @@ const search_input = document.getElementById("movie-search")
 </svg>
 **/
 
+const getAncestors = el => {
+  let ancestors = [];
+  while (el) {
+    ancestors.unshift(el);
+    el = el.parentNode;
+  }
+  return ancestors;
+};
+
+function handleRemove(event){
+    const list = document.getElementById("list");
+    list.removeChild(event.target.parentNode.parentNode);
+}
+
 function createCancelSvg(size){
     const path = document.createElementNS("http://www.w3.org/2000/svg",'path');
     path.setAttribute("d","M6 18L18 6M6 6l12 12")
@@ -70,6 +84,8 @@ function movieSelected(event) {
     const cancel_btn = document.createElement("a");
     cancel_btn.setAttribute("id","remove_from_list");
     ["p-2"].forEach(cls=> cancel_btn.classList.add(cls))
+    cancel_btn.addEventListener("click",handleRemove)
+
     const svg = createCancelSvg(6); 
     cancel_btn.appendChild(svg);
     console.log(cancel_btn.childNodes)
@@ -77,7 +93,6 @@ function movieSelected(event) {
     Array.from([card_compo,movie_info_div,cancel_btn]).forEach(node=>{
         list_item.appendChild(node);
     });
-    console.log(cancel_btn)
 
     const list = document.getElementById("list");
     list.appendChild(list_item);
