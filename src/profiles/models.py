@@ -1,5 +1,6 @@
 from django.db import models
 from films.models import WatchedMovie,Watchlist
+from lists.models import List,ListMovie
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -123,7 +124,24 @@ class Profile(models.Model):
         if self.user.liked_movies_set.filter(tmdb_id = movie_id):
             return True
         return False
-  
+
+    def addList(self,list,movies):
+        print("this is list info",list)  
+        print("this is moves",movies)
+        user_list = List.objects.create(name=list['list_name'],user=self.user,description=list['list_desc'])
+        user_list.save()
+        for movie in movies:
+           list_movie = ListMovie.objects.filter(tmdb_id = movie["tmdb_id"])
+           if list_movie:
+               user_list.movies.add(list_movie[0]) 
+           else:
+               new_list_movie = ListMovie.objects.create(title=movie["title"],release_year=movie['release_year'],tmdb_id=movie["tmdb_id"],poster_path=movie["poster_path"])
+               new_list_movie.save()
+               user_list.movies.add(new_list_movie)
+        return 
+
+
+
 class Top4Movies(models.Model):
     tmdb_id = models.IntegerField(unique=True) 
     poster_path = models.CharField(max_length=200)

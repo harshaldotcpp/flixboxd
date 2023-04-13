@@ -22,19 +22,19 @@
             class="grid md:grid-cols-[auto,auto] gap-3  md:gap-8 md:grid-rows-[auto,auto,auto] grid-cols-[auto] grid-rows-[auto,auto,auto,auto]">
             <div id="name_of_list" class="mt-2">
                 <label class="text-sm text-letterboxd-3">Name of list</label>
-                <input type="text" name="first_name" placeholder="{{ user.first_name }}"
+                <input type="text" id="list_name" name="first_name" placeholder="{{ user.first_name }}"
                     class="focus:outline-none p-3 w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
             </div>
             <div class="mt-2 md:row-span-3">
                 <label class="text-sm text-letterboxd-3">Discription for list</label>
-                <textarea placeholder="{{ user.profile.bio }}" rows="4" name="bio"
+                <textarea id="list_desc" placeholder="anything you have say about this list?" rows="4" name="bio"
                     class="resize-none  p-3 focus:outline-none mt-1 w-full  rounded-md bg-letterboxd-2 h-full"></textarea>
 
             </div>
             <div class="flex gap-2 items-start overflow-visible mt-8 md:mt-0">
                 <a id="addmoviebtn" class="bg-letterboxd-4 text-xs font-myfont px-2 py-1 md:px-5 md:py-2">Add movie</a>
                 <div class="relative">
-                    <input type="text" name="" id="movie-search"
+                    <input type="text" name="" id="movie-search" placeholder="at least one film should include in list"
                         class="text-letterboxd-2 focus:outline-none p-3 w-full h-9 bg-white">
                     <div id="search-reults" class="bg-letterboxd-3 absolute w-full z-50 text-xs text-letterboxd-6">
                         <u id="result_list" class="list-none no-underline">
@@ -50,6 +50,7 @@
             </div>
         </section>
         <section id="list" class="mt-11 ">
+            {% if user_list %}
             <div id=""
                 class="list-element border border-letterboxd-2 p-2 flex items-center gap-x-3 font-abrilbold text-letterboxd-6 text-lg">
                 <div class="card relative rounded-sm self-start  overflow-hidden">
@@ -70,6 +71,7 @@
                     </svg>
                 </a>
             </div>
+            {% endif %}
             
         </section>
 

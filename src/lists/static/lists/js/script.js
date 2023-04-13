@@ -169,13 +169,33 @@ const save_list = document.getElementById("save-list");
 console.log(save_list);
 save_list.addEventListener("click",(event)=>{
     list_items = document.getElementsByClassName("list-element");
-    const data = []
+    if(list_items.length === 0){
+        myAlert("list should have atleast one film");
+        return;
+    }
+    if(document.getElementById("list_name").value.length === 0){
+        myAlert("list name is missing !");
+        return;
+    }
+    const data = [
+        {
+            list_name: document.getElementById("list_name").value,
+            list_desc: document.getElementById("list_desc").value
+        }
+    ];
+
+
     Array.from(list_items).forEach(item=>{
         data.push({
             tmdb_id: item.dataset.id,
             title: item.dataset.title,
             poster_path: item.dataset.poster_path,
+            release_year: item.dataset.release_year,
         });
     });
-    console.log(list_items);
+    options.body = JSON.stringify(data);
+    fetch("/list/post",options).then(res=> res.json())
+    .then(res=>{
+        console.log(res);
+    })
 });
