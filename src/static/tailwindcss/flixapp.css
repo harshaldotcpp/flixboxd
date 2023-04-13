@@ -881,10 +881,6 @@ video {
   height: 100vh;
 }
 
-.h-4 {
-  height: 1rem;
-}
-
 .min-h-\[auto\] {
   min-height: auto;
 }
@@ -1188,10 +1184,6 @@ video {
   align-self: flex-start;
 }
 
-.self-end {
-  align-self: flex-end;
-}
-
 .self-center {
   align-self: center;
 }
@@ -1394,10 +1386,6 @@ video {
 
 .fill-letterboxd-6 {
   fill: #CCDDED;
-}
-
-.fill-white {
-  fill: #fff;
 }
 
 .stroke-letterboxd-3 {
@@ -2048,10 +2036,6 @@ video {
 .hover\:bg-letterboxd-5:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(242 116 5 / var(--tw-bg-opacity));
-}
-
-.hover\:fill-letterboxd-5:hover {
-  fill: #F27405;
 }
 
 .hover\:stroke-letterboxd-5:hover {

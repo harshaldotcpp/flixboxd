@@ -136,3 +136,6 @@ class Top4(models.Model):
     four = models.ForeignKey(Top4Movies,on_delete=models.CASCADE,related_name="get_four",blank=True,null=True)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.user.username}'s top 4 movies"
+

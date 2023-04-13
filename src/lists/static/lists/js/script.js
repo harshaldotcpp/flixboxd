@@ -44,6 +44,7 @@ function createCancelSvg(size){
 console.log(createCancelSvg(4));
 
 function movieSelected(event) {
+    search_input.value = "";
     const data = {
         id: event.target.dataset.id,
         title:  event.target.dataset.name,
@@ -81,10 +82,14 @@ function movieSelected(event) {
     Array.from([movie_title,add_note]).forEach(childNode=>{ movie_info_div.appendChild(childNode); })
 
     const list_item = document.createElement('div');    
-    list_item.setAttribute("id","list-item");
-    ["list-section", "border", "border-letterboxd-2", "p-2", "flex", "gap-x-3", "font-abrilbold", "text-letterboxd-6", "text-lg"].forEach(cls=>{
+    ["list-element", "border", "border-letterboxd-2", "p-2", "flex", "gap-x-3", "font-abrilbold", "text-letterboxd-6", "text-lg"].forEach(cls=>{
         list_item.classList.add(cls);
     });
+
+    list_item.setAttribute("data-id",data.id); 
+    list_item.setAttribute("data-title",data.title); 
+    list_item.setAttribute("data-poster_path",data.poster_path); 
+    list_item.setAttribute("data-release_year",data.release_year); 
 
     const cancel_btn = document.createElement("a");
     cancel_btn.setAttribute("id","remove_from_list");
@@ -148,7 +153,7 @@ search_input.addEventListener("input", (event) => {
                 const ul = document.getElementById("result_list");
                 ul.append(li);
 
-            })
+            });
         });
 });
 
@@ -158,4 +163,19 @@ document.getElementById("addmoviebtn").addEventListener('click', (event) => {
         document.getElementById("result_list").innerHTML = ""
         search_input.value = ""
     }
-})
+});
+
+const save_list = document.getElementById("save-list");
+console.log(save_list);
+save_list.addEventListener("click",(event)=>{
+    list_items = document.getElementsByClassName("list-element");
+    const data = []
+    Array.from(list_items).forEach(item=>{
+        data.push({
+            tmdb_id: item.dataset.id,
+            title: item.dataset.title,
+            poster_path: item.dataset.poster_path,
+        });
+    });
+    console.log(list_items);
+});

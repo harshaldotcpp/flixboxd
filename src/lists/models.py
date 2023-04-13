@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class ListMovie(models.Model):
-    name = models.CharField(max_length=500)
+    title = models.CharField(max_length=500)
     release_year = models.IntegerField()
     tmdb_id = models.IntegerField()
     note = models.CharField(max_length=500,blank=True,null=True)

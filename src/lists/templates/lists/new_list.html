@@ -32,7 +32,7 @@
 
             </div>
             <div class="flex gap-2 items-start overflow-visible mt-8 md:mt-0">
-                <a id="addmoviebtn" class="bg-letterboxd-4 text-xs font-myfont px-5 py-2">Add movie</a>
+                <a id="addmoviebtn" class="bg-letterboxd-4 text-xs font-myfont px-2 py-1 md:px-5 md:py-2">Add movie</a>
                 <div class="relative">
                     <input type="text" name="" id="movie-search"
                         class="text-letterboxd-2 focus:outline-none p-3 w-full h-9 bg-white">
@@ -46,12 +46,12 @@
             <div class="flex gap-2 font-myfont text-sm tracking-wider text-letterboxd-6">
                 <a class="bg-letterboxd-3 px-2 py-1">Delete</a>
                 <a class="bg-letterboxd-3 px-2 py-1">Cancel</a>
-                <a class="bg-letterboxd-4 px-2 py-1">Save</a>
+                <a id="save-list" class="bg-letterboxd-4 px-2 py-1">Save</a>
             </div>
         </section>
         <section id="list" class="mt-11 ">
-            <div id="list-item"
-                class="list-section border border-letterboxd-2 p-2 flex items-center gap-x-3 font-abrilbold text-letterboxd-6 text-lg">
+            <div id=""
+                class="list-element border border-letterboxd-2 p-2 flex items-center gap-x-3 font-abrilbold text-letterboxd-6 text-lg">
                 <div class="card relative rounded-sm self-start  overflow-hidden">
                     <img class="lozad object-cover w-9" data-src="{% static 'john3.jpg' %}"
                         src="https://image.tmdb.org/t/p/w200/{{movie.poster_path}}">
