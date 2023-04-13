@@ -25,7 +25,7 @@ def get_followers_count(username):
 @register.simple_tag
 def get_lists_count(username):
     user = User.objects.get(username=username)
-    return user.list_set.count()
+    return user.lists.count()
 
 @register.simple_tag
 def is_following(follower,username,true,false):

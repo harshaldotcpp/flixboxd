@@ -7,8 +7,20 @@ import json
 def showlists(request,username):
     user = User.objects.filter(username=username)
     if user:
+        lists = []
+        for list in user[0].lists.all():
+            count = 0
+            if 5 - list.movies.count() > 1:
+                count = 5 - list.movies.count()
+
+            lists.append({
+                "list": list,
+                "range": [i for i in range(count)],
+            });
         context = {
             "search_user":user[0],
+             "user_lists": user[0].lists.all(),
+             "lists":lists,
         }
         return render(request,"lists/list_page.html",context=context)
     return render(request,"profile_page/error.html")

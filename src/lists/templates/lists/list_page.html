@@ -1,5 +1,6 @@
 {% extends "films/films_base.html" %}
 {% load static %}
+{% load lists_tags %}
 
 {% block content %}
 
@@ -12,65 +13,50 @@
         {% if search_user.username == user.username%}
         <div id="addbtn" class="py-4 md:row-span-2">
             <a href="{% url 'list:newlist' %}">
-            <div class="bg-letterboxd-3 text-center text-letterboxd-6 px-6    py-2 rounded-md  text-xs">
-                start a new list
-            </div>
+                <div class="bg-letterboxd-3 text-center text-letterboxd-6 px-6    py-2 rounded-md  text-xs">
+                    start a new list
+                </div>
             </a>
         </div>
         {% endif %}
         <div id=lists class="border-t border-letterboxd-2">
-
+            {% for l in lists%}
             <div id="list-item"
                 class="flex flex-col md:flex-row gap-x-16 mb-4 gap-y-4 border-b py-4 border-letterboxd-2 ">
 
                 <div class=" grid grid-cols-5 w-52  shrink-0 ">
-                    <div class="card self-start relative w-20 z-50 rounded-md   overflow-hidden">
-                        <img class="object-cover lozad" data-src="{% static 'john3.jpg' %}"
-                            src="{% static 'john3.jpg' %}">
-                        <div
-                            class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
-                        </div>
-                    </div>
-                    <div class="card relative  self-start w-20 z-40 rounded-md   overflow-hidden">
-                        <img class="object-cover lozad" data-src="{% static 'authentication/image/batman.jpg' %}"
-                            src="{% static 'authentication/image/batman.jpg' %}">
-                        <div
-                            class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
-                        </div>
-                    </div>
+                    {% for movie in l.list.movies.all %}
                     <div
-                        class="card relative self-start   w-20 z-30 shadow-lg rounded-md   overflow-hidden">
-                        <img class="object-cover lozad" data-src="{% static 'authentication/image/parasite.jpg' %}"
-                            src="{% static 'authentication/image/parasite.jpg' %}">
+                        class="card self-start relative w-20 z-{% subtract 70 10 forloop.counter  %} rounded-md   overflow-hidden">
+                        <img class="object-cover lozad"
+                            data-src="https://image.tmdb.org/t/p/original/{{movie.poster_path}}"
+                            src="https://image.tmdb.org/t/p/w200/{{movie.poster_path}}">
                         <div
                             class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                         </div>
                     </div>
+                    {% endfor %}
+                    {% for c in l.range %}
                     <div
-                        class=" card relative self-start  w-20 z-20 shadow-lg  rounded-md  overflow-hidden">
-                        <img class="object-cover lozad" data-src="{% static 'authentication/image/pastl.jpg' %}"
-                            src="{% static 'authentication/image/pastl.jpg' %}">
+                        class="card self-start relative w-20 z-{% subtract 50 10 forloop.counter  %} rounded-md   overflow-hidden">
+                        <img class="object-cover lozad"
+                            data-src="{% static 'image/defaultposter.png' %}"
+                            src="{% static 'image/defaultposter.png' %}">
                         <div
                             class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                         </div>
                     </div>
-                    <div
-                        class="card relative self-start   w-20 z-10 shadow-lg rounded-md   overflow-hidden">
-                        <img class="object-cover lozad" data-src="{% static 'authentication/image/parasite.jpg' %}"
-                            src="{% static 'authentication/image/parasite.jpg' %}">
-                        <div
-                            class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
                 <div class="list-info shrink-0 grow-0 basis-3/5 ">
-                    <div class="name text-md font-myfont text-letterboxd-6">my list</div>
+                    <div class="name text-md font-myfont text-letterboxd-6">{{ l.list.name }}</div>
                     <div class="no-films text-sm mb-2 text-gray-400">9 film</div>
                     <div class="discription text-sm text-gray-400 font-abril">Lorem ipsum, dolor sit amet consectetur
                         adipisicing elit. Amet officiis explicabo laborum nostrum fuga. Velit nobis doloremque deserunt
                         sapiente, tempore illum nam error.</div>
                 </div>
             </div>
+            {% endfor %}
         </div>
 
     </div>
