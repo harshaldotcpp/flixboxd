@@ -10,6 +10,7 @@ pillow = "*"
 django-dotenv = "*"
 tzdata = "*"
 sqlparse = "*"
+psycopg2 = "*"
 
 [dev-packages]
 

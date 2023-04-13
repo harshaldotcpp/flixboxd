@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'flixapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'flimflow',
+        'USER': 'postgres',
+        'PASSWORD': 'Flex@123',
+        'HOST': 'localhost',
+        'PORT': '5433',
     }
 }
 
