@@ -196,6 +196,6 @@ save_list.addEventListener("click",(event)=>{
     options.body = JSON.stringify(data);
     fetch("/list/post",options).then(res=> res.json())
     .then(res=>{
-        console.log(res);
+        myAlert(res.message);
     })
 });

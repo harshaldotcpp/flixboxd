@@ -9,13 +9,20 @@ def showlists(request,username):
     if user:
         lists = []
         for list in user[0].lists.all():
+            poster = []
             count = 0
-            if 5 - list.movies.count() > 1:
-                count = 5 - list.movies.count()
+            for movie in list.movies.all():
+                if count >= 5:
+                    break
+                poster.append(movie.poster_path)
+                count += 1
+            if count < 5:
+                for i in range(5-count):
+                    poster.append("")
 
             lists.append({
                 "list": list,
-                "range": [i for i in range(count)],
+                "posters": poster,
             });
         context = {
             "search_user":user[0],
@@ -33,6 +40,6 @@ def postlist(request):
     if request.method == "POST":
         data = json.load(request)
         request.user.profile.addList(data[0],data[1:])
-        response ={"success":"succefull","message":"yes post request"}
+        response ={"message":"sucessfull","message":"list Created"}
         return HttpResponse(json.dumps(response),content_type='application/json')
     return render(request,"main/error.html")
