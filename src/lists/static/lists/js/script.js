@@ -243,7 +243,7 @@ if (update_list) {
         });
         console.log(data);
         options.body = JSON.stringify(data);
-        fetch("/list/update", options).then(res => res.json())
+        fetch("/lists/update", options).then(res => res.json())
             .then(res => {
                 myAlert(res.message);
             })

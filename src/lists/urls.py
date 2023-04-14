@@ -9,4 +9,5 @@ urlpatterns = [
     path('update',views.updatelist,name="updatelist"),
     path('edit/<int:listid>',views.editlist,name="editlist"),
     path('<str:username>',views.showlists,name="showlists"),
+    path('<str:username>/<int:listid>',views.showlist,name="showlist"),
 ]

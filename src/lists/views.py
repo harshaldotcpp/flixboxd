@@ -2,6 +2,15 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.http import JsonResponse,HttpResponse
 import json
+from tmdbv3api import TMDb,Movie
+import os
+
+tmdb = TMDb()
+tmdb.api_key = os.environ.get("TMDB_API_KEY")
+tmdb.language = 'en'
+tmdb.debug = True
+
+
 
 # Create your views here.
 def showlists(request,username):
@@ -32,6 +41,29 @@ def showlists(request,username):
         return render(request,"lists/list_page.html",context=context)
     return render(request,"profile_page/error.html")
 
+def showlist(request,username,listid):
+    search_user = User.objects.filter(username=username)
+    if search_user:
+        list = search_user[0].lists.filter(id=listid)
+        list_present = False
+        if list:
+            list_present = True
+
+        if list_present:
+            m = Movie().details(list[0].movies.all()[0].tmdb_id).backdrop_path
+            
+            context = {
+                "search_user": search_user[0],
+                "list": list[0],
+                "backdrop_path":m,
+            }
+            return render(request,"lists/a_list.html",context=context)
+
+    return render(request,"main/error.html")
+
+
+
+
 def newlist(request):
     context = {
         "page_type":"newlist",
@@ -40,11 +72,11 @@ def newlist(request):
 
 
 def editlist(request,listid):
-    list = request.user.lists.filter(id=listid)
+    list = request.user.lists.get(id=listid)
     if list:
         context = {
         "page_type":"editlist",
-        "user_list":list[0],
+        "user_list":list,
         }
         return render(request,"lists/new_list.html",context=context)
     return render(request,"main/error.html")
