@@ -553,6 +553,10 @@ video {
   right: 0px;
 }
 
+.right-16 {
+  right: 4rem;
+}
+
 .right-2 {
   right: 0.5rem;
 }
@@ -579,6 +583,18 @@ video {
 
 .top-\[-2px\] {
   top: -2px;
+}
+
+.right-1\/2 {
+  right: 50%;
+}
+
+.right-32 {
+  right: 8rem;
+}
+
+.right-28 {
+  right: 7rem;
 }
 
 .z-0 {
@@ -674,6 +690,10 @@ video {
 
 .mb-12 {
   margin-bottom: 3rem;
+}
+
+.mb-14 {
+  margin-bottom: 3.5rem;
 }
 
 .mb-2 {
@@ -780,28 +800,12 @@ video {
   margin-top: 2rem;
 }
 
-.mb-16 {
-  margin-bottom: 4rem;
-}
-
-.mb-28 {
-  margin-bottom: 7rem;
-}
-
-.mb-44 {
-  margin-bottom: 11rem;
-}
-
-.mb-14 {
-  margin-bottom: 3.5rem;
-}
-
-.mb-48 {
-  margin-bottom: 12rem;
-}
-
 .block {
   display: block;
+}
+
+.inline-block {
+  display: inline-block;
 }
 
 .inline {
@@ -850,6 +854,10 @@ video {
 
 .h-3 {
   height: 0.75rem;
+}
+
+.h-4 {
+  height: 1rem;
 }
 
 .h-44 {
@@ -994,6 +1002,34 @@ video {
   width: 100vw;
 }
 
+.w-32 {
+  width: 8rem;
+}
+
+.w-16 {
+  width: 4rem;
+}
+
+.w-48 {
+  width: 12rem;
+}
+
+.w-11 {
+  width: 2.75rem;
+}
+
+.w-\[2px\] {
+  width: 2px;
+}
+
+.w-\[1px\] {
+  width: 1px;
+}
+
+.w-auto {
+  width: auto;
+}
+
 .shrink-0 {
   flex-shrink: 0;
 }
@@ -1006,8 +1042,16 @@ video {
   flex-basis: 60%;
 }
 
+.basis-4 {
+  flex-basis: 1rem;
+}
+
 .basis-full {
   flex-basis: 100%;
+}
+
+.basis-32 {
+  flex-basis: 8rem;
 }
 
 .cursor-move {
@@ -1146,6 +1190,10 @@ video {
   gap: 2.25rem;
 }
 
+.gap-8 {
+  gap: 2rem;
+}
+
 .gap-x-1 {
   -moz-column-gap: 0.25rem;
        column-gap: 0.25rem;
@@ -1208,6 +1256,10 @@ video {
   align-self: flex-start;
 }
 
+.self-end {
+  align-self: flex-end;
+}
+
 .self-center {
   align-self: center;
 }
@@ -1254,6 +1306,11 @@ video {
 
 .rounded-sm {
   border-radius: 0.125rem;
+}
+
+.rounded-b-lg {
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 }
 
 .border {
@@ -2075,6 +2132,11 @@ video {
   stroke: #F27405;
 }
 
+.hover\:text-letterboxd-5:hover {
+  --tw-text-opacity: 1;
+  color: rgb(242 116 5 / var(--tw-text-opacity));
+}
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
@@ -2537,6 +2599,11 @@ video {
   .lg\:px-56 {
     padding-left: 14rem;
     padding-right: 14rem;
+  }
+
+  .lg\:px-36 {
+    padding-left: 9rem;
+    padding-right: 9rem;
   }
 
   .lg\:text-3xl {
