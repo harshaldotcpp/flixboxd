@@ -202,7 +202,7 @@ if (save_list) {
             });
         });
         options.body = JSON.stringify(data);
-        fetch("/list/post", options).then(res => res.json())
+        fetch("/lists/post", options).then(res => res.json())
             .then(res => {
                 myAlert(res.message);
             })

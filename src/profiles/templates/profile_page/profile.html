@@ -39,7 +39,7 @@
                     <div class="font-myfont text-2xl p-0">{{ user_profile.username }}</div>
                     <div class="text-letterboxd-3 font-bold m-0">india</div>
                     {% if user_profile.username == user.username %}
-                    <div class="bg-letterboxd-3 rounded-md text-sm tracking-widest px-2 py-1 font-myfont"><a href="{% url 'profiles:settings' %}">EDIT
+                    <div class="bg-letterboxd-3 rounded-md text-sm tracking-widest px-2 py-1 font-myfont"><a href="{% url 'profiles:settings' user.username %}">EDIT
                             PROFILE</a></div>
                     {% else %}
                     {% if user.is_authenticated %}

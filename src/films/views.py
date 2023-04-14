@@ -315,7 +315,8 @@ def rating(request):
             "tmdb_id": obj["tmdb_id"],
             "original_title": obj["title"].strip("\""),
             "poster_path" : obj["poster_path"].strip("\""),
-            "director": obj["director"].strip("\"")
+            "director": obj["director"].strip("\""),
+            "release_year": obj["release_year"].strip("\"")
         }
     
         movie = request.user.profile.add_watched_movie(movieInfo)
