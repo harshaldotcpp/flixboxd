@@ -15,19 +15,24 @@
     class="bg-gradient-to-tl text-letterboxd-6 from-[#2A394E] to-[#0E0E0F] overflow-x-hidden  max-w-screen min-h-screen scrollbar-thin scrollbar-track-[#2A394E] scrollbar-thumb-letterboxd-1">
     {% include 'main/navbar.html' %}
     <div class="mt-7 md:mt-16 px-5 sm:px-20 lg:px-32 borde border-white">
-        <h1 class="pt-12 pb-3 font-myfontLight text-letterboxd-3 text-2xl lg:text-3xl border-b border-letterboxd-2">New
-            List</h1>
+        <h1 class="pt-12 pb-3 font-myfontLight text-letterboxd-3 text-2xl lg:text-3xl border-b border-letterboxd-2">
+            {% if page_type == 'editlist' %}
+            Edit List
+            {% else %}
+            New List
+            {% endif %} 
+        </h1>
 
         <section
             class="grid md:grid-cols-[auto,auto] gap-3  md:gap-8 md:grid-rows-[auto,auto,auto] grid-cols-[auto] grid-rows-[auto,auto,auto,auto]">
             <div id="name_of_list" class="mt-2">
-                <label class="text-sm text-letterboxd-3">Name of list</label>
-                <input type="text" id="list_name" name="first_name" placeholder="{{ user.first_name }}"
+                <label  class="text-sm text-letterboxd-3">Name of list</label>
+                <input data-id="{{ user_list.id }}" type="text" id="list_name" name="first_name" placeholder="{{ user_list.name }}"
                     class="focus:outline-none p-3 w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
             </div>
             <div class="mt-2 md:row-span-3">
                 <label class="text-sm text-letterboxd-3">Discription for list</label>
-                <textarea id="list_desc" placeholder="anything you have say about this list?" rows="4" name="bio"
+                <textarea id="list_desc" placeholder="{{user_list.description}}" rows="4" name="bio"
                     class="resize-none  p-3 focus:outline-none mt-1 w-full  rounded-md bg-letterboxd-2 h-full"></textarea>
 
             </div>
@@ -46,22 +51,26 @@
             <div class="flex gap-2 font-myfont text-sm tracking-wider text-letterboxd-6">
                 <a class="bg-letterboxd-3 px-2 py-1">Delete</a>
                 <a class="bg-letterboxd-3 px-2 py-1">Cancel</a>
+                {% if page_type == "newlist" %}
                 <a id="save-list" class="bg-letterboxd-4 px-2 py-1">Save</a>
+                {% else %}
+                <a id="update-list" class="bg-letterboxd-4 px-2 py-1">update</a>
+                {% endif %}
             </div>
         </section>
         <section id="list" class="mt-11 ">
-            {% if user_list %}
-            <div id=""
+            {% for movie in user_list.movies.all %}
+            <div id="" data-id="{{ movie.tmdb_id }}" data-title="{{ movie.title }}" data-poster_path="{{ movie.poster_path }}" data-release_year="{{ movie.release_year }}"
                 class="list-element border border-letterboxd-2 p-2 flex items-center gap-x-3 font-abrilbold text-letterboxd-6 text-lg">
                 <div class="card relative rounded-sm self-start  overflow-hidden">
-                    <img class="lozad object-cover w-9" data-src="{% static 'john3.jpg' %}"
+                    <img class="lozad object-cover w-9" data-src="https://image.tmdb.org/t/p/w200/{{movie.poster_path}}"
                         src="https://image.tmdb.org/t/p/w200/{{movie.poster_path}}">
                     <div
                         class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                     </div>
                 </div>
                 <div class="flex flex-col basis-full">
-                    <span>John Wick 4 (2022) </span>
+                    <span>{{ movie.title }} ({{movie.release_year }}) </span>
                     <a class="text-sm w-fit p-1 font-myfontLight border border-letterboxd-2">Add Note</a>
                 </div>
                 <a class="self-center p-3" onclick="handleRemove(event)">
@@ -71,7 +80,7 @@
                     </svg>
                 </a>
             </div>
-            {% endif %}
+            {% endfor %}
             
         </section>
 

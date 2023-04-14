@@ -40,7 +40,7 @@
                     {% endfor %}
                 </div>
                 <div class="list-info shrink-0 grow-0 basis-3/5 ">
-                    <div class="name text-md font-myfont text-letterboxd-6">{{ l.list.name }}</div>
+                    <div class="name text-md font-myfont text-letterboxd-6"><a href="{% url 'list:editlist' l.list.id %}">{{ l.list.name }}</a></div>
                     <div class="no-films text-sm mb-2 text-gray-400">9 film</div>
                     <div class="discription text-sm text-gray-400 font-abril">{{l.list.description }}</div>
                 </div>

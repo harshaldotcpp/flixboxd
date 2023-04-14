@@ -140,7 +140,21 @@ class Profile(models.Model):
                user_list.movies.add(new_list_movie)
         return 
 
-
+    def updateList(self,list,movies):
+        user_list = List.objects.get(id=list["id"])
+        user_list.name = list["list_name"]
+        user_list.description = list["list_desc"]
+        user_list.movies.clear()
+        for movie in movies:
+            list_movie = ListMovie.objects.filter(tmdb_id = movie["tmdb_id"])
+            if list_movie:
+                user_list.movies.add(list_movie[0]) 
+            else:
+                new_list_movie = ListMovie.objects.create(title=movie["title"],release_year=movie['release_year'],tmdb_id=movie["tmdb_id"],poster_path=movie["poster_path"])
+                new_list_movie.save()
+                user_list.movies.add(new_list_movie)
+        user_list.save()
+        return
 
 class Top4Movies(models.Model):
     tmdb_id = models.IntegerField(unique=True) 

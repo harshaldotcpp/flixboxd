@@ -33,7 +33,25 @@ def showlists(request,username):
     return render(request,"profile_page/error.html")
 
 def newlist(request):
-    return render(request,"lists/new_list.html")
+    context = {
+        "page_type":"newlist",
+    }
+    return render(request,"lists/new_list.html",context=context)
+
+
+def editlist(request,listid):
+    list = request.user.lists.filter(id=listid)
+    if list:
+        context = {
+        "page_type":"editlist",
+        "user_list":list[0],
+        }
+        return render(request,"lists/new_list.html",context=context)
+    return render(request,"main/error.html")
+
+
+
+    
 
 
 def postlist(request):
@@ -42,4 +60,13 @@ def postlist(request):
         request.user.profile.addList(data[0],data[1:])
         response ={"message":"sucessfull","message":"list Created"}
         return HttpResponse(json.dumps(response),content_type='application/json')
+    return render(request,"main/error.html")
+
+
+def updatelist(request):
+    if request.method == "POST":
+        data = json.load(request)
+        response ={"message":"sucessfull","message":"list Created"}
+        request.user.profile.updateList(data[0],data[1:])
+        return HttpResponse(json.dumps(response),content_type="application/json")
     return render(request,"main/error.html")
