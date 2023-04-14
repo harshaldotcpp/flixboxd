@@ -65,8 +65,8 @@
                             class="card relative rounded-sm duration-500  hover:border-2 hover:border-white overflow-hidden">
                             <a href="{% url 'filmsabout:film' movie.tmdb_id%}">
                                 <img class="lozad object-cover"
-                                    data-src="https://image.tmdb.org/t/p/original/{{movie.poster_path}}"
-                                    src="https://image.tmdb.org/t/p/w200/{{movie.poster_path}}">
+                                    data-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
+                                    src="https://image.tmdb.org/t/p/w200{{movie.poster_path}}">
                                 <div
                                     class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                                 </div>

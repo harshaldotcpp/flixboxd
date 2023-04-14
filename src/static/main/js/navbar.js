@@ -178,6 +178,6 @@ search_content_btn.addEventListener("click", (event) => {
         }, 1300);
         return;
     }
-    const action_url = "/search/film/" + content;
+    const action_url = "/film/search/" + content;
     location.href = action_url
 });

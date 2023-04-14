@@ -14,5 +14,5 @@ urlpatterns = [
     path('watched/<str:username>',views.showWatched,name="showWatched"),
     path('watchlist/<str:username>',views.showWatchlist,name="showWatchlist"),
     path('diary/<str:username>',views.diary ,name="diary"),
-    path('film/<str:film_name>',views.search_films,name="search_films"),
+    path('search/<str:film_name>',views.search_films,name="search_films"),
 ]

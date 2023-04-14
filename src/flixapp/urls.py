@@ -12,6 +12,5 @@ urlpatterns = [
     path('profile/',include('profiles.urls')),
     path('<str:username>',user_profile, name="user_profile"),
     path('film/',include("films.urls")),
-    path('search/',include("films.urls")),
     path('lists/',include("lists.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
