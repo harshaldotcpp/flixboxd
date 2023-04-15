@@ -92,7 +92,6 @@ def liked(request):
 
 def watchlist(request):
     if request.method == "POST":
-        print("hello world")
         obj = json.load(request)
         movie_add = obj["add"]
 
@@ -102,6 +101,7 @@ def watchlist(request):
                 "original_title": obj["title"].strip("\""),
                 "poster_path": obj["poster_path"].strip("\"")
             }
+
             request.user.profile.add_to_watchlist(movie_info)
             response_data = {
                 "status": "succesfull",
@@ -133,12 +133,12 @@ def addReview(request):
        
 
         if len(movie_info["review"]) != 0:
-            movie = request.user.profile.add_watched_movie(movie_info)
+            movie = request.user.profile.add_watched_movie(movie_info).film
             movie.post_review(movie_info["review"],request.user)
             messages.success(request,"Review Added")
 
         if request.POST.get("shouldlog") is not None:
-            movie = request.user.profile.add_watched_movie(movie_info)
+            movie = request.user.profile.add_watched_movie(movie_info).film
             log_date = datetime.datetime.strptime(movie_info["date"],'%Y-%m-%d').date()
             user_diary = request.user.diary_log.filter(date=log_date)
             if user_diary:
@@ -251,7 +251,7 @@ def  showWatchlist(request,username):
 
     if user:
 
-        movies = user[0].watchlist_set.all()
+        movies = user[0].watchlist.all()
         context = {
             "movies": movies,
             "len": len(movies),
@@ -319,7 +319,7 @@ def rating(request):
             "release_year": obj["release_year"].strip("\"")
         }
     
-        movie = request.user.profile.add_watched_movie(movieInfo)
+        movie = request.user.profile.add_watched_movie(movieInfo).film
         user_rating = Rating.objects.filter(movie=movie,user=request.user)
 
         if user_rating:
@@ -338,12 +338,14 @@ def rating(request):
 def removeRating(request):
     if request.method == "POST":
         obj = json.load(request)
-        movie = WatchedMovie.objects.filter(tmdb_id=obj["tmdb_id"])
-        if movie:
-            rating = Rating.objects.filter(movie=movie[0],user=request.user)
-            if rating:
-                rating.delete()
-                return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
+        film = Film.objects.filter(tmdb_id=obj["tmdb_id"])
+        if film:
+            movie = WatchedMovie.objects.filter(film = film[0])
+            if movie:
+                rating = Rating.objects.filter(movie=film[0],user=request.user)
+                if rating:
+                    rating.delete()
+                    return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
 
 
         return HttpResponse(json.dumps({"status":"failed","message":"there is no rating for this movie"}),content_type='application/json')

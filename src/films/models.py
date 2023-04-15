@@ -8,7 +8,14 @@ class Film(models.Model):
     poster_path = models.CharField(max_length=100)
     director = models.CharField(max_length=100)
     release_year = models.IntegerField() 
-   
+
+    def post_review(self,review,user):
+        return self.reviews_set.create(review=review,review_by=user)
+
+    def __str__(self):
+        return f"{self.original_title} by {self.director}"
+
+
 
 
 
@@ -21,10 +28,7 @@ class WatchedMovie(models.Model):
     def get_reviews(self):
         return self.reviews_set.all()
         
-    def post_review(self,review,user):
-        return self.reviews_set.create(review=review,review_by=user)
-
-        
+            
     def __str__(self):
         return f"Movie:{self.film.original_title},Director:{self.film.director}"
  
@@ -44,7 +48,7 @@ class Rating(models.Model):
 class DiaryLog(models.Model):
     date = models.DateField()
     user = models.ForeignKey(User,related_name='diary_log',on_delete=models.CASCADE)
-    movie = models.ForeignKey(WatchedMovie,related_name='diary_logs',on_delete=models.CASCADE)
+    movie = models.ForeignKey(Film,related_name='diary_logs',on_delete=models.CASCADE)
     created_at = models.TimeField(auto_now_add=True)
     
     

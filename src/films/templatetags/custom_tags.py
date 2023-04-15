@@ -1,13 +1,15 @@
 from django import template
-from films.models import Film, WatchedMovie
+from films.models import Film, WatchedMovie,Rating
 import calendar
 
 register = template.Library()
 
 @register.simple_tag
 def is_liked(movie,username,true,false):
-    if movie.liked_by.filter(username=username).exists():
-        return true
+    watched_movie = WatchedMovie.objects.filter(film=movie)
+    if watched_movie:
+        if watched_movie[0].liked_by.filter(username=username).exists():
+            return true
     return false 
 
 @register.simple_tag
@@ -43,7 +45,13 @@ def is_liked_tmdb(tmdb_id,user,true,false):
 
 @register.simple_tag
 def is_watchlist_tmdb(tmdb_id,user,true,false):
+    film = Film.objects.filter(tmdb_id = tmdb_id)
+    if film:
+        watchlisted = user.watchlist.filter(film=film[0])
+        if watchlisted:
+            return true
     return false
+        
 
 @register.simple_tag
 def what_rated(user,tmdb_id,star):
@@ -65,11 +73,11 @@ def get_month_name(number):
 
 
 def get_rating(user,tmdb_id):
-    movie = user.movies_set.filter(tmdb_id = tmdb_id)
-    if movie:
-        rating = user.rating_set.filter(movie=movie[0])
+    film = user.profile.filmExist(tmdb_id)
+    if film:
+        rating = Rating.objects.filter(user=user,movie=film)
         if rating:
-            return  rating[0].stars 
+            return rating[0].stars
     return 0 
 
 

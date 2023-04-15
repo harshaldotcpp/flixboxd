@@ -44,6 +44,12 @@ class Profile(models.Model):
         film = Film.objects.create(tmdb_id=details.id,original_title=details.title,poster_path=details.poster_path,director=director,release_year=release_year)
         film.save()
         return film
+
+    def filmExist(self,tmdb_id):
+        film = Film.objects.filter(tmdb_id = tmdb_id)
+        if film:
+            return film[0]
+        return False
       
     def add_watched_movie(self,movie):
         tmdb_id = movie["tmdb_id"]
@@ -71,7 +77,7 @@ class Profile(models.Model):
         watched_film.watched_by.add(self.user)
         return watched_film
          
-        
+         
     
     def remove_watched_movie(self,tmdb_id):
 
@@ -86,11 +92,29 @@ class Profile(models.Model):
         
     
     def add_to_watchlist(self,movie):
-        pass
+        film = self.filmExist(movie["tmdb_id"])
+        if film:
+            watched_film = WatchedMovie.objects.filter(film=film)
+            if watched_film:
+                self.user.watchlist.add(watched_film[0])
+                return watched_film[0]
+            watched_film = WatchedMovie.objects.create(film=film)
+            watched_film.save()
+            self.user.watchlist.add(watched_film)
+            return watched_film
+        film = self.createFilm(movie)
+        watched_film = WatchedMovie.objects.create(film=film)
+        watched_film.save()
+        self.user.watchlist.add(watched_film)
+        return watched_film
+            
+
+    
+
         
         
     def remove_from_watchlist(self,tmdb_id):
-        pass
+        pass 
     
     def is_in_watchlist(self,tmdb_id):
         pass
