@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+ 
 class WatchedMovie(models.Model):
     tmdb_id = models.IntegerField(unique=True)
     original_title = models.CharField(max_length=100)
