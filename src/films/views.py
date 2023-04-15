@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect  
 from django.shortcuts import render
 from django.contrib import messages
-from .models import Rating,WatchedMovie,DiaryLog,Film
+from .models import Rating,DiaryLog,Film
 from tmdbv3api import TMDb,Movie
 import datetime
 import random
@@ -36,13 +36,14 @@ def watched(request):
             
             }
             request.user.profile.add_watched_movie(movieInfo)
+            request.user.profile.remove_from_watchlist(obj["tmdb_id"])
             
             response_data = {
                 "status": "succesfull",
                 "message": "Added to watched"
             }
             return HttpResponse(json.dumps(response_data),content_type='application/json')
-        print("hiiiiiiiiiiiiii") 
+
         movie = Film.objects.filter(tmdb_id=obj["tmdb_id"])
         if movie:
             rating = Rating.objects.filter(movie=movie[0],user=request.user)
@@ -133,7 +134,7 @@ def addReview(request):
        
 
         if len(movie_info["review"]) != 0:
-            movie = request.user.profile.add_watched_movie(movie_info).film
+            movie = request.user.profile.add_watched_movie(movie_info)
             movie.post_review(movie_info["review"],request.user)
             messages.success(request,"Review Added")
 
@@ -319,7 +320,7 @@ def rating(request):
             "release_year": obj["release_year"].strip("\"")
         }
     
-        movie = request.user.profile.add_watched_movie(movieInfo).film
+        movie = request.user.profile.add_watched_movie(movieInfo)
         user_rating = Rating.objects.filter(movie=movie,user=request.user)
 
         if user_rating:
@@ -338,14 +339,12 @@ def rating(request):
 def removeRating(request):
     if request.method == "POST":
         obj = json.load(request)
-        film = Film.objects.filter(tmdb_id=obj["tmdb_id"])
+        film = request.user.profile.filmExist(obj["tmdb_id"])
         if film:
-            movie = WatchedMovie.objects.filter(film = film[0])
-            if movie:
-                rating = Rating.objects.filter(movie=film[0],user=request.user)
-                if rating:
-                    rating.delete()
-                    return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
+            rating = Rating.objects.filter(movie=film,user=request.user)
+            if rating:
+                rating[0].delete()
+        return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
 
 
         return HttpResponse(json.dumps({"status":"failed","message":"there is no rating for this movie"}),content_type='application/json')

@@ -116,7 +116,6 @@ if (like_btn) {
 }
 if (watchlist_btn) {
     watchlist_btn.addEventListener("click", (event) => {
-
         const icon = document.querySelector("#watchlist-icon");
         icon.classList.toggle("fill-letterboxd-4");
         options.body = JSON.stringify({

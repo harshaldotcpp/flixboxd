@@ -6,7 +6,7 @@
             <div class="col-span-4 md:col-span-6 sm:col-span-5 lg:col-span-10 flex gap-x-6 border-b mb-2 font-myfontLight tracking-wider   border-gray-400">
                 <div class=""> <a href="{% url 'filmsabout:showWatched' search_user.username %}"> Watched</a></div>
                 <div> <a href="{% url 'filmsabout:diary' search_user.username %}">Diary</a></div>
-                <div class="text-letterboxd-4 border-b  border-letterboxd-5"> <a href="">Watchlist</a></div>
+                <div class="text-letterboxd-4 "> <a href="">Watchlist</a></div>
             </div>  
             {% for movie in movies %}
                 {% include "films/cards.html" %}

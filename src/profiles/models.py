@@ -1,5 +1,5 @@
 from django.db import models
-from films.models import WatchedMovie,Film
+from films.models import Film
 from lists.models import List,ListMovie
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -26,9 +26,19 @@ class Profile(models.Model):
     updated = models.DateTimeField(auto_now=True)
     following = models.ManyToManyField("self", symmetrical=False,related_name="followers",blank=True)
  
+
+    def filmExist(self,tmdb_id):
+        film = Film.objects.filter(tmdb_id = tmdb_id)
+        if film:
+            return film[0]
+        return False
     
   
     def createFilm(self,movie):
+        film = self.filmExist(movie["tmdb_id"]) 
+        if film:
+            return film
+
         m = Movie()
         mc = m.credits(movie["tmdb_id"])
         details = m.details(movie["tmdb_id"])
@@ -45,85 +55,59 @@ class Profile(models.Model):
         film.save()
         return film
 
-    def filmExist(self,tmdb_id):
-        film = Film.objects.filter(tmdb_id = tmdb_id)
-        if film:
-            return film[0]
-        return False
-      
+     
     def add_watched_movie(self,movie):
         tmdb_id = movie["tmdb_id"]
-        title = movie["original_title"]
-        poster_path = movie['poster_path']
-        director = movie['director']
-        release_year = movie['release_year']
 
-        film = Film.objects.filter(tmdb_id= tmdb_id)
-
+        film = self.filmExist(tmdb_id)
         if film:
-            watched_film = WatchedMovie.objects.filter(film = film[0])
-            if watched_film:
-                watched_film[0].watched_by.add(self.user)
-                return watched_film[0]
-            watched_film = WatchedMovie.objects.create(film=film[0])
-            watched_film.save()
-            watched_film.watched_by.add(self.user)
-            return watched_film
+            film.watched_by.add(self.user)
+            return film
+        film = self.createFilm(movie)
+        film.watched_by.add(self.user)
+        return film
 
-        
-        film = self.createFilm(movie) 
-        watched_film = WatchedMovie.objects.create(film=film)
-        watched_film.save()
-        watched_film.watched_by.add(self.user)
-        return watched_film
-         
-         
-    
     def remove_watched_movie(self,tmdb_id):
-
-        film = Film.objects.filter(tmdb_id= tmdb_id)
-        if film:
-            db_movie = self.user.movies_set.filter(film=film[0])
-            if db_movie: #safety check
-                self.user.movies_set.remove(db_movie[0])
-                return True
-     
+        film = self.filmExist(tmdb_id) 
+        if film and film.watched_by.filter(username=self.user.username):
+            film.watched_by.remove(self.user)
+            return True
         return False
         
     
     def add_to_watchlist(self,movie):
-        film = self.filmExist(movie["tmdb_id"])
-        if film:
-            watched_film = WatchedMovie.objects.filter(film=film)
-            if watched_film:
-                self.user.watchlist.add(watched_film[0])
-                return watched_film[0]
-            watched_film = WatchedMovie.objects.create(film=film)
-            watched_film.save()
-            self.user.watchlist.add(watched_film)
-            return watched_film
+        tmdb_id = movie["tmdb_id"]
+
+        film = self.filmExist(tmdb_id)
+        if film and film.watchlisted_by.filter(username=self.user.username):
+            film.watchlisted_by.add(self.user)
+            return film
         film = self.createFilm(movie)
-        watched_film = WatchedMovie.objects.create(film=film)
-        watched_film.save()
-        self.user.watchlist.add(watched_film)
-        return watched_film
-            
+        film.watchlisted_by.add(self.user)
 
-    
-
-        
         
     def remove_from_watchlist(self,tmdb_id):
-        pass 
+        print("hii")
+        film = self.filmExist(tmdb_id)
+        print("heyy",film)
+        if film and film.watchlisted_by.filter(username=self.user.username):
+            film.watchlisted_by.remove(self.user)
+            print("removed")
+            return True
+        return False
+        
     
     def is_in_watchlist(self,tmdb_id):
-        pass
-
+        film = self.filmExist(tmdb_id)
+        if film and film.watched_by.filter(username=self.user.username):
+            return True
+        return False
         
     def is_watched(self,tmdb_id):
-        if self.user.movies_set.filter(tmdb_id=tmdb_id).count() == 0:
-            return False
-        return True
+        film = self.filmExist(tmdb_id)
+        if film and film.watched_by.filter(username=self.username):
+            return True
+        return False
     
     def follow_user(self,username):
         user = User.objects.filter(username=username)[0]
@@ -143,21 +127,21 @@ class Profile(models.Model):
 
     def liked(self,movie):
         movie  = self.add_watched_movie(movie)
-        self.user.liked_movies_set.add(movie)
+        movie.liked_by.add(self.user)
         return
 
         
     def unlike(self,movie_id):
-        film = Film.objects.filter(tmdb_id=movie_id)
-        if film:
-            db_movie = self.user.liked_movies_set.filter(film = film[0])
-            if db_movie:
-                self.user.liked_movies_set.remove(db_movie[0])
-                return True
+        film = self.filmExist(movie_id)
+        if film and film.liked_by.filter(username=self.user.username):
+            film.liked_by.remove(self.user)
+            return True
         return False
+
   
-    def is_liked(self,movie_id):
-        if self.user.liked_movies_set.filter(tmdb_id = movie_id):
+    def is_liked(self,tmdb_id):
+        film = self.filmExist(tmdb_id)
+        if film and film.liked_by.filter(username = self.user.username):
             return True
         return False
 

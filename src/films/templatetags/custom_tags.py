@@ -1,16 +1,15 @@
 from django import template
-from films.models import Film, WatchedMovie,Rating
+from films.models import Film, Rating
 import calendar
 
 register = template.Library()
 
 @register.simple_tag
 def is_liked(movie,username,true,false):
-    watched_movie = WatchedMovie.objects.filter(film=movie)
-    if watched_movie:
-        if watched_movie[0].liked_by.filter(username=username).exists():
-            return true
-    return false 
+    if movie.liked_by.filter(username=username):
+        return True
+    return False
+
 
 @register.simple_tag
 def is_watched(movie,username):
@@ -21,13 +20,11 @@ def is_watched(movie,username):
 
 @register.simple_tag
 def is_watched_tmdb(tmdb_id,user,true,false):
-    film = Film.objects.filter(tmdb_id=tmdb_id)
-    if film:
-        iswatched = user.movies_set.filter(film = film[0])
-        print(iswatched)
-        if iswatched:
-            return true
+    film = user.profile.filmExist(tmdb_id) 
+    if film and film.watched_by.filter(username = user.username):
+        return true
     return false
+
 
 
 
@@ -35,34 +32,25 @@ def is_watched_tmdb(tmdb_id,user,true,false):
 
 @register.simple_tag
 def is_liked_tmdb(tmdb_id,user,true,false):
-    film = Film.objects.filter(tmdb_id = tmdb_id)
-    if film:
-        is_liked = user.liked_movies_set.filter(film=film[0])
-        if is_liked:
-            return true
+    film = user.profile.filmExist(tmdb_id)
+    if film and film.liked_by.filter(username=user.username):
+        return true
     return false
 
 
 @register.simple_tag
 def is_watchlist_tmdb(tmdb_id,user,true,false):
-    film = Film.objects.filter(tmdb_id = tmdb_id)
-    if film:
-        watchlisted = user.watchlist.filter(film=film[0])
-        if watchlisted:
-            return true
+    film = user.profile.filmExist(tmdb_id)
+    if film and film.watchlisted_by.filter(username=user.username):
+        return true
     return false
         
 
 @register.simple_tag
 def what_rated(user,tmdb_id,star):
-    film = Film.objects.filter(tmdb_id = tmdb_id)
-    if film:
-        movie = user.movies_set.filter(film=film[0])
-        if movie:
-            print(movie[0])
-            rating = user.rating_set.filter(movie=film[0])
-            if rating and rating[0].stars == star:
-                return "checked"
+    film = user.profile.filmExist(tmdb_id)
+    if film and user.rating_set.filter(movie=film):
+            return "checked"
     return "unchecked"
 
 

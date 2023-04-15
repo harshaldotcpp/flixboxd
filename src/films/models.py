@@ -8,6 +8,9 @@ class Film(models.Model):
     poster_path = models.CharField(max_length=100)
     director = models.CharField(max_length=100)
     release_year = models.IntegerField() 
+    watched_by = models.ManyToManyField(User,related_name="movies_set")
+    liked_by = models.ManyToManyField(User,related_name="liked_movies_set",blank=True)
+    watchlisted_by = models.ManyToManyField(User,related_name="watchlist")
 
     def post_review(self,review,user):
         return self.reviews_set.create(review=review,review_by=user)
@@ -16,21 +19,11 @@ class Film(models.Model):
         return f"{self.original_title} by {self.director}"
 
 
-
-
-
-class WatchedMovie(models.Model):
-    film = models.ForeignKey(Film,related_name="users",on_delete=models.CASCADE)
-    watched_by = models.ManyToManyField(User,related_name="movies_set")
-    liked_by = models.ManyToManyField(User,related_name="liked_movies_set",blank=True)
-    watchlisted_by = models.ManyToManyField(User,related_name="watchlist")
     
     def get_reviews(self):
         return self.reviews_set.all()
         
             
-    def __str__(self):
-        return f"Movie:{self.film.original_title},Director:{self.film.director}"
  
  
  

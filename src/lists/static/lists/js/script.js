@@ -212,6 +212,7 @@ if (save_list) {
 const update_list = document.getElementById("update-list");
 
 if (update_list) {
+    console.log("hello")
     update_list.addEventListener("click", event => {
         let list_name = document.getElementById("list_name").getAttribute("placeholder")
         let list_description = document.getElementById("list_desc").getAttribute("placeholder")
