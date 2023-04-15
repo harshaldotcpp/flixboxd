@@ -27,7 +27,7 @@
 
 
 
-    <div class="mt-20 md:mt-28 px-5 sm:px-12 md:px-28 lg:px-56 ">
+    <div class="mt-20 md:mt-28 px-5 sm:px-12 md:px-24 lg:px-36 ">
 
         <div id="profile-intro"
             class="flex flex-col gap-11  lg:flex-row justify-center md:justify-between items-center">
@@ -39,7 +39,7 @@
                     <div class="font-myfont text-2xl p-0">{{ user_profile.username }}</div>
                     <div class="text-letterboxd-3 font-bold m-0">india</div>
                     {% if user_profile.username == user.username %}
-                    <div class="bg-letterboxd-3 rounded-md text-sm tracking-widest px-2 py-1 font-myfont"><a href="{% url 'profiles:settings' %}">EDIT
+                    <div class="bg-letterboxd-3 rounded-md text-sm tracking-widest px-2 py-1 font-myfont"><a href="{% url 'profiles:settings' user.username %}">EDIT
                             PROFILE</a></div>
                     {% else %}
                     {% if user.is_authenticated %}
@@ -61,27 +61,27 @@
                 <a href="{% url 'filmsabout:showWatched' username %}">
                     <div class="px-4 border-letterboxd-3  text-center">
                         <div class="text-white font-abrilbold">{% films_watched_count username %}</div>
-                        <div class="text-sm">FILMS</div>
+                        <div class="text-sm hover:text-letterboxd-5">FILMS</div>
                     </div>
                 </a>
                 <div class="px-4 border-l border-letterboxd-3 text-center">
-                    <div class="text-white font-abrilbold">
+                    <div class="text-white font-abrilbold ">
                          {% get_year_films_count user_profile  %}
                         </div>
 
-                    <div class="text-sm">THIS YEAR</div>
+                    <div class="text-sm hover:text-letterboxd-5">THIS YEAR</div>
                 </div>
                 <div class="px-4 border-l border-letterboxd-3 text-center">
                     <div class="text-white font-abrilbold">{% get_lists_count username %}</div>
-                    <div class="text-sm">LISTS</div>
+                    <div class="text-sm hover:text-letterboxd-5"><a href="{% url 'list:showlists' username %}">LISTS</a></div>
                 </div>
                 <div class="px-4 border-l border-letterboxd-3 text-center">
                     <div class="text-white font-abrilbold">{% get_following_count username %}</div>
-                    <div class="text-sm">FOLLOWING</div>
+                    <div class="text-sm hover:text-letterboxd-5">FOLLOWING</div>
                 </div>
                 <div class="px-4 border-l border- border-letterboxd-3 text-center">
                     <div class="text-white font-abrilbold">{% get_followers_count username %}</div>
-                    <div class="text-sm">FOLLOWERS</div>
+                    <div class="text-sm hover:text-letterboxd-5">FOLLOWERS</div>
                 </div>
             </div>
         </div>

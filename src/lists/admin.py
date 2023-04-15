@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import List,ListMovie, Note
+from .models import List
 # Register your models here.
 
-admin.site.register([List,ListMovie,Note])
+admin.site.register(List)

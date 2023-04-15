@@ -24,7 +24,8 @@ function updateTopFour() {
 
     options.body = JSON.stringify(top4);
     myAlert("top list updated");
-    fetch("/profile/updatetop", options);
+    const username = getCookie("username");
+    fetch(`/${username}/updatetop`, options);
 }
 
 

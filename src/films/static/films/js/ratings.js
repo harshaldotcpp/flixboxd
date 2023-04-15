@@ -9,7 +9,8 @@ Array.from(stars_btns).forEach(btn => {
             "tmdb_id": getCookie("id"),
             "title": getCookie("movie_name"),
             "poster_path": getCookie("poster_path"),
-            "director": getCookie("director")
+            "director": getCookie("director"),
+            "release_year": getCookie("release_year")
         })
         fetch("/film/ratingadd", options).then(response => response.json())
             .then(response => {
@@ -18,9 +19,11 @@ Array.from(stars_btns).forEach(btn => {
 
         if (document.querySelector("#watch-btn")) {
             if (! document.querySelector("#watch-btn").checked) {
+                
+                console.log("hiid")
                 watch_btn.checked = true;
                 const icon = document.querySelector("#watch-icon");
-                icon.classList.toggle("classList");
+                icon.classList.toggle("fill-letterboxd-4");
             }
         }
     })

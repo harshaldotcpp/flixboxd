@@ -1,11 +1,11 @@
-from films.models import WatchedMovie
+from films.models import Film
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
 class Review(models.Model):
     review = models.CharField(max_length=1000)
-    movie = models.ForeignKey(WatchedMovie,on_delete=models.CASCADE,related_name="reviews_set")
+    movie = models.ForeignKey(Film,on_delete=models.CASCADE,related_name="reviews_set")
     date = models.DateTimeField(auto_now_add=True)
     review_by = models.ForeignKey(User,on_delete=models.CASCADE,related_name="reviews_set")
     liked_by = models.ManyToManyField(User,related_name="liked_review_set")

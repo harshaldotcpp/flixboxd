@@ -202,7 +202,7 @@ if (save_list) {
             });
         });
         options.body = JSON.stringify(data);
-        fetch("/list/post", options).then(res => res.json())
+        fetch("/lists/post", options).then(res => res.json())
             .then(res => {
                 myAlert(res.message);
             })
@@ -212,6 +212,7 @@ if (save_list) {
 const update_list = document.getElementById("update-list");
 
 if (update_list) {
+    console.log("hello")
     update_list.addEventListener("click", event => {
         let list_name = document.getElementById("list_name").getAttribute("placeholder")
         let list_description = document.getElementById("list_desc").getAttribute("placeholder")

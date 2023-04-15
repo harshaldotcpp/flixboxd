@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect  
 from django.shortcuts import render
 from django.contrib import messages
-from .models import Rating,WatchedMovie,DiaryLog
+from .models import Rating,DiaryLog,Film
 from tmdbv3api import TMDb,Movie
 import datetime
 import random
@@ -25,28 +25,23 @@ def watched(request):
        
         obj = json.load(request)
         movie_add = obj["add"]
-        
         if movie_add:
             movieInfo = {
                 "tmdb_id": obj["tmdb_id"],
-                "original_title": obj["title"].strip("\""),
-                "poster_path" : obj["poster_path"].strip("\""),
-                "director": obj["director"].strip("\""),
-                "release_year": obj["release_year"]
-            
             }
+
             request.user.profile.add_watched_movie(movieInfo)
             request.user.profile.remove_from_watchlist(obj["tmdb_id"])
-            
             response_data = {
                 "status": "succesfull",
                 "message": "Added to watched"
             }
             return HttpResponse(json.dumps(response_data),content_type='application/json')
-        
-        movie = WatchedMovie.objects.filter(tmdb_id=obj["tmdb_id"])
-        rating = Rating.objects.filter(movie=movie[0],user=request.user)
-        if rating:
+
+
+        movie = Film.objects.filter(tmdb_id=obj["tmdb_id"])
+
+        if movie and Rating.objects.filter(movie=movie[0],user=request.user):
             return HttpResponse(json.dumps({"status":"failed","message":"theres activity on this movie"}),content_type="application/json")
 
         request.user.profile.unlike(obj["tmdb_id"])   
@@ -64,15 +59,10 @@ def liked(request):
        
         obj = json.load(request)
         movie_add = obj["add"]
-        print(obj)
         
         if movie_add:
             movieInfo = {
                 "tmdb_id": obj["tmdb_id"],
-                "original_title": obj["title"].strip("\""),
-                "poster_path" : obj["poster_path"].strip("\""),
-                "director": obj["director"].strip("\""),
-                "release_year": obj["release_year"]
             }
             request.user.profile.liked(movieInfo)
             request.user.profile.add_watched_movie(movieInfo)
@@ -92,16 +82,13 @@ def liked(request):
 
 def watchlist(request):
     if request.method == "POST":
-        print("hello world")
         obj = json.load(request)
         movie_add = obj["add"]
-
         if movie_add:
             movie_info = {
                 "tmdb_id": obj["tmdb_id"],
-                "original_title": obj["title"].strip("\""),
-                "poster_path": obj["poster_path"].strip("\"")
             }
+
             request.user.profile.add_to_watchlist(movie_info)
             response_data = {
                 "status": "succesfull",
@@ -118,17 +105,12 @@ def watchlist(request):
 
 
 def addReview(request):
+
     if(request.method == "POST"):
-        print(request.POST)
         url = f"/film/{request.POST['tmdb_id']}"
         movie_info = {
+            "review": request.POST["review"],
             "tmdb_id": request.POST["tmdb_id"],
-            "original_title": request.POST["title"],
-            "poster_path": request.POST["poster_path"],
-            "director": request.POST["director"],
-            "review": request.POST['review'],
-            "date" : request.POST['date'],
-            "release_year" : request.POST['release_year'],
         }
        
 
@@ -138,7 +120,7 @@ def addReview(request):
             messages.success(request,"Review Added")
 
         if request.POST.get("shouldlog") is not None:
-            movie = request.user.profile.add_watched_movie(movie_info)
+            movie = request.user.profile.add_watched_movie(movie_info).film
             log_date = datetime.datetime.strptime(movie_info["date"],'%Y-%m-%d').date()
             user_diary = request.user.diary_log.filter(date=log_date)
             if user_diary:
@@ -160,7 +142,6 @@ def addReview(request):
 
 
 def film(request,film_id):
-
     movie = Movie()
     m = movie.details(film_id)
     mc = movie.credits(film_id)
@@ -186,7 +167,7 @@ def film(request,film_id):
 
     reviews = []
     myReviews = []
-    requested_movie = WatchedMovie.objects.filter(tmdb_id=m.id)
+    requested_movie = Film.objects.filter(tmdb_id=m.id)
     if requested_movie:
         reviews = requested_movie[0].reviews_set.all()
         if request.user.is_authenticated:
@@ -199,11 +180,7 @@ def film(request,film_id):
 
 
     response = render(request,"films/film.html",context=info)
-    response.set_cookie(key="movie_name",value=m.title)
     response.set_cookie(key="id",value=m.id)
-    response.set_cookie(key="poster_path",value = m.poster_path)
-    response.set_cookie(key="director",value= directors[0])
-    response.set_cookie(key="release_year",value= info['release_year'])
    
     return response
     
@@ -251,7 +228,7 @@ def  showWatchlist(request,username):
 
     if user:
 
-        movies = user[0].watchlist_set.all()
+        movies = user[0].watchlist.all()
         context = {
             "movies": movies,
             "len": len(movies),
@@ -313,9 +290,6 @@ def rating(request):
         movieInfo = {
             "rating":obj["rating"],
             "tmdb_id": obj["tmdb_id"],
-            "original_title": obj["title"].strip("\""),
-            "poster_path" : obj["poster_path"].strip("\""),
-            "director": obj["director"].strip("\"")
         }
     
         movie = request.user.profile.add_watched_movie(movieInfo)
@@ -337,12 +311,12 @@ def rating(request):
 def removeRating(request):
     if request.method == "POST":
         obj = json.load(request)
-        movie = WatchedMovie.objects.filter(tmdb_id=obj["tmdb_id"])
-        if movie:
-            rating = Rating.objects.filter(movie=movie[0],user=request.user)
+        film = request.user.profile.filmExist(obj["tmdb_id"])
+        if film:
+            rating = Rating.objects.filter(movie=film,user=request.user)
             if rating:
-                rating.delete()
-                return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
+                rating[0].delete()
+        return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
 
 
         return HttpResponse(json.dumps({"status":"failed","message":"there is no rating for this movie"}),content_type='application/json')

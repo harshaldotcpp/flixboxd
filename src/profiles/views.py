@@ -8,6 +8,7 @@ import json
 
 # Create your views here.
 
+#shows profile page
 def user_profile(request,username):
     info = {
         "username":username
@@ -18,12 +19,13 @@ def user_profile(request,username):
     if user:
         info["user_profile"] = user[0]
         response =  render(request,"profile_page/profile.html",context=info)
-        response.set_cookie(key="username",value=username)
+        response.set_cookie(key="profile_username",value=username)
+        response.set_cookie(key="username",value=request.user.username)
         return response
 
     return render(request,"profile_page/error.html",context=info) 
 
-
+#need login (ajax request)
 def follow_user(request,username):
     if request.method == "POST":
         req = json.load(request)
@@ -41,14 +43,20 @@ def follow_user(request,username):
         request.user.profile.unfollow_user(username)
         return HttpResponse(json.dumps(response_data),content_type='application/json') 
 
-
-def settings(request):
+#need login
+def settings(request,username):
+    if username != request.user.username:
+        return render(request,"main/error.html")
     context = {
          "top4": request.user.top4,
+         "user": request.user,
     }
-    return render(request,"profile_page/settings.html")
+    response = render(request,"profile_page/settings.html")
+    response.set_cookie("username",request.user.username)
+    return response
 
-def settingsUpdate(request):
+#need login
+def settingsUpdate(request,username):
     if request.method == "POST":
         payload = {
         #"username":  request.POST['username'],
@@ -68,14 +76,15 @@ def settingsUpdate(request):
         request.user.profile.profile_picture = payload['pfp']
         request.user.save()
         messages.success(request,"Profile Updated!")        
-        return redirect("/profile/settings")
+        return redirect(f"/{request.user.username}/settings")
 
     return render(request,"profie_page/error.html")
 
-def updatetop(request):
-    if request.method == "POST":
+
+#login need (ajax request)
+def updatetop(request,username):
+    if request.method == "POST" or request.user.username == username:
         top4 = json.load(request)
-        print(top4)
         addInTopFour(request.user,top4[0],"one")
         addInTopFour(request.user,top4[1],"two")
         addInTopFour(request.user,top4[2],"three")

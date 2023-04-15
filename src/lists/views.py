@@ -53,7 +53,7 @@ def showlist(request,username,listid):
             m = Movie().details(list[0].movies.all()[0].tmdb_id).backdrop_path
             
             context = {
-                "search_user": search_user[0],
+                "the_user": search_user[0],
                 "list": list[0],
                 "backdrop_path":m,
             }

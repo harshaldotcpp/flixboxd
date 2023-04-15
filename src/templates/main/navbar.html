@@ -1,163 +1,210 @@
        <nav class="absolute top-0 z-50 bg-letterboxd-1 text-slate-100 w-screen">
-          <div class="p-2 md:px-24 md:py-3">
-          <!---- navbar content ----->
-              <div class=" w-full mx-auto flex items-center justify-between">
-                  <!----- logo ----->
-                  <div class="logo">
-                    <!---  <img class="inline h-6" src="./images (9).jpeg">  --->
-                    <h1 class="font-myfont md:text-4xl text-letterboxd-6"><span>F</span>ilm<span></span>flow</h1>
-                  </div>
-                  
-                  <!---------  buttons --------->
-                  <div class="flex items-center space-x-5 ">
-                      {% if user.is_authenticated == False %}
-                      <button id="signin_btn">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="md:w-8 md:h-8 stroke-letterboxd-3 fill-letterboxd-3 w-6 h-6">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                          </svg>
-                      </button>
-                      {% endif %}
-                       <button id="options_btn">
-                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="md:w-8 md:h-8 stroke-letterboxd-3 fill-letterboxd-3 w-6 h-6">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+           <div class="p-2 md:px-24 md:py-3">
+               <!---- navbar content ----->
+               <div class=" w-full mx-auto flex items-center justify-between">
+                   <!----- logo ----->
+                   <div class="logo">
+                       <!---  <img class="inline h-6" src="./images (9).jpeg">  --->
+                       <h1 class="font-myfont md:text-4xl text-letterboxd-6"><span>F</span>ilm<span></span>flow</h1>
+                   </div>
+
+                   <!---------  buttons --------->
+                   <div class="flex items-center space-x-5 ">
+                       {% if user.is_authenticated == False %}
+                       <button id="signin_btn">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                               stroke="currentColor"
+                               class="md:w-8 md:h-8 stroke-letterboxd-3 fill-letterboxd-3 w-6 h-6">
+                               <path stroke-linecap="round" stroke-linejoin="round"
+                                   d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                            </svg>
                        </button>
-                      <button id="search_btn">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="md:w-8 md:h-8 stroke-letterboxd-3 w-6 h-6">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                       {% endif %}
+                       <button id="options_btn">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                               stroke="currentColor"
+                               class="md:w-8 md:h-8 stroke-letterboxd-3 fill-letterboxd-3 w-6 h-6">
+                               <path stroke-linecap="round" stroke-linejoin="round"
+                                   d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                           </svg>
+                       </button>
+                       <button id="search_btn">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                               stroke="currentColor" class="md:w-8 md:h-8 stroke-letterboxd-3 w-6 h-6">
+                               <path stroke-linecap="round" stroke-linejoin="round"
+                                   d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                            </svg>
                        </button>
                    </div>
-              </div>
+               </div>
            </div>
-         
-         <!----- signin menu ----->
-          {% if user.is_authenticated %}
-              <div></div>
-          {% else %}
-            <div id="signin_menu" class="w-screen bg-letterboxd-1 overflow-hidden hidden px-2 md:py-2 md:px-16 text-letterboxd-3 drop-shadow-2xl">
-                 <form action="{% url 'authentication:signin' %}" method="post">
-                     {% csrf_token %}
-                    <div class="m-2">
-                     <label class="text-xs" for="username">Username or Email </label> <br>
-                     <input name="username" class="px-2 focus:outline-0 focus:bg-white bg-letterboxd-2 h-9 w-full rounded-sm" type="text" name="username"> </input><br>
-                    </div>
-                    <div class="m-2">
-                     <label class="text-xs" for="Password">Password</label><br>
-                     <input name="password" class="px-2 focus:outline-0 focus:bg-white text-black bg-letterboxd-2 h-9 w-full rounded-sm" type="password">
-                    </div>
-                    <div class="my-5 mx-2 flex items-center justify-between text-xs md:justify-between">
-                      <div class="flex items-center">
-                          <input class="h-3 mr-1 bg-red-400 accent-letterboxd-3" type=checkbox>Remember
+
+           <!----- signin menu ----->
+           {% if user.is_authenticated %}
+           <div></div>
+           {% else %}
+           <div id="signin_menu"
+               class="w-screen bg-letterboxd-1 overflow-hidden hidden px-2 md:py-2 md:px-16 text-letterboxd-3 drop-shadow-2xl">
+               <form action="{% url 'authentication:signin' %}" method="post">
+                   {% csrf_token %}
+                   <div class="m-2">
+                       <label class="text-xs" for="username">Username or Email </label> <br>
+                       <input name="username"
+                           class="px-2 focus:outline-0 focus:bg-white bg-letterboxd-2 h-9 w-full rounded-sm" type="text"
+                           name="username"> </input><br>
+                   </div>
+                   <div class="m-2">
+                       <label class="text-xs" for="Password">Password</label><br>
+                       <input name="password"
+                           class="px-2 focus:outline-0 focus:bg-white text-black bg-letterboxd-2 h-9 w-full rounded-sm"
+                           type="password">
+                   </div>
+                   <div class="my-5 mx-2 flex items-center justify-between text-xs md:justify-between">
+                       <div class="flex items-center">
+                           <input class="h-3 mr-1 bg-red-400 accent-letterboxd-3" type=checkbox>Remember
                        </div>
                        <div class="md:w-[650px]">
-                         <a class="text-letterboxd-4">forgotten?</a>
+                           <a class="text-letterboxd-4">forgotten?</a>
                        </div>
-                      <button class="bg-letterboxd-4 py-1 px-3 font-bold rounded-sm text-white shadow-inner tracking-widest ">SIGN IN </button>
-                    </div>
-                </form>
-            </div>
-            {% endif %}
-            <!----- search ------>
-            <div id="search_feild" class="hidden bg-letterboxd-1 p-4 md:px-20 text-gray-500 ">
-                <div class="relative ">
-                <input id="search_content" type="text" class="h-9 w-full relative   rounded-sm focus:outline-0 focus:bg-white focus:text-slate-400 p-3 bg-letterboxd-2">
-                <button id="search_content_btn" type="submit" class="absolute hover:shadow-md hover:shadow-letterbox-3 right-2 top-2">
-                    <svg id="search-content-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                    </svg>
-                </button>
-                </input>
-                </div>
-            </div>
-            <!------ list ------>
-            <div id="menu_field" class="hidden duration-1000 overflow-hidden">
-                {% if user.is_authenticated %}
-                <div id="loggedinMenu" class="md:px-20 flex flex-col font-myfontLight text-letterboxd-3 text-sm md:text-lg">
-                    
-                    <div class="flex items-center gap-x-2 py-2 px-3">
-                        <img class="w-7 md:w-8 object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
-                        <div id="username" class="text-lg md:text-2xl font-myfont">
-                            {{ user.username }}
-                        </div>
-                    </div>
-                    
-                    <div id="" class="py-3 border-t border-letterboxd-3 grid grid-cols-2 grid-rows-4 mx-10 tracking-wide">
-                        <div>
-                          <a href="/"> HOME  </a> 
-                        </div>
-                           
-                        <div>
-                            <a href="{% url 'user_profile' user.username %}">PROFILE</a>
-                        </div>
-                        
-                        <div>
-                           <a href="{% url 'filmsabout:showWatched' user.username %}"> FILMS </a>
-                        </div>
-                        
-                        <div>
-                           <a href="{% url 'filmsabout:diary' user.username %}">DIARY</a> 
-                        </div>
-                        
-                        <div>
-                            REVIEWS
-                        </div>
-                        
-                        <div>
-                            <a href="{% url 'filmsabout:showWatchlist' user.username %}">WATCHLIST</a>
-                        </div>
-                        
-                        <div>
-                            <a href="{% url 'list:showlists' user.username %}">LISTS</a>
-                        </div>
-                        
-                        <div>
-                            LIKES
-                        </div>
-                        
-                    </div>
-                    <div class="mx-10 border-t mb-8 tracking-wide border-letterboxd-3 py-3 grid grid-cols-2 grid-rows-1">
-                        <div>
-                            <a href="{% url 'authentication:signout' %}">SIGNOUT</a>
-                        </div>
-                        <div>
-                            <a href="{% url 'profiles:settings'  %}">SETTINGS</a>
-                        </div>
-                    </div>
-                    
-                </div>
-                {% endif %}
-                {% if user.is_authenticated == False %}
-            <div class="px-5 pb-5 md:px-20 text-letterboxd-3 font-myfont tracking-wider">
-                <ul class="flex flex-col ">
-                    <li class="py-2 border-b border-t border-letterboxd-3"> <button class="signup-btn">CREATE ACCOUNT</button></li>
-                    <li class="py-2 border-b border-letterboxd-3">FILMS</li>
-                    <li class="py-2 border-b border-letterboxd-3">LISTS</li>
-                    <li class="py-2 border-b border-letterboxd-3">MEMBERS</li>
-                    <li class="py-2 ">JOURNAL</li>
-                </ul>
-            </div>
-            {% endif %}
-            </div>
-            
-            {% if messages %}
-            <div id="alert" class="absolute py-3 z-50 w-screen">
-              {% for message in messages %}
-                <div id="" class="relative bg-letterboxd-5 mt-3 px-3 py-3 w-80 m-auto text-myfontlight text-sm rounded-md shadow-lg shadow-black flex items-center justify-between">
-                    {{ message }}
-                </div>
-            {% endfor %}
-            </div>
-            {% endif %}
+                       <button
+                           class="bg-letterboxd-4 py-1 px-3 font-bold rounded-sm text-white shadow-inner tracking-widest ">SIGN
+                           IN </button>
+                   </div>
+               </form>
+           </div>
+           {% endif %}
+           <!----- search ------>
+           <div id="search_feild" class="hidden bg-letterboxd-1 p-4 md:px-20 text-gray-500 ">
+               <div class="relative ">
+                   <input id="search_content" type="text"
+                       class="h-9 w-full relative   rounded-sm focus:outline-0 focus:bg-white focus:text-slate-400 p-3 bg-letterboxd-2">
+                   <button id="search_content_btn" type="submit"
+                       class="absolute hover:shadow-md hover:shadow-letterbox-3 right-2 top-2">
+                       <svg id="search-content-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                           stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                           <path stroke-linecap="round" stroke-linejoin="round"
+                               d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                       </svg>
+                   </button>
+                   </input>
+               </div>
+           </div>
+           <!------ list ------>
+           <div id="menu_field" class="hidden duration-1000 overflow-hidden">
+               {% if user.is_authenticated %}
+               <div id="loggedinMenu"
+                   class="md:px-20 flex flex-col font-myfontLight text-letterboxd-3 text-sm md:text-lg">
 
-            <div id="frontend-alert" class="hidden fixed top-12  py-4 z-50 w-screen">
-                <div id="" class="relative bg-letterboxd-5 py-3 px-3 w-80 m-auto text-myfontlight text-sm rounded-md shadow-lg shadow-black flex items-center justify-between">
-                    <div id="alert-msg">
-                        {{ message }}
-                    </div>
-                    </button>  
-                </div>
-            </div>
+                   <div class="flex items-center gap-x-2 py-2 px-3">
+                       <img class="w-7 md:w-8 object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
+                       <div id="username" class="text-lg md:text-2xl font-myfont">
+                           {{ user.username }}
+                       </div>
+                   </div>
+
+                   <div id=""
+                       class="py-3 border-t border-letterboxd-3 grid grid-cols-2 grid-rows-4 mx-10 tracking-wide">
+                       <div>
+                           <a href="/"> HOME </a>
+                       </div>
+
+                       <div>
+                           <a href="{% url 'profiles:user_profile' user.username %}">PROFILE</a>
+                       </div>
+
+                       <div>
+                           <a href="{% url 'filmsabout:showWatched' user.username %}"> FILMS </a>
+                       </div>
+
+                       <div>
+                           <a href="{% url 'filmsabout:diary' user.username %}">DIARY</a>
+                       </div>
+
+                       <div>
+                           REVIEWS
+                       </div>
+
+                       <div>
+                           <a href="{% url 'filmsabout:showWatchlist' user.username %}">WATCHLIST</a>
+                       </div>
+
+                       <div>
+                           <a href="{% url 'list:showlists' user.username %}">LISTS</a>
+                       </div>
+
+                       <div>
+                           LIKES
+                       </div>
+
+                   </div>
+                   <div class="mx-10 border-t mb-8 tracking-wide border-letterboxd-3 py-3 grid grid-cols-2 grid-rows-1">
+                       <div>
+                           <a href="{% url 'authentication:signout' %}">SIGNOUT</a>
+                       </div>
+                       <div>
+                           <a href="{% url 'profiles:settings' user.username  %}">SETTINGS</a>
+                       </div>
+                   </div>
+
+               </div>
+               {% endif %}
+               {% if user.is_authenticated == False %}
+               <div class="px-5 pb-5 md:px-20 text-letterboxd-3 font-myfont tracking-wider">
+                   <ul class="flex flex-col ">
+                       <li class="py-2 border-b border-t border-letterboxd-3"> <button class="signup-btn">CREATE
+                               ACCOUNT</button></li>
+                       <li class="py-2 border-b border-letterboxd-3">FILMS</li>
+                       <li class="py-2 border-b border-letterboxd-3">LISTS</li>
+                       <li class="py-2 border-b border-letterboxd-3">MEMBERS</li>
+                       <li class="py-2 ">JOURNAL</li>
+                   </ul>
+               </div>
+               {% endif %}
+           </div>
+
+           {% if messages %}
+           <div id="alert" class="absolute py-3 z-50 w-screen">
+               {% for message in messages %}
+               <div id=""
+                   class="relative bg-letterboxd-5 mt-3 px-3 py-3 w-80 m-auto text-myfontlight text-sm rounded-md shadow-lg shadow-black flex items-center justify-between">
+                   {{ message }}
+               </div>
+               {% endfor %}
+           </div>
+           {% endif %}
+
+           <div id="frontend-alert" class="hidden fixed top-12  py-4 z-50 w-screen">
+               <div id=""
+                   class="relative bg-letterboxd-5 py-3 px-3 w-80 m-auto text-myfontlight text-sm rounded-md shadow-lg shadow-black flex items-center justify-between">
+                   <div id="alert-msg">
+                       {{ message }}
+                   </div>
+                   </button>
+               </div>
+           </div>
+
       </nav>
-      
-      
+           <div
+               class="fixed z-50 flex top-0 right-28 hidden  font-myfontLight  text-letterboxd-3 gap-2 p-3 rounded-b-lg bg-letterboxd-1">
+               <div class="self-end inline-block">
+                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                       stroke="currentColor" class="hover:stroke-letterboxd-5 w-4 h-4">
+                       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                   </svg>
+
+               </div>
+               <div class="">
+                   <label for="username" class="text-sm">Username</label> <br>
+                   <input type="text"
+                       class="px-2 focus:outline-0  focus:bg-white text-black bg-letterboxd-2 w-32 rounded-sm">
+               </div>
+               <div class="">
+                   <label for="username" class="text-sm">Password</label><br>
+                   <input type="text"
+                       class="px-2 focus:outline-0 focus:bg-white text-black bg-letterboxd-2 w-32 rounded-sm">
+               </div>
+               <div class="self-end font-myfont text-sm text-white rounded-sm overflow-hidden ">
+                    <input type="sumbit" class="w-16 px-2 py-1 bg-letterboxd-4" value="SIGN IN">
+               </div>
+           </div>
+ 

@@ -1,6 +1,5 @@
 from django import template
 from django.contrib.auth.models import User
-from films.models import WatchedMovie,Watchlist
 import datetime
 from django.templatetags.static import static
 

@@ -13,9 +13,10 @@ follow_btn.addEventListener("click", (event) => {
     options.body = JSON.stringify({
         follow: follow_btn.checked,
     });
+    let profile_username = getCookie('profile_username');
     let username = getCookie('username');
-
-    const url = "/profile/follow/" + username;
+    console.log(`${username} interact with ${profile_username}`);
+    const url = `/{username}/follow/` + profile_username;
     fetch(url,options);
 
 
