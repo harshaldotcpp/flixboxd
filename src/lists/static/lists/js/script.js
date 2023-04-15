@@ -174,7 +174,6 @@ document.getElementById("addmoviebtn").addEventListener('click', (event) => {
 });
 
 const save_list = document.getElementById("save-list");
-console.log(save_list);
 
 if (save_list) {
     save_list.addEventListener("click", (event) => {
