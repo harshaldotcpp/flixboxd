@@ -4,11 +4,11 @@ const watchlist_btn = document.querySelector("#watchlist_btn");
 const review_btn = document.querySelector("#review-btn");
 const review_cancel_btn = document.querySelector("#review-cancel-btn");
 
+console.log(watch_btn.dataset)
 
 
 
-var today = getTodaysDate(); 
-console.log(today)
+var today = getTodaysDate();
 
 const date_picker = document.getElementById('datePicker')
 if (date_picker) {
@@ -31,6 +31,16 @@ if (review_cancel_btn) {
 
 if (watch_btn) {
     watch_btn.addEventListener("click", (event) => {
+
+        let iswatched = false;
+        if (watch_btn.dataset.iswatched === "true") {
+            iswatched = false;
+            watch_btn.dataset.iswatched = "false";
+        } else {
+            iswatched = true;
+            watch_btn.dataset.iswatched = "true";
+        }
+
 
 
         if (!watch_btn.checked && like_btn.checked) {
@@ -57,14 +67,9 @@ if (watch_btn) {
             return;
         }
 
-
         options.body = JSON.stringify({
-            add: watch_btn.checked,
+            add: iswatched,
             tmdb_id: getCookie('id'),
-            title: getCookie('movie_name'),
-            poster_path: getCookie('poster_path'),
-            director: getCookie('director'),
-            release_year: getCookie('release_year'),
 
         });
 
@@ -95,15 +100,18 @@ if (like_btn) {
             icon.classList.toggle("fill-letterboxd-4")
 
         }
-
+        let islike = false;
+        if (like_btn.dataset.islike === "true") {
+            islike = false;
+            like_btn.dataset.islike = false;
+        } else {
+            islike = true;
+            like_btn.dataset.islike = true;
+        }
 
         options.body = JSON.stringify({
-            add: like_btn.checked,
+            add: islike,
             tmdb_id: getCookie('id'),
-            title: getCookie('movie_name'),
-            poster_path: getCookie('poster_path'),
-            director: getCookie('director'),
-            release_year: getCookie('release_year'),
         });
 
         fetch("/film/likedadd", options)
@@ -118,13 +126,20 @@ if (watchlist_btn) {
     watchlist_btn.addEventListener("click", (event) => {
         const icon = document.querySelector("#watchlist-icon");
         icon.classList.toggle("fill-letterboxd-4");
+
+        let iswatchlist;
+        if (watchlist_btn.dataset.iswatchlist === "true") {
+            iswatchlist = false;
+            watchlist_btn.dataset.iswatchlist = "false";
+        } else {
+            iswatchlist = true;
+            watchlist_btn.dataset.iswatchlist = "true";
+        }
         options.body = JSON.stringify({
-            add: watchlist_btn.checked,
+            add: iswatchlist,
             tmdb_id: getCookie('id'),
-            title: getCookie('movie_name'),
-            poster_path: getCookie('poster_path'),
-            director: getCookie('director'),
         });
+
 
         fetch("/film/watchlistadd", options)
             .then(response => response.json())

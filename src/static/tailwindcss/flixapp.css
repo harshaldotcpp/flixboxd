@@ -1322,11 +1322,6 @@ video {
   border-color: rgb(85 102 120 / var(--tw-border-opacity));
 }
 
-.border-letterboxd-5 {
-  --tw-border-opacity: 1;
-  border-color: rgb(242 116 5 / var(--tw-border-opacity));
-}
-
 .border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));

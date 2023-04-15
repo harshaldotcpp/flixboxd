@@ -25,30 +25,24 @@ def watched(request):
        
         obj = json.load(request)
         movie_add = obj["add"]
-        
         if movie_add:
             movieInfo = {
                 "tmdb_id": obj["tmdb_id"],
-                "original_title": obj["title"].strip("\""),
-                "poster_path" : obj["poster_path"].strip("\""),
-                "director": obj["director"].strip("\""),
-                "release_year": obj["release_year"]
-            
             }
+
             request.user.profile.add_watched_movie(movieInfo)
             request.user.profile.remove_from_watchlist(obj["tmdb_id"])
-            
             response_data = {
                 "status": "succesfull",
                 "message": "Added to watched"
             }
             return HttpResponse(json.dumps(response_data),content_type='application/json')
 
+
         movie = Film.objects.filter(tmdb_id=obj["tmdb_id"])
-        if movie:
-            rating = Rating.objects.filter(movie=movie[0],user=request.user)
-            if rating:
-                return HttpResponse(json.dumps({"status":"failed","message":"theres activity on this movie"}),content_type="application/json")
+
+        if movie and Rating.objects.filter(movie=movie[0],user=request.user):
+            return HttpResponse(json.dumps({"status":"failed","message":"theres activity on this movie"}),content_type="application/json")
 
         request.user.profile.unlike(obj["tmdb_id"])   
         request.user.profile.remove_watched_movie(obj["tmdb_id"])
@@ -65,15 +59,10 @@ def liked(request):
        
         obj = json.load(request)
         movie_add = obj["add"]
-        print(obj)
         
         if movie_add:
             movieInfo = {
                 "tmdb_id": obj["tmdb_id"],
-                "original_title": obj["title"].strip("\""),
-                "poster_path" : obj["poster_path"].strip("\""),
-                "director": obj["director"].strip("\""),
-                "release_year": obj["release_year"]
             }
             request.user.profile.liked(movieInfo)
             request.user.profile.add_watched_movie(movieInfo)
@@ -95,12 +84,9 @@ def watchlist(request):
     if request.method == "POST":
         obj = json.load(request)
         movie_add = obj["add"]
-
         if movie_add:
             movie_info = {
                 "tmdb_id": obj["tmdb_id"],
-                "original_title": obj["title"].strip("\""),
-                "poster_path": obj["poster_path"].strip("\"")
             }
 
             request.user.profile.add_to_watchlist(movie_info)
@@ -119,17 +105,12 @@ def watchlist(request):
 
 
 def addReview(request):
+
     if(request.method == "POST"):
-        print(request.POST)
         url = f"/film/{request.POST['tmdb_id']}"
         movie_info = {
+            "review": request.POST["review"],
             "tmdb_id": request.POST["tmdb_id"],
-            "original_title": request.POST["title"],
-            "poster_path": request.POST["poster_path"],
-            "director": request.POST["director"],
-            "review": request.POST['review'],
-            "date" : request.POST['date'],
-            "release_year" : request.POST['release_year'],
         }
        
 
@@ -161,7 +142,6 @@ def addReview(request):
 
 
 def film(request,film_id):
-    print("wooooooooooooooooooooooooooo")
     movie = Movie()
     m = movie.details(film_id)
     mc = movie.credits(film_id)
@@ -200,11 +180,7 @@ def film(request,film_id):
 
 
     response = render(request,"films/film.html",context=info)
-    response.set_cookie(key="movie_name",value=m.title)
     response.set_cookie(key="id",value=m.id)
-    response.set_cookie(key="poster_path",value = m.poster_path)
-    response.set_cookie(key="director",value= directors[0])
-    response.set_cookie(key="release_year",value= info['release_year'])
    
     return response
     
@@ -314,10 +290,6 @@ def rating(request):
         movieInfo = {
             "rating":obj["rating"],
             "tmdb_id": obj["tmdb_id"],
-            "original_title": obj["title"].strip("\""),
-            "poster_path" : obj["poster_path"].strip("\""),
-            "director": obj["director"].strip("\""),
-            "release_year": obj["release_year"].strip("\"")
         }
     
         movie = request.user.profile.add_watched_movie(movieInfo)

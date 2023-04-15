@@ -50,6 +50,8 @@ def is_watchlist_tmdb(tmdb_id,user,true,false):
 def what_rated(user,tmdb_id,star):
     film = user.profile.filmExist(tmdb_id)
     if film and user.rating_set.filter(movie=film):
+        rating = user.rating_set.filter(movie=film)
+        if(rating[0].stars == star):
             return "checked"
     return "unchecked"
 

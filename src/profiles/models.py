@@ -87,7 +87,6 @@ class Profile(models.Model):
 
         
     def remove_from_watchlist(self,tmdb_id):
-        print("hii")
         film = self.filmExist(tmdb_id)
         print("heyy",film)
         if film and film.watchlisted_by.filter(username=self.user.username):
