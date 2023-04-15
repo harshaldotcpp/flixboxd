@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect  
 from django.shortcuts import render
 from django.contrib import messages
-from .models import Rating,WatchedMovie,DiaryLog
+from .models import Rating,WatchedMovie,DiaryLog,Film
 from tmdbv3api import TMDb,Movie
 import datetime
 import random
@@ -36,18 +36,18 @@ def watched(request):
             
             }
             request.user.profile.add_watched_movie(movieInfo)
-            request.user.profile.remove_from_watchlist(obj["tmdb_id"])
             
             response_data = {
                 "status": "succesfull",
                 "message": "Added to watched"
             }
             return HttpResponse(json.dumps(response_data),content_type='application/json')
-        
-        movie = WatchedMovie.objects.filter(tmdb_id=obj["tmdb_id"])
-        rating = Rating.objects.filter(movie=movie[0],user=request.user)
-        if rating:
-            return HttpResponse(json.dumps({"status":"failed","message":"theres activity on this movie"}),content_type="application/json")
+        print("hiiiiiiiiiiiiii") 
+        movie = Film.objects.filter(tmdb_id=obj["tmdb_id"])
+        if movie:
+            rating = Rating.objects.filter(movie=movie[0],user=request.user)
+            if rating:
+                return HttpResponse(json.dumps({"status":"failed","message":"theres activity on this movie"}),content_type="application/json")
 
         request.user.profile.unlike(obj["tmdb_id"])   
         request.user.profile.remove_watched_movie(obj["tmdb_id"])
@@ -160,7 +160,7 @@ def addReview(request):
 
 
 def film(request,film_id):
-
+    print("wooooooooooooooooooooooooooo")
     movie = Movie()
     m = movie.details(film_id)
     mc = movie.credits(film_id)
@@ -186,7 +186,7 @@ def film(request,film_id):
 
     reviews = []
     myReviews = []
-    requested_movie = WatchedMovie.objects.filter(tmdb_id=m.id)
+    requested_movie = Film.objects.filter(tmdb_id=m.id)
     if requested_movie:
         reviews = requested_movie[0].reviews_set.all()
         if request.user.is_authenticated:
