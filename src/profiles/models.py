@@ -150,14 +150,9 @@ class Profile(models.Model):
         user_list = List.objects.create(name=list['list_name'],user=self.user,description=list['list_desc'])
         user_list.save()
         for movie in movies:
-           list_movie = ListMovie.objects.filter(tmdb_id = movie["tmdb_id"])
-           if list_movie:
-               user_list.movies.add(list_movie[0]) 
-           else:
-               new_list_movie = ListMovie.objects.create(title=movie["title"],release_year=movie['release_year'],tmdb_id=movie["tmdb_id"],poster_path=movie["poster_path"])
-               new_list_movie.save()
-               user_list.movies.add(new_list_movie)
-        return 
+           list_movie = self.createFilm(movie)
+           user_list.movies.add(list_movie)
+        return user_list 
 
     def updateList(self,list,movies):
         user_list = List.objects.get(id=list["id"])
@@ -165,13 +160,8 @@ class Profile(models.Model):
         user_list.description = list["list_desc"]
         user_list.movies.clear()
         for movie in movies:
-            list_movie = ListMovie.objects.filter(tmdb_id = movie["tmdb_id"])
-            if list_movie:
-                user_list.movies.add(list_movie[0]) 
-            else:
-                new_list_movie = ListMovie.objects.create(title=movie["title"],release_year=movie['release_year'],tmdb_id=movie["tmdb_id"],poster_path=movie["poster_path"])
-                new_list_movie.save()
-                user_list.movies.add(new_list_movie)
+            list_movie = self.createFilm(movie)
+            user_list.movies.add(list_movie)
         user_list.save()
         return
 

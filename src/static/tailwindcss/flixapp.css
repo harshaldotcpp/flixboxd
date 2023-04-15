@@ -2514,14 +2514,19 @@ video {
     margin-right: 7rem;
   }
 
-  .lg\:mx-32 {
-    margin-left: 8rem;
-    margin-right: 8rem;
+  .lg\:mx-48 {
+    margin-left: 12rem;
+    margin-right: 12rem;
   }
 
   .lg\:mx-60 {
     margin-left: 15rem;
     margin-right: 15rem;
+  }
+
+  .lg\:mx-52 {
+    margin-left: 13rem;
+    margin-right: 13rem;
   }
 
   .lg\:grid-cols-10 {
