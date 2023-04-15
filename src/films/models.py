@@ -3,7 +3,12 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Film(models.Model):
-    pass 
+    tmdb_id = models.IntegerField(unique=True)
+    original_title = models.CharField(max_length=100)
+    poster_path = models.CharField(max_length=100)
+    director = models.CharField(max_length=100)
+    release_year = models.IntegerField() 
+   
 
 
 
