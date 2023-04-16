@@ -15,7 +15,8 @@
 
 </head>
 
-<body class="bg-letterboxd-1 font-myfontLight text-letterboxd-6 overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-letterboxd-2">
+<body
+    class="bg-letterboxd-1 font-myfontLight text-letterboxd-6 overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-letterboxd-2">
     {% include 'main/navbar.html' %}
 
 
@@ -147,16 +148,30 @@
                         <div> more </div>
                     </div>
                     {% for review in reviews %}
-                    <div id="review_card" class="pt-3 pb-6 border-b border-letterboxd-3">
+                    <div id="review_card" class="pt-3 border-b border-letterboxd-3">
                         <div if="reviewer" class="mb-3 text-sm tracking-wide flex gap-2 items-center">
                             <img class="w-6 object-cover rounded-full"
                                 src="{{ review.review_by.profile.profile_picture.url }} ">
                             <div class="text-letterboxd-3 text-xs font-myfontLight" id="username">Review by <span
                                     class="font-myfont text-letterboxd-6"> {{review.review_by.username }} </span> </div>
                         </div>
-                        <div id="review" class="text-sm text-gray-400  font-abril font-light">
+                        <div id="review" class="text-sm text-gray-400  font-abril font-light mb-4">
                             {{ review.review }}
                         </div>
+                        <div id="review"
+                            class="flex gap-2 items-center  mb-4 text-sm text-gray-400  font-myfontLight font-light">
+                            <svg id="review-like-btn" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class=" stroke-letterboxd-3 w-3 h-3">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                            </svg>
+                            {% if review.liked_by.count == 0 %}
+                            <span class="text-letterboxd-3 text-sm">No likes Yet</span>
+                            {% else %}
+                            <span class="text-letterboxd-3 text-sm"> {{ review.liked_by.count }} Likes</span>
+                            {% endif %}
+                        </div>
+
                     </div>
                     {% endfor %}
                 </div>
@@ -167,16 +182,31 @@
                         <div> more </div>
                     </div>
                     {% for review in my_reviews %}
-                    <div id="review_card" class="pt-3 pb-6 border-b border-letterboxd-3">
+                    <div id="review_card" class="pt-3 border-b border-letterboxd-3">
                         <div if="reviewer" class="mb-3 text-sm tracking-wide flex gap-2 items-center">
                             <img class="w-6 object-cover rounded-full"
                                 src="{{ review.review_by.profile.profile_picture.url }} ">
                             <div class="text-letterboxd-3 text-xs font-myfontLight" id="username">Review by <span
                                     class="font-myfont text-letterboxd-6"> {{review.review_by.username }} </span> </div>
                         </div>
-                        <div id="review" class="text-sm text-gray-400  font-abril">
+                        <div id="review" class="text-sm text-gray-400  font-abril mb-4">
                             {{ review.review }}
                         </div>
+                        <div id="review"
+                            class="flex gap-2 items-center  mb-4 text-sm text-gray-400  font-myfontLight font-light">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="fill-letterboxd-3 stroke-letterboxd-3 w-3 h-3">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                            </svg>
+                            {% if review.liked_by.count == 0 %}
+                            <span class="text-letterboxd-3 text-sm">No likes Yet</span>
+                            {% else %}
+                            <span class="text-letterboxd-3 text-sm"> {{ review.liked_by.count }} Likes</span>
+                            {% endif %}
+                        </div>
+
+
                     </div>
                     {% endfor %}
                 </div>

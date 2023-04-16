@@ -6,6 +6,7 @@ def reviews(reqeust,username):
     user = User.objects.filter(username=username)
     print(user[0].username)
     if user:
+        likes = "No like yet"
         context = {
             "search_user": user[0] ,
             "reviews": user[0].reviews_set.order_by("-date"),
