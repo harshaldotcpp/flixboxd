@@ -2285,6 +2285,11 @@ video {
     font-size: 0.875rem;
     line-height: 1.25rem;
   }
+
+  .sm\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -2604,6 +2609,11 @@ video {
   .lg\:mx-56 {
     margin-left: 14rem;
     margin-right: 14rem;
+  }
+
+  .lg\:mx-60 {
+    margin-left: 15rem;
+    margin-right: 15rem;
   }
 
   .lg\:grid-cols-10 {
