@@ -21,7 +21,9 @@ def user_profile(request,username):
         info["user_profile"] = user[0]
         info["watchlist"] = user[0].watchlist.all()[:4]
         info["top4"] = user[0].top4
-        info["recent_log"] = user[0].diary_log.order_by("-date","-created_at")
+        info["recent_log"] = user[0].diary_log.order_by("-date","-created_at")[:4]
+        info["reviews"] = user[0].reviews_set.order_by("-date")[:2]
+        print(info["reviews"])
         response =  render(request,"profile_page/profile.html",context=info)
         response.set_cookie(key="profile_username",value=username)
         response.set_cookie(key="username",value=request.user.username)

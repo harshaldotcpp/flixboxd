@@ -1,0 +1,49 @@
+{% extends 'films/films_base.html' %}
+{% load custom_tags %}
+
+{% block content %}
+{% for review in reviews %}
+<div id="search_result" class="border-t border-letterboxd-3 flex py-3">
+
+    <div class="grow-0 mr-6">
+        <div class="w-20 relative card rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
+            <a href="{% url  'filmsabout:film' review.movie.tmdb_id %}">
+                <img class="object-cover lodaz"
+                    data-src="https://image.tmdb.org/t/p/original{{ review.movie.poster_path }}"
+                    src="https://image.tmdb.org/t/p/w200{{ review.movie.poster_path }}">
+                <div
+                    class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="text-lg font-myfontLight flex flex-col">
+        <div class="font-abrilbold">
+            <a href="{% url  'filmsabout:film' review.movie.id %}"> {{ review.movie.original_title }} <span class="font-myfontLight text-letterboxd-3"
+                    class="font-myfontLight">
+                    {{ review.movie.release_year }} </span>
+        </div>
+        <div id="rating-watched_on" class="mb-2 text-xs py-1 text-letterboxd-4 font-starrating">
+            <div class="flex ">
+                {% rating_to_stars search_user review.movie.tmdb_id as stars%}
+                {% for star in stars %}
+                <div class="star">
+                    {{ star }}
+                </div>
+                {% endfor %}
+                <div class="pl-2 font-myfontLight text-letterboxd-3">
+                    Watched on {{review.date}}
+                </div>
+            </div>
+        </div>
+        <div id="review" class="font-abril text-gray-400">
+            {{ review.review }}
+        </div>
+    </div>
+
+</div>
+{% endfor %}
+
+{% endblock %}
