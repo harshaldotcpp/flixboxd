@@ -17,7 +17,7 @@
     class="min-h-screen overflow-x-hidden  text-letterboxd-6 bg-letterboxd-1  from-[#2A394E] to-[#0E0E0F]">
     {% include 'main/navbar.html' %}
 
-    <section class=" mx-6 sm:mx-32 lg:mx-60 mb-14  mt-16 ">
+    <section class=" mx-6 sm:mx-32 lg:mx-56 mb-14  mt-16 ">
 
 
         <div
@@ -48,15 +48,15 @@
             </div>
 
             <div id="all-about-list" class="">
-                <div id="list-info">
-                    <h id="list-name" class="text-lg sm:text-2xl font-myfont text-white">
+                <div id="list-info" class="">
+                    <h id="list-name" class="text-3xl sm:text-4xl font-myfont text-white">
                         {{ list.name }}</a>
                     </h>
-                    <p id="list-description" class="font-abril py-2">
+                    <p id="list-description" class="font-abril py-1">
                         {{ list.description }}
                     </p>
                 </div>
-                <div id="cards" class="mt-6 grid grid-cols-4 gap-2">
+                <div id="cards" class="mt-3 grid grid-cols-4 gap-y-1 gap-x-2">
 
                     {% for movie in list.movies.all %}
 

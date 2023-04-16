@@ -7,8 +7,8 @@ register = template.Library()
 @register.simple_tag
 def is_liked(movie,username,true,false):
     if movie.liked_by.filter(username=username):
-        return True
-    return False
+        return true
+    return false
 
 
 @register.simple_tag

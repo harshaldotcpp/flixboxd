@@ -111,6 +111,7 @@ def addReview(request):
         movie_info = {
             "review": request.POST["review"],
             "tmdb_id": request.POST["tmdb_id"],
+             "date": request.POST["date"]
         }
        
 
@@ -120,7 +121,7 @@ def addReview(request):
             messages.success(request,"Review Added")
 
         if request.POST.get("shouldlog") is not None:
-            movie = request.user.profile.add_watched_movie(movie_info).film
+            movie = request.user.profile.add_watched_movie(movie_info)
             log_date = datetime.datetime.strptime(movie_info["date"],'%Y-%m-%d').date()
             user_diary = request.user.diary_log.filter(date=log_date)
             if user_diary:
