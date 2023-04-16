@@ -43,5 +43,8 @@ class DiaryLog(models.Model):
     user = models.ForeignKey(User,related_name='diary_log',on_delete=models.CASCADE)
     movie = models.ForeignKey(Film,related_name='diary_logs',on_delete=models.CASCADE)
     created_at = models.TimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.movie.original_title} logged on {self.date} by {self.user.username}"
     
     

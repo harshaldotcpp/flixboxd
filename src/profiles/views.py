@@ -10,14 +10,18 @@ import json
 
 #shows profile page
 def user_profile(request,username):
+    
     info = {
-        "username":username
+        "username":username,
     }
-
+    print()
     user = User.objects.filter(username=username)
 
     if user:
         info["user_profile"] = user[0]
+        info["watchlist"] = user[0].watchlist.all()[:4]
+        info["top4"] = user[0].top4
+        info["recent_log"] = user[0].diary_log.order_by("-date","-created_at")
         response =  render(request,"profile_page/profile.html",context=info)
         response.set_cookie(key="profile_username",value=username)
         response.set_cookie(key="username",value=request.user.username)
@@ -96,3 +100,12 @@ def updatetop(request,username):
         return HttpResponse(json.dumps(response_data),content_type='application/json') 
 
     return render(request,"profile_page/error.html")
+
+def following(request,username):
+    context = {"page_type":"following"}
+    return render(request,"profile_page/following.html",context=context)
+
+
+def followers(request,username):
+    context = {"page_type":"followers"}
+    return render(request,"profile_page/followers.html",context=context)

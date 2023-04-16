@@ -102,3 +102,5 @@ def updatelist(request):
         request.user.profile.updateList(data[0],data[1:])
         return HttpResponse(json.dumps(response),content_type="application/json")
     return render(request,"main/error.html")
+
+
