@@ -132,10 +132,9 @@ def addReview(request):
             diaryLog = DiaryLog.objects.create(date=log_date,user=request.user,movie=movie)
             diaryLog.save()
             messages.success(request,"Added in logs")
-            return redirect(url)
             
-       
- 
+        return redirect(url)
+
     return redirect("/")
 
     

@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 # Create your views here.
 def reviews(reqeust,username):
     user = User.objects.filter(username=username)
-    print(user[0].username)
     if user:
         likes = "No like yet"
         context = {

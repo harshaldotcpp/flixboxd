@@ -68,7 +68,9 @@ def newlist(request):
     context = {
         "page_type":"newlist",
     }
-    return render(request,"lists/new_list.html",context=context)
+    response =  render(request,"lists/new_list.html",context=context)
+    response.set_cookie(key="username",value=request.user.username)
+    return response
 
 
 def editlist(request,listid):

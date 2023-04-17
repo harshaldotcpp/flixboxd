@@ -203,8 +203,9 @@ if (save_list) {
         options.body = JSON.stringify(data);
         fetch("/lists/post", options).then(res => res.json())
             .then(res => {
-                console.log("hii")
-                window.location = `/lists/edit/${res.id}`;
+                const cookie = getCookie("username");
+                console.log(cookie)
+                window.location = `/lists/${cookie}`;
                 myAlert(res.message);
             })
     });
