@@ -89,8 +89,8 @@ def editlist(request,listid):
 def postlist(request):
     if request.method == "POST":
         data = json.load(request)
-        request.user.profile.addList(data[0],data[1:])
-        response ={"message":"sucessfull","message":"list Created"}
+        user_list = request.user.profile.addList(data[0],data[1:])
+        response ={"message":"sucessfull","message":"list Created","id":user_list.id}
         return HttpResponse(json.dumps(response),content_type='application/json')
     return render(request,"main/error.html")
 

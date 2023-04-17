@@ -11,5 +11,5 @@ urlpatterns = [
     path('/settings',views.settings,name="settings"),
     path('/update',views.settingsUpdate,name="settingUpdate"),
     path('/updatetop',views.updatetop,name="updatetop"),
-    path('/follow<str:username>',views.follow_user,name="follow_user"),
+    path('/follow/<str:username>',views.follow_user,name="follow_user"),
 ]

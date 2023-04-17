@@ -101,7 +101,7 @@
                 <h1 class=" text-letterboxd-3 border-b col-span-4 border-letterboxd-2 py-1">favroite films</h1>
                 <div>
                     <div class=" card relative shadow-sm shadow-black  overflow-hidden">
-                        <a href="">
+                        <a href="{% url 'filmsabout:film' top4.one.tmdb_id %}">
                             <img class="object-cover lozad"
                                 data-src="https://image.tmdb.org/t/p/original{{ top4.one.poster_path }}"
                                 src="https://image.tmdb.org/t/p/w200{{ top4.one.poster_path }}">
@@ -113,7 +113,7 @@
                 </div>
                 <div>
                     <div class=" card relative   shadow-sm shadow-black  overflow-hidden">
-                        <a href="">
+                        <a href="{% url 'filmsabout:film' top4.two.tmdb_id %}">
                             <img class="object-cover lozad"
                                 data-src="https://image.tmdb.org/t/p/original{{top4.two.poster_path }}"
                                 src="https://image.tmdb.org/t/p/w200{{ top4.two.poster_path }}">
@@ -125,7 +125,7 @@
                 </div>
                 <div>
                     <div class=" card relative   shadow-sm shadow-black  overflow-hidden">
-                        <a href="">
+                        <a href="{% url 'filmsabout:film' top4.three.tmdb_id %}">
                             <img class="object-cover lozad"
                                 data-src="https://image.tmdb.org/t/p/original{{ top4.three.poster_path }}"
                                 src="https://image.tmdb.org/t/p/w200{{ top4.three.poster_path }}">
@@ -138,7 +138,7 @@
 
                 <div>
                     <div class=" card relative  shadow-sm shadow-black  overflow-hidden">
-                        <a href="">
+                        <a href="{% url 'filmsabout:film' top4.four.tmdb_id %}">
                             <img class="object-cover lozad"
                                 data-src="https://image.tmdb.org/t/p/original{{ top4.four.poster_path }}"
                                 src="https://image.tmdb.org/t/p/w200{{ top4.four.poster_path }}">
