@@ -81,7 +81,6 @@ def signup(request):
     
 
 #------------------------------------------------------------------------
-
 def signin(request):
     print("signin")
     if request.method == "POST":

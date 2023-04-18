@@ -97,14 +97,19 @@
 
         <section
             class="mt-14 gap-x-24 gap-y-6 grid grid-rows-[auto,auto,auto,auto,auto] md:grid-rows-[auto,auto,auto,auto] grid-cols-1 md:grid-cols-[auto,auto]">
+
+                {% if favs %}
+                <div class="text-letterboxd-3"> No Favroite </div>
+                {% else %}
             <div class="grid grid-cols-4 grid-row-[auto,auto] gap-2 mt-2">
                 <h1 class=" text-letterboxd-3 border-b col-span-4 border-letterboxd-2 py-1">favroite films</h1>
                 <div>
                     <div class=" card relative shadow-sm shadow-black  overflow-hidden">
-                        <a href="{% url 'filmsabout:film' top4.one.tmdb_id %}">
+                        {% topTmdb_id top4.one as tmdb_id %}
+                        <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad"
-                                data-src="https://image.tmdb.org/t/p/original{{ top4.one.poster_path }}"
-                                src="https://image.tmdb.org/t/p/w200{{ top4.one.poster_path }}">
+                                data-src="{% topPosterPath top4.one %}"
+                                src="{% topPosterPath top4.one %}">
                             <div
                                 class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                             </div>
@@ -113,10 +118,11 @@
                 </div>
                 <div>
                     <div class=" card relative   shadow-sm shadow-black  overflow-hidden">
-                        <a href="{% url 'filmsabout:film' top4.two.tmdb_id %}">
+                        {% topTmdb_id top4.two as tmdb_id %}
+                        <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad"
-                                data-src="https://image.tmdb.org/t/p/original{{top4.two.poster_path }}"
-                                src="https://image.tmdb.org/t/p/w200{{ top4.two.poster_path }}">
+                                data-src="{% topPosterPath top4.two %}"
+                                src="{% topPosterPath top4.two %}">
                             <div
                                 class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                             </div>
@@ -125,10 +131,11 @@
                 </div>
                 <div>
                     <div class=" card relative   shadow-sm shadow-black  overflow-hidden">
-                        <a href="{% url 'filmsabout:film' top4.three.tmdb_id %}">
+                        {% topTmdb_id top4.three as tmdb_id %}
+                        <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad"
-                                data-src="https://image.tmdb.org/t/p/original{{ top4.three.poster_path }}"
-                                src="https://image.tmdb.org/t/p/w200{{ top4.three.poster_path }}">
+                                data-src="{% topPosterPath top4.three %}"
+                                src="{% topPosterPath top4.three %}">
                             <div
                                 class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                             </div>
@@ -138,10 +145,11 @@
 
                 <div>
                     <div class=" card relative  shadow-sm shadow-black  overflow-hidden">
-                        <a href="{% url 'filmsabout:film' top4.four.tmdb_id %}">
+                        {% topTmdb_id top4.four as tmdb_id %}
+                        <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad"
-                                data-src="https://image.tmdb.org/t/p/original{{ top4.four.poster_path }}"
-                                src="https://image.tmdb.org/t/p/w200{{ top4.four.poster_path }}">
+                                data-src="{% topPosterPath top4.four %}"
+                                src="{% topPosterPath top4.four %}">
                             <div
                                 class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                             </div>
@@ -150,12 +158,13 @@
                 </div>
 
             </div>
+            {% endif %}
 
             <div class="side-bar row-span-4 w-auto md:w-44">
                 <div class="watchlist  text-sm text-letterboxd">
                     <h1
                         class="py-1 flex justify-between text-xs border-b border-letterboxd-2 uppercase text-letterboxd-3">
-                        <a>Watchlist</a> <a>all</a></h1>
+                        <a href="{% url 'filmsabout:showWatchlist' username %}">Watchlist</a> <a>all</a></h1>
                     <div class="mt-2 gap-2 grid grid-cols-4">
                         {% for film in watchlist %}
                         <div>
@@ -175,11 +184,12 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div>
-                </div>
             </div>
             <div class="grid grid-cols-4 grid-row-[auto,auto] gap-2 mt-2">
-                <h1 class=" text-letterboxd-3 border-b col-span-4 border-letterboxd-2 py-1">Recent Watched</h1>
+                {%if recent_log_len == 0 %}
+                    <div class="no films in watchlist"></div>
+                {% else %}
+                <h1 class=" text-letterboxd-3 border-b col-span-4 border-letterboxd-2 py-1"><a>Recent</a></h1>
                 {% for log in recent_log %}
                 <div>
                     <div class=" card relative  shadow-black  overflow-hidden">
@@ -194,7 +204,7 @@
                     </div>
                 </div>
                 {% endfor %}
-
+                {% endif %}
             </div>
 
         </section>

@@ -4,6 +4,7 @@ from lists.models import List
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from tmdbv3api import TMDb,Movie
+from PIL import Image
 import os
 # Create your models here.
 
@@ -14,7 +15,16 @@ tmdb.api_key = os.environ.get("TMDB_API_KEY")
 tmdb.language = 'en'
 tmdb.debug = True
 
-
+def crop_image(image):
+    width, height = image.size
+    if width == height:
+        return image
+    offset  = int(abs(height-width)/2)
+    if width>height:
+        image = image.crop([offset,0,width-offset,height])
+    else:
+        image = image.crop([0,offset,width,height-offset])
+    return image 
     
 class Profile(models.Model):
     bio = models.CharField(max_length=1500,null=True,blank=True)
@@ -25,7 +35,12 @@ class Profile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     following = models.ManyToManyField("self", symmetrical=False,related_name="followers",blank=True)
- 
+
+    def save(self,*args,**kwargs):
+        super().save()
+        image = Image.open(self.profile_picture.path)
+        image = crop_image(image)
+        image.save(self.profile_picture.path)
 
     def filmExist(self,tmdb_id):
         film = Film.objects.filter(tmdb_id = tmdb_id)
