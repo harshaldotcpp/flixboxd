@@ -11,6 +11,7 @@ django-dotenv = "*"
 tzdata = "*"
 sqlparse = "*"
 psycopg2 = "*"
+django-resized = "*"
 
 [dev-packages]
 
