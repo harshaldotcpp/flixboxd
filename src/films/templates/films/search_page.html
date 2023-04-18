@@ -16,16 +16,20 @@
 
   {% include 'main/navbar.html' %}
 
-  <div class="come-content  relative mt-14 md:mt-20 py-1 px-4">
-
-    <div id="search_info" class="mb-6 flex flex-col gap-y-4 text-sm">
+  <div
+    class="px-4 md:p-7 come-content grid gap-x-6 grid-cols-1 md:grid-cols-[auto,auto] md:grid-rows-[auto,auto] relative mt-14 md:mt-20 py-1 px-4">
+    <div id="search_info" class=" flex flex-col gap-y-4 text-sm">
       <div class="border-b border-letterboxd-3">
         FOUND AT LEAST {{ len }} MATCHES FOR {{ search_value }}
       </div>
-      <div class="py-2 px-3  bg-gray-700 rounded-md">
-        <button>
-          SHOW RESULTS FOR ALL
-        </button>
+    </div>
+
+    <div class="row-span-6 ">
+      <div class="text-sm flex md:flex-col items-center md:items-start gap-4 md:gap-1">
+      <div class="md:pr-36 font-myfont  text-sm md:border-b border-letterboxd-3">Show Results For:</div>
+        <div class="text-blue-300">FILMS</div>
+        <div class="hover:text-blue-300">MEMBERS</div>
+        <div class="hover:text-blue-300">LIST</div>
       </div>
     </div>
 
@@ -37,10 +41,11 @@
     </div>
     {% endif %}
 
-        <div id="end-spacing" class="h-16 w-scrren"></div>
+
+    <div id="end-spacing" class="h-16 w-scrren"></div>
 
   </div>
-{% include 'main/footer.html' %}
+  {% include 'main/footer.html' %}
 </body>
 <script src="//cdn.jsdelivr.net/npm/eruda"></script>
 <script>

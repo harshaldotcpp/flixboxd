@@ -1,7 +1,7 @@
-<div id="results" class="px-4 md:p-7">
+<div id="results" class="">
     {% for movie in movies %}
     <div id="search_result" class="border-t border-letterboxd-3 flex py-3">
-
+        
         <div class="grow-0 mr-6">
             <div class="w-20 relative card rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
                 <a href="{% url  'filmsabout:film' movie.id %}">
@@ -18,8 +18,8 @@
 
         <div class="text-sm font-myfontLight flex flex-col justify-between ">
             <div class="font-abrilbold mb-3">
-                <a href="{% url  'filmsabout:film' movie.id %}"> {{ movie.title }} <span class="font-myfontLight">
-                        {{ movie.release_year }} </span>
+                <a href="{% url  'filmsabout:film' movie.id %}" class="text-lg"> {{ movie.title }} <span class="font-myfontLight">
+                        {{ movie.release_year }} </span> </a>
             </div>
             <div id="alternatives" class="mb-3">
                 Alternative titles:

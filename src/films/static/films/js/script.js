@@ -147,9 +147,7 @@ if (watchlist_btn) {
 
     });
 
-    document.querySelector("#maction").addEventListener("click", () => {
-        document.querySelector("#movie-add").classList.toggle("hidden");
-    });
+
 }
 
 
