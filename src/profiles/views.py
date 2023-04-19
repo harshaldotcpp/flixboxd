@@ -125,3 +125,12 @@ def followers(request,username):
         context["followers"] = search_user[0].profile.followers.all()
         return render(request,"profile_page/followers.html",context=context)
     return render(request,"profile_page/error.html")
+
+def search(request,username):
+    context = {
+        "searched_users":User.objects.filter(username__startswith=username),
+        "search_value":username,
+        "btn_color":"text-blue-300",
+    }
+    print(context["searched_users"])
+    return render(request, "profile_page/search_profile.html",context=context) 

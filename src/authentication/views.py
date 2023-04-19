@@ -6,6 +6,7 @@ from django.contrib import messages
 from tmdbv3api import TMDb,Movie
 import pprint
 import random
+from itertools import chain
 import os
 
 tmdb = TMDb()
@@ -25,6 +26,23 @@ def home(request):
         context = {
             "upcoming": movie.upcoming(),
         }
+
+        friends_movies = []
+        followings = request.user.profile.following.all()
+        for following in followings:
+            if len(following.user.diary_log.order_by('-date','-created_at')[:3]) > 0:
+                u = { 
+                    "name":following.user.username,
+                    "profile_picture":following.profile_picture.url, 
+                    "movies":following.user.diary_log.order_by('-date','-created_at')[:3] 
+                }
+                friends_movies.append(u)
+        recent = True
+        if len(friends_movies) == 0:
+            recent = False
+        context["friends_movies"] = friends_movies
+        context["recent_f"] = recent
+        print(context["friends_movies"])
 
         response = render(request,"main/home.html",context=context)
         response.set_cookie(key="username",value=request.user.username)

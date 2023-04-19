@@ -219,8 +219,9 @@ def search_films(request,film_name):
         "movies": movies,
         "user_logged_in": request.user.is_authenticated,
         "len": len(movies),
+        "f_btn_color":"text-blue-300"
     }
-    return render(request,"films/search_page.html",context=context)
+    return render(request,"films/search_results.html",context=context)
 
 
 

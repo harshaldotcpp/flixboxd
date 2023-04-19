@@ -17,23 +17,24 @@
   {% include 'main/navbar.html' %}
 
   <div
-    class="px-4 md:p-7 come-content grid gap-x-6 grid-cols-1 md:grid-cols-[auto,auto] md:grid-rows-[auto,auto] relative mt-14 md:mt-20 py-1 px-4">
-    <div id="search_info" class=" flex flex-col gap-y-4 text-sm">
+    class="min-h-screen p-7 sm:mx-6 md:mx-14 lg:mx-24  come-content grid gap-x-6 grid-cols-1 grid-rows-[30px,30px,auto] md:grid-cols-[auto,300px] md:grid-rows-[0x] relative mt-14 md:mt-20 py-1  ">
+    <div id="search_info" class=" text-sm">
       <div class="border-b border-letterboxd-3">
         FOUND AT LEAST {{ len }} MATCHES FOR {{ search_value }}
       </div>
     </div>
 
-    <div class="row-span-6 ">
+    <div class="md:row-span-2  border-b md:border-none border-letterboxd-3">
       <div class="text-sm flex md:flex-col items-center md:items-start gap-4 md:gap-1">
-      <div class="md:pr-36 font-myfont  text-sm md:border-b border-letterboxd-3">Show Results For:</div>
-        <div class="text-blue-300">FILMS</div>
-        <div class="hover:text-blue-300">MEMBERS</div>
+      <div class="md:pr-36 font-myfont md:border-b border-letterboxd-3 text-sm">Show Results For:</div>
+        <div class="hover:text-blue-300 {{f_btn_color}}"><a href="{% url 'filmsabout:search_films' search_value %}">FILMS</a></div>
+        <div class="hover:text-blue-300 {{btn_color}}"><a href="{% url 'profiles:search' search_value %}">MEMBERS</a></div>
         <div class="hover:text-blue-300">LIST</div>
       </div>
     </div>
 
-    {% include "films/search_results.html" %}
+    {% block content %}
+    {% endblock %}
 
     {% if len == 0 %}
     <div class="h-100 w-100 flex items-center justify-center" id="no search found">
@@ -42,9 +43,9 @@
     {% endif %}
 
 
-    <div id="end-spacing" class="h-16 w-scrren"></div>
 
   </div>
+    <div id="end-spacing" class="h-16 w-scrren"></div>
   {% include 'main/footer.html' %}
 </body>
 <script src="//cdn.jsdelivr.net/npm/eruda"></script>

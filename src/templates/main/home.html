@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -9,113 +10,77 @@
     <script src="{% static 'main/js/lazyload.js' %}"></script>
 
     <title>Welcome Page of my App</title>
-   
-  </head>
-  <body class="overflow-x-hidden w-screen h-auto bg-letterboxd-1 font-myfontLight min-h-screen text-letterboxd-6 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-letterboxd-2 ">
-      {% include 'main/navbar.html' %}
-      
-            <div class="come-content relative mt-16 md:mt-20">
-          <div class="py-6 text-3xl text-center whitespace-normal mb-5 md:mb-0">
-              Welcome back, <a href="{% url 'profiles:user_profile' user.username %}" class="text-white underline">{{ user.username }}</a> 
-          </div>
-          
-         <div class="px-6 sm:px-16 md:px-20 lg:px-44">
 
-                <div id="populer with friends" class="">
-                    <div class="px-4 grid grid-cols-3 grid-rows-[auto,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
-                        <div class="text-sm font-bold text-letterboxd-3 col-span-3 md:col-span-6  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
-                    POLPULER WITH FRIENDS
-                        </div>
-    
-                        <div class="card relative rounded-sm   shadow-inner shadow-blue-500 overflow-hidden">
-                            <a href="">
-                            <img class="object-cover lodaz" data-src="https://image.tmdb.org/t/p/original/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" src="https://image.tmdb.org/t/p/w200/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg">
-                            <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
-                                <img class="w-4 object-cover rounded-full" src="./pfp.jpg">
-                                <div class="font-myfont text-xs"> chrysa </div>
-                            </div>
-                        <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
-                        </a>
-            
-                        </div>
-                        <div class=" relative card rounded-sm  shadow-inner shadow-blue-500 overflow-hidden">
-                            <a href="">
-                            <img class="object-cover " src="https://image.tmdb.org/t/p/original/cij4dd21v2Rk2YtUQbV5kW69WB2.jpg">
-                            <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
-                                <img class="w-4 object-cover rounded-full" src="./pfp.jpg">
-                                <div class="font-myfont text-xs"> chrysa </div>
-                            </div>
-                        <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
-                        </a>
-                    
-                        </div>
-                        <div class=" relative card  rounded-sm  shadow-inner shadow-blue-500 overflow-hidden">
-                            <a href="">
-                            <img class="object-cover " src="https://image.tmdb.org/t/p/original/nEufeZlyAOLqO2brrs0yeF1lgXO.jpg">
-                            <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
-                                <img class="w-4 object-cover rounded-full" src="./pfp.src">
-                                <div class="font-myfont text-xs"> chrysa </div>
-                            </div>
-                        <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
-                        </a>
-                    
-                        </div> 
-                        <div class=" relative card rounded-sm  shadow-inner shadow-blue-500 overflow-hidden">
-                            <a href="">
-                            <img class="object-cover " src="https://image.tmdb.org/t/p/original/hrATQE8ScQceohwInaMluluNEaf.jpg">
-                            <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
-                                <img class="w-4 object-cover rounded-full" src="./pfp.">
-                                <div class="font-myfont text-xs"> chrysa </div>
-                            </div>
-                        <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
-                        </a>
-                    
-                        </div>
-                        <div class=" relative card rounded-sm shadow-inner shadow-blue-500 overflow-hidden">
-                            <a href="">
-                            <img class="object-cover " src="https://image.tmdb.org/t/p/original//t6HIqrRAclMCA60NsSmeqe9RmNV.jpg">
-                            <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
-                                <img class="w-4 object-cover rounded-full" src="./pfp.jpg">
-                                <div class="font-myfont text-xs"> chrysa </div>
-                            </div>
-                        <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
-                        </a>
-                    
-                        </div>
-                        <div class=" relative card rounded-sm shadow-inner shadow-blue-500 overflow-hidden">
-                            <a href="">
-                            <img class="object-cover " src="https://image.tmdb.org/t/p/original/w3LxiVYdWWRvEVdn5RYq6jIqkb1.jpg">
-                            <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
-                                <img class="w-4 object-cover rounded-full" src="./pfp.jpg">
-                                <div class="font-myfont text-xs"> chrysa </div>
-                            </div>
-                        <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
-                        </a>
-                        </div>
+</head>
+
+<body
+    class="overflow-x-hidden w-screen h-auto bg-letterboxd-1 font-myfontLight min-h-screen text-letterboxd-6 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-letterboxd-2 ">
+    {% include 'main/navbar.html' %}
+
+    <div class="come-content relative mt-16 md:mt-20">
+        <div class="py-6 text-3xl text-center whitespace-normal mb-5 md:mb-0">
+            Welcome back, <a href="{% url 'profiles:user_profile' user.username %}"
+                class="text-white underline">{{ user.username }}</a>
+        </div>
+
+        <div class="px-6 sm:px-16 md:px-20 lg:px-44">
+            {% if recent_f == True %}            
+            <div id="populer with friends" class="">
+                <div
+                    class="px-4 grid grid-cols-3 grid-rows-[auto,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
+                    <div
+                        class="text-sm font-bold text-letterboxd-3 col-span-3 md:col-span-6  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
+                        POLPULER WITH FRIENDS
                     </div>
+                    {% for friend in friends_movies%}
+                    {% for movie in friend.movies %}
+                    <div class="card relative rounded-sm   shadow-inner shadow-blue-500 overflow-hidden">
+                        <a href="">
+                            <img class="object-cover lodaz"
+                                data-src="https://image.tmdb.org/t/p/original{{movie.movie.poster_path}}"
+                                src="https://image.tmdb.org/t/p/w200/{{movie.movie.poster_path}}">
+                            <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
+                                <img class="w-4 object-cover rounded-full" src="{{ friend.profile_picture }}">
+                                <div class="font-myfont text-xs"> {{friend.name }} </div>
+                            </div>
+                            <div
+                                class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                            </div>
+                        </a>
+
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
                 </div>
 
-                <div id="upcoming_movies" class="mt-16">
-                    <div class="px-4 grid grid-cols-3 grid-rows-[auto,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
-                        <div class="text-sm font-bold text-letterboxd-3 col-span-3 md:col-span-6  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
+            </div>
+            {% endif %}
+
+            <div id="upcoming_movies" class="mt-16">
+                <div
+                    class="px-4 grid grid-cols-3 grid-rows-[auto,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
+                    <div
+                        class="text-sm font-bold text-letterboxd-3 col-span-3 md:col-span-6  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
                         UPCOMING MOVIES
-                        </div>
-                        {% for movie in upcoming %}
-                            {% include "main/cards.html" %} 
-                        {% endfor %}
-                       
+                    </div>
+                    {% for movie in upcoming %}
+                    {% include "main/cards.html" %}
+                    {% endfor %}
+
                 </div>
 
-         </div>
+            </div>
         </div>
         <div id="end-spacing" class="h-16 w-screen"></div>
-         {% include 'main/footer.html' %}
+        {% include 'main/footer.html' %}
 
-  </body>
-    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
-    <script>eruda.init();</script>
-    
-    <script src="{% static 'main/js/navbar.js' %}"></script>
+</body>
+<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+<script>
+    eruda.init();
+</script>
 
-  
+<script src="{% static 'main/js/navbar.js' %}"></script>
+
+
 </html>

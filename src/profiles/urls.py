@@ -7,6 +7,7 @@ urlpatterns = [
     path('',views.user_profile,name="user_profile"),
     path('/reviews',include("reviews.urls")),
     path('/following',views.following,name='following'),
+    path('/search',views.search,name='search'),
     path('/followers',views.followers,name='followers'),
     path('/settings',views.settings,name="settings"),
     path('/update',views.settingsUpdate,name="settingUpdate"),

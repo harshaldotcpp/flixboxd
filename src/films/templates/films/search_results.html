@@ -1,6 +1,9 @@
+{% extends 'films/search_page.html' %}
+
+{% block content%}
 <div id="results" class="">
     {% for movie in movies %}
-    <div id="search_result" class="border-t border-letterboxd-3 flex py-3">
+    <div id="search_result" class="border-b border-letterboxd-3 flex py-3">
         
         <div class="grow-0 mr-6">
             <div class="w-20 relative card rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
@@ -33,3 +36,4 @@
     </div>
     {% endfor %}
 </div>
+{% endblock %}
