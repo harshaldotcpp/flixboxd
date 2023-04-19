@@ -151,4 +151,28 @@ if (watchlist_btn) {
 }
 
 
-const review_liked_btn = document.getElementById("");
+const add_movie_into_list = document.getElementsByClassName("add-movie-into-list");
+
+Array.from(add_movie_into_list).forEach(btn => {
+    btn.addEventListener('click', (event) => {
+        console.log(btn.dataset.movie_id);
+        console.log(btn.dataset.list_id);
+        options.body = JSON.stringify({
+            movie_id: btn.dataset.movie_id,
+            list_id: btn.dataset.list_id,
+        });
+        console.log(options)
+
+        fetch("/lists/addmovie", options).then(response => response.json())
+            .then((response) => {
+                myAlert(response.message);
+            });
+        const movie_add = document.getElementById("add-to-list");
+        movie_add.classList.add("hidden")
+    });
+});
+
+document.getElementById("add-to-list-btn").addEventListener("click", (event) => {
+    const movie_add = document.getElementById("add-to-list");
+    movie_add.classList.toggle("hidden")
+});

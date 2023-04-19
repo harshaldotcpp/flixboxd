@@ -100,9 +100,21 @@ def postlist(request):
 def updatelist(request):
     if request.method == "POST":
         data = json.load(request)
-        response ={"message":"sucessfull","message":"list Created"}
+        response ={"message":"sucessfull","message":"list updated"}
         request.user.profile.updateList(data[0],data[1:])
         return HttpResponse(json.dumps(response),content_type="application/json")
     return render(request,"main/error.html")
+
+def add_movie(request):
+    if request.method == "POST":
+        data = json.load(request)
+        user_list = request.user.profile.add_into_list(data["movie_id"],data["list_id"])
+        response = {
+            "status":"success",
+            "message":f"movie added in {user_list.name}"
+        }
+        return HttpResponse(json.dumps(response),content_type="application/json")
+
+    return render("main/error.html")
 
 

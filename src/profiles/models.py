@@ -180,6 +180,15 @@ class Profile(models.Model):
         user_list.save()
         return
 
+    def add_into_list(self,movie_id,list_id):
+        movie = { 
+            'tmdb_id': movie_id,
+        }
+        film = self.createFilm(movie)
+        user_list = List.objects.get(id=list_id)
+        user_list.movies.add(film)
+        return user_list
+
 class Top4Movies(models.Model):
     tmdb_id = models.IntegerField(unique=True) 
     poster_path = models.CharField(max_length=200)

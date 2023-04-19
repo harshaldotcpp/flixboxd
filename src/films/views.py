@@ -161,9 +161,10 @@ def film(request,film_id):
         "release_year": m.release_date[:4],
         "director": directors[0],
         "similar_movies": similar_movies,
-
-        
+        "user_lists": request.user.lists.all(),
     }
+
+    print(info["user_lists"])
 
     reviews = []
     myReviews = []
