@@ -131,6 +131,7 @@ def search(request,username):
         "searched_users":User.objects.filter(username__startswith=username),
         "search_value":username,
         "btn_color":"text-blue-300",
+        "len": len(User.objects.filter(username__startswith=username))
     }
     print(context["searched_users"])
     return render(request, "profile_page/search_profile.html",context=context) 
