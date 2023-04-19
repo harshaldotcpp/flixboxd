@@ -26,7 +26,9 @@ def home(request):
             "upcoming": movie.upcoming(),
         }
 
-        return render(request,"main/home.html",context=context)
+        response = render(request,"main/home.html",context=context)
+        response.set_cookie(key="username",value=request.user.username)
+        return response
 
 
 

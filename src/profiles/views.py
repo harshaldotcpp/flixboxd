@@ -106,10 +106,22 @@ def updatetop(request,username):
     return render(request,"profile_page/error.html")
 
 def following(request,username):
+    search_user = User.objects.filter(username=username)
     context = {"page_type":"following"}
-    return render(request,"profile_page/following.html",context=context)
+    if search_user:
+        context["search_user"] = search_user[0]
+        context['followings'] = search_user[0].profile.following.all()
+        print(context["followings"])
+        
+        return render(request,"profile_page/following.html",context=context)
+    return render(request,"profile_page/error.html")
 
 
 def followers(request,username):
+    search_user = User.objects.filter(username=username)
     context = {"page_type":"followers"}
-    return render(request,"profile_page/followers.html",context=context)
+    if search_user:
+        context["search_user"] = search_user[0]
+        context["followers"] = search_user[0].profile.followers.all()
+        return render(request,"profile_page/followers.html",context=context)
+    return render(request,"profile_page/error.html")

@@ -18,7 +18,5 @@ follow_btn.addEventListener("click", (event) => {
     console.log(`${username} interact with ${profile_username}`);
     const url = `/${username}/follow/` + profile_username;
     fetch(url,options);
-
-
-})
+});
 }

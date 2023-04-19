@@ -105,6 +105,8 @@ def updatelist(request):
         return HttpResponse(json.dumps(response),content_type="application/json")
     return render(request,"main/error.html")
 
+
+
 def add_movie(request):
     if request.method == "POST":
         data = json.load(request)
