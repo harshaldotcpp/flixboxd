@@ -161,10 +161,10 @@ def film(request,film_id):
         "release_year": m.release_date[:4],
         "director": directors[0],
         "similar_movies": similar_movies,
-        "user_lists": request.user.lists.all(),
     }
+    if request.user.is_authenticated:
+        info["user_lists"] = request.user.lists.all()
 
-    print(info["user_lists"])
 
     reviews = []
     myReviews = []
@@ -227,7 +227,7 @@ def search_films(request,film_name):
 
 def  showWatchlist(request,username):
     user = User.objects.filter(username=username)
-
+ 
     if user:
 
         movies = user[0].watchlist.all()
@@ -248,6 +248,7 @@ def showWatched(request,username):
 
     if user:
         movies = user[0].movies_set.all()
+        m_s = user[0].movies_set.raw("select * from ")
 
         context={
             "movies": movies,

@@ -176,3 +176,26 @@ document.getElementById("add-to-list-btn").addEventListener("click", (event) => 
     const movie_add = document.getElementById("add-to-list");
     movie_add.classList.toggle("hidden")
 });
+
+like_review_btns = document.getElementsByClassName("like-review-btn")
+
+Array.from(like_review_btns).forEach(like_review_btn=>{
+    like_review_btn.addEventListener("click",(event)=>{
+        const review_id = like_review_btn.dataset.review_id
+        const username = like_review_btn.dataset.username
+        const value = like_review_btn.checked 
+        console.log(review_id)
+        console.log(username)
+
+        const review_icon = document.querySelector(`.review-icon-${like_review_btn.id}`);
+        review_icon.classList.toggle("fill-letterboxd-5")
+
+        options.body = JSON.stringify({
+            review_id:review_id,
+            username:username,
+            addlike:value,
+        });
+
+        fetch("/reviews/like",options);
+    });
+});
