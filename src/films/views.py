@@ -319,15 +319,23 @@ def removeRating(request):
             rating = Rating.objects.filter(movie=film,user=request.user)
             if rating:
                 rating[0].delete()
-        return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
-
-
+            return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
         return HttpResponse(json.dumps({"status":"failed","message":"there is no rating for this movie"}),content_type='application/json')
 
+    return render(request,"main/error.html")
 
 
 
+def avgStars(request):
+    if request.method == "POST":
+        movie = {}
+        data = json.load(request)
+        movie["tmdb_id"] = data["id"]
+        movie = request.user.profile.createFilm(movie)
+        print(movie)
+        ratings = movie.getAverageStars() 
+        return HttpResponse(json.dumps(ratings),content_type="application/json")
 
-
+    return render(request,"main/error.html")
 
 

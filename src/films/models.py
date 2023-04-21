@@ -18,12 +18,61 @@ class Film(models.Model):
     def __str__(self):
         return f"{self.original_title} by {self.director}"
 
-
+    def getpercentage(sefl,got,total):
+        if total == 0:
+            return 0
+        return (got/total) * 100
     
     def get_reviews(self):
         return self.reviews_set.all()
         
-            
+    def getAverageStars(self):
+        all_rating = self.rating_set.all() 
+        total = self.rating_set.count()
+        ratings = [
+            {
+                "score": self.getpercentage(all_rating.filter(stars=0.5).count(), total), 
+            },
+            {
+                "score": self.getpercentage(all_rating.filter(stars=1.0).count(), total) 
+            },
+            {
+                "score": self.getpercentage(all_rating.filter(stars=1.5).count(), total)
+            },
+            {
+                "score": self.getpercentage(all_rating.filter(stars=2.0).count(), total) 
+            },
+            {
+                "score": self.getpercentage(all_rating.filter(stars=2.5).count(), total) 
+            },
+            {
+                "score": self.getpercentage(all_rating.filter(stars=3.0).count(), total), 
+            },
+            {
+                "score": self.getpercentage(all_rating.filter(stars=3.5).count(), total) 
+            },
+            {
+                "score":self.getpercentage(all_rating.filter(stars=4.0).count() , total)
+            },
+            {
+                "score": self.getpercentage(all_rating.filter(stars=4.5).count(),total)
+            },
+            {
+                "score": self.getpercentage(all_rating.filter(stars=5).count(),total)
+            },
+        ]
+        return ratings
+
+    def averageRating(self):
+        all_rating = self.rating_set.all()
+        total = all_rating.count()
+        sum = 0
+        for rating in all_rating:
+            sum = sum + rating.stars
+        if total == 0:
+            return 0
+        return (sum/total)
+
  
  
  
