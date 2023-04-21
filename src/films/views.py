@@ -178,6 +178,7 @@ def film(request,film_id):
     info["reviews"] = reviews
     info["reviews_len"] = len(reviews)
     info['my_reviews'] = myReviews
+    info["myreviewlen"] = len(myReviews)
 
 
     response = render(request,"films/film.html",context=info)
