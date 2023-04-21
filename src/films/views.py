@@ -132,10 +132,9 @@ def addReview(request):
             diaryLog = DiaryLog.objects.create(date=log_date,user=request.user,movie=movie)
             diaryLog.save()
             messages.success(request,"Added in logs")
-            return redirect(url)
             
-       
- 
+        return redirect(url)
+
     return redirect("/")
 
     
@@ -162,9 +161,10 @@ def film(request,film_id):
         "release_year": m.release_date[:4],
         "director": directors[0],
         "similar_movies": similar_movies,
-
-        
     }
+    if request.user.is_authenticated:
+        info["user_lists"] = request.user.lists.all()
+
 
     reviews = []
     myReviews = []
@@ -219,14 +219,15 @@ def search_films(request,film_name):
         "movies": movies,
         "user_logged_in": request.user.is_authenticated,
         "len": len(movies),
+        "f_btn_color":"text-blue-300"
     }
-    return render(request,"films/search_page.html",context=context)
+    return render(request,"films/search_results.html",context=context)
 
 
 
 def  showWatchlist(request,username):
     user = User.objects.filter(username=username)
-
+ 
     if user:
 
         movies = user[0].watchlist.all()
@@ -247,6 +248,7 @@ def showWatched(request,username):
 
     if user:
         movies = user[0].movies_set.all()
+        m_s = user[0].movies_set.raw("select * from ")
 
         context={
             "movies": movies,
@@ -317,15 +319,23 @@ def removeRating(request):
             rating = Rating.objects.filter(movie=film,user=request.user)
             if rating:
                 rating[0].delete()
-        return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
-
-
+            return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
         return HttpResponse(json.dumps({"status":"failed","message":"there is no rating for this movie"}),content_type='application/json')
 
+    return render(request,"main/error.html")
 
 
 
+def avgStars(request):
+    if request.method == "POST":
+        movie = {}
+        data = json.load(request)
+        movie["tmdb_id"] = data["id"]
+        movie = request.user.profile.createFilm(movie)
+        print(movie)
+        ratings = movie.getAverageStars() 
+        return HttpResponse(json.dumps(ratings),content_type="application/json")
 
-
+    return render(request,"main/error.html")
 
 

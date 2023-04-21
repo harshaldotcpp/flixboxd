@@ -1,13 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'tailwindcss/flixapp.css' %}">
+    <script src="{% static 'main/js/lazyload.js' %}"></script>
     <title>{{ user.username }} - {{ page_type }}</title>
 </head>
-<body>
-   {% block content %} 
-   {% endblock %} 
+<body class="min-h-screen   text-letterboxd-6 bg-gradient-to-tl overflow-x-hidden from-[#2A394E] to-[#0E0E0F]" >
+    {% include 'main/navbar.html' %}
+
+    <div class="mt-16 md:mt-28  text-white mx-6 sm:mx-12 md:mx-24 lg:mx-48">
+
+        <div id="use" class="flex items-center rounded-lg px-3 py-2 drop-shadow-lg shadow-black gap-x-5 text-3xl md:text-4xl">
+       
+            <a href="{% url 'profiles:user_profile' search_user.username %}"> <img class="w-12 gap-10 object-cover rounded-full" src="{{ search_user.profile.profile_picture.url }}"></a>
+            <a href="{% url 'profiles:user_profile' search_user.username %}"> <div id="username" class="font-myfontLight tracking-wide"> {{ search_user.username }} </div></a>
+        </div>
+
+        <h1 class="font-myfontLight py-2 border-b border-letterboxd-2 mt-6 text-letterboxd-3  text-3xl">Network</h1>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+
 </body>
+<script src="{% static 'main/js/utilitesFunction.js' %}"></script>
+<script src="{% static 'main/js/navbar.js' %}"></script>
+<script src="{% static 'profiles/js/following_follow.js' %}"></script>
 </html>

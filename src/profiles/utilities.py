@@ -87,5 +87,8 @@ def addInTopFour(user,top,pos):
 
 
 
-
+def noFavroite(top):
+    if top.one == None and top.two == None and top.three == None and top.four == None:
+        return True
+    return False
 

@@ -1,0 +1,24 @@
+{% extends 'films/search_page.html' %}
+
+{% block content %}
+<div class="">
+        {% for searched_user in searched_users %}
+        <div class="border-b border-letterboxd-3 flex gap-4 items-center py-3">
+                <a href="{% url 'profiles:user_profile' searched_user.username %}"><img
+                                class="w-12 gap-10 object-cover rounded-full"
+                                src="{{ searched_user.profile.profile_picture.url }}"></a>
+                <div class="">
+                        <span class="block font-myfont hover:underline text-white text-lg"><a
+                                        href="{% url 'profiles:user_profile' searched_user.username %}">{{searched_user.username}}</a></span>
+                        <span class="block font-myfontLight text-letterboxd-3"><span class="hover:text-letterboxd-6"><a
+                                                href="{% url 'profiles:following' searched_user.username %}">{{ searched_user.profile.following.count}}
+                                                following</a></span>, <span class="hover:text-letterboxd-6"> <a
+                                                href="{% url 'profiles:followers' searched_user.username %}">{{ searched_user.profile.followers.count}}
+                                                followers</a></span></span>
+                </div>
+        </div>
+        {% endfor %}
+
+</div>
+
+{% endblock %}

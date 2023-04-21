@@ -11,8 +11,22 @@ class Review(models.Model):
     liked_by = models.ManyToManyField(User,related_name="liked_review_set")
     review_date = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    
-   
+    likes_count = models.IntegerField(default=0)
     
     def __str__(self):
         return f"review:{ self.review},movie:{self.movie.original_title}"
+
+    def like(username,review_id):
+        user = User.objects.get(username=username)
+        review = Review.objects.get(id=review_id)
+        review.liked_by.add(user)
+        review.likes_count += 1
+        review.save()
+
+    def unlike(username,review_id):
+        user = User.objects.get(username=username)
+        review = Review.objects.get(id=review_id)
+        review.liked_by.remove(user)
+        review.likes_count -= 1
+        review.save()
+        

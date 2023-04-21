@@ -16,9 +16,7 @@ follow_btn.addEventListener("click", (event) => {
     let profile_username = getCookie('profile_username');
     let username = getCookie('username');
     console.log(`${username} interact with ${profile_username}`);
-    const url = `/{username}/follow/` + profile_username;
+    const url = `/${username}/follow/` + profile_username;
     fetch(url,options);
-
-
-})
+});
 }

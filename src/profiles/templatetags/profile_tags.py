@@ -83,3 +83,19 @@ def get_poster_path(top):
     if top:
         return top.poster_path
     return None
+
+
+
+
+@register.simple_tag
+def topPosterPath(top):
+    if top:
+        return "https://image.tmdb.org/t/p/w200" + top.poster_path
+    return static("image/defaultposter.png")
+
+
+@register.simple_tag
+def topTmdb_id(top):
+    if top:
+        return top.tmdb_id
+    return 0

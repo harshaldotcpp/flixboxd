@@ -2,19 +2,17 @@ from django.shortcuts import render
 from django.contrib.auth.models import  User
 from django.http import JsonResponse,HttpResponse
 from django.shortcuts import redirect
-from .utilities import validatePayload,addInTopFour
+from .utilities import validatePayload,addInTopFour,noFavroite
 from django.contrib import messages
 import json
 
 # Create your views here.
-
 #shows profile page
 def user_profile(request,username):
     
     info = {
         "username":username,
     }
-    print()
     user = User.objects.filter(username=username)
 
     if user:
@@ -22,8 +20,12 @@ def user_profile(request,username):
         info["watchlist"] = user[0].watchlist.all()[:4]
         info["top4"] = user[0].top4
         info["recent_log"] = user[0].diary_log.order_by("-date","-created_at")[:4]
+        info["recent_log_len"] = len(user[0].diary_log.order_by("-date","-created_at")[:4])
         info["reviews"] = user[0].reviews_set.order_by("-date")[:2]
-        print(info["reviews"])
+        favs = False
+        if noFavroite(info["top4"]):
+            favs = True 
+        info["favs"] = favs
         response =  render(request,"profile_page/profile.html",context=info)
         response.set_cookie(key="profile_username",value=username)
         response.set_cookie(key="username",value=request.user.username)
@@ -104,10 +106,32 @@ def updatetop(request,username):
     return render(request,"profile_page/error.html")
 
 def following(request,username):
+    search_user = User.objects.filter(username=username)
     context = {"page_type":"following"}
-    return render(request,"profile_page/following.html",context=context)
+    if search_user:
+        context["search_user"] = search_user[0]
+        context['followings'] = search_user[0].profile.following.all()
+        print(context["followings"])
+        
+        return render(request,"profile_page/following.html",context=context)
+    return render(request,"profile_page/error.html")
 
 
 def followers(request,username):
+    search_user = User.objects.filter(username=username)
     context = {"page_type":"followers"}
-    return render(request,"profile_page/followers.html",context=context)
+    if search_user:
+        context["search_user"] = search_user[0]
+        context["followers"] = search_user[0].profile.followers.all()
+        return render(request,"profile_page/followers.html",context=context)
+    return render(request,"profile_page/error.html")
+
+def search(request,username):
+    context = {
+        "searched_users":User.objects.filter(username__startswith=username),
+        "search_value":username,
+        "btn_color":"text-blue-300",
+        "len": len(User.objects.filter(username__startswith=username))
+    }
+    print(context["searched_users"])
+    return render(request, "profile_page/search_profile.html",context=context) 

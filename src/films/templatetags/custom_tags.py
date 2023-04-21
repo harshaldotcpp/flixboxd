@@ -106,3 +106,23 @@ def updateNewMonth(current_month,new_month):
     if current_month != new_month:
         return current_month
     return new_month
+
+
+@register.simple_tag
+def getAvgRating(film_id):
+    film = Film.objects.filter(tmdb_id = film_id)
+    rating = 0
+    if film:
+        rating = film[0].averageRating()
+    return rating
+
+
+
+
+@register.simple_tag
+def watched_by_count(film_id):
+    film = Film.objects.filter(tmdb_id=film_id)
+    count = 0
+    if film:
+        count = film[0].watched_by.count()
+    return count
