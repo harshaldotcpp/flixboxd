@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from .models import Rating,DiaryLog,Film
 from tmdbv3api import TMDb,Movie
+from .utilities import get_friends_watched_film,get_friends_watchedlisted_film 
 import datetime
 import random
 import json
@@ -146,7 +147,8 @@ def film(request,film_id):
     m = movie.details(film_id)
     mc = movie.credits(film_id)
     similar_movies = movie.similar(film_id)
-   
+    db_film = request.user.profile.createFilm({"tmdb_id":m.id})
+
     directors = []
     for credit in mc.crew:
         if credit["job"] == "Director":
@@ -162,8 +164,14 @@ def film(request,film_id):
         "director": directors[0],
         "similar_movies": similar_movies,
     }
+    friends_activity = []
+    freinds_watchlisted = []
     if request.user.is_authenticated:
         info["user_lists"] = request.user.lists.all()
+        friends_activity = get_friends_watched_film(request.user,db_film)
+        freinds_watchlisted = get_friends_watchedlisted_film(request.user,db_film,friends_activity)
+
+
 
 
     reviews = []
@@ -173,13 +181,14 @@ def film(request,film_id):
         reviews = requested_movie[0].reviews_set.all()
         if request.user.is_authenticated:
             myReviews = request.user.reviews_set.filter(movie=requested_movie[0])
-
+    
     review_len = len(reviews)
     info["reviews"] = reviews
     info["reviews_len"] = len(reviews)
     info['my_reviews'] = myReviews
     info["myreviewlen"] = len(myReviews)
-
+    info["friends_activity"] = friends_activity
+    info["friends_watchlisted"] = freinds_watchlisted
 
     response = render(request,"films/film.html",context=info)
     response.set_cookie(key="id",value=m.id)
@@ -220,7 +229,7 @@ def search_films(request,film_name):
         "movies": movies,
         "user_logged_in": request.user.is_authenticated,
         "len": len(movies),
-        "f_btn_color":"text-blue-300"
+        "f_btn_color":"bg-letterboxd-3"
     }
     return render(request,"films/search_results.html",context=context)
 
