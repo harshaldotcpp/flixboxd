@@ -130,7 +130,7 @@ def search(request,username):
     context = {
         "searched_users":User.objects.filter(username__startswith=username),
         "search_value":username,
-        "btn_color":"text-blue-300",
+        "btn_color":"bg-letterboxd-3",
         "len": len(User.objects.filter(username__startswith=username))
     }
     print(context["searched_users"])

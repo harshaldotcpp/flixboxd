@@ -23,7 +23,7 @@
 
         <div class="text-lg font-myfontLight flex flex-col">
             <div class="font-abrilbold">
-                <a href="{% url  'filmsabout:film' review.movie.id %}"> {{ review.movie.original_title }} <span
+                <a href="{% url  'filmsabout:film' review.movie.tmdb_id %}"> {{ review.movie.original_title }} <span
                         class="font-myfontLight text-letterboxd-3" class="font-myfontLight">
                         {{ review.movie.release_year }} </span>
             </div>

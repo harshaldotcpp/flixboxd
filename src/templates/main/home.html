@@ -35,7 +35,7 @@
                     {% for friend in friends_movies%}
                     {% for movie in friend.movies %}
                     <div class="card relative rounded-sm   shadow-inner shadow-blue-500 overflow-hidden">
-                        <a href="">
+                        <a href="{% url 'filmsabout:film' movie.movie.tmdb_id %}">
                             <img class="object-cover lodaz"
                                 data-src="https://image.tmdb.org/t/p/original{{movie.movie.poster_path}}"
                                 src="https://image.tmdb.org/t/p/w200/{{movie.movie.poster_path}}">
