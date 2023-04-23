@@ -122,12 +122,24 @@
             </div>
             {% endif %}
 
+            {% if friends_activity_len != 0 %}
             <div id="activity_from_friend" class="mt-12">
-                <h1 class="text-sm font-myfontLight text-letterboxd-3 border-b border-letterboxd-2 py-1">Activity from
-                    friends
-                </h1>
+                <div class="text-sm font-myfontLight text-letterboxd-3 border-b border-letterboxd-2 py-1 flex justify-between">
+                    <h1 class="">Activity
+                        from
+                        friends
+                    </h1>
+                    <div>
+                        {% if watched_len != 0%}
+                            <span>{{ watched_len}} watched </span>
+                        {% endif %}
+                        {% if watchlist_len != 0 %}
+                            <span>{{ watchlist_len}} wants to watch </span>
+                        {% endif %}
+                    </div>
+                </div>
                 <div class="flex py-3 gap-4 border-b border-letterboxd-2">
-                    {% for friend in friends_activity %}
+                    {% for friend in friends_watched %}
                     <div class="flex flex-col items-center gap-1">
                         <a href="{% url 'profiles:user_profile' friend.friend.username %}"> <img
                                 class="w-12 gap-10 object-cover rounded-full"
@@ -145,7 +157,8 @@
                     {% for friend in friends_watchlisted %}
                     <div class="flex flex-col items-center gap-1">
                         <div class=" relative flex flex-col items-center ">
-                            <a href="{% url 'profiles:user_profile' friend.username %}"> <img class="w-12 gap-10 object-cover rounded-full overflow-hidden"
+                            <a href="{% url 'profiles:user_profile' friend.username %}"> <img
+                                    class="w-12 gap-10 object-cover rounded-full overflow-hidden"
                                     src="{{ friend.profile.profile_picture.url }}"></a>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="black" class="fill-letterboxd-4 absolute w-4 h-4 right-0 top-0">
@@ -160,7 +173,7 @@
 
                 </div>
             </div>
-
+            {% endif %}
 
 
             <div class="cast-crew-div mt-12">

@@ -164,12 +164,12 @@ def film(request,film_id):
         "director": directors[0],
         "similar_movies": similar_movies,
     }
-    friends_activity = []
+    friends_watched = []
     freinds_watchlisted = []
     if request.user.is_authenticated:
         info["user_lists"] = request.user.lists.all()
-        friends_activity = get_friends_watched_film(request.user,db_film)
-        freinds_watchlisted = get_friends_watchedlisted_film(request.user,db_film,friends_activity)
+        friends_watched = get_friends_watched_film(request.user,db_film)
+        freinds_watchlisted = get_friends_watchedlisted_film(request.user,db_film,friends_watched)
 
 
 
@@ -187,8 +187,11 @@ def film(request,film_id):
     info["reviews_len"] = len(reviews)
     info['my_reviews'] = myReviews
     info["myreviewlen"] = len(myReviews)
-    info["friends_activity"] = friends_activity
+    info["friends_watched"] = friends_watched
     info["friends_watchlisted"] = freinds_watchlisted
+    info["friends_activity_len"] =  len(friends_watched) + len(freinds_watchlisted)
+    info["watched_len"] = len(friends_watched)
+    info["watchlist_len"] = len(freinds_watchlisted)
 
     response = render(request,"films/film.html",context=info)
     response.set_cookie(key="id",value=m.id)
