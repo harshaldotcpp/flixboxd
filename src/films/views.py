@@ -147,7 +147,6 @@ def film(request,film_id):
     m = movie.details(film_id)
     mc = movie.credits(film_id)
     similar_movies = movie.similar(film_id)
-    db_film = request.user.profile.createFilm({"tmdb_id":m.id})
     watch_provider = movie.watch_providers(film_id).results.get("IN",{}).get("rent",[])
     videos = movie.videos(film_id)
     trailer_link = "" 
@@ -173,6 +172,7 @@ def film(request,film_id):
     friends_watched = []
     freinds_watchlisted = []
     if request.user.is_authenticated:
+        db_film = request.user.profile.createFilm({"tmdb_id":m.id})
         info["user_lists"] = request.user.lists.all()
         friends_watched = get_friends_watched_film(request.user,db_film)
         freinds_watchlisted = get_friends_watchedlisted_film(request.user,db_film,friends_watched)
