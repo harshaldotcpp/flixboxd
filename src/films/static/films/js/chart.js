@@ -36,8 +36,10 @@ window.addEventListener("load", (event) => {
                 var bardata = document.createElement(TDATA);
                 var bar = document.createElement('div');
                 bar.setAttribute('class', "bg-letterboxd-3");
-                bar.classList.add("border");
-                bar.classList.add("border-black");
+                bar.classList.add("border-x");
+                bar.classList.add("border-y");
+                bar.classList.add("border-x-black");
+                bar.classList.add("border-y-letterboxd-2");
                 bar.style.height = chartjson.data[i][chartjson.ykey] + prefix;
 
                 bardata.appendChild(bar);

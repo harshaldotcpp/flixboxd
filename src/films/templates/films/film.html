@@ -33,10 +33,10 @@
 
 
 
-        <section class="px-5 sm:px-12 md:px-32 md:text-lg font-myfontLight">
+        <section class="px-8 md:px-12 grid  grid-cols-1 md:grid-cols-2 gap-10  md:text-lg font-myfontLight">
 
-            <section id="movie_intro" class="relative bg-transparent z-10">
-                <div class="flex gap-9 justify-evenly md:justify-center md:gap-48 p-4">
+            <section id="movie_intro" class="col-span-1 md:col-span-full relative bg-transparent z-10">
+                <div class="flex gap-4 justify-evenly md:justify-center md:gap-48 ">
 
                     <div id="movie-info" class="">
                         <div class="text-white leading-7 font-abrilbold text-2xl md-text-3xl">
@@ -81,7 +81,7 @@
                 </div>
             </section>
 
-            <section id="content synopsis_tagline" class="flex flex-col md:px-24">
+            <section id="content synopsis_tagline" class="flex flex-col ">
 
                 <div id="tagline" class="text-sm md:text:md tracking-widest font-bold text-letterboxd-6">
                     {{ movie.tagline }}
@@ -91,18 +91,72 @@
                 </div>
             </section>
 
-            <section id="rating_graph" class="text-sm mt-12 md:px-24">
+            <section id="rating_graph" class="text-sm self-start flex  gap-3 flex-col">
                 <div class="mb-2 pb-2 border-b border-letterboxd-3 flex justify-between">
                     <span> RATINGS </span>
                     <span> watched by {% watched_by_count movie.id %} </span>
                 </div>
                 <div class="flex gap-3">
-                    <div id="chart" "></div>
-                        <div id=" rating" class="flex flex-col justify-center items-center ">
+                    <div id="chart"></div>
+                    <div id=" rating" class="flex flex-col justify-center items-center ">
                         <span class="text-4xl font-myfontLight">{% getAvgRating movie.id %}</span>
                         <span class="text-sm text-letterboxd-3">Rating</span>
                     </div>
                 </div>
+                {% if friends_activity_len != 0 %}
+                <section id="activity_from_friend" class="">
+                    <div
+                        class="text-sm font-myfontLight text-letterboxd-3 border-b border-letterboxd-2 py-1 flex overflow-x-auto scrobar-none justify-between">
+                        <h1 class="">Activity
+                            from
+                            friends
+                        </h1>
+                        <div>
+                            {% if watched_len != 0%}
+                            <span>{{ watched_len}} watched </span>
+                            {% endif %}
+                            {% if watchlist_len != 0 %}
+                            <span>{{ watchlist_len}} wants to watch </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="flex py-3 gap-4 border-b border-letterboxd-2">
+                        {% for friend in friends_watched %}
+                        <div class="flex flex-col items-center gap-1">
+                            <a href="{% url 'profiles:user_profile' friend.friend.username %}"> <img
+                                    class="w-12 gap-10 object-cover rounded-full"
+                                    src="{{ friend.friend.profile.profile_picture.url }}"></a>
+                            <div class="font-starrating text-letterboxd-3 text-[10px]">
+                                {% rating_to_stars friend.friend movie.id as stars %}
+                                <div id="stars" class="flex">
+                                    {% for star in stars %}
+                                    <span>{{ star }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% for friend in friends_watchlisted %}
+                        <div class="flex flex-col items-center gap-1">
+                            <div class=" relative flex flex-col items-center ">
+                                <a href="{% url 'profiles:user_profile' friend.username %}"> <img
+                                        class="w-12 gap-10 object-cover rounded-full overflow-hidden"
+                                        src="{{ friend.profile.profile_picture.url }}"></a>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="black"
+                                    class="fill-letterboxd-4 absolute w-4 h-4 right-0 top-0">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+
+
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </section>
+                {% endif %}
             </section>
 
 
@@ -110,7 +164,7 @@
             <section id="rate_log_reveiw_section">
                 <button id="" class="w-full">
                     <div
-                        class="bg-letterboxd-3 text-letterboxd-6 py-2 hover:shadow-lg hover:shadow-black rounded-md mt-12 px-4 flex items-center gap-3">
+                        class="bg-letterboxd-3 text-letterboxd-6 py-2 hover:shadow-lg hover:shadow-black rounded-md px-4 flex items-center gap-3">
                         <img class="w-6  object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
                         <div class="text-xs sm:text-sm md:text-md lg:text-lg">Rate, log, Review + add to list + more
                         </div>
@@ -120,61 +174,9 @@
             </section>
             {% endif %}
 
-            {% if friends_activity_len != 0 %}
-            <section id="activity_from_friend" class="mt-12">
-                <div
-                    class="text-sm font-myfontLight text-letterboxd-3 border-b border-letterboxd-2 py-1 flex overflow-x-auto scrobar-none justify-between">
-                    <h1 class="">Activity
-                        from
-                        friends
-                    </h1>
-                    <div>
-                        {% if watched_len != 0%}
-                        <span>{{ watched_len}} watched </span>
-                        {% endif %}
-                        {% if watchlist_len != 0 %}
-                        <span>{{ watchlist_len}} wants to watch </span>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="flex py-3 gap-4 border-b border-letterboxd-2">
-                    {% for friend in friends_watched %}
-                    <div class="flex flex-col items-center gap-1">
-                        <a href="{% url 'profiles:user_profile' friend.friend.username %}"> <img
-                                class="w-12 gap-10 object-cover rounded-full"
-                                src="{{ friend.friend.profile.profile_picture.url }}"></a>
-                        <div class="font-starrating text-letterboxd-3 text-[10px]">
-                            {% rating_to_stars friend.friend movie.id as stars %}
-                            <div id="stars" class="flex">
-                                {% for star in stars %}
-                                <span>{{ star }}</span>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    {% for friend in friends_watchlisted %}
-                    <div class="flex flex-col items-center gap-1">
-                        <div class=" relative flex flex-col items-center ">
-                            <a href="{% url 'profiles:user_profile' friend.username %}"> <img
-                                    class="w-12 gap-10 object-cover rounded-full overflow-hidden"
-                                    src="{{ friend.profile.profile_picture.url }}"></a>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="black" class="fill-letterboxd-4 absolute w-4 h-4 right-0 top-0">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
 
 
-                        </div>
-                    </div>
-                    {% endfor %}
-
-                </div>
-            </section>
-            {% endif %}
-
-            <section id="this_is_cast_crew_section" class="cast-crew-div mt-12">
+            <section id="this_is_cast_crew_section" class="cast-crew-div">
                 <div class="mb-3 text-letterboxd-4 border-b border-letterboxd-3 flex gap-3 font-myfontLight">
                     <div class=""> CAST </div>
                     <div> CREW </div>
@@ -194,13 +196,13 @@
             <section id="this_is_review_section">
                 {% if reviews_len == 0%}
                 <div
-                    class="flex justify-center text-xs sm:text-sm md:text-md lg:text-lg font-myfontLight mt-12 py-4 border-y border-letterboxd-3">
+                    class="flex justify-center text-xs sm:text-sm md:text-md lg:text-lg font-myfontLight py-4 border-y border-letterboxd-3">
                     No Reviews Yet our site is new :D be first one to do so
                 </div>
                 {% else %}
-                <div id="populer_reviews" class="mt-28 border-letterboxd-3">
-                    <div class="flex justify-between  border-b border-letterboxd-3">
-                        <div class="text-sm"> POPULAR REVIEWS </div>
+                <div id="populer_reviews" class=" border-letterboxd-3">
+                    <div class="flex text-sm font-myfontLight justify-between  border-b border-letterboxd-3">
+                        <div class=""> POPULAR REVIEWS </div>
                         <div> more </div>
                     </div>
                     {% for review in reviews %}
@@ -247,8 +249,8 @@
                 {% if user.is_authenticated %}
                 {% if my_reviews %}
                 <div id="your_reviews" class="mt-12 border-letterboxd-3">
-                    <div class="flex justify-between py-1 border-b border-letterboxd-3">
-                        <div class="text-sm">Your Reviews</div>
+                    <div class="flex text-sm font-myfontLight justify-between py-1 border-b border-letterboxd-3">
+                        <div class="">Your Reviews</div>
                         <div> more </div>
                     </div>
                     {% for review in my_reviews %}
@@ -292,7 +294,7 @@
             </section>
 
 
-            <section id="similer_movies" class="mt-14">
+            <section id="similer_movies" class="">
                 <div class="font-myfontLight text-letterboxd-3 pb-2 border-b border-letterboxd-3">
                     Similer Movies
                 </div>
