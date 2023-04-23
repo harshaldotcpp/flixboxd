@@ -27,59 +27,61 @@
         <img data-src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}"
             src="https://image.tmdb.org/t/p/w200{{movie.backdrop_path}}"
             class="lozad h-64  mt-10 w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
-        <section class="relative bg-transparent z-10">
-            <div class="relative h-52 md:h-96">
 
-            </div>
+        <div id="empty-space-for-image" class="relative h-52 md:h-96">
+        </div>
 
-            <div class="flex gap-9 justify-evenly md:justify-center md:gap-48 p-4">
 
-                <div id="movie-info" class="">
-                    <div class="text-white leading-7 font-abrilbold text-2xl md-text-3xl">
-                        {{ movie.title }}
-                    </div>
-                    <div class="mt-2 text-letterboxd-6 text-sm font-myfontLight tracking-wide">
-                        {{ release_year }} • DIRECTED BY<br>
-
-                    </div>
-                    <div class="font-myfont">{{ director }}</div>
-                    <div class="mt-4 flex gap-3">
-                        <button onclick="window.location.href = '{{trailer_link}}';"
-                            class="flex items-center bg-letterboxd-3 tracking-widest text-xs py-1 px-3 rounded-md font-bold">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="w-3 h-3">
-                                <path fill-rule="evenodd"
-                                    d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <span> Trailer </span>
-                        </button>
-                        <span>
-                            {{movie.runtime}} mins
-                        </span>
-                    </div>
-                </div>
-
-                <div>
-                    <div
-                        class="w-28 md:w-32 card relative rounded-md md:rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
-                        <a href="">
-                            <img class="lozad object-cover"
-                                data-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
-                                src="https://image.tmdb.org/t/p/w200{{movie.poster_path}}">
-                        </a>
-                        <div
-                            class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
 
         <section class="px-5 sm:px-12 md:px-32 md:text-lg font-myfontLight">
 
-            <div id="content" class="flex flex-col md:px-24">
+            <section id="movie_intro" class="relative bg-transparent z-10">
+                <div class="flex gap-9 justify-evenly md:justify-center md:gap-48 p-4">
+
+                    <div id="movie-info" class="">
+                        <div class="text-white leading-7 font-abrilbold text-2xl md-text-3xl">
+                            {{ movie.title }}
+                        </div>
+                        <div class="mt-2 text-letterboxd-6 text-sm font-myfontLight tracking-wide">
+                            {{ release_year }} • DIRECTED BY<br>
+
+                        </div>
+                        <div class="font-myfont">{{ director }}</div>
+                        <div class="mt-4 flex gap-3">
+                            <button onclick="window.location.href = '{{trailer_link}}';"
+                                class="flex items-center bg-letterboxd-3 tracking-widest text-xs py-1 px-3 rounded-md font-bold">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="w-3 h-3">
+                                    <path fill-rule="evenodd"
+                                        d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span> Trailer </span>
+                            </button>
+                            <span>
+                                {{movie.runtime}} mins
+                            </span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div
+                            class="w-28 md:w-32 card relative rounded-md md:rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
+                            <a href="">
+                                <img class="lozad object-cover"
+                                    data-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
+                                    src="https://image.tmdb.org/t/p/w200{{movie.poster_path}}">
+                            </a>
+                            <div
+                                class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="content synopsis_tagline" class="flex flex-col md:px-24">
 
                 <div id="tagline" class="text-sm md:text:md tracking-widest font-bold text-letterboxd-6">
                     {{ movie.tagline }}
@@ -87,29 +89,25 @@
                 <div id="synopsis" class="mt-4 font-abril font-extralight pt-0">
                     {{ movie.overview }}
                 </div>
+            </section>
 
-
-
-                <div id="rating_graph" class="text-sm mt-12">
-                    <div class="mb-2 pb-2 border-b border-letterboxd-3 flex justify-between">
-                        <span> RATINGS </span>
-                        <span> watched by {% watched_by_count movie.id %} </span>
-                    </div>
-                    <div class="flex gap-3">
-                        <div id="chart" "></div>
+            <section id="rating_graph" class="text-sm mt-12 md:px-24">
+                <div class="mb-2 pb-2 border-b border-letterboxd-3 flex justify-between">
+                    <span> RATINGS </span>
+                    <span> watched by {% watched_by_count movie.id %} </span>
+                </div>
+                <div class="flex gap-3">
+                    <div id="chart" "></div>
                         <div id=" rating" class="flex flex-col justify-center items-center ">
-                            <span class="text-4xl font-myfontLight">{% getAvgRating movie.id %}</span>
-                            <span class="text-sm text-letterboxd-3">Rating</span>
-                        </div>
+                        <span class="text-4xl font-myfontLight">{% getAvgRating movie.id %}</span>
+                        <span class="text-sm text-letterboxd-3">Rating</span>
                     </div>
                 </div>
-            </div>
-
-
+            </section>
 
 
             {% if user.is_authenticated %}
-            <div>
+            <section id="rate_log_reveiw_section">
                 <button id="" class="w-full">
                     <div
                         class="bg-letterboxd-3 text-letterboxd-6 py-2 hover:shadow-lg hover:shadow-black rounded-md mt-12 px-4 flex items-center gap-3">
@@ -119,22 +117,23 @@
                     </div>
                 </button>
                 {% include 'films/movie_navigation.html' %}
-            </div>
+            </section>
             {% endif %}
 
             {% if friends_activity_len != 0 %}
-            <div id="activity_from_friend" class="mt-12">
-                <div class="text-sm font-myfontLight text-letterboxd-3 border-b border-letterboxd-2 py-1 flex justify-between">
+            <section id="activity_from_friend" class="mt-12">
+                <div
+                    class="text-sm font-myfontLight text-letterboxd-3 border-b border-letterboxd-2 py-1 flex overflow-x-auto scrobar-none justify-between">
                     <h1 class="">Activity
                         from
                         friends
                     </h1>
                     <div>
                         {% if watched_len != 0%}
-                            <span>{{ watched_len}} watched </span>
+                        <span>{{ watched_len}} watched </span>
                         {% endif %}
                         {% if watchlist_len != 0 %}
-                            <span>{{ watchlist_len}} wants to watch </span>
+                        <span>{{ watchlist_len}} wants to watch </span>
                         {% endif %}
                     </div>
                 </div>
@@ -172,11 +171,10 @@
                     {% endfor %}
 
                 </div>
-            </div>
+            </section>
             {% endif %}
 
-
-            <div class="cast-crew-div mt-12">
+            <section id="this_is_cast_crew_section" class="cast-crew-div mt-12">
                 <div class="mb-3 text-letterboxd-4 border-b border-letterboxd-3 flex gap-3 font-myfontLight">
                     <div class=""> CAST </div>
                     <div> CREW </div>
@@ -189,112 +187,112 @@
                 </div>
                 <div id="crew" ,class="hidden">
                 </div>
-            </div>
+            </section>
 
 
 
-            {% if reviews_len == 0%}
-            <div
-                class="flex justify-center text-xs sm:text-sm md:text-md lg:text-lg font-myfontLight mt-12 py-4 border-y border-letterboxd-3">
-                No Reviews Yet our site is new :D be first one to do so
-            </div>
-
-            {% else %}
-            <div id="populer_reviews" class="mt-28 border-letterboxd-3">
-                <div class="flex justify-between  border-b border-letterboxd-3">
-                    <div class="text-sm"> POPULAR REVIEWS </div>
-                    <div> more </div>
+            <section id="this_is_review_section">
+                {% if reviews_len == 0%}
+                <div
+                    class="flex justify-center text-xs sm:text-sm md:text-md lg:text-lg font-myfontLight mt-12 py-4 border-y border-letterboxd-3">
+                    No Reviews Yet our site is new :D be first one to do so
                 </div>
-                {% for review in reviews %}
-                <div id="review_card" class="pt-3 border-b border-letterboxd-3">
-                    <div if="reviewer" class="mb-3 text-sm tracking-wide flex gap-2 items-center">
-                        <img class="w-6 object-cover rounded-full"
-                            src="{{ review.review_by.profile.profile_picture.url }} ">
-                        <div class="text-letterboxd-3 text-xs font-myfontLight" id="username">Review by <span
-                                class="font-myfont text-letterboxd-6"> {{review.review_by.username }} </span> </div>
-                        {% rating_to_stars review.review_by movie.id as stars %}
-                        <div class="rating text-xs text-letterboxd-4 font-starrating flex">
-                            {% for star in stars %}
-                            <span> {{star}} </span>
-                            {% endfor %}
+                {% else %}
+                <div id="populer_reviews" class="mt-28 border-letterboxd-3">
+                    <div class="flex justify-between  border-b border-letterboxd-3">
+                        <div class="text-sm"> POPULAR REVIEWS </div>
+                        <div> more </div>
+                    </div>
+                    {% for review in reviews %}
+                    <div id="review_card" class="pt-3 border-b border-letterboxd-3">
+                        <div if="reviewer" class="mb-3 text-sm tracking-wide flex gap-2 items-center">
+                            <img class="w-6 object-cover rounded-full"
+                                src="{{ review.review_by.profile.profile_picture.url }} ">
+                            <div class="text-letterboxd-3 text-xs font-myfontLight" id="username">Review by <span
+                                    class="font-myfont text-letterboxd-6"> {{review.review_by.username }} </span> </div>
+                            {% rating_to_stars review.review_by movie.id as stars %}
+                            <div class="rating text-xs text-letterboxd-4 font-starrating flex">
+                                {% for star in stars %}
+                                <span> {{star}} </span>
+                                {% endfor %}
+                            </div>
                         </div>
-                    </div>
-                    <div id="review" class="text-sm text-gray-400  font-abril font-light mb-4">
-                        {{ review.review }}
-                    </div>
-                    {% if user.is_authenticated %}
-                    <div id="review-like"
-                        class="flex gap-2 items-center  mb-4 text-sm text-gray-400  font-myfontLight font-light">
-                        <label for="{{ forloop.counter }}">
-                            <svg id="review-like-btn" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor"
-                                class=" stroke-letterboxd-3 w-4 h-4 review-icon-{{forloop.counter}} {% is_review_liked user review 'fill-letterboxd-5' '' %}">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                            </svg>
-                            <input type="checkbox" {% is_review_liked user review 'checked' 'unchecked' %}
-                                data-username="{{ user.username }}" data-review_id="{{ review.id }}" name=""
-                                id="{{ forloop.counter }}" class="like-review-btn hidden">
-                        </label>
-                        {% if review.liked_by.count == 0 %}
-                        <span class="text-letterboxd-3 text-sm">No likes Yet</span>
-                        {% else %}
-                        <span class="text-letterboxd-3 text-sm"> {{ review.liked_by.count }} Likes</span>
+                        <div id="review" class="text-sm text-gray-400  font-abril font-light mb-4">
+                            {{ review.review }}
+                        </div>
+                        {% if user.is_authenticated %}
+                        <div id="review-like"
+                            class="flex gap-2 items-center  mb-4 text-sm text-gray-400  font-myfontLight font-light">
+                            <label for="{{ forloop.counter }}">
+                                <svg id="review-like-btn" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    class=" stroke-letterboxd-3 w-4 h-4 review-icon-{{forloop.counter}} {% is_review_liked user review 'fill-letterboxd-5' '' %}">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                </svg>
+                                <input type="checkbox" {% is_review_liked user review 'checked' 'unchecked' %}
+                                    data-username="{{ user.username }}" data-review_id="{{ review.id }}" name=""
+                                    id="{{ forloop.counter }}" class="like-review-btn hidden">
+                            </label>
+                            {% if review.liked_by.count == 0 %}
+                            <span class="text-letterboxd-3 text-sm">No likes Yet</span>
+                            {% else %}
+                            <span class="text-letterboxd-3 text-sm"> {{ review.liked_by.count }} Likes</span>
+                            {% endif %}
+                        </div>
                         {% endif %}
                     </div>
-                    {% endif %}
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
-            {% endif %}
+                {% if user.is_authenticated %}
+                {% if my_reviews %}
+                <div id="your_reviews" class="mt-12 border-letterboxd-3">
+                    <div class="flex justify-between py-1 border-b border-letterboxd-3">
+                        <div class="text-sm">Your Reviews</div>
+                        <div> more </div>
+                    </div>
+                    {% for review in my_reviews %}
+                    <div id="review_card" class="pt-3 border-b border-letterboxd-3">
+                        <div if="reviewer" class="mb-3 text-sm tracking-wide flex gap-2 items-center">
+                            <img class="w-6 object-cover rounded-full"
+                                src="{{ review.review_by.profile.profile_picture.url }} ">
+                            <div class="text-letterboxd-3 text-xs font-myfontLight" id="username">Review by <span
+                                    class="font-myfont text-letterboxd-6"> {{review.review_by.username }} </span> </div>
+                        </div>
+                        <div id="review" class="text-sm text-gray-400  font-abril mb-4">
+                            {{ review.review }}
+                        </div>
+                        <div id="review-like"
+                            class="flex gap-2 items-center  mb-4 text-sm text-gray-400  font-myfontLight font-light">
+                            <label for="my-{{ forloop.counter }}">
+                                <svg id="my_review-like-btn" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    class=" stroke-letterboxd-3 w-4 h-4 my_review-icon-{{forloop.counter}} {% is_review_liked user review 'fill-letterboxd-5' '' %}">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                </svg>
+                                <input type="checkbox" {% is_review_liked user review 'checked' 'unchecked' %}
+                                    data-username="{{ user.username }}" data-review_id="{{ review.id }}" name=""
+                                    id="my-{{ forloop.counter }}" class="my_like-review-btn hidden">
+                            </label>
+                            {% if review.liked_by.count == 0 %}
+                            <span class="text-letterboxd-3 text-sm">No likes Yet</span>
+                            {% else %}
+                            <span class="text-letterboxd-3 text-sm"> {{ review.liked_by.count }} Likes</span>
+                            {% endif %}
+                        </div>
 
 
-            {% if user.is_authenticated %}
-            {% if myreviewlen != 0%}
-            <div id="your_reviews" class="mt-12 border-letterboxd-3">
-                <div class="flex justify-between py-1 border-b border-letterboxd-3">
-                    <div class="text-sm">Your Reviews</div>
-                    <div> more </div>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% for review in my_reviews %}
-                <div id="review_card" class="pt-3 border-b border-letterboxd-3">
-                    <div if="reviewer" class="mb-3 text-sm tracking-wide flex gap-2 items-center">
-                        <img class="w-6 object-cover rounded-full"
-                            src="{{ review.review_by.profile.profile_picture.url }} ">
-                        <div class="text-letterboxd-3 text-xs font-myfontLight" id="username">Review by <span
-                                class="font-myfont text-letterboxd-6"> {{review.review_by.username }} </span> </div>
-                    </div>
-                    <div id="review" class="text-sm text-gray-400  font-abril mb-4">
-                        {{ review.review }}
-                    </div>
-                    <div id="review-like"
-                        class="flex gap-2 items-center  mb-4 text-sm text-gray-400  font-myfontLight font-light">
-                        <label for="my-{{ forloop.counter }}">
-                            <svg id="my_review-like-btn" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                class=" stroke-letterboxd-3 w-4 h-4 my_review-icon-{{forloop.counter}} {% is_review_liked user review 'fill-letterboxd-5' '' %}">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                            </svg>
-                            <input type="checkbox" {% is_review_liked user review 'checked' 'unchecked' %}
-                                data-username="{{ user.username }}" data-review_id="{{ review.id }}" name=""
-                                id="my-{{ forloop.counter }}" class="my_like-review-btn hidden">
-                        </label>
-                        {% if review.liked_by.count == 0 %}
-                        <span class="text-letterboxd-3 text-sm">No likes Yet</span>
-                        {% else %}
-                        <span class="text-letterboxd-3 text-sm"> {{ review.liked_by.count }} Likes</span>
-                        {% endif %}
-                    </div>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+            </section>
 
 
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-            {% endif %}
-
-            <div class="mt-14">
+            <section id="similer_movies" class="mt-14">
                 <div class="font-myfontLight text-letterboxd-3 pb-2 border-b border-letterboxd-3">
                     Similer Movies
                 </div>
@@ -320,17 +318,15 @@
 
                 </div>
 
-            </div>
+            </section>
 
 
         </section>
 
 
-        </div>
 
-        </div>
 
-        <div id="add-to-list"
+        <div id="your-lists-to-add add-to-list"
             class="hidden z-50 bg-gradient-to-tl rounded-md  shadow-md shadow-black overflow-x-hidden from-[#2A394E] to-[#0E0E0F]  p-4 fixed w-screen md:w-auto  top-0 left-0">
             <div class="flex justify-between text-letterboxd-6 md:gap-12  text-2xl border-b boreder-letterboxd-2 py-1">
                 <h1 class="">Your lists</h1>
