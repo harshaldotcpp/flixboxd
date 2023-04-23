@@ -266,7 +266,7 @@
 		"88555958-225d-411a-b72d-22b43660b99d": {
 			"id": "88555958-225d-411a-b72d-22b43660b99d",
 			"visible": true,
-			"name": "Profile",
+			"name": "Profiles",
 			"desc": "",
 			"estimatedSize": "",
 			"cols": [
@@ -375,7 +375,7 @@
 			"keys": [
 				{
 					"id": "0aa479ec-0255-4dc4-9834-b27467303388",
-					"name": "Profile_pkey",
+					"name": "Profiles_pkey",
 					"isPk": true,
 					"cols": [
 						{
@@ -709,7 +709,7 @@
 		"0e601965-8bdf-438a-8f66-ce4bfe7fecb1": {
 			"id": "0e601965-8bdf-438a-8f66-ce4bfe7fecb1",
 			"visible": true,
-			"name": "list",
+			"name": "lists",
 			"desc": "",
 			"estimatedSize": "",
 			"cols": [
@@ -837,7 +837,7 @@
 			"keys": [
 				{
 					"id": "7b6875e1-3144-4582-b434-dbd64c1e7976",
-					"name": "list_pkey",
+					"name": "lists_pkey",
 					"isPk": true,
 					"cols": [
 						{
@@ -1223,7 +1223,7 @@
 		"96d9e9fb-3c1f-43e1-aa10-0313c5840548": {
 			"id": "96d9e9fb-3c1f-43e1-aa10-0313c5840548",
 			"visible": true,
-			"name": "diary_log",
+			"name": "diary_logs",
 			"desc": "",
 			"estimatedSize": "",
 			"cols": [
@@ -1314,7 +1314,7 @@
 			"keys": [
 				{
 					"id": "986e82be-4a6e-4885-a62d-3904bb7e1a60",
-					"name": "diary_log_pkey",
+					"name": "diary_logs_pkey",
 					"isPk": true,
 					"cols": [
 						{
@@ -1556,7 +1556,7 @@
 		"e2b398f1-695c-4760-a3e1-ea687d48353c": {
 			"id": "e2b398f1-695c-4760-a3e1-ea687d48353c",
 			"visible": true,
-			"name": "Profile_Users_username_fkey",
+			"name": "Profiles_Users_username_fkey",
 			"desc": "",
 			"type": "identifying",
 			"parent_key": "32af0fe9-fc77-4730-a2fb-5f76b8f9c4d4",
@@ -1731,7 +1731,7 @@
 		"5f628fd1-ad08-478c-a542-bb1fc7e49ef9": {
 			"id": "5f628fd1-ad08-478c-a542-bb1fc7e49ef9",
 			"visible": true,
-			"name": "list_Users_username_fkey",
+			"name": "lists_Users_username_fkey",
 			"desc": "",
 			"type": "identifying",
 			"parent_key": "32af0fe9-fc77-4730-a2fb-5f76b8f9c4d4",
@@ -1906,7 +1906,7 @@
 		"71b5848a-a8fd-497d-bcaf-359b58659f3d": {
 			"id": "71b5848a-a8fd-497d-bcaf-359b58659f3d",
 			"visible": true,
-			"name": "diary_log_Users_username_fkey",
+			"name": "diary_logs_Users_username_fkey",
 			"desc": "",
 			"type": "identifying",
 			"parent_key": "32af0fe9-fc77-4730-a2fb-5f76b8f9c4d4",
@@ -1931,7 +1931,7 @@
 		"a59a427c-2f5d-4f6d-81a8-4726846b6338": {
 			"id": "a59a427c-2f5d-4f6d-81a8-4726846b6338",
 			"visible": true,
-			"name": "diary_log_films_tmdb_id_fkey",
+			"name": "diary_logs_films_tmdb_id_fkey",
 			"desc": "",
 			"type": "identifying",
 			"parent_key": "31c33965-9dd0-4edc-ac6e-695c7ba6f7ce",
@@ -2106,7 +2106,7 @@
 			"indexes": true,
 			"relations": true
 		},
-		"lastSaved": "Sat Apr 22 2023 13:17:29 GMT+0530 (India Standard Time)"
+		"lastSaved": "Sat Apr 22 2023 14:02:12 GMT+0530 (India Standard Time)"
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -2116,7 +2116,7 @@
 			"id": "d43744cb-41ee-4371-9403-e94872bee11d",
 			"keysgraphics": false,
 			"linegraphics": "detailed",
-			"zoom": 0.5,
+			"zoom": 0.6,
 			"background": "#333333",
 			"lineColor": "#d1f2eb",
 			"isOpen": true,
@@ -2124,8 +2124,8 @@
 			"diagramItems": {
 				"a76c6bd5-284a-47d1-998a-e95e2fefb47f": {
 					"referencedItemId": "a76c6bd5-284a-47d1-998a-e95e2fefb47f",
-					"x": 681,
-					"y": 272,
+					"x": 820,
+					"y": 274,
 					"gHeight": 135,
 					"gWidth": 219,
 					"color": "#ffffff",
@@ -2135,8 +2135,8 @@
 				},
 				"df74db69-326b-4683-8f5c-b383e46bbc25": {
 					"referencedItemId": "df74db69-326b-4683-8f5c-b383e46bbc25",
-					"x": 416,
-					"y": 849,
+					"x": 555,
+					"y": 851,
 					"gHeight": 81,
 					"gWidth": 181,
 					"color": "#ffffff",
@@ -2146,8 +2146,8 @@
 				},
 				"88555958-225d-411a-b72d-22b43660b99d": {
 					"referencedItemId": "88555958-225d-411a-b72d-22b43660b99d",
-					"x": 709,
-					"y": 941,
+					"x": 848,
+					"y": 943,
 					"gHeight": 131,
 					"gWidth": 250,
 					"color": "#ffffff",
@@ -2157,8 +2157,8 @@
 				},
 				"ba8e45d2-1c23-450c-b5cf-fc1394adaff0": {
 					"referencedItemId": "ba8e45d2-1c23-450c-b5cf-fc1394adaff0",
-					"x": 406,
-					"y": 714,
+					"x": 545,
+					"y": 716,
 					"gHeight": 81,
 					"gWidth": 219,
 					"color": "#ffffff",
@@ -2168,8 +2168,8 @@
 				},
 				"176d94d2-e99b-421f-bf55-8b6452d52b5c": {
 					"referencedItemId": "176d94d2-e99b-421f-bf55-8b6452d52b5c",
-					"x": 366,
-					"y": 609,
+					"x": 505,
+					"y": 611,
 					"gHeight": 81,
 					"gWidth": 219,
 					"color": "#ffffff",
@@ -2179,8 +2179,8 @@
 				},
 				"3e7f6b0e-8c04-4f46-8031-72f5b8ae50c4": {
 					"referencedItemId": "3e7f6b0e-8c04-4f46-8031-72f5b8ae50c4",
-					"x": 349,
-					"y": 995,
+					"x": 488,
+					"y": 997,
 					"gHeight": 81,
 					"gWidth": 207,
 					"color": "#ffffff",
@@ -2190,8 +2190,8 @@
 				},
 				"0e601965-8bdf-438a-8f66-ce4bfe7fecb1": {
 					"referencedItemId": "0e601965-8bdf-438a-8f66-ce4bfe7fecb1",
-					"x": 694,
-					"y": 744,
+					"x": 833,
+					"y": 746,
 					"gHeight": 135,
 					"gWidth": 218,
 					"color": "#ffffff",
@@ -2201,8 +2201,8 @@
 				},
 				"6fd72ee1-7aa9-4a58-b982-47c803c4757b": {
 					"referencedItemId": "6fd72ee1-7aa9-4a58-b982-47c803c4757b",
-					"x": 695,
-					"y": 498,
+					"x": 834,
+					"y": 500,
 					"gHeight": 81,
 					"gWidth": 219,
 					"color": "#ffffff",
@@ -2212,8 +2212,8 @@
 				},
 				"e8ff24e1-762f-4a0a-ae9a-6ca0f15a1a8e": {
 					"referencedItemId": "e8ff24e1-762f-4a0a-ae9a-6ca0f15a1a8e",
-					"x": 313,
-					"y": 495,
+					"x": 447,
+					"y": 509,
 					"gHeight": 81,
 					"gWidth": 219,
 					"color": "#ffffff",
@@ -2223,8 +2223,8 @@
 				},
 				"ef768e49-436d-461b-8c45-59ece06e8cd0": {
 					"referencedItemId": "ef768e49-436d-461b-8c45-59ece06e8cd0",
-					"x": 258,
-					"y": 342,
+					"x": 397,
+					"y": 344,
 					"gHeight": 135,
 					"gWidth": 219,
 					"color": "#ffffff",
@@ -2234,8 +2234,8 @@
 				},
 				"96d9e9fb-3c1f-43e1-aa10-0313c5840548": {
 					"referencedItemId": "96d9e9fb-3c1f-43e1-aa10-0313c5840548",
-					"x": 216,
-					"y": 224,
+					"x": 355,
+					"y": 226,
 					"gHeight": 99,
 					"gWidth": 219,
 					"color": "#ffffff",
@@ -2245,8 +2245,8 @@
 				},
 				"dc1cc839-9464-4524-ab3e-c305561ac98f": {
 					"referencedItemId": "dc1cc839-9464-4524-ab3e-c305561ac98f",
-					"x": 173,
-					"y": 108,
+					"x": 312,
+					"y": 110,
 					"gHeight": 99,
 					"gWidth": 219,
 					"color": "#ffffff",
@@ -2256,8 +2256,8 @@
 				},
 				"8da22aee-97db-4e2b-b3e6-8a80fd7179d5": {
 					"referencedItemId": "8da22aee-97db-4e2b-b3e6-8a80fd7179d5",
-					"x": 71,
-					"y": 920,
+					"x": 210,
+					"y": 922,
 					"gHeight": 81,
 					"gWidth": 218,
 					"color": "#ffffff",
@@ -2278,15 +2278,15 @@
 		"a76c6bd5-284a-47d1-998a-e95e2fefb47f",
 		"3e7f6b0e-8c04-4f46-8031-72f5b8ae50c4",
 		"e8ff24e1-762f-4a0a-ae9a-6ca0f15a1a8e",
-		"0e601965-8bdf-438a-8f66-ce4bfe7fecb1",
 		"6fd72ee1-7aa9-4a58-b982-47c803c4757b",
+		"0e601965-8bdf-438a-8f66-ce4bfe7fecb1",
 		"88555958-225d-411a-b72d-22b43660b99d",
 		"dc1cc839-9464-4524-ab3e-c305561ac98f",
+		"8da22aee-97db-4e2b-b3e6-8a80fd7179d5",
 		"ef768e49-436d-461b-8c45-59ece06e8cd0",
 		"df74db69-326b-4683-8f5c-b383e46bbc25",
 		"ba8e45d2-1c23-450c-b5cf-fc1394adaff0",
 		"176d94d2-e99b-421f-bf55-8b6452d52b5c",
-		"8da22aee-97db-4e2b-b3e6-8a80fd7179d5",
 		"e2b398f1-695c-4760-a3e1-ea687d48353c",
 		"e2dca48b-9fac-4f46-aae9-aa770100dcd2",
 		"99360d9e-6c3b-4e42-a6c7-1149855fc8cf",
