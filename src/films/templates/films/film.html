@@ -33,9 +33,9 @@
 
 
 
-        <section class="px-8 md:px-12 grid  grid-cols-1 md:grid-cols-2 gap-10  md:text-lg font-myfontLight">
+        <section class="px-8 md:px-16 grid  grid-cols-1 md:grid-cols-2 gap-10  md:text-lg font-myfontLight">
 
-            <section id="movie_intro" class="col-span-1 md:col-span-full relative bg-transparent z-10">
+            <section id="movie_intro" class="col-span-full relative bg-transparent z-10">
                 <div class="flex gap-4 justify-evenly md:justify-center md:gap-48 ">
 
                     <div id="movie-info" class="">
@@ -193,7 +193,7 @@
 
 
 
-            <section id="this_is_review_section">
+            <section id="this_is_review_section" class="col-span-full">
                 {% if reviews_len == 0%}
                 <div
                     class="flex justify-center text-xs sm:text-sm md:text-md lg:text-lg font-myfontLight py-4 border-y border-letterboxd-3">
@@ -322,7 +322,21 @@
 
             </section>
 
-
+            <section id="watch_providers">
+                <div class="border-x-2 border-b-2 border-letterboxd-3 rounded-md">
+                    <h1 class="text-sm font-myfontLight bg-letterboxd-3 text-white p-2 ">Where To Watch</h1>
+                    {% if watch_provider %}
+                     {% for provider in watch_provider %}
+                    <div class="p-3 flex gap-4 text-sm">
+                        <img src="https://image.tmdb.org/t/p/original{{provider.logo_path}}" class="w-4 object-fill">
+                        <h1> {{provider.provider_name }} </h1>
+                    </div>
+                     {% endfor %}
+                    {% else %}
+                        <div class="p-3 flex gap-4">Not Streaming... </div>
+                    {% endif %}
+                </div>
+            </section>
         </section>
 
 

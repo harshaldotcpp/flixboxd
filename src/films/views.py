@@ -149,6 +149,7 @@ def film(request,film_id):
     similar_movies = movie.similar(film_id)
     db_film = request.user.profile.createFilm({"tmdb_id":m.id})
 
+    watch_provider = movie.watch_providers(film_id).results.get("IN",{}).get("rent",[])
     directors = []
     for credit in mc.crew:
         if credit["job"] == "Director":
@@ -192,6 +193,7 @@ def film(request,film_id):
     info["friends_activity_len"] =  len(friends_watched) + len(freinds_watchlisted)
     info["watched_len"] = len(friends_watched)
     info["watchlist_len"] = len(freinds_watchlisted)
+    info["watch_provider"] = watch_provider 
 
     response = render(request,"films/film.html",context=info)
     response.set_cookie(key="id",value=m.id)
