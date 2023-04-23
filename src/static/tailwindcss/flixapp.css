@@ -621,10 +621,6 @@ video {
   grid-column: 1 / -1;
 }
 
-.col-span-2 {
-  grid-column: span 2 / span 2;
-}
-
 .row-span-2 {
   grid-row: span 2 / span 2;
 }
@@ -998,10 +994,6 @@ video {
   width: 18rem;
 }
 
-.w-8 {
-  width: 2rem;
-}
-
 .w-80 {
   width: 20rem;
 }
@@ -1274,16 +1266,8 @@ video {
   overflow: hidden;
 }
 
-.overflow-clip {
-  overflow: clip;
-}
-
 .overflow-visible {
   overflow: visible;
-}
-
-.overflow-scroll {
-  overflow: scroll;
 }
 
 .overflow-x-auto {
@@ -1403,7 +1387,6 @@ video {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
-<<<<<<< HEAD
 .border-x-black {
   --tw-border-opacity: 1;
   border-left-color: rgb(0 0 0 / var(--tw-border-opacity));
@@ -1414,11 +1397,6 @@ video {
   --tw-border-opacity: 1;
   border-top-color: rgb(44 52 63 / var(--tw-border-opacity));
   border-bottom-color: rgb(44 52 63 / var(--tw-border-opacity));
-=======
-.border-letterboxd-5 {
-  --tw-border-opacity: 1;
-  border-color: rgb(242 116 5 / var(--tw-border-opacity));
->>>>>>> master
 }
 
 .bg-gray-700 {
@@ -1488,10 +1466,6 @@ video {
 
 .to-\[\#0E0E0F\] {
   --tw-gradient-to: #0E0E0F;
-}
-
-.to-letterboxd-2 {
-  --tw-gradient-to: #2C343F;
 }
 
 .to-letterboxd-3 {
@@ -2634,11 +2608,6 @@ video {
     padding-bottom: 0.75rem;
   }
 
-  .md\:px-28 {
-    padding-left: 7rem;
-    padding-right: 7rem;
-  }
-
   .md\:pl-4 {
     padding-left: 1rem;
   }
@@ -2701,11 +2670,6 @@ video {
     margin-right: 14rem;
   }
 
-  .lg\:mx-32 {
-    margin-left: 8rem;
-    margin-right: 8rem;
-  }
-
   .lg\:grid-cols-10 {
     grid-template-columns: repeat(10, minmax(0, 1fr));
   }
@@ -2724,30 +2688,11 @@ video {
     padding-right: 11rem;
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  .lg\:px-48 {
-    padding-left: 12rem;
-    padding-right: 12rem;
-  }
-
->>>>>>> development
-  .lg\:px-56 {
-    padding-left: 14rem;
-    padding-right: 14rem;
-  }
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> development
   .lg\:px-64 {
     padding-left: 16rem;
     padding-right: 16rem;
   }
 
->>>>>>> development
   .lg\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
