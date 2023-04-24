@@ -86,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'flimflow',
         'USER': 'harshal',
-        'PASSWORD': 'Flex@123',
+        'PASSWORD': os.environ.get("POSTGRES_PASSWORD"),
         'HOST': 'localhost',
         'PORT': '5432',
     }
