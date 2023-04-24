@@ -12,6 +12,7 @@ tzdata = "*"
 sqlparse = "*"
 psycopg2 = "*"
 django-resized = "*"
+django-dbbackup = "==1.9.0"
 
 [dev-packages]
 
