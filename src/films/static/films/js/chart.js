@@ -5,10 +5,8 @@ options.body = JSON.stringify({
 })
 fetch("/film/getavgstars", options).then(response => response.json())
     .then(response => {
-        console.log("rating")
-        console.log(response)
         var chartjson = {
-            "data": response,
+            "data":  response,
             "xtitle": "Secured Marks",
             "ytitle": "Marks",
             "ymax": 100,
@@ -16,7 +14,7 @@ fetch("/film/getavgstars", options).then(response => response.json())
             "prefix": "%"
         }
 
-
+        console.log(chartjson)
         //constants
         var TROW = 'tr',
             TDATA = 'td';
@@ -35,6 +33,7 @@ fetch("/film/getavgstars", options).then(response => response.json())
             var prefix = chartjson.prefix || '';
             //create the bar data
             var bardata = document.createElement(TDATA);
+            bardata.classList.add("h-full");
             var bar = document.createElement('div');
             bar.setAttribute('class', "bg-letterboxd-3");
             bar.classList.add("border-x");
@@ -53,7 +52,6 @@ fetch("/film/getavgstars", options).then(response => response.json())
         barchart.appendChild(barrow);
         chart.appendChild(barchart);
         document.getElementById('chart').innerHTML = chart.outerHTML;
-
-
+        console.log(document.getElementById("chart"))
 
     });
