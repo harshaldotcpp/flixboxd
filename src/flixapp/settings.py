@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import mimetypes
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,10 +85,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'flimflow',
-        'USER': 'postgres',
+        'USER': 'harshal',
         'PASSWORD': 'Flex@123',
         'HOST': 'localhost',
-        'PORT': '5433',
+        'PORT': '5432',
     }
 }
 
@@ -149,3 +150,6 @@ MEDIA_URL = "mediafiles/"
 MEDIA_ROOT = os.path.join(BASE_DIR,"mediafiles")
 
 #ALLOWED_HOSTS = ["100.126.53.22"]
+
+mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("text/javascript", ".js", True)
