@@ -1,2 +1,4 @@
 node_modules
-/src/.env
+src/.env
+src/flixapp/settings.py
+
