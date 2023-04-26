@@ -1,4 +1,5 @@
 node_modules
 src/.env
 src/flixapp/settings.py
-
+src/wsgi_windows.py
+src/wsgi.py
