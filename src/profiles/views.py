@@ -22,6 +22,9 @@ def user_profile(request,username):
         info["recent_log"] = user[0].diary_log.order_by("-date","-created_at")[:4]
         info["recent_log_len"] = len(user[0].diary_log.order_by("-date","-created_at")[:4])
         info["reviews"] = user[0].reviews_set.order_by("-date")[:2]
+        info["reviews_more"] = False
+        if len(user[0].reviews_set.all()) > 2:
+            info["reviews_more"] = True
         favs = False
         if noFavroite(info["top4"]):
             favs = True 
