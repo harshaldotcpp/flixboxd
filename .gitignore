@@ -6,3 +6,4 @@ src/wsgi.py
 src/wsgi_windows.py
 **/__pycache__/
 src/logs
+src/authentication/__pycache__
