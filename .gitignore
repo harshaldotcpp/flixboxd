@@ -1,7 +1,6 @@
+cdn_static
 node_modules
 src/.env
 src/flixapp/settings.py
 src/wsgi.py
 src/wsgi_windows.py
-cdn_static
-

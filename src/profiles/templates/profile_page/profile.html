@@ -35,10 +35,10 @@
             class="flex flex-col border-b border-letterboxd-2 pb-4  lg:flex-row gap-y-4 justify-center md:justify-between items-center">
             <div id="pfp-name" class="basis-1/2 shrink-0 flex gap-4">
                 <div id="pfp" class="shrink-0">
-                    <img class="w-24 object-cover rounded-full" src="{{ user_profile.profile.profile_picture.url }}">
+                    <img class="w-14 md:w-24 object-cover rounded-full" src="{{ user_profile.profile.profile_picture.url }}">
                 </div>
                 <div id="name-profile" class="flex flex-col gap-1 items-start justify-center">
-                    <div class="font-myfont text-2xl p-0 flex items-start gap-3">
+                    <div class="font-myfont text-lg  md:text-2xl p-0 flex items-start gap-3">
                         {{ user_profile.username }}
                         {% if user_profile.username == user.username %}
                         <div class="bg-letterboxd-3 rounded-md text-xs self-end tracking-widest px-2 py-1 font-myfont">
@@ -61,7 +61,7 @@
                     <div class="text-xs text-letterboxd-3">
                         {{user_profile.profile.bio}}
                     </div>
-                    <div class="text-letterboxd-3 text-sm font-bold m-0">india</div>
+                    <div class="text-letterboxd-3 text-xs font-bold m-0">india</div>
 
                 </div>
             </div>
