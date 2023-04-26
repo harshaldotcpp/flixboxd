@@ -4,4 +4,4 @@ src/.env
 src/flixapp/settings.py
 src/wsgi.py
 src/wsgi_windows.py
-src/logs
+**/__pycache__/
