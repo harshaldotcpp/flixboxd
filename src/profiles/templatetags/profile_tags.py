@@ -58,7 +58,7 @@ def checkTop(pos,true,false):
 @register.simple_tag
 def topImage(pos,res):
     if pos == None:
-        return static('image/defaultposter.png')
+        return static('main/image/defaultposter.png')
     url = f"https://image.tmdb.org/t/p/{res}" + pos.poster_path
     return url
 
@@ -91,7 +91,7 @@ def get_poster_path(top):
 def topPosterPath(top):
     if top:
         return "https://image.tmdb.org/t/p/w200" + top.poster_path
-    return static("image/defaultposter.png")
+    return static("main/image/defaultposter.png")
 
 
 @register.simple_tag

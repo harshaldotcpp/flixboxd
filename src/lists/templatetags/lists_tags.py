@@ -15,5 +15,5 @@ def subtract(value,mid, arg):
 @register.simple_tag
 def checkPoster(poster,w):
     if poster == "":
-        return static("image/defaultposter.png")
+        return static("main/image/defaultposter.png")
     return f"https://image.tmdb.org/t/p/{w}/" + poster
