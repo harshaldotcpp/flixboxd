@@ -1935,3 +1935,81 @@
 [Wed Apr 26 16:15:05.448612 2023] [wsgi:error] [pid 11472:tid 1040] [client 127.0.0.1:52239] True\r
 [Wed Apr 26 16:15:05.896125 2023] [wsgi:error] [pid 11472:tid 1040] [client 127.0.0.1:52239] [{'name': 'insomaniacOWL', 'profile_picture': '/mediafiles/profile_picture/peakpx.jpg', 'movies': <QuerySet [<DiaryLog: The Super Mario Bros. Movie logged on 2023-04-20 by insomaniacOWL>]>}, {'name': 'VIKRANT21', 'profile_picture': '/mediafiles/profile_picture/keanu.jpg', 'movies': <QuerySet [<DiaryLog: The Super Mario Bros. Movie logged on 2023-04-17 by VIKRANT21>]>}]\r
 127.0.0.1 - - [26/Apr/2023:16:15:05 +0530] "GET / HTTP/1.1" 200 52199
+[Wed Apr 26 16:16:01.729337 2023] [wsgi:error] [pid 11508:tid 1072] [client 127.0.0.1:52259] 88e01c9c6c65ce312ee50a4358e089ac\r
+[Wed Apr 26 16:16:02.082983 2023] [wsgi:error] [pid 11508:tid 1072] [client 127.0.0.1:52259] True\r
+[Wed Apr 26 16:16:02.798223 2023] [wsgi:error] [pid 11508:tid 1072] [client 127.0.0.1:52259] [{'name': 'insomaniacOWL', 'profile_picture': '/mediafiles/profile_picture/peakpx.jpg', 'movies': <QuerySet [<DiaryLog: The Super Mario Bros. Movie logged on 2023-04-20 by insomaniacOWL>]>}, {'name': 'VIKRANT21', 'profile_picture': '/mediafiles/profile_picture/keanu.jpg', 'movies': <QuerySet [<DiaryLog: The Super Mario Bros. Movie logged on 2023-04-17 by VIKRANT21>]>}]\r
+127.0.0.1 - - [26/Apr/2023:16:16:01 +0530] "GET / HTTP/1.1" 200 52199
+[Wed Apr 26 16:16:06.281784 2023] [wsgi:error] [pid 11508:tid 1072] [client 127.0.0.1:52269] 88e01c9c6c65ce312ee50a4358e089ac\r
+[Wed Apr 26 16:16:06.662632 2023] [wsgi:error] [pid 11508:tid 1072] [client 127.0.0.1:52269] True\r
+[Wed Apr 26 16:16:07.106660 2023] [wsgi:error] [pid 11508:tid 1072] [client 127.0.0.1:52269] [{'name': 'insomaniacOWL', 'profile_picture': '/mediafiles/profile_picture/peakpx.jpg', 'movies': <QuerySet [<DiaryLog: The Super Mario Bros. Movie logged on 2023-04-20 by insomaniacOWL>]>}, {'name': 'VIKRANT21', 'profile_picture': '/mediafiles/profile_picture/keanu.jpg', 'movies': <QuerySet [<DiaryLog: The Super Mario Bros. Movie logged on 2023-04-17 by VIKRANT21>]>}]\r
+127.0.0.1 - - [26/Apr/2023:16:16:06 +0530] "GET / HTTP/1.1" 200 52199
+127.0.0.1 - - [26/Apr/2023:16:16:07 +0530] "GET /static/tailwindcss/flixapp.css HTTP/1.1" 200 46670
+127.0.0.1 - - [26/Apr/2023:16:16:07 +0530] "GET /static/main/js/lazyload.js HTTP/1.1" 200 3105
+127.0.0.1 - - [26/Apr/2023:16:16:07 +0530] "GET /static/main/js/navbar.js HTTP/1.1" 200 4751
+127.0.0.1 - - [26/Apr/2023:16:16:07 +0530] "GET /mediafiles/profile_picture/samurai-girl-with-oni-mask-wallpaper-720x1280_184_2YnyWQP.jpg HTTP/1.1" 200 62943
+127.0.0.1 - - [26/Apr/2023:16:16:07 +0530] "GET /mediafiles/profile_picture/keanu.jpg HTTP/1.1" 200 113152
+127.0.0.1 - - [26/Apr/2023:16:16:07 +0530] "GET /static/tailwindcss/Fonts/ProximaNova/Proxima%20Nova%20Reg.otf HTTP/1.1" 200 64132
+127.0.0.1 - - [26/Apr/2023:16:16:07 +0530] "GET /static/tailwindcss/Fonts/freightSans.otf HTTP/1.1" 200 40840
+127.0.0.1 - - [26/Apr/2023:16:16:07 +0530] "GET /mediafiles/profile_picture/peakpx.jpg HTTP/1.1" 200 94579
+127.0.0.1 - - [26/Apr/2023:16:16:13 +0530] "GET /favicon.ico HTTP/1.1" 200 555
+[Wed Apr 26 16:17:11.629617 2023] [wsgi:error] [pid 11508:tid 1052] [client ::1:52320] 88e01c9c6c65ce312ee50a4358e089ac\r
+[Wed Apr 26 16:17:11.979564 2023] [wsgi:error] [pid 11508:tid 1052] [client ::1:52320] False\r
+::1 - - [26/Apr/2023:16:17:11 +0530] "GET / HTTP/1.1" 200 26698
+::1 - - [26/Apr/2023:16:17:12 +0530] "GET /static/tailwindcss/flixapp.css HTTP/1.1" 200 46670
+::1 - - [26/Apr/2023:16:17:12 +0530] "GET /static/main/js/lazyload.js HTTP/1.1" 200 3105
+::1 - - [26/Apr/2023:16:17:12 +0530] "GET /static/main/js/navbar.js HTTP/1.1" 200 4751
+::1 - - [26/Apr/2023:16:17:12 +0530] "GET /static/tailwindcss/Fonts/freightSans.otf HTTP/1.1" 200 40840
+::1 - - [26/Apr/2023:16:17:12 +0530] "GET /static/tailwindcss/Fonts/abril/Abril_Text_Bold.otf HTTP/1.1" 200 144412
+::1 - - [26/Apr/2023:16:17:12 +0530] "GET /static/tailwindcss/Fonts/ProximaNova/Proxima%20Nova%20Reg.otf HTTP/1.1" 200 64132
+[Wed Apr 26 16:17:29.141079 2023] [wsgi:error] [pid 11508:tid 1056] [client ::1:52330] signin\r, referer: http://localhost/
+[Wed Apr 26 16:17:29.540828 2023] [wsgi:error] [pid 11508:tid 1056] [client ::1:52330] ok\r, referer: http://localhost/
+::1 - - [26/Apr/2023:16:17:29 +0530] "POST /signin/ HTTP/1.1" 302 -
+[Wed Apr 26 16:17:29.545960 2023] [wsgi:error] [pid 11508:tid 1056] [client ::1:52330] 88e01c9c6c65ce312ee50a4358e089ac\r, referer: http://localhost/
+[Wed Apr 26 16:17:29.777014 2023] [wsgi:error] [pid 11508:tid 1056] [client ::1:52330] True\r, referer: http://localhost/
+[Wed Apr 26 16:17:30.228207 2023] [wsgi:error] [pid 11508:tid 1056] [client ::1:52330] [{'name': 'insomaniacOWL', 'profile_picture': '/mediafiles/profile_picture/peakpx.jpg', 'movies': <QuerySet [<DiaryLog: The Super Mario Bros. Movie logged on 2023-04-20 by insomaniacOWL>]>}, {'name': 'VIKRANT21', 'profile_picture': '/mediafiles/profile_picture/keanu.jpg', 'movies': <QuerySet [<DiaryLog: The Super Mario Bros. Movie logged on 2023-04-17 by VIKRANT21>]>}]\r, referer: http://localhost/
+::1 - - [26/Apr/2023:16:17:29 +0530] "GET / HTTP/1.1" 200 52199
+::1 - - [26/Apr/2023:16:17:30 +0530] "GET /mediafiles/profile_picture/samurai-girl-with-oni-mask-wallpaper-720x1280_184_2YnyWQP.jpg HTTP/1.1" 200 62943
+::1 - - [26/Apr/2023:16:17:30 +0530] "GET /mediafiles/profile_picture/peakpx.jpg HTTP/1.1" 200 94579
+::1 - - [26/Apr/2023:16:17:30 +0530] "GET /mediafiles/profile_picture/keanu.jpg HTTP/1.1" 200 113152
+[Wed Apr 26 16:19:33.707648 2023] [wsgi:error] [pid 11508:tid 1064] [client ::1:52457] 88e01c9c6c65ce312ee50a4358e089ac\r
+[Wed Apr 26 16:19:33.933200 2023] [wsgi:error] [pid 11508:tid 1064] [client ::1:52457] True\r
+[Wed Apr 26 16:19:34.296673 2023] [wsgi:error] [pid 11508:tid 1064] [client ::1:52457] [{'name': 'insomaniacOWL', 'profile_picture': '/mediafiles/profile_picture/peakpx.jpg', 'movies': <QuerySet [<DiaryLog: The Super Mario Bros. Movie logged on 2023-04-20 by insomaniacOWL>]>}, {'name': 'VIKRANT21', 'profile_picture': '/mediafiles/profile_picture/keanu.jpg', 'movies': <QuerySet [<DiaryLog: The Super Mario Bros. Movie logged on 2023-04-17 by VIKRANT21>]>}]\r
+::1 - - [26/Apr/2023:16:19:33 +0530] "GET / HTTP/1.1" 200 52199
+::1 - - [26/Apr/2023:16:19:34 +0530] "GET /static/tailwindcss/flixapp.css HTTP/1.1" 200 46670
+::1 - - [26/Apr/2023:16:19:34 +0530] "GET /static/main/js/lazyload.js HTTP/1.1" 200 3105
+::1 - - [26/Apr/2023:16:19:34 +0530] "GET /static/main/js/navbar.js HTTP/1.1" 200 4751
+::1 - - [26/Apr/2023:16:19:34 +0530] "GET /mediafiles/profile_picture/samurai-girl-with-oni-mask-wallpaper-720x1280_184_2YnyWQP.jpg HTTP/1.1" 200 62943
+::1 - - [26/Apr/2023:16:19:34 +0530] "GET /mediafiles/profile_picture/peakpx.jpg HTTP/1.1" 200 94579
+::1 - - [26/Apr/2023:16:19:34 +0530] "GET /mediafiles/profile_picture/keanu.jpg HTTP/1.1" 200 113152
+::1 - - [26/Apr/2023:16:19:34 +0530] "GET /static/tailwindcss/Fonts/freightSans.otf HTTP/1.1" 200 40840
+::1 - - [26/Apr/2023:16:19:34 +0530] "GET /static/tailwindcss/Fonts/ProximaNova/Proxima%20Nova%20Reg.otf HTTP/1.1" 200 64132
+::1 - - [26/Apr/2023:16:19:35 +0530] "GET /favicon.ico HTTP/1.1" 200 555
+::1 - - [26/Apr/2023:16:19:50 +0530] "GET /film/search/avengers%20infinity%20war HTTP/1.1" 200 11428
+::1 - - [26/Apr/2023:16:19:51 +0530] "GET /mediafiles/profile_picture/samurai-girl-with-oni-mask-wallpaper-720x1280_184_2YnyWQP.jpg HTTP/1.1" 304 -
+::1 - - [26/Apr/2023:16:19:51 +0530] "GET /static/tailwindcss/Fonts/abril/Abril_Text_Bold.otf HTTP/1.1" 200 144412
+::1 - - [26/Apr/2023:16:19:51 +0530] "GET /favicon.ico HTTP/1.1" 200 555
+[Wed Apr 26 16:19:55.298115 2023] [wsgi:error] [pid 11508:tid 1052] [client ::1:52473] https://www.youtube.com/watch?v=6ZfuNTqbHE8\r, referer: http://localhost/film/search/avengers%20infinity%20war
+::1 - - [26/Apr/2023:16:19:53 +0530] "GET /film/299536 HTTP/1.1" 200 62658
+::1 - - [26/Apr/2023:16:19:55 +0530] "GET /static/films/css/style.css HTTP/1.1" 200 874
+::1 - - [26/Apr/2023:16:19:55 +0530] "GET /static/films/css/chart.css HTTP/1.1" 200 544
+::1 - - [26/Apr/2023:16:19:55 +0530] "GET /static/main/js/utilitesFunction.js HTTP/1.1" 200 1441
+::1 - - [26/Apr/2023:16:19:55 +0530] "GET /static/films/js/script.js HTTP/1.1" 200 6233
+::1 - - [26/Apr/2023:16:19:55 +0530] "GET /static/films/js/chart.js HTTP/1.1" 200 1843
+::1 - - [26/Apr/2023:16:19:55 +0530] "GET /static/films/js/ratings.js HTTP/1.1" 200 1617
+::1 - - [26/Apr/2023:16:19:56 +0530] "GET /static/tailwindcss/Fonts/abril/Abril_Text_Regular.otf HTTP/1.1" 200 137168
+[Wed Apr 26 16:19:56.258359 2023] [wsgi:error] [pid 11508:tid 1052] [client ::1:52473] Avengers: Infinity War by Anthony Russo\r, referer: http://localhost/film/299536
+::1 - - [26/Apr/2023:16:19:56 +0530] "POST /film/getavgstars HTTP/1.1" 200 140
+::1 - - [26/Apr/2023:16:19:57 +0530] "GET /favicon.ico HTTP/1.1" 200 555
+::1 - - [26/Apr/2023:16:20:07 +0530] "GET /favicon.ico HTTP/1.1" 200 555
+[Wed Apr 26 16:23:16.693228 2023] [wsgi:error] [pid 11508:tid 1052] [client 127.0.0.1:52573] 88e01c9c6c65ce312ee50a4358e089ac\r
+[Wed Apr 26 16:23:17.025693 2023] [wsgi:error] [pid 11508:tid 1052] [client 127.0.0.1:52573] True\r
+[Wed Apr 26 16:23:17.462057 2023] [wsgi:error] [pid 11508:tid 1052] [client 127.0.0.1:52573] [{'name': 'insomaniacOWL', 'profile_picture': '/mediafiles/profile_picture/peakpx.jpg', 'movies': <QuerySet [<DiaryLog: The Super Mario Bros. Movie logged on 2023-04-20 by insomaniacOWL>]>}, {'name': 'VIKRANT21', 'profile_picture': '/mediafiles/profile_picture/keanu.jpg', 'movies': <QuerySet [<DiaryLog: The Super Mario Bros. Movie logged on 2023-04-17 by VIKRANT21>]>}]\r
+127.0.0.1 - - [26/Apr/2023:16:23:16 +0530] "GET / HTTP/1.1" 200 52199
+[Wed Apr 26 16:23:20.884576 2023] [wsgi:error] [pid 11508:tid 1052] [client 127.0.0.1:52573] https://www.youtube.com/watch?v=DuWEEKeJLMI\r, referer: http://localhost/
+127.0.0.1 - - [26/Apr/2023:16:23:20 +0530] "GET /film/804150 HTTP/1.1" 200 55293
+[Wed Apr 26 16:23:21.546874 2023] [wsgi:error] [pid 11508:tid 1052] [client 127.0.0.1:52573] Cocaine Bear by Elizabeth Banks\r, referer: http://localhost/film/804150
+127.0.0.1 - - [26/Apr/2023:16:23:21 +0530] "POST /film/getavgstars HTTP/1.1" 200 140
+[Wed Apr 26 16:23:27.338200 2023] [wsgi:error] [pid 11508:tid 1052] [client 127.0.0.1:52573] https://www.youtube.com/watch?v=JkSkdMw9qis\r, referer: http://localhost/film/804150
+127.0.0.1 - - [26/Apr/2023:16:23:25 +0530] "GET /film/847 HTTP/1.1" 200 60994
+[Wed Apr 26 16:23:28.121188 2023] [wsgi:error] [pid 11508:tid 1052] [client 127.0.0.1:52573] Willow by Ron Howard\r, referer: http://localhost/film/847
+127.0.0.1 - - [26/Apr/2023:16:23:28 +0530] "POST /film/getavgstars HTTP/1.1" 200 140
