@@ -62,8 +62,8 @@
                     <div class="hidden md:inline-block text-xs text-letterboxd-3">
                         {{user_profile.profile.bio}}
                     </div>
-                    <div class="text-letterboxd-3 text-xs font-bold m-0">india</div>
 
+                    <div class="text-letterboxd-3 text-xs font-bold m-0">india</div>
                 </div>
             </div>
 
@@ -112,7 +112,8 @@
             <div class="grid grid-cols-4 grid-row-[auto,auto] gap-2 mt-2">
                 <h1 class=" text-letterboxd-3 border-b col-span-4 border-letterboxd-2 py-1">favroite films</h1>
                 <div>
-                    <div class=" card relative hover:border rounded-md border-white shadow-md shadow-black  overflow-hidden">
+                    <div
+                        class=" card relative hover:border rounded-md border-white shadow-md shadow-black  overflow-hidden">
                         {% topTmdb_id top4.one as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad" data-src="{% topPosterPath top4.one %}"
@@ -124,7 +125,8 @@
                     </div>
                 </div>
                 <div>
-                    <div class=" card relative  hover:border rounded-md border-white shadow-sm shadow-black  overflow-hidden">
+                    <div
+                        class=" card relative  hover:border rounded-md border-white shadow-sm shadow-black  overflow-hidden">
                         {% topTmdb_id top4.two as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad" data-src="{% topPosterPath top4.two %}"
@@ -136,7 +138,8 @@
                     </div>
                 </div>
                 <div>
-                    <div class=" card relative  hover:border rounded-md border-white shadow-sm shadow-black  overflow-hidden">
+                    <div
+                        class=" card relative  hover:border rounded-md border-white shadow-sm shadow-black  overflow-hidden">
                         {% topTmdb_id top4.three as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad" data-src="{% topPosterPath top4.three %}"
@@ -149,7 +152,8 @@
                 </div>
 
                 <div>
-                    <div class=" card relative  hover:border border-white rounded-md shadow-sm shadow-black  overflow-hidden">
+                    <div
+                        class=" card relative  hover:border border-white rounded-md shadow-sm shadow-black  overflow-hidden">
                         {% topTmdb_id top4.four as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad" data-src="{% topPosterPath top4.four %}"
@@ -199,7 +203,8 @@
                 </h1>
                 {% for log in recent_log %}
                 <div>
-                    <div class=" card relative hover:border border-white shadow-md rounded-md  shadow-black  overflow-hidden">
+                    <div
+                        class=" card relative hover:border border-white shadow-md rounded-md  shadow-black  overflow-hidden">
                         <a href="{% url 'filmsabout:film' log.movie.tmdb_id %}">
                             <img class="object-cover lozad"
                                 data-src="https://image.tmdb.org/t/p/original{{ log.movie.poster_path }}"

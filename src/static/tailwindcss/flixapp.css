@@ -1911,11 +1911,6 @@ video {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
-.shadow-blue-300 {
-  --tw-shadow-color: #93c5fd;
-  --tw-shadow: var(--tw-shadow-colored);
-}
-
 .shadow-blue-500 {
   --tw-shadow-color: #3b82f6;
   --tw-shadow: var(--tw-shadow-colored);
@@ -2174,10 +2169,6 @@ video {
 
 .hover\:bg-opacity-50:hover {
   --tw-bg-opacity: 0.5;
-}
-
-.hover\:to-blue-300:hover {
-  --tw-gradient-to: #93c5fd;
 }
 
 .hover\:stroke-blue-300:hover {
@@ -2686,6 +2677,11 @@ video {
     margin-right: 7rem;
   }
 
+  .lg\:mx-40 {
+    margin-left: 10rem;
+    margin-right: 10rem;
+  }
+
   .lg\:mx-48 {
     margin-left: 12rem;
     margin-right: 12rem;
@@ -2694,11 +2690,6 @@ video {
   .lg\:mx-56 {
     margin-left: 14rem;
     margin-right: 14rem;
-  }
-
-  .lg\:mx-40 {
-    margin-left: 10rem;
-    margin-right: 10rem;
   }
 
   .lg\:grid-cols-10 {
@@ -2714,19 +2705,14 @@ video {
     padding-right: 8rem;
   }
 
-  .lg\:px-44 {
-    padding-left: 11rem;
-    padding-right: 11rem;
-  }
-
-  .lg\:px-64 {
-    padding-left: 16rem;
-    padding-right: 16rem;
-  }
-
   .lg\:px-40 {
     padding-left: 10rem;
     padding-right: 10rem;
+  }
+
+  .lg\:px-44 {
+    padding-left: 11rem;
+    padding-right: 11rem;
   }
 
   .lg\:text-3xl {
