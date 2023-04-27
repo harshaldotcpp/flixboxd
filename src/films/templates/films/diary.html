@@ -58,7 +58,7 @@
                     </div>
                     <div class="font-abrilbold tracking-wide flex flex-col gap-x-1 ">
                         <div>
-                            <a href="{% url 'filmsabout:film' log.movie.tmdb_id %}">
+                            <a href="{% url 'filmsabout:film' log.movie.tmdb_id %}" class="hover:text-blue-300">
                                 {{ log.movie.original_title }}
                             </a>
                             <div class="flex md:hidden font-starrating text-md gap-x-1 text-letterboxd-4">

@@ -1282,6 +1282,10 @@ video {
   overflow-x: hidden;
 }
 
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+
 .overflow-y-scroll {
   overflow-y: scroll;
 }
@@ -2168,16 +2172,12 @@ video {
   background-color: rgb(242 116 5 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-opacity-5:hover {
-  --tw-bg-opacity: 0.05;
-}
-
-.hover\:bg-opacity-30:hover {
-  --tw-bg-opacity: 0.3;
-}
-
 .hover\:bg-opacity-50:hover {
   --tw-bg-opacity: 0.5;
+}
+
+.hover\:to-blue-300:hover {
+  --tw-gradient-to: #93c5fd;
 }
 
 .hover\:stroke-blue-300:hover {
@@ -2210,14 +2210,6 @@ video {
 
 .hover\:underline:hover {
   text-decoration-line: underline;
-}
-
-.hover\:opacity-5:hover {
-  opacity: 0.05;
-}
-
-.hover\:opacity-50:hover {
-  opacity: 0.5;
 }
 
 .hover\:shadow-\[0_2\.8px_2\.2px_rgba\(0\2c _0\2c _0\2c _0\.034\)\2c _0_6\.7px_5\.3px_rgba\(0\2c _0\2c _0\2c _0\.048\)\2c _0_12\.5px_10px_rgba\(0\2c _0\2c _0\2c _0\.06\)\2c _0_22\.3px_17\.9px_rgba\(0\2c _0\2c _0\2c _0\.072\)\2c _0_41\.8px_33\.4px_rgba\(0\2c _0\2c _0\2c _0\.086\)\2c _0_100px_80px_rgba\(0\2c _0\2c _0\2c _0\.12\)\]:hover {
@@ -2704,6 +2696,11 @@ video {
     margin-right: 14rem;
   }
 
+  .lg\:mx-40 {
+    margin-left: 10rem;
+    margin-right: 10rem;
+  }
+
   .lg\:grid-cols-10 {
     grid-template-columns: repeat(10, minmax(0, 1fr));
   }
@@ -2725,6 +2722,11 @@ video {
   .lg\:px-64 {
     padding-left: 16rem;
     padding-right: 16rem;
+  }
+
+  .lg\:px-40 {
+    padding-left: 10rem;
+    padding-right: 10rem;
   }
 
   .lg\:text-3xl {

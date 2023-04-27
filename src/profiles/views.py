@@ -18,6 +18,7 @@ def user_profile(request,username):
     if user:
         info["user_profile"] = user[0]
         info["watchlist"] = user[0].watchlist.all()[:4]
+        info["followings"] = user[0].profile.following.all()
         info["top4"] = user[0].top4
         info["recent_log"] = user[0].diary_log.order_by("-date","-created_at")[:4]
         info["recent_log_len"] = len(user[0].diary_log.order_by("-date","-created_at")[:4])

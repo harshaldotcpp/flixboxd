@@ -15,7 +15,7 @@
 </head>
 
 <body
-    class="bg-gradient-to-tl from-[#2A394E] to-[#0E0E0F] scrollbar-thin scrollbar-track-transparent scrollbar-thumb-letterboxd-2  min-h-screen  font-myfontLight text-xs sm:text-sm md:text-md lg:text-lg text-white">
+    class="bg-gradient-to-tl  from-[#2A394E] to-[#0E0E0F] scrollbar-thin scrollbar-track-transparent scrollbar-thumb-letterboxd-2  min-h-screen  font-myfontLight text-xs sm:text-sm md:text-md lg:text-lg text-white">
 
 
 
@@ -29,13 +29,14 @@
 
 
 
-    <div class="mt-20 md:mt-28 px-5 sm:px-12 md:px-24 lg:px-64 ">
+    <div class="mt-20 md:mt-28 px-5 sm:px-12 md:px-24 lg:px-40 ">
 
         <div id="profile-intro"
             class="flex flex-col border-b border-letterboxd-2 pb-4  lg:flex-row gap-y-4 justify-center md:justify-between items-center">
             <div id="pfp-name" class="basis-1/2 shrink-0 flex gap-4">
                 <div id="pfp" class="shrink-0">
-                    <img class="w-14 md:w-24 object-cover rounded-full" src="{{ user_profile.profile.profile_picture.url }}">
+                    <img class="w-14 md:w-24 object-cover rounded-full"
+                        src="{{ user_profile.profile.profile_picture.url }}">
                 </div>
                 <div id="name-profile" class="flex flex-col gap-1 items-start justify-center">
                     <div class="font-myfont text-lg  md:text-2xl p-0 flex items-start gap-3">
@@ -108,7 +109,7 @@
             <div class="grid grid-cols-4 grid-row-[auto,auto] gap-2 mt-2">
                 <h1 class=" text-letterboxd-3 border-b col-span-4 border-letterboxd-2 py-1">favroite films</h1>
                 <div>
-                    <div class=" card relative hover:border border-white shadow-md shadow-black  overflow-hidden">
+                    <div class=" card relative hover:border rounded-md border-white shadow-md shadow-black  overflow-hidden">
                         {% topTmdb_id top4.one as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad" data-src="{% topPosterPath top4.one %}"
@@ -120,7 +121,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class=" card relative  hover:border border-white shadow-sm shadow-black  overflow-hidden">
+                    <div class=" card relative  hover:border rounded-md border-white shadow-sm shadow-black  overflow-hidden">
                         {% topTmdb_id top4.two as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad" data-src="{% topPosterPath top4.two %}"
@@ -132,7 +133,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class=" card relative  hover:border border-white shadow-sm shadow-black  overflow-hidden">
+                    <div class=" card relative  hover:border rounded-md border-white shadow-sm shadow-black  overflow-hidden">
                         {% topTmdb_id top4.three as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad" data-src="{% topPosterPath top4.three %}"
@@ -145,7 +146,7 @@
                 </div>
 
                 <div>
-                    <div class=" card relative  hover:border border-white shadow-sm shadow-black  overflow-hidden">
+                    <div class=" card relative  hover:border border-white rounded-md shadow-sm shadow-black  overflow-hidden">
                         {% topTmdb_id top4.four as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad" data-src="{% topPosterPath top4.four %}"
@@ -168,7 +169,7 @@
                     <div class="mt-2 gap-2 grid grid-cols-4">
                         {% for film in watchlist %}
                         <div class="">
-                            <div class=" w-auto md:w-24 card relative  shadow-black rounded-lg overflow-hidden">
+                            <div class=" w-auto md:w-24 card relative   shadow-black rounded-lg overflow-hidden">
                                 <a href="">
                                     <img class="object-cover lozad"
                                         data-src="https://image.tmdb.org/t/p/original{{ film.poster_path }}"
@@ -185,7 +186,9 @@
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-4 grid-row-[auto,auto] gap-2 mt-2">
+
+
+            <div id="top-r-of-user" class="grid grid-cols-4 grid-row-[auto,auto] gap-2 mt-2">
                 {%if recent_log_len == 0 %}
                 <div class="no films in watchlist"></div>
                 {% else %}
@@ -193,7 +196,7 @@
                 </h1>
                 {% for log in recent_log %}
                 <div>
-                    <div class=" card relative hover:border border-white shadow-md  shadow-black  overflow-hidden">
+                    <div class=" card relative hover:border border-white shadow-md rounded-md  shadow-black  overflow-hidden">
                         <a href="{% url 'filmsabout:film' log.movie.tmdb_id %}">
                             <img class="object-cover lozad"
                                 data-src="https://image.tmdb.org/t/p/original{{ log.movie.poster_path }}"
@@ -207,6 +210,8 @@
                 {% endfor %}
                 {% endif %}
             </div>
+
+
             {% if reviews %}
             <div id="users_review-3" class="mt-3">
                 <div class="flex text-letterboxd-3 justify-between items-center">
@@ -219,9 +224,9 @@
                 <div id="reviews" class="border-t border-letterboxd-3 flex py-3">
 
                     <div class="grow-0 mr-6">
-                        <div class="w-20 relative card rounded-md  shadow-inner shadow-blue-300 overflow-hidden">
+                        <div class="w-20 relative card rounded-md hover:border  overflow-hidden">
                             <a href="{% url  'filmsabout:film' review.movie.tmdb_id %}">
-                                <img class="object-cover lodaz"
+                                <img class="object-cover lodaz rounded-md"
                                     data-src="https://image.tmdb.org/t/p/original{{ review.movie.poster_path }}"
                                     src="https://image.tmdb.org/t/p/w200{{ review.movie.poster_path }}">
                                 <div
@@ -275,8 +280,23 @@
                 {% endfor %}
             </div>
             {% endif %}
-            <div id="user_followings">
+
+            {% if followings %}
+            <div id="user_followings" class="mb-14">
+                <h1 class="text-letterboxd-3 border-b border-letterboxd-3">Following</h1>
+                <div class="flex overflow-x-scroll py-2 gap-2">
+                    {% for following in followings %}
+                    <div class="flex flex-col items-center gap-1 ">
+                        <a href="{% url 'profiles:user_profile' following.user.username %}"> <img
+                                class="w-12 gap-10 object-cover rounded-full hover:border"
+                                src="{{ following.profile_picture.url }}">
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
+            {% endif %}
+
         </section>
     </div>
 </body>
