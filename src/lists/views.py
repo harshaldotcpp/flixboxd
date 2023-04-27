@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.contrib.auth.models import User
 from django.http import JsonResponse,HttpResponse
 import json
 from tmdbv3api import TMDb,Movie
+from .models import List
 import os
+from django.contrib import messages
 
 tmdb = TMDb()
 tmdb.api_key = os.environ.get("TMDB_API_KEY")
@@ -83,8 +85,6 @@ def editlist(request,listid):
         return render(request,"lists/new_list.html",context=context)
     return render(request,"main/error.html")
 
-
-
     
 
 
@@ -119,6 +119,18 @@ def add_movie(request):
 
     return render("main/error.html")
 
+
+
+
+
+def delete(request):
+    if request.method == "POST":
+        payload = json.load(request)
+        id = payload["list_id"]
+        user_list = List.objects.get(id=id)
+        user_list.delete() 
+        return HttpResponse(json.dumps({"status":"success","message":"list deleted"}))
+    return render(request,"main/error.html")
 
 
 

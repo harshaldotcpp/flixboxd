@@ -49,13 +49,13 @@
                 </div>
             </div>
             <div class="flex gap-2 font-myfont text-sm tracking-wider text-letterboxd-6">
-                <a class="bg-letterboxd-3 px-2 py-1">Delete</a>
-                <a class="bg-letterboxd-3 px-2 py-1">Cancel</a>
                 {% if page_type == "newlist" %}
                 <a id="save-list" class="bg-letterboxd-4 px-2 py-1">Save</a>
                 {% else %}
-                <a id="update-list" class="bg-letterboxd-4 px-2 py-1">update</a>
+                <a id="delete-list-btn" data-id="{{user_list.id}}" class="bg-letterboxd-3 px-2 py-1 hover:bg-opacity-50 cursor-pointer">Delete</a>
+                <a id="update-list" class="cursor-pointer hover:bg-opacity-50 bg-letterboxd-4 px-2 py-1">update</a>
                 {% endif %}
+                <a class="bg-letterboxd-3 px-2 py-1">Cancel</a>
             </div>
         </section>
         <section id="list" class="mt-11 ">
