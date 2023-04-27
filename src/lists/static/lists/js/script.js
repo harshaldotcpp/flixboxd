@@ -204,7 +204,6 @@ if (save_list) {
         fetch("/lists/post", options).then(res => res.json())
             .then(res => {
                 const cookie = getCookie("username");
-                console.log(cookie)
                 window.location = `/lists/${cookie}`;
                 myAlert(res.message);
             })
@@ -251,4 +250,20 @@ if (update_list) {
                 myAlert(res.message);
             })
     });
-}
+};
+
+const delete_list_btn = document.getElementById("delete-list-btn");
+
+delete_list_btn.addEventListener('click',(event)=>{
+    const payload = { list_id: event.target.dataset.id };
+    options.body = JSON.stringify(payload);   
+    fetch("/lists/delete",options).then(res =>{
+        return res.json();
+    }).then(response=>{
+         const cookie = getCookie("username");
+        setTimeout(()=>{
+            window.location = `/lists/${cookie}`;
+        },900);
+        myAlert(response.message)
+    });
+});
