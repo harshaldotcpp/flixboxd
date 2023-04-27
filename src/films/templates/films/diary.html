@@ -48,7 +48,7 @@
                 <div class="flex items-start md:items-center text-sm md:text-lg gap-x-4 ">
                     <div class="card shrink-0 relative rounded-sm md:rounded-sm  shadow-inner shadow-blue-500 overflow-hidden">
                         <a href="{% url 'filmsabout:film' log.movie.tmdb_id %}">
-                            <img class="object-cover lozad w-9 md:w-10"
+                            <img alt="log.movie.original_title" class="object-cover lozad w-9 md:w-10"
                                 src="https://image.tmdb.org/t/p/w200{{ log.movie.poster_path }}"
                                 data-src="https://image.tmdb.org/t/p/original{{ log.movie.poster_path }}">
                             <div
@@ -58,7 +58,7 @@
                     </div>
                     <div class="font-abrilbold tracking-wide flex flex-col gap-x-1 ">
                         <div>
-                            <a href="{% url 'filmsabout:film' log.movie.tmdb_id %}">
+                            <a href="{% url 'filmsabout:film' log.movie.tmdb_id %}" class="hover:text-blue-300">
                                 {{ log.movie.original_title }}
                             </a>
                             <div class="flex md:hidden font-starrating text-md gap-x-1 text-letterboxd-4">

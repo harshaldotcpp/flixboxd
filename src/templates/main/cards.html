@@ -1,10 +1,11 @@
 <!-- tmdb database fetch cards -->
+{% load static %}
 {% load custom_tags %}
 <div>
     <div
         class="card relative rounded-sm   duration-200 hover:border border-white overflow-hidden">
         <a href="{% url 'filmsabout:film' movie.id%}">
-            <img class="lozad object-cover" data-src="https://image.tmdb.org/t/p/original/{{movie.poster_path}}" src="https://image.tmdb.org/t/p/w200/{{movie.poster_path}}" >
+            <img class="lozad object-cover" data-src="https://image.tmdb.org/t/p/original/{{movie.poster_path}}" src="{% static 'main/image/defaultposter.png'  %}" >
             <div
                 class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
             </div>

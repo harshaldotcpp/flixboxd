@@ -12,6 +12,7 @@ urlpatterns = [
     path('ratingadd',views.rating,name="ratingadd"),
     path('ratingremove',views.removeRating,name="removeRating"),
     path('getavgstars',views.avgStars,name="avgStars"),
+    path('actor/<int:id>',views.actor,name="actor"),
     path('watched/<str:username>',views.showWatched,name="showWatched"),
     path('watchlist/<str:username>',views.showWatchlist,name="showWatchlist"),
     path('diary/<str:username>',views.diary ,name="diary"),
