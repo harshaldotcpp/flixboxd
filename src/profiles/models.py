@@ -42,15 +42,16 @@ class Profile(models.Model):
         image = crop_image(image)
         image.save(self.profile_picture.path)
 
-    def filmExist(self,tmdb_id):
+    @staticmethod
+    def filmExist(tmdb_id):
         film = Film.objects.filter(tmdb_id = tmdb_id)
         if film:
             return film[0]
         return False
     
-  
-    def createFilm(self,movie):
-        film = self.filmExist(movie["tmdb_id"]) 
+    @classmethod
+    def createFilm(cls,movie):
+        film = cls.filmExist(movie["tmdb_id"]) 
         if film:
             return film
 
