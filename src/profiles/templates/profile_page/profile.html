@@ -59,7 +59,7 @@
                         {% endif %}
                         {% endif %}
                     </div>
-                    <div class="text-xs text-letterboxd-3">
+                    <div class="hidden md:inline-block text-xs text-letterboxd-3">
                         {{user_profile.profile.bio}}
                     </div>
                     <div class="text-letterboxd-3 text-xs font-bold m-0">india</div>
@@ -98,10 +98,13 @@
                             href="{% url 'profiles:followers' username %}">FOLLOWERS</a></div>
                 </div>
             </div>
+            <div class="md:hidden text-letterboxd-3">
+                {{user_profile.profile.bio}}
+            </div>
         </div>
 
         <section
-            class="mt-14 gap-x-24 gap-y-6 grid grid-rows-[auto,auto,auto,auto,auto] md:grid-rows-[auto,auto,auto,auto] grid-cols-1 md:grid-cols-[auto,auto]">
+            class="mt-6 gap-x-24 gap-y-6 grid grid-rows-[auto,auto,auto,auto,auto] md:grid-rows-[auto,auto,auto,auto] grid-cols-1 md:grid-cols-[auto,auto]">
 
             {% if favs %}
             <div class="text-letterboxd-3"> No Favroite </div>
