@@ -9,6 +9,7 @@ from .utilities import get_friends_watched_film,get_friends_watchedlisted_film
 import datetime
 import random
 import json
+from profiles.models import Profile
 import os
 
 
@@ -352,11 +353,9 @@ def avgStars(request):
         movie = {}
         data = json.load(request)
         movie["tmdb_id"] = data["id"]
-        movie = request.user.profile.createFilm(movie)
-        print(movie)
+        movie = Profile.createFilm(movie)
         ratings = movie.getAverageStars() 
         return HttpResponse(json.dumps(ratings),content_type="application/json")
-
     return render(request,"main/error.html")
 
 

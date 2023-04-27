@@ -12,6 +12,7 @@
         </a>
 
     </div>
+    {% if user.is_authenticated %}
     <div movie="movie_status" class="flex py-1 px-1 gap-x-2 ">
         <svg id="watched" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black"
             class="w-2 h-2 md:w-6 md:h-6 {% is_watched_tmdb movie.id user '' 'hidden' %} fill-letterboxd-3">
@@ -32,4 +33,5 @@
 
 
     </div>
+    {% endif %}
 </div>
