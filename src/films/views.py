@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.contrib import messages
 from .models import Rating,DiaryLog,Film
-from tmdbv3api import TMDb,Movie
+from tmdbv3api import TMDb,Movie,Person
 from .utilities import get_friends_watched_film,get_friends_watchedlisted_film 
 import datetime
 import random
@@ -360,3 +360,11 @@ def avgStars(request):
     return render(request,"main/error.html")
 
 
+def actor(request,id):
+    person = Person() 
+    context = {}
+    person_detail = person.details(id)
+    context["person_details"] = person_detail
+    person_movies = person.movie_credits(id)["cast"]
+    context["person_movies"] = person_movies
+    return render(request,"films/actor.html",context=context)

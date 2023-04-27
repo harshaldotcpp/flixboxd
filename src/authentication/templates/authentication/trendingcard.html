@@ -9,7 +9,7 @@
         {% for movie in movies %}
         <div class="card relative hover:border-[3px] hover:border-white duration-500 rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
             <a class="" href="{% url  'filmsabout:film' movie.id %}">
-                <img class="lozad object-cover" data-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}" src="https://image.tmdb.org/t/p/w200{{movie.poster_path}}">
+                <img alt="{{ movie.title }}" class="lozad object-cover" data-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}" src="https://image.tmdb.org/t/p/w200{{movie.poster_path}}">
                 <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
             </a>
                  
@@ -28,7 +28,7 @@
         {% for movie in movies_mobile %}
         <div class="card  relative rounded-md   hover:scale-150 overflow-hidden">
             <a class="" href="{% url  'filmsabout:film' movie.id %}">
-                <img class="lozad object-cover" data-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}" src="https://image.tmdb.org/t/p/w200{{movie.poster_path}}">
+                <img alt="{{ movie.title }}" class="lozad object-cover" data-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}" src="https://image.tmdb.org/t/p/w200{{movie.poster_path}}">
                 <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0"></div>
             </a>
                  

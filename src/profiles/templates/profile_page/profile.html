@@ -29,7 +29,7 @@
 
 
 
-    <div class="mt-20 md:mt-28 px-5 sm:px-12 md:px-24 lg:px-40 ">
+    <div class="mt-20 md:mt-28 px-5 sm:px-12 md:px-24 lg:px-64 ">
 
         <div id="profile-intro"
             class="flex flex-col border-b border-letterboxd-2 pb-4  lg:flex-row gap-y-4 justify-center md:justify-between items-center">
@@ -59,11 +59,11 @@
                         {% endif %}
                         {% endif %}
                     </div>
-                    <div class="hidden md:inline-block text-xs text-letterboxd-3">
+                    <div class="text-xs text-letterboxd-3">
                         {{user_profile.profile.bio}}
                     </div>
-
                     <div class="text-letterboxd-3 text-xs font-bold m-0">india</div>
+
                 </div>
             </div>
 
@@ -98,13 +98,10 @@
                             href="{% url 'profiles:followers' username %}">FOLLOWERS</a></div>
                 </div>
             </div>
-            <div class="md:hidden text-letterboxd-3">
-                {{user_profile.profile.bio}}
-            </div>
         </div>
 
         <section
-            class="mt-6 gap-x-24 gap-y-6 grid grid-rows-[auto,auto,auto,auto,auto] md:grid-rows-[auto,auto,auto,auto] grid-cols-1 md:grid-cols-[auto,auto]">
+            class="mt-14 gap-x-24 gap-y-6 grid grid-rows-[auto,auto,auto,auto,auto] md:grid-rows-[auto,auto,auto,auto] grid-cols-1 md:grid-cols-[auto,auto]">
 
             {% if favs %}
             <div class="text-letterboxd-3"> No Favroite </div>
@@ -112,8 +109,7 @@
             <div class="grid grid-cols-4 grid-row-[auto,auto] gap-2 mt-2">
                 <h1 class=" text-letterboxd-3 border-b col-span-4 border-letterboxd-2 py-1">favroite films</h1>
                 <div>
-                    <div
-                        class=" card relative hover:border rounded-md border-white shadow-md shadow-black  overflow-hidden">
+                    <div class=" card relative hover:border border-white shadow-md shadow-black  overflow-hidden">
                         {% topTmdb_id top4.one as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad" data-src="{% topPosterPath top4.one %}"
@@ -125,8 +121,7 @@
                     </div>
                 </div>
                 <div>
-                    <div
-                        class=" card relative  hover:border rounded-md border-white shadow-sm shadow-black  overflow-hidden">
+                    <div class=" card relative  hover:border border-white shadow-sm shadow-black  overflow-hidden">
                         {% topTmdb_id top4.two as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad" data-src="{% topPosterPath top4.two %}"
@@ -138,8 +133,7 @@
                     </div>
                 </div>
                 <div>
-                    <div
-                        class=" card relative  hover:border rounded-md border-white shadow-sm shadow-black  overflow-hidden">
+                    <div class=" card relative  hover:border border-white shadow-sm shadow-black  overflow-hidden">
                         {% topTmdb_id top4.three as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad" data-src="{% topPosterPath top4.three %}"
@@ -152,8 +146,7 @@
                 </div>
 
                 <div>
-                    <div
-                        class=" card relative  hover:border border-white rounded-md shadow-sm shadow-black  overflow-hidden">
+                    <div class=" card relative  hover:border border-white shadow-sm shadow-black  overflow-hidden">
                         {% topTmdb_id top4.four as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
                             <img class="object-cover lozad" data-src="{% topPosterPath top4.four %}"
@@ -176,7 +169,7 @@
                     <div class="mt-2 gap-2 grid grid-cols-4">
                         {% for film in watchlist %}
                         <div class="">
-                            <div class=" w-auto md:w-24 card relative   shadow-black rounded-lg overflow-hidden">
+                            <div class=" w-auto md:w-24 card relative  shadow-black rounded-lg overflow-hidden">
                                 <a href="">
                                     <img class="object-cover lozad"
                                         data-src="https://image.tmdb.org/t/p/original{{ film.poster_path }}"
@@ -203,8 +196,7 @@
                 </h1>
                 {% for log in recent_log %}
                 <div>
-                    <div
-                        class=" card relative hover:border border-white shadow-md rounded-md  shadow-black  overflow-hidden">
+                    <div class=" card relative hover:border border-white shadow-md  shadow-black  overflow-hidden">
                         <a href="{% url 'filmsabout:film' log.movie.tmdb_id %}">
                             <img class="object-cover lozad"
                                 data-src="https://image.tmdb.org/t/p/original{{ log.movie.poster_path }}"
@@ -232,9 +224,9 @@
                 <div id="reviews" class="border-t border-letterboxd-3 flex py-3">
 
                     <div class="grow-0 mr-6">
-                        <div class="w-20 relative card rounded-md hover:border  overflow-hidden">
+                        <div class="w-20 relative card rounded-md   overflow-hidden">
                             <a href="{% url  'filmsabout:film' review.movie.tmdb_id %}">
-                                <img class="object-cover lodaz rounded-md"
+                                <img class="object-cover lodaz"
                                     data-src="https://image.tmdb.org/t/p/original{{ review.movie.poster_path }}"
                                     src="https://image.tmdb.org/t/p/w200{{ review.movie.poster_path }}">
                                 <div
