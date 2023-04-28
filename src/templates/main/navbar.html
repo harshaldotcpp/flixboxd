@@ -23,26 +23,37 @@
                            </div>
                            <div id="desktop-profile-menu-extend"
                                class="absolute hidden bg-letterboxd-3 rounded-b-md w-full top-8 border-t  border-letterboxd-1 flex text-xs flex-col font-myfontLight text-letterboxd-6">
-                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
-                                   <a href="{% url 'filmsabout:showWatched' user.username %}"> Films </a>
-                               </div>
-                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
-                                   <a href="{% url 'filmsabout:diary' user.username %}">Diary</a>
-                               </div>
-                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
-                                   <a href="/{{user.username}}/reviews">Reviews</a>
-                               </div>
-                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
-                                   <a href="{% url 'filmsabout:showWatchlist' user.username %}">Watchlist</a>
-                               </div>
+                               <a href="{% url 'filmsabout:showWatched' user.username %}">
+                                   <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                       Films
+                                   </div>
+                               </a>
+                               <a href="{% url 'filmsabout:diary' user.username %}">
+                                   <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                       Diary
+                                   </div>
+                               </a>
 
-                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
-                                   <a href="{% url 'list:showlists' user.username %}">Lists</a>
-                               </div>
-
-                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
-                                   <a href="{% url 'profiles:settings' user.username  %}">Settings</a>
-                               </div>
+                               <a href="/{{user.username}}/reviews">
+                                   <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                       Reviews
+                                   </div>
+                               </a>
+                               <a href="{% url 'filmsabout:showWatchlist' user.username %}">
+                                   <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                       Watchlist
+                                   </div>
+                               </a>
+                               <a href="{% url 'list:showlists' user.username %}">
+                                   <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                       Lists
+                                   </div>
+                               </a>
+                               <a href="{% url 'profiles:settings' user.username  %}">
+                                   <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                       Settings
+                                   </div>
+                               </a>
 
                                <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
                                    <a href="{% url 'authentication:signout' %}">Signout</a>
@@ -268,7 +279,8 @@
 
                </div>
                <div class="">
-                   <label for="username" class="text-sm">Username</label> <span class="text-letterboxd-4 text-sm hover:underline">forgotten?</span> <br>
+                   <label for="username" class="text-sm">Username</label> <span
+                       class="text-letterboxd-4 text-sm hover:underline">forgotten?</span> <br>
                    <input type="text" name="username"
                        class="px-2 focus:outline-none  focus:bg-white text-gray-300 focus:text-letterboxd-1 bg-letterboxd-2 w-32 rounded-sm">
                </div>
