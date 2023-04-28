@@ -68,7 +68,7 @@
             </div>
 
 
-            <div id="profile-numbers" class="flex flex-wrap justify-center text-letterboxd-3 font-myfontLight">
+            <div id="profile-numbers" class="flex shrink-1 flex-wrap text-sm justify-center text-letterboxd-3 font-myfontLight">
                 <a href="{% url 'filmsabout:showWatched' username %}">
                     <div class="px-4 border-letterboxd-3  text-center">
                         <div class="text-white font-abrilbold">{% films_watched_count username %}</div>
@@ -98,6 +98,7 @@
                             href="{% url 'profiles:followers' username %}">FOLLOWERS</a></div>
                 </div>
             </div>
+
             <div class="md:hidden text-xs text-letterboxd-3 shrink-0">
                 {{user_profile.profile.bio}}
             </div>

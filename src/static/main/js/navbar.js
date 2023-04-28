@@ -188,7 +188,7 @@ desktop_signin = document.getElementById("desktop-signin")
 if (desktop_signin) {
     desktop_signin.addEventListener("click", (event) => {
         const desktop_signin_form = document.getElementById("desktop-signin-form");
-        desktop_signin_form.classList.toggle("hidden")
+        desktop_signin_form.classList.remove("hidden")
 
         const navbar = document.getElementById("main-navbar");
         navbar.classList.add("opacity-0")
