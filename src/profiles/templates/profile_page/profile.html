@@ -59,7 +59,7 @@
                         {% endif %}
                         {% endif %}
                     </div>
-                    <div class="text-xs text-letterboxd-3">
+                    <div class="hidden md:inline-block text-xs text-letterboxd-3">
                         {{user_profile.profile.bio}}
                     </div>
                     <div class="text-letterboxd-3 text-xs font-bold m-0">india</div>
@@ -97,6 +97,9 @@
                     <div class="text-sm hover:text-letterboxd-5"><a
                             href="{% url 'profiles:followers' username %}">FOLLOWERS</a></div>
                 </div>
+            </div>
+            <div class="md:hidden text-xs text-letterboxd-3">
+                {{user_profile.profile.bio}}
             </div>
         </div>
 
