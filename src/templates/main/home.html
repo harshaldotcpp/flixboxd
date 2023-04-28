@@ -27,9 +27,9 @@
             {% if recent_f == True %}            
             <div id="populer with friends" class="">
                 <div
-                    class="px-4 grid grid-cols-3 grid-rows-[auto,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
+                    class="px-4 grid grid-cols-4 grid-rows-[auto,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
                     <div
-                        class="text-sm font-bold text-letterboxd-3 col-span-3 md:col-span-6  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
+                        class="text-sm font-bold text-letterboxd-3 col-span-full md:col-span-6  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
                         POLPULER WITH FRIENDS
                     </div>
                     {% for friend in friends_movies%}
@@ -58,9 +58,9 @@
 
             <div id="upcoming_movies" class="mt-16">
                 <div
-                    class="px-4 grid grid-cols-3 grid-rows-[auto,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
+                    class="px-4 grid grid-cols-4 grid-rows-[auto,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
                     <div
-                        class="text-sm font-bold text-letterboxd-3 col-span-3 md:col-span-6  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
+                        class="text-sm font-bold text-letterboxd-3 col-span-full md:col-span-6  font-myfontLight border-b-[1px] py-1  border-letterboxd-3">
                         UPCOMING MOVIES
                     </div>
                     {% for movie in upcoming %}
