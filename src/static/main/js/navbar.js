@@ -40,6 +40,7 @@ function openWindow(window) {
 
 //for login
 if (login_field) {
+
     console.log(login_btn)
     login_btn.addEventListener('click', (event) => {
         if (windowOpen(menu_field)) {
@@ -168,7 +169,7 @@ if (frontend_alert_btn) {
 
 search_content_btn.addEventListener("click", (event) => {
     const content = document.querySelector("#search_content").value
-
+    console.log(content)
     if (content.length === 0) {
         document.querySelector("#alert-msg").innerHTML = "you forgot to type movie name lol";
 
@@ -181,3 +182,43 @@ search_content_btn.addEventListener("click", (event) => {
     const action_url = "/film/search/" + content;
     location.href = action_url
 });
+
+
+desktop_signin = document.getElementById("desktop-signin")
+if (desktop_signin) {
+    desktop_signin.addEventListener("click", (event) => {
+        const desktop_signin_form = document.getElementById("desktop-signin-form");
+        desktop_signin_form.classList.toggle("hidden")
+
+        const navbar = document.getElementById("main-navbar");
+        navbar.classList.add("opacity-0")
+    });
+
+
+}
+
+desktop_signin_form_cancel = document.getElementById("desktop-sigin-form-cancel");
+if (desktop_signin_form_cancel) {
+    desktop_signin_form_cancel.addEventListener("click", (event) => {
+        desktop_signin_form = document.getElementById("desktop-signin-form");
+        desktop_signin_form.classList.toggle("hidden")
+        navbar.classList.remove("opacity-0")
+    });
+};
+
+
+desktop_profile_menu = document.getElementById("desktop-profile-menu")
+
+if(desktop_profile_menu){
+    desktop_profile_menu.addEventListener("mouseover",(event)=>{
+        desktop_profile_menu.classList.add("bg-letterboxd-3")
+        extend_menu = document.getElementById("desktop-profile-menu-extend")
+        extend_menu.classList.remove("hidden");
+    })
+}
+if(desktop_profile_menu){
+    desktop_profile_menu.addEventListener("mouseout",(event)=>{
+        desktop_profile_menu.classList.remove("bg-letterboxd-3")
+        extend_menu.classList.add("hidden");
+    })
+}

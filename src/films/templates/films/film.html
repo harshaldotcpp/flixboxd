@@ -22,11 +22,11 @@
     {% include 'main/navbar.html' %}
 
 
-    <main class="relative flex-cols mt-0 md:mt-6">
+    <main class="relative flex-cols mt-10 md:mt-0 ">
 
         <img alt="{{movie.id}}" data-src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}"
             src="https://image.tmdb.org/t/p/w200{{movie.backdrop_path}}"
-            class="lozad h-64  mt-10 w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
+            class="lozad h-64  w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
 
         <div id="empty-space-for-image" class="relative h-52 md:h-96">
         </div>

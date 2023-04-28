@@ -1,15 +1,83 @@
-       <nav class="absolute top-0 z-50 bg-letterboxd-1 text-slate-100 w-screen">
-           <div class="p-2 md:px-24 md:py-3">
+       <nav id="main-navbar"
+           class="duration-500 absolute top-0 z-50 bg-letterboxd-1  md:bg-transparent  md:bg-gradient-to-t md:from-transparent  md:to-black  text-slate-100 w-screen">
+           <div class="py-2 px-4 md:px-24 md:py-3 bg-rd-500">
                <!---- navbar content ----->
-               <div class=" w-full mx-auto flex items-center justify-between">
+               <div class=" w-full mx-auto flex items-center justify-between md:justify-around">
                    <!----- logo ----->
                    <div class="logo">
                        <!---  <img class="inline h-6" src="./images (9).jpeg">  --->
                        <h1 class="font-myfont md:text-4xl text-letterboxd-6"><span>F</span>ilm<span></span>flow</h1>
                    </div>
 
-                   <!---------  buttons --------->
-                   <div class="flex items-center space-x-5 ">
+                   <!--------- destop  buttons --------->
+                   <div id="menu-for-desktop"
+                       class="shrink-0 hidden md:flex items-center gap-4 font-myfont  text-white">
+                       {% if user.is_authenticated %}
+                       <div id="desktop-profile-menu" class=" self-end relative  rounded-t-md flex flex-col gap-1">
+                           <div class="flex gap-2 items-center py-1 px-4">
+                               <img class="w-6 object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
+                               <a class="hover:underline tracking-wide"
+                                   href="{% url 'profiles:user_profile' user.username %}">
+                                   {{user.username}}
+                               </a>
+                           </div>
+                           <div id="desktop-profile-menu-extend"
+                               class="absolute hidden bg-letterboxd-3 rounded-b-md w-full top-8 border-t  border-letterboxd-1 flex text-xs flex-col font-myfontLight text-letterboxd-6">
+                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                   <a href="{% url 'filmsabout:showWatched' user.username %}"> Films </a>
+                               </div>
+                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                   <a href="{% url 'filmsabout:diary' user.username %}">Diary</a>
+                               </div>
+                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                   <a href="/{{user.username}}/reviews">Reviews</a>
+                               </div>
+                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                   <a href="{% url 'filmsabout:showWatchlist' user.username %}">Watchlist</a>
+                               </div>
+
+                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                   <a href="{% url 'list:showlists' user.username %}">Lists</a>
+                               </div>
+
+                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                   <a href="{% url 'profiles:settings' user.username  %}">Settings</a>
+                               </div>
+
+                               <div class="px-2 py-1 border-b border-letterboxd-1 hover:bg-letterboxd-4">
+                                   <a href="{% url 'authentication:signout' %}">Signout</a>
+                               </div>
+                           </div>
+                       </div>
+
+                       <div class="hover:underline">
+                           <a href="/"> Home </a>
+                       </div>
+
+                       {%else%}
+                       <div id="desktop-signin" class="cursor-pointer hover:underline"> Sign in</div>
+                       <div id="create-account" class="cursor-pointer hover:underline">Create account</div>
+                       {%endif%}
+
+                       <div id="lists" class="cursor-pointer hover:underline">Lists</div>
+                       <div id="members" class="cursor-pointer hover:underline">Members</div>
+
+                       <div id="search-field" class="relative flex">
+                           <input id="search_content" type="text"
+                               class=" text-letterboxd-3 font-myfontLight focus:outline-none px-2 py-1 rounded-l-full text-xs">
+                           <button id="search_content_btn" type="submit" class="bg-white pr-2 rounded-r-full">
+                               <svg id="search-content-svg" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                   viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-4 h-4">
+                                   <path stroke-linecap="round" stroke-linejoin="round"
+                                       d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                               </svg>
+                           </button>
+                       </div>
+                   </div>
+
+
+                   <!--------- mobile  buttons --------->
+                   <div class="flex items-center space-x-5 md:hidden">
                        {% if user.is_authenticated == False %}
                        <button id="signin_btn">
                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -20,6 +88,7 @@
                            </svg>
                        </button>
                        {% endif %}
+
                        <button id="options_btn">
                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                stroke="currentColor"
@@ -39,10 +108,8 @@
                </div>
            </div>
 
-           <!----- signin menu ----->
-           {% if user.is_authenticated %}
-           <div></div>
-           {% else %}
+
+           {% if user.is_authenticated == False %}
            <div id="signin_menu"
                class="w-screen bg-letterboxd-1 overflow-hidden hidden px-2 md:py-2 md:px-16 text-letterboxd-3 drop-shadow-2xl">
                <form action="{% url 'authentication:signin' %}" method="post">
@@ -89,6 +156,7 @@
                    </input>
                </div>
            </div>
+
            <!------ list ------>
            <div id="menu_field" class="hidden duration-1000 overflow-hidden">
                {% if user.is_authenticated %}
@@ -183,10 +251,16 @@
                </div>
            </div>
 
-      </nav>
-           <div
-               class="fixed z-50 flex top-0 right-28 hidden  font-myfontLight  text-letterboxd-3 gap-2 p-3 rounded-b-lg bg-letterboxd-1">
-               <div class="self-end inline-block">
+       </nav>
+
+
+
+       <form action="{% url 'authentication:signin' %}" method="POST">
+           {% csrf_token %}
+           <div id="desktop-signin-form"
+               class="fixed z-50 flex top-0 right-44 hidden gap-3  font-myfontLight  text-letterboxd-3 gap-2 p-3 rounded-b-lg bg-letterboxd-1">
+
+               <div id="desktop-sigin-form-cancel" class="self-end inline-block">
                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="hover:stroke-letterboxd-5 w-4 h-4">
                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -195,16 +269,16 @@
                </div>
                <div class="">
                    <label for="username" class="text-sm">Username</label> <br>
-                   <input type="text"
-                       class="px-2 focus:outline-0  focus:bg-white text-black bg-letterboxd-2 w-32 rounded-sm">
+                   <input type="text" name="username"
+                       class="px-2 focus:outline-none  focus:bg-white text-gray-300 focus:text-letterboxd-1 bg-letterboxd-2 w-32 rounded-sm">
                </div>
                <div class="">
-                   <label for="username" class="text-sm">Password</label><br>
-                   <input type="text"
+                   <label for="password" class="text-sm">Password</label><br>
+                   <input type="password" name="password"
                        class="px-2 focus:outline-0 focus:bg-white text-black bg-letterboxd-2 w-32 rounded-sm">
                </div>
                <div class="self-end font-myfont text-sm text-white rounded-sm overflow-hidden ">
-                    <input type="sumbit" class="w-16 px-2 py-1 bg-letterboxd-4" value="SIGN IN">
+                   <input type="submit" value="signin" class="w-16 px-2 py-1 bg-letterboxd-4">
                </div>
            </div>
- 
+       </form>
