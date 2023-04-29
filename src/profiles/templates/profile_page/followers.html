@@ -2,7 +2,7 @@
 {% load static %}
 {% load profile_tags %}
 {% block content %}
-<div class="flex gap-4">
+<div class="flex gap-4 py-1">
     <span><a href="{% url 'profiles:following' search_user.username %}">following</a></span>
     <span><a href="" class="text-letterboxd-4">followers</a></span>
 
@@ -100,6 +100,7 @@
                 </div>
             </td>
 
+            {% if user.is_authenticated %}
             <td class="">
                {% if follower.user.username != user.username %}
                 <label for="{{ forloop.counter }}">
@@ -114,6 +115,7 @@
                 </label>
                 {% endif %}
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

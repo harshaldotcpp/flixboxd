@@ -103,7 +103,7 @@ const search_input = document.getElementById("movie-search")
 
 Array.from(addButtons).forEach(btn => {
     btn.addEventListener("click", event => {
-        document.getElementById("search-field").classList.toggle("hidden")
+        document.getElementById("search-field-top").classList.toggle("hidden")
         position_to_be_inserted = btn.dataset.position;
         search_input.focus()
     })
@@ -124,7 +124,7 @@ function movieSelected(event) {
     poster_path = "https://image.tmdb.org/t/p/w200" + event.target.dataset.poster_path;
     image.setAttribute("src", poster_path);
     addBtn.classList.add("hidden");
-    document.getElementById("search-field").classList.toggle("hidden")
+    document.getElementById("search-field-top").classList.toggle("hidden")
     document.getElementById("top-remove-btn-" + position_to_be_inserted).classList.remove("hidden");
 
     updateTopFour();

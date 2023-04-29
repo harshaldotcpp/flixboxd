@@ -24,7 +24,7 @@
         </div>
 
         <div class="px-6 sm:px-16 md:px-20 lg:px-44">
-            {% if recent_f == True %}            
+            {% if recent_f == True %}
             <div id="populer with friends" class="">
                 <div
                     class="px-4 grid grid-cols-4 grid-rows-[auto,1fr] gap-x-2 md:px-6 gap-y-2 md:gap-x-4 md:grid-row-[auto,1fr] md:grid-cols-6">
@@ -36,9 +36,9 @@
                     {% for movie in friend.movies %}
                     <div class="card relative rounded-sm   shadow-inner shadow-blue-500 overflow-hidden">
                         <a href="{% url 'filmsabout:film' movie.movie.tmdb_id %}">
-                            <img class="object-cover lodaz"
-                                data-src="https://image.tmdb.org/t/p/original{{movie.movie.poster_path}}"
-                                src="https://image.tmdb.org/t/p/w200/{{movie.movie.poster_path}}">
+                            <img class="object-cover w-full lozad"
+                                data-src="https://image.tmdb.org/t/p/w500{{movie.movie.poster_path}}"
+                                src="https://image.tmdb.org/t/p/w92/{{movie.movie.poster_path}}">
                             <div class="bg-letterboxd-3 py-1 px-2 flex gap-x-1">
                                 <img class="w-4 object-cover rounded-full" src="{{ friend.profile_picture }}">
                                 <div class="font-myfont text-xs"> {{friend.name }} </div>

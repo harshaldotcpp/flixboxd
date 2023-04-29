@@ -21,14 +21,6 @@
 
     {% include 'main/navbar.html' %}
 
-
-
-
-
-
-
-
-
     <main class="mt-20 md:mt-28 px-5 sm:px-12 md:px-24 lg:px-64 ">
 
         <div id="profile-intro"
@@ -116,8 +108,8 @@
                     <div class=" card relative hover:border border-white shadow-md shadow-black  overflow-hidden">
                         {% topTmdb_id top4.one as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
-                            <img class="object-cover lozad" data-src="{% topPosterPath top4.one %}"
-                                src="{% topPosterPath top4.one %}">
+                            <img class="object-cover lozad" data-src="{% topPosterPath top4.one 'original' %}"
+                                src="{% topPosterPath top4.one 'w92' %}">
                             <div
                                 class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                             </div>
@@ -128,8 +120,8 @@
                     <div class=" card relative  hover:border border-white shadow-sm shadow-black  overflow-hidden">
                         {% topTmdb_id top4.two as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
-                            <img class="object-cover lozad" data-src="{% topPosterPath top4.two %}"
-                                src="{% topPosterPath top4.two %}">
+                            <img class="object-cover lozad" data-src="{% topPosterPath top4.two 'original' %}"
+                                src="{% topPosterPath top4.two 'w92' %}">
                             <div
                                 class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                             </div>
@@ -140,8 +132,8 @@
                     <div class=" card relative  hover:border border-white shadow-sm shadow-black  overflow-hidden">
                         {% topTmdb_id top4.three as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
-                            <img class="object-cover lozad" data-src="{% topPosterPath top4.three %}"
-                                src="{% topPosterPath top4.three %}">
+                            <img class="object-cover lozad" data-src="{% topPosterPath top4.three  'original' %}"
+                                src="{% topPosterPath top4.three 'w92' %}">
                             <div
                                 class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                             </div>
@@ -153,8 +145,8 @@
                     <div class=" card relative  hover:border border-white shadow-sm shadow-black  overflow-hidden">
                         {% topTmdb_id top4.four as tmdb_id %}
                         <a href="{% url 'filmsabout:film' tmdb_id %}">
-                            <img class="object-cover lozad" data-src="{% topPosterPath top4.four %}"
-                                src="{% topPosterPath top4.four %}">
+                            <img class="object-cover lozad" data-src="{% topPosterPath top4.four 'original' %}"
+                                src="{% topPosterPath top4.four 'w92' %}">
                             <div
                                 class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                             </div>
@@ -177,7 +169,7 @@
                                 <a href="">
                                     <img class="object-cover lozad"
                                         data-src="https://image.tmdb.org/t/p/original{{ film.poster_path }}"
-                                        src="https://image.tmdb.org/t/p/w200{{ film.poster_path }}">
+                                        src="https://image.tmdb.org/t/p/w92{{ film.poster_path }}">
                                     <div
                                         class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                                     </div>

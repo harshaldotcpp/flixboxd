@@ -3,7 +3,7 @@
 {% load profile_tags %}
 
 {% block content %}
-<div class="flex gap-4">
+<div class="flex gap-4 py-1">
     <span><a href="" class="text-letterboxd-4">following</a></span>
     <span><a href="{% url 'profiles:followers' search_user.username %}">followers</a></span>
 </div>
@@ -101,7 +101,7 @@
                     <span class="text-md">{{ following.user.liked_movies_set.count }}</span>
                 </div>
             </td>
-
+            {% if user.is_authenticated %}
             <td class="">
                 {% if following.user.username != user.username %}
                 <label for="{{ forloop.counter }}">
@@ -117,6 +117,7 @@
                 </label>
                 {% endif %}
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

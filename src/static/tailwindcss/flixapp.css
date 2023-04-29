@@ -609,6 +609,14 @@ video {
   z-index: 50;
 }
 
+.order-1 {
+  order: 1;
+}
+
+.order-2 {
+  order: 2;
+}
+
 .col-span-4 {
   grid-column: span 4 / span 4;
 }
@@ -920,6 +928,10 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-0 {
+  height: 0px;
 }
 
 .max-h-48 {
@@ -1492,6 +1504,10 @@ video {
 
 .bg-gradient-to-tl {
   background-image: linear-gradient(to top left, var(--tw-gradient-stops));
+}
+
+.bg-image-place {
+  background-image: url('../mainimage/defaultposter.png');
 }
 
 .from-\[\#2A394E\] {

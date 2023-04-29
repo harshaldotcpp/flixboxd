@@ -88,9 +88,9 @@ def get_poster_path(top):
 
 
 @register.simple_tag
-def topPosterPath(top):
+def topPosterPath(top,res):
     if top:
-        return "https://image.tmdb.org/t/p/w200" + top.poster_path
+        return f"https://image.tmdb.org/t/p/{res}" + top.poster_path
     return static("main/image/defaultposter.png")
 
 
