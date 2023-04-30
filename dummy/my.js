@@ -1,0 +1,1 @@
+console.log("hii");const a=document.getElementById("#btn");a.addEventListener("click",()=>{console.log("hello  ");a=10;});console.log("hii");

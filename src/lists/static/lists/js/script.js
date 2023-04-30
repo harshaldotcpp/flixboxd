@@ -43,7 +43,6 @@ function createCancelSvg(size) {
 
     return svg;
 }
-console.log(createCancelSvg(4));
 
 function movieSelected(event) {
     search_input.value = "";
@@ -106,7 +105,6 @@ function movieSelected(event) {
 
     const svg = createCancelSvg(6);
     cancel_btn.appendChild(svg);
-    console.log(cancel_btn.childNodes)
 
     Array.from([card_compo, movie_info_div, cancel_btn]).forEach(node => {
         list_item.appendChild(node);
@@ -213,7 +211,6 @@ if (save_list) {
 const update_list = document.getElementById("update-list");
 
 if (update_list) {
-    console.log("hello")
     update_list.addEventListener("click", event => {
         let list_name = document.getElementById("list_name").getAttribute("placeholder")
         let list_description = document.getElementById("list_desc").getAttribute("placeholder")
@@ -243,7 +240,6 @@ if (update_list) {
                 release_year: item.dataset.release_year,
             });
         });
-        console.log(data);
         options.body = JSON.stringify(data);
         fetch("/lists/update", options).then(res => res.json())
             .then(res => {

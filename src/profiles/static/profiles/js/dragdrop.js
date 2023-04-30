@@ -1,5 +1,4 @@
 var dragSrcEl = null;
-console.log("hello")
 
 function updateTopFour() {
 
@@ -84,7 +83,6 @@ items.forEach(function (item) {
 const top_remove_btn = document.getElementsByClassName("top-remove-btn");
 Array.from(top_remove_btn).forEach((btn) => {
     btn.addEventListener("click", (event) => {
-        console.log('remove card no ' + btn.dataset.cardno)
         const node = document.getElementById(btn.dataset.cardno);
         node.setAttribute("data-isnone", "true")
         const addbtn = document.getElementById("add" + btn.dataset.cardno)

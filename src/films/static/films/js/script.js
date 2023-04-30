@@ -11,7 +11,6 @@ var today = getTodaysDate();
 const date_picker = document.getElementById('datePicker')
 if (date_picker) {
     date_picker.value = today;
-    console.log(date_picker.value)
     date_picker.ariaPlaceholder = today;
 }
 
@@ -155,13 +154,10 @@ const add_movie_into_list = document.getElementsByClassName("add-movie-into-list
 
 Array.from(add_movie_into_list).forEach(btn => {
     btn.addEventListener('click', (event) => {
-        console.log(btn.dataset.movie_id);
-        console.log(btn.dataset.list_id);
         options.body = JSON.stringify({
             movie_id: btn.dataset.movie_id,
             list_id: btn.dataset.list_id,
         });
-        console.log(options)
 
         fetch("/lists/addmovie", options).then(response => response.json())
             .then((response) => {
@@ -184,8 +180,6 @@ Array.from(like_review_btns).forEach(like_review_btn=>{
         const review_id = like_review_btn.dataset.review_id
         const username = like_review_btn.dataset.username
         const value = like_review_btn.checked 
-        console.log(review_id)
-        console.log(username)
 
         const review_icon = document.querySelector(`.review-icon-${like_review_btn.id}`);
         review_icon.classList.toggle("fill-letterboxd-5")
