@@ -106,10 +106,8 @@ def watchlist(request):
     return HttpResponse("watchlist error")
 
 
-def addReview(request):
 
-    if(request.method == "POST"):
-        url = f"/film/{request.POST['tmdb_id']}"
+def addReviewHelper(request):
         movie_info = {
             "review": request.POST["review"],
             "tmdb_id": request.POST["tmdb_id"],
@@ -134,7 +132,13 @@ def addReview(request):
             diaryLog = DiaryLog.objects.create(date=log_date,user=request.user,movie=movie)
             diaryLog.save()
             messages.success(request,"Added in logs")
-            
+
+
+def addReview(request):
+
+    if(request.method == "POST"):
+        addReviewHelper(request)           
+        url = f"/film/{request.POST['tmdb_id']}"
         return redirect(url)
 
     return redirect("/")
@@ -308,41 +312,46 @@ def showLiked(request,username):
 
 
 
+def ratingHelper(request):
+    obj = json.load(request)
+
+    movieInfo = {
+        "rating":obj["rating"],
+        "tmdb_id": obj["tmdb_id"],
+    }
+    
+    movie = request.user.profile.add_watched_movie(movieInfo)
+    user_rating = Rating.objects.filter(movie=movie,user=request.user)
+
+    if user_rating:
+        user_rating[0].stars = movieInfo["rating"]
+        user_rating[0].save()
+        return HttpResponse(json.dumps({"status":"succesfull","message":"rating updated"}),content_type="application/json")
+
+    rating = Rating.objects.create(stars=movieInfo["rating"],movie=movie,user=request.user)
+    rating.save()
+    return HttpResponse(json.dumps({"status":"succusfull","message":"rating added"}),content_type="application/json")
+
+
 def rating(request):
     if request.method == "POST":
-        obj = json.load(request)
-
-        movieInfo = {
-            "rating":obj["rating"],
-            "tmdb_id": obj["tmdb_id"],
-        }
-    
-        movie = request.user.profile.add_watched_movie(movieInfo)
-        user_rating = Rating.objects.filter(movie=movie,user=request.user)
-
-        if user_rating:
-            user_rating[0].stars = movieInfo["rating"]
-            user_rating[0].save()
-            return HttpResponse(json.dumps({"status":"succesfull","message":"rating updated"}),content_type="application/json")
-
-        rating = Rating.objects.create(stars=movieInfo["rating"],movie=movie,user=request.user)
-        rating.save()
-        return HttpResponse(json.dumps({"status":"succusfull","message":"rating added"}),content_type="application/json")
-
-
+        return ratingHelper(request)       
     return HttpResponse(json.dumps({"status":"failed","message":"get request not allowed"}),content_type='application/json')
+
+def removeRatingHelper(request):
+    obj = json.load(request)
+    film = request.user.profile.filmExist(obj["tmdb_id"])
+    if film:
+        rating = Rating.objects.filter(movie=film,user=request.user)
+        if rating:
+            rating[0].delete()
+            return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
+    return HttpResponse(json.dumps({"status":"failed","message":"there is no rating for this movie"}),content_type='application/json')
 
 
 def removeRating(request):
     if request.method == "POST":
-        obj = json.load(request)
-        film = request.user.profile.filmExist(obj["tmdb_id"])
-        if film:
-            rating = Rating.objects.filter(movie=film,user=request.user)
-            if rating:
-                rating[0].delete()
-            return HttpResponse(json.dumps({"status":"succesfull","message":"rating removed"}),content_type="application/json")
-        return HttpResponse(json.dumps({"status":"failed","message":"there is no rating for this movie"}),content_type='application/json')
+        return removeRatingHelper(request)
 
     return render(request,"main/error.html")
 
@@ -367,3 +376,50 @@ def actor(request,id):
     person_movies = person.movie_credits(id)["cast"]
     context["person_movies"] = person_movies
     return render(request,"films/actor.html",context=context)
+
+
+def isLiked(request,film_id):
+    if request.method == "POST":
+        response = {
+            "status": 200,
+        }
+    
+        if request.user.liked_movies_set.filter(tmdb_id=film_id):
+            response["isliked"] = True
+            return HttpResponse(json.dumps(response),request)
+
+        response["isliked"] = False
+        return HttpResponse(json.dumps(response),request)
+
+    return render("main/error.html",request)
+
+
+
+def getStars(request,film_id):
+    if request.method == "POST":
+        response = {
+            "status": 200,
+            "stars": 0
+        }
+
+        if Film.objects.filter(tmdb_id = film_id):
+            rating = request.user.rating_set.filter(movie= Film.objects.get(tmdb_id=film_id))
+            if rating:
+                response["stars"] = rating[0].stars 
+                return HttpResponse(json.dumps(response),request)
+        return HttpResponse(json.dumps(response),request)
+    
+    return render("main/error.html",request)
+
+
+def directLogged(request):
+    if request.method == "POST":
+        print(request.POST)
+        liked = request.POST.get("ready-log-liked",False)
+        remove_rating = request.POST.get("removeRating")
+        if(remove_rating == "remove"):
+            removeRatingHelper(request)
+        
+        return HttpResponse("hello",request)
+
+    return render("main/error.html",request)

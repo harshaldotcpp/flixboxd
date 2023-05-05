@@ -18,14 +18,14 @@ const frontend_alert_btn = document.querySelector("frontend-alert-btn");
 
 
 function windowClose(window) {
-    if (window.classList.contains("hidden")){
+    if (window.classList.contains("hidden")) {
         return true;
     }
     return false;
 }
 
 function windowOpen(window) {
-    if (!window.classList.contains("hidden")){
+    if (!window.classList.contains("hidden")) {
         return true;
     }
     return false;
@@ -47,7 +47,7 @@ if (login_field) {
             closeWindow(menu_field);
         }
 
-        if (!search_field.classList.contains("hidden")){
+        if (!search_field.classList.contains("hidden")) {
             search_field.classList.toggle("hidden");
         }
 
@@ -209,16 +209,19 @@ if (desktop_signin_form_cancel) {
 
 desktop_profile_menu = document.getElementById("desktop-profile-menu")
 
-if(desktop_profile_menu){
-    desktop_profile_menu.addEventListener("mouseover",(event)=>{
+if (desktop_profile_menu) {
+    desktop_profile_menu.addEventListener("mouseover", (event) => {
         desktop_profile_menu.classList.add("bg-letterboxd-3");
-        extend_menu = document.getElementById("desktop-profile-menu-extend");
+        const extend_menu = document.getElementById("desktop-profile-menu-extend");
         extend_menu.classList.remove("hidden");
     });
 }
-if(desktop_profile_menu){
-    desktop_profile_menu.addEventListener("mouseout",(event)=>{
+if (desktop_profile_menu) {
+    desktop_profile_menu.addEventListener("mouseout", (event) => {
         desktop_profile_menu.classList.remove("bg-letterboxd-3");
+        const extend_menu = document.getElementById("desktop-profile-menu-extend");
         extend_menu.classList.add("hidden");
     });
 }
+
+
