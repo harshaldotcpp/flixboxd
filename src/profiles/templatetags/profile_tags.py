@@ -45,7 +45,6 @@ def is_following_tag(follower,username):
 @register.simple_tag
 def get_year_films_count(user):
     current_year = datetime.datetime.today().year
-    print(current_year)
     return  user.diary_log.filter(date__year=current_year).count()
 
 

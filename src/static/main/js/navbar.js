@@ -212,13 +212,14 @@ desktop_profile_menu = document.getElementById("desktop-profile-menu")
 if(desktop_profile_menu){
     desktop_profile_menu.addEventListener("mouseover",(event)=>{
         desktop_profile_menu.classList.add("bg-letterboxd-3");
-        extend_menu = document.getElementById("desktop-profile-menu-extend");
+        const extend_menu = document.getElementById("desktop-profile-menu-extend");
         extend_menu.classList.remove("hidden");
     });
 }
 if(desktop_profile_menu){
     desktop_profile_menu.addEventListener("mouseout",(event)=>{
         desktop_profile_menu.classList.remove("bg-letterboxd-3");
+        const extend_menu = document.getElementById("desktop-profile-menu-extend");
         extend_menu.classList.add("hidden");
     });
 }

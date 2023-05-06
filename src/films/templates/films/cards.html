@@ -2,7 +2,7 @@
 {% load static %}
 <div >
     <div
-        class=" card relative hover:scale-105 duration-300 hover:border hover:border-white rounded-md md:rounded-lg  shadow-sm shadow-black  overflow-hidden">
+        class=" card relative hover:scale-105 duration-300 hover:border hover:border-white rounded-sm md:rounded-md  shadow-sm shadow-black  overflow-hidden">
         <a href="{% url 'filmsabout:film' movie.tmdb_id %}">
             <img alt="movie.title" class="object-cover lozad" data-src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" src="{% static 'main/image/defaultposter.png'  %}">
             <div

@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib import messages
 from tmdbv3api import TMDb,Movie
-import pprint
 import random
 from itertools import chain
 import os
@@ -17,12 +16,10 @@ tmdb.debug = True
 
 # Create your views here.
 def home(request):
-    print(os.environ.get("TMDB_API_KEY"))
     movie = Movie()
     populer_movies = movie.popular()[0:6]
 
   
-    print(request.user.is_authenticated)
     if request.user.is_authenticated: #if user is already is_authenticated(looged in) then take user to home page
         context = {
             "upcoming": movie.upcoming(),
@@ -43,7 +40,6 @@ def home(request):
             recent = False
         context["friends_movies"] = friends_movies
         context["recent_f"] = recent
-        print(context["friends_movies"])
 
         response = render(request,"main/home.html",context=context)
         response.set_cookie(key="username",value=request.user.username)
@@ -103,7 +99,6 @@ def signup(request):
 
 #------------------------------------------------------------------------
 def signin(request):
-    print("signin")
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -113,7 +108,6 @@ def signin(request):
         
         if user is not None: #if user added right Credentials redirect user to root path again
             login(request,user)
-            print("ok")
             return redirect("authentication:home")
             
         else: #rediect him signin page with error messages

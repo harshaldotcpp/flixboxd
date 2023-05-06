@@ -107,14 +107,13 @@ def watchlist(request):
 
 
 
-def addReviewHelper(request):
+def addReviewHelper(request,url):
         movie_info = {
             "review": request.POST["review"],
             "tmdb_id": request.POST["tmdb_id"],
              "date": request.POST["date"]
         }
        
-
         if len(movie_info["review"]) != 0:
             movie = request.user.profile.add_watched_movie(movie_info)
             movie.post_review(movie_info["review"],request.user)
@@ -124,21 +123,24 @@ def addReviewHelper(request):
             movie = request.user.profile.add_watched_movie(movie_info)
             log_date = datetime.datetime.strptime(movie_info["date"],'%Y-%m-%d').date()
             user_diary = request.user.diary_log.filter(date=log_date)
+
             if user_diary:
                 if user_diary.filter(movie = movie):
                     messages.error(request,"This Movie Already Logged on This Day")
-                    return redirect(url)
+                    return url
 
             diaryLog = DiaryLog.objects.create(date=log_date,user=request.user,movie=movie)
             diaryLog.save()
             messages.success(request,"Added in logs")
+        return url
+
 
 
 def addReview(request):
 
     if(request.method == "POST"):
-        addReviewHelper(request)           
         url = f"/film/{request.POST['tmdb_id']}"
+        addReviewHelper(request,url)           
         return redirect(url)
 
     return redirect("/")
@@ -158,7 +160,6 @@ def film(request,film_id):
     for video in videos:
         if video.get("type",False) == "Trailer":
             trailer_link = "https://www.youtube.com/watch?v=" + video["key"]
-    print(trailer_link)
     directors = []
     for credit in mc.crew:
         if credit["job"] == "Director":
@@ -296,8 +297,6 @@ def diary(request,username):
         if diary_logs:
             diary_len = len(diary_logs)
         
-        for logs in diary_logs:
-            print(logs.movie.poster_path)
         context = {
             "page" : "diary",
             "diary_log": diary_logs,
@@ -312,8 +311,9 @@ def showLiked(request,username):
 
 
 
-def ratingHelper(request):
-    obj = json.load(request)
+def ratingHelper(request,obj):
+    if obj.get("rating") == None:
+        return HttpResponse(json.dumps({"message":"no rating added"}),request)
 
     movieInfo = {
         "rating":obj["rating"],
@@ -335,11 +335,11 @@ def ratingHelper(request):
 
 def rating(request):
     if request.method == "POST":
-        return ratingHelper(request)       
+        obj = json.load(request)
+        return ratingHelper(request,obj)       
     return HttpResponse(json.dumps({"status":"failed","message":"get request not allowed"}),content_type='application/json')
 
-def removeRatingHelper(request):
-    obj = json.load(request)
+def removeRatingHelper(request,obj):
     film = request.user.profile.filmExist(obj["tmdb_id"])
     if film:
         rating = Rating.objects.filter(movie=film,user=request.user)
@@ -351,7 +351,8 @@ def removeRatingHelper(request):
 
 def removeRating(request):
     if request.method == "POST":
-        return removeRatingHelper(request)
+        obj = json.load(request)
+        return removeRatingHelper(request,obj)
 
     return render(request,"main/error.html")
 
@@ -413,13 +414,21 @@ def getStars(request,film_id):
 
 
 def directLogged(request):
+
     if request.method == "POST":
         print(request.POST)
         liked = request.POST.get("ready-log-liked",False)
+        if liked:
+            request.user.profile.liked(request.POST)
+        else:
+            request.user.profile.unlike(request.POST["tmdb_id"])
+
         remove_rating = request.POST.get("removeRating")
         if(remove_rating == "remove"):
-            removeRatingHelper(request)
-        
-        return HttpResponse("hello",request)
+            removeRatingHelper(request,request.POST)
+        else:
+            ratingHelper(request,request.POST)
 
+        addReviewHelper(request,"/")
+        return redirect("/") 
     return render("main/error.html",request)

@@ -104,10 +104,8 @@ class Profile(models.Model):
         
     def remove_from_watchlist(self,tmdb_id):
         film = self.filmExist(tmdb_id)
-        print("heyy",film)
         if film and film.watchlisted_by.filter(username=self.user.username):
             film.watchlisted_by.remove(self.user)
-            print("removed")
             return True
         return False
         
@@ -161,8 +159,6 @@ class Profile(models.Model):
         return False
 
     def addList(self,list,movies):
-        print("this is list info",list)  
-        print("this is moves",movies)
         user_list = List.objects.create(name=list['list_name'],user=self.user,description=list['list_desc'])
         user_list.save()
         for movie in movies:
