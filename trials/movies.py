@@ -9,5 +9,4 @@ tmdb.debug = True
 
 movie = Movie()
 
-print(dir(movie))
 

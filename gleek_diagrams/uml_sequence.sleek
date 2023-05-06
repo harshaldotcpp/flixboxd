@@ -1,0 +1,30 @@
+
+
+
+
+Actor- press Sign up button -> welcome_page
+welcome_page-. show sign up form -> Actor
+Actor- enter user details -> welcome_page
+welcome_page- request to signup user -> server
+server-. createUser() <<create>> -> user
+/alt new user
+	user-. created successfully -> server
+	server-. returns <<home.html>> -> Actor
+/else old user
+	user-. user already exist (failed) -> server
+	server-. user already exist message -> welcome_page
+	welcome_page-. shows sigin in form -> Actor
+
+
+Actor- enter details -> welcome_page
+
+welcome_page- request to sigin user ->server
+server- validateUser -> user
+/alt valid credentials
+	user-. valid credentials -> server
+	server-. returns <<home.html>> -> Actor
+/else invalid credentials
+	user-. invalid credentials -> server
+	server-. username or password invalid -> welcome_page
+	welcome_page- enter details again -> Actor
+
