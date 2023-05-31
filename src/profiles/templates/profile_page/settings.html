@@ -1,5 +1,4 @@
-{% load static %}
-{% load profile_tags %}
+{% load static %} {% load profile_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,56 +18,42 @@
         <h1 class="text-2xl   md:text-3xl  font-myfontLight ">Account Settings</h1>
         <form enctype="multipart/form-data" action="{% url 'profiles:settingUpdate' user.username %}" method="POST">
             {% csrf_token %}
-            <h2
-                class="text-2xl   md:text-3xl text-letterboxd-3  font-myfontLight mt-8 md:mt-12 border-b border-letterboxd-3">
+            <h2 class="text-2xl   md:text-3xl text-letterboxd-3  font-myfontLight mt-8 md:mt-12 border-b border-letterboxd-3">
                 Profile</h2>
 
 
-            <div id="content-wrapper"
-                class="grid grid-cols-[auto] grid-rows-[auto] md:grid-cols-[auto,auto] md:grid-rows-[auto] py-3 sm:gap-x-12 gap-x-20 gap-y-5">
+            <div id="content-wrapper" class="grid grid-cols-[auto] grid-rows-[auto] md:grid-cols-[auto,auto] md:grid-rows-[auto] py-3 sm:gap-x-12 gap-x-20 gap-y-5">
                 <div id="edit-form">
                     <label for="username" class=""> Username </label>
-                    <input type="text" disabled name="username" placeholder="{{ user.username }}"
-                        class="focus:outline-none p-3 w-full mt-1 mb-6 h-9 bg-letterboxd-2 rounded-md">
+                    <input type="text" disabled name="username" placeholder="{{ user.username }}" class="focus:outline-none p-3 w-full mt-1 mb-6 h-9 bg-letterboxd-2 rounded-md">
                     <div class="flex gap-x-3 mb-6">
                         <div class="grow-1 basis-full">
                             <label for="first_name" class=""> First Name </label>
-                            <input type="text" name="first_name" placeholder="{{ user.first_name }}"
-                                class="focus:outline-none p-3 w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
+                            <input type="text" name="first_name" placeholder="{{ user.first_name }}" class="focus:outline-none p-3 w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
                         </div>
                         <div class="grow-1 basis-full">
                             <label for="family_name" class=""> Family Name </label>
-                            <input type="text" name="last_name" placeholder="{{ user.last_name }}"
-                                class="focus:outline-none p-3 w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
+                            <input type="text" name="last_name" placeholder="{{ user.last_name }}" class="focus:outline-none p-3 w-full mt-1 h-9 bg-letterboxd-2 rounded-md">
                         </div>
 
                     </div>
                     <label for="email" class="">Email</label>
-                    <input type="email" disbaled name="email" placeholder="{{ user.email }}"
-                        class="focus:outline-none p-3 w-full mb-6 mt-1 h-9 bg-letterboxd-2 rounded-md">
+                    <input type="email" disbaled name="email" placeholder="{{ user.email }}" class="focus:outline-none p-3 w-full mb-6 mt-1 h-9 bg-letterboxd-2 rounded-md">
 
                     <label for="email" class="">Bio</label><br>
-                    <textarea placeholder="{{ user.profile.bio }}" rows="4" name="bio"
-                        class="resize-none  p-3 focus:outline-none w-full rounded-md bg-letterboxd-2"></textarea>
+                    <textarea placeholder="{{ user.profile.bio }}" rows="4" name="bio" class="resize-none  p-3 focus:outline-none w-full rounded-md bg-letterboxd-2"></textarea>
 
                 </div>
                 <div id="top4-settings">
                     <label class="font-myfont">Favroite Films</label>
                     <div id="grid-container" class="grid-container grid grid-cols-4 mt-1 gap-3">
 
-                        <div data-isnone="{% isnone user.top4.one %}" data-id="{% get_tmdb_id user.top4.one%}"
-                            data-poster_path="{% get_poster_path user.top4.one %}" draggable="true" id="1"
-                            class=" grid-item cursor-move">
+                        <div data-isnone="{% isnone user.top4.one %}" data-id="{% get_tmdb_id user.top4.one%}" data-poster_path="{% get_poster_path user.top4.one %}" draggable="true" id="1" class=" grid-item cursor-move">
                             <div class="card relative rounded-md md:rounded-lg  shadow-inner shadow-blue-500 ">
-                                <img id="img1" class="object-cover lozad rounded-md"
-                                    data-src="{% topImage user.top4.one 'w500' %}"
-                                    src="{% topImage user.top4.one 'w92' %}">
-                                <div
-                                    class=" rounded-md absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
-                                    <div data-cardno="1" id="top-remove-btn-1"
-                                        class="{% checkTop user.top4.one '' 'hidden' %} top-remove-btn  absolute p-[2px] shadow-md shadow-black cursor-pointer right-[-3px] top-[-2px]  rounded-full bg-letterboxd-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-2 h-2">
+                                <img id="img1" class="object-cover lozad rounded-md" data-src="{% topImage user.top4.one 'w500' %}" src="{% topImage user.top4.one 'w92' %}">
+                                <div class=" rounded-md absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                    <div data-cardno="1" id="top-remove-btn-1" class="{% checkTop user.top4.one '' 'hidden' %} top-remove-btn  absolute p-[2px] shadow-md shadow-black cursor-pointer right-[-3px] top-[-2px]  rounded-full bg-letterboxd-5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-2 h-2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M6 18L18 6M6 6l12 12" />
                                         </svg>
@@ -78,14 +63,10 @@
                                 </div>
 
 
-                                <div id="add1"
-                                    class="{% checkTop user.top4.one 'hidden' '' %} flex justify-center items-center absolute bg-letterboxd-1 top-0 left-0 right-0 bottom-0">
-                                    <div
-                                        class="w-14 h-14 flex justify-center items-center  rounded-full bg-letterboxd-2">
+                                <div id="add1" class="{% checkTop user.top4.one 'hidden' '' %} flex justify-center items-center absolute bg-letterboxd-1 top-0 left-0 right-0 bottom-0">
+                                    <div class="w-14 h-14 flex justify-center items-center  rounded-full bg-letterboxd-2">
                                         <div data-position="1" class="top4add">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor"
-                                                class="w-6 h-6 fill-letterboxd-6">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6 fill-letterboxd-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M12 4.5v15m7.5-7.5h-15" />
                                             </svg>
@@ -95,35 +76,24 @@
                             </div>
                         </div>
 
-                        <div data-isnone="{% isnone user.top4.two %}" data-id="{% get_tmdb_id user.top4.two %}"
-                            data-poster_path="{% get_poster_path user.top4.two %}" draggable="true" id="2"
-                            class="grid-item cursor-move">
+                        <div data-isnone="{% isnone user.top4.two %}" data-id="{% get_tmdb_id user.top4.two %}" data-poster_path="{% get_poster_path user.top4.two %}" draggable="true" id="2" class="grid-item cursor-move">
                             <div class="card relative  rounded-md md:rounded-lg  shadow-inner shadow-blue-500 ">
-                                <img id="img2" class="object-cover lozad rounded-md"
-                                    data-src="{% topImage user.top4.two 'w500' %}"
-                                    src="{% topImage user.top4.two 'w500' %}">
-                                <div
-                                    class="rounded-md overflow-visible absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
-                                    <div data-cardno="2" id="top-remove-btn-2"
-                                        class="{% checkTop user.top4.two '' 'hidden' %} top-remove-btn   absolute p-[2px] shadow-md shadow-black cursor-pointer right-[-3px] top-[-2px]  rounded-full bg-letterboxd-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-2 h-2">
+                                <img id="img2" class="object-cover lozad rounded-md" data-src="{% topImage user.top4.two 'w500' %}" src="{% topImage user.top4.two 'w500' %}">
+                                <div class="rounded-md overflow-visible absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                    <div data-cardno="2" id="top-remove-btn-2" class="{% checkTop user.top4.two '' 'hidden' %} top-remove-btn   absolute p-[2px] shadow-md shadow-black cursor-pointer right-[-3px] top-[-2px]  rounded-full bg-letterboxd-5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-2 h-2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M6 18L18 6M6 6l12 12" />
                                         </svg>
 
-                                    </div> 
+                                    </div>
                                 </div>
 
 
-                                <div id="add2"
-                                    class="{% checkTop user.top4.two 'hidden' '' %} flex justify-center items-center absolute bg-letterboxd-1 top-0 left-0 right-0 bottom-0">
-                                    <div
-                                        class=" w-14 h-14 flex justify-center items-center  rounded-full bg-letterboxd-2">
+                                <div id="add2" class="{% checkTop user.top4.two 'hidden' '' %} flex justify-center items-center absolute bg-letterboxd-1 top-0 left-0 right-0 bottom-0">
+                                    <div class=" w-14 h-14 flex justify-center items-center  rounded-full bg-letterboxd-2">
                                         <div data-position="2" class="top4add">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor"
-                                                class="w-6 h-6 fill-letterboxd-6">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6 fill-letterboxd-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M12 4.5v15m7.5-7.5h-15" />
                                             </svg>
@@ -133,19 +103,12 @@
                             </div>
                         </div>
 
-                        <div data-isnone="{% isnone user.top4.three %}" data-id="{% get_tmdb_id user.top4.three %}"
-                            data-poster_path="{% get_poster_path user.top4.three %}" draggable="true" id="3"
-                            class=" grid-item cursor-move">
+                        <div data-isnone="{% isnone user.top4.three %}" data-id="{% get_tmdb_id user.top4.three %}" data-poster_path="{% get_poster_path user.top4.three %}" draggable="true" id="3" class=" grid-item cursor-move">
                             <div class="card relative   rounded-md md:rounded-lg  shadow-inner shadow-blue-500 ">
-                                <img id="img3" class="object-cover lozad rounded-md"
-                                    data-src="{% topImage user.top4.three 'w500' %}"
-                                    src="{% topImage user.top4.three 'w92' %}">
-                                <div
-                                    class="rounded-md absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
-                                    <div data-cardno="3" id="top-remove-btn-3"
-                                        class="top-remove-btn {% checkTop user.top4.three '' 'hidden' %}  absolute p-[2px] shadow-md shadow-black cursor-pointer right-[-3px] top-[-2px]  rounded-full bg-letterboxd-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-2 h-2">
+                                <img id="img3" class="object-cover lozad rounded-md" data-src="{% topImage user.top4.three 'w500' %}" src="{% topImage user.top4.three 'w500' %}">
+                                <div class="rounded-md absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                    <div data-cardno="3" id="top-remove-btn-3" class="top-remove-btn {% checkTop user.top4.three '' 'hidden' %}  absolute p-[2px] shadow-md shadow-black cursor-pointer right-[-3px] top-[-2px]  rounded-full bg-letterboxd-5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-2 h-2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M6 18L18 6M6 6l12 12" />
                                         </svg>
@@ -153,14 +116,10 @@
                                     </div>
 
                                 </div>
-                                <div id="add3"
-                                    class="{% checkTop user.top4.three 'hidden' '' %} flex justify-center items-center absolute bg-letterboxd-1 top-0 left-0 right-0 bottom-0">
-                                    <div
-                                        class="w-14 h-14 flex justify-center items-center  rounded-full bg-letterboxd-2">
+                                <div id="add3" class="{% checkTop user.top4.three 'hidden' '' %} flex justify-center items-center absolute bg-letterboxd-1 top-0 left-0 right-0 bottom-0">
+                                    <div class="w-14 h-14 flex justify-center items-center  rounded-full bg-letterboxd-2">
                                         <div data-position="3" class="top4add">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor"
-                                                class="w-6 h-6 fill-letterboxd-6">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6 fill-letterboxd-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M12 4.5v15m7.5-7.5h-15" />
                                             </svg>
@@ -170,19 +129,12 @@
                             </div>
                         </div>
 
-                        <div data-isnone="{% isnone user.top4.four %}" data-id="{% get_tmdb_id user.top4.four %}"
-                            data-poster_path="{% get_poster_path user.top4.four%}" draggable="true" id="4"
-                            class=" grid-item cursor-move">
+                        <div data-isnone="{% isnone user.top4.four %}" data-id="{% get_tmdb_id user.top4.four %}" data-poster_path="{% get_poster_path user.top4.four%}" draggable="true" id="4" class=" grid-item cursor-move">
                             <div class="card relative   rounded-md md:rounded-lg  shadow-inner shadow-blue-500 ">
-                                <img id="img4" class=" object-cover lozad rounded-md"
-                                    data-src="{% topImage user.top4.four 'w92' %}"
-                                    src="{% topImage user.top4.four 'w92' %}">
-                                <div
-                                    class="rounded-md  absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
-                                    <div data-cardno="4" id="top-remove-btn-4"
-                                        class="top-remove-btn {% checkTop user.top4.four '' 'hidden' %} absolute p-[2px] shadow-md shadow-black cursor-pointer right-[-3px] top-[-2px]  rounded-full bg-letterboxd-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-2 h-2">
+                                <img id="img4" class=" object-cover lozad rounded-md" data-src="{% topImage user.top4.four 'w500' %}" src="{% topImage user.top4.four 'w500' %}">
+                                <div class="rounded-md  absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                    <div data-cardno="4" id="top-remove-btn-4" class="top-remove-btn {% checkTop user.top4.four '' 'hidden' %} absolute p-[2px] shadow-md shadow-black cursor-pointer right-[-3px] top-[-2px]  rounded-full bg-letterboxd-5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-2 h-2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M6 18L18 6M6 6l12 12" />
                                         </svg>
@@ -191,16 +143,12 @@
 
                                 </div>
 
-                                <div id="add4"
-                                    class="{% checkTop user.top4.four 'hidden' '' %} flex justify-center items-center absolute bg-letterboxd-1 top-0 left-0 right-0 bottom-0">
-                                    <div
-                                        class=" w-14 h-14 flex justify-center items-center  rounded-full bg-letterboxd-2">
-                                        <div data-position="4" class="top4add">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor"
-                                                class="w-6 h-6 fill-letterboxd-6">
+                                <div id="add2" class="{% checkTop user.top2.four 'hidden' '' %} flex justify-center items-center absolute bg-letterboxd-1 top-0 left-0 right-0 bottom-0">
+                                    <div class=" w-16 h-14 flex justify-center items-center  rounded-full bg-letterboxd-2">
+                                        <div data-position="2" class="top4add">
+                                            <svg xmlns="http://www.w1.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-8 h-6 fill-letterboxd-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M12 4.5v15m7.5-7.5h-15" />
+                                                    d="M10 4.5v15m7.5-7.5h-15" />
                                             </svg>
                                         </div>
                                     </div>
@@ -220,14 +168,12 @@
             </div>
 
             <div id="submit settings" class="mt-5">
-                <button type="submit"
-                    class="font-myfont text-white tracking-widest hover:filter hover:grayscale py-2 px-3 text-sm rounded-sm bg-letterboxd-4">SUBMIT</button>
+                <button type="submit" class="font-myfont text-white tracking-widest hover:filter hover:grayscale py-2 px-3 text-sm rounded-sm bg-letterboxd-4">SUBMIT</button>
             </div>
     </div>
 
     </form>
-    <div id="search-field-top"
-        class="hidden flex flex-col gap-1 fixed rounded-md top-0 left-24 p-3 z-50 shadow-lg shadow-black bg-letterboxd-2">
+    <div id="search-field-top" class="hidden flex flex-col gap-1 fixed rounded-md top-0 left-24 p-3 z-50 shadow-lg shadow-black bg-letterboxd-2">
         <label class="text-sm font-myfontLight" for="film_name">Search Your Film</label>
         <input id="movie-search" name="film_name" type="text" class="p-2 text-sm focus:outline-none  bg-letterboxd-6 h-8 text-letterboxd-1">
         <div id="search-reults" class="bg-letterboxd-3 text-sm  font-myfontLight">
