@@ -12,8 +12,12 @@ urlpatterns = [
     path('ratingadd',views.rating,name="ratingadd"),
     path('ratingremove',views.removeRating,name="removeRating"),
     path('getavgstars',views.avgStars,name="avgStars"),
+    path('directlogged',views.directLogged,name="directLogged"),
+    path('actor/<int:id>',views.actor,name="actor"),
     path('watched/<str:username>',views.showWatched,name="showWatched"),
     path('watchlist/<str:username>',views.showWatchlist,name="showWatchlist"),
     path('diary/<str:username>',views.diary ,name="diary"),
     path('search/<str:film_name>',views.search_films,name="search_films"),
+    path('isliked/<int:film_id>',views.isLiked,name="isLiked"),
+    path('getstars/<int:film_id>',views.getStars,name="getStars")
 ]

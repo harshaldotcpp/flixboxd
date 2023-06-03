@@ -1,9 +1,10 @@
 {% load custom_tags %}
+{% load static %}
 <div >
     <div
-        class=" card relative hover:scale-105 duration-300 hover:border hover:border-white rounded-md md:rounded-lg  shadow-sm shadow-black  overflow-hidden">
+        class=" card relative hover:scale-105 duration-300 hover:border hover:border-white rounded-sm md:rounded-md  shadow-sm shadow-black  overflow-hidden">
         <a href="{% url 'filmsabout:film' movie.tmdb_id %}">
-            <img class="object-cover lozad" data-src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" src="https://image.tmdb.org/t/p/w200{{ movie.film.poster_path }}">
+            <img alt="movie.title" class="object-cover lozad" data-src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" src="{% static 'main/image/defaultposter.png'  %}">
             <div
                 class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
             </div>

@@ -18,6 +18,7 @@ def user_profile(request,username):
     if user:
         info["user_profile"] = user[0]
         info["watchlist"] = user[0].watchlist.all()[:4]
+        info["followings"] = user[0].profile.following.all()
         info["top4"] = user[0].top4
         info["recent_log"] = user[0].diary_log.order_by("-date","-created_at")[:4]
         info["recent_log_len"] = len(user[0].diary_log.order_by("-date","-created_at")[:4])
@@ -114,7 +115,6 @@ def following(request,username):
     if search_user:
         context["search_user"] = search_user[0]
         context['followings'] = search_user[0].profile.following.all()
-        print(context["followings"])
         
         return render(request,"profile_page/following.html",context=context)
     return render(request,"profile_page/error.html")
@@ -136,5 +136,4 @@ def search(request,username):
         "btn_color":"bg-letterboxd-3",
         "len": len(User.objects.filter(username__startswith=username))
     }
-    print(context["searched_users"])
     return render(request, "profile_page/search_profile.html",context=context) 

@@ -1,5 +1,4 @@
 //chart data
-console.log("hello")
 options.body = JSON.stringify({
     id: getCookie("id")
 })
@@ -14,7 +13,6 @@ fetch("/film/getavgstars", options).then(response => response.json())
             "prefix": "%"
         }
 
-        console.log(chartjson)
         //constants
         var TROW = 'tr',
             TDATA = 'td';
@@ -52,6 +50,5 @@ fetch("/film/getavgstars", options).then(response => response.json())
         barchart.appendChild(barrow);
         chart.appendChild(barchart);
         document.getElementById('chart').innerHTML = chart.outerHTML;
-        console.log(document.getElementById("chart"))
 
     });

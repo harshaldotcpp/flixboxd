@@ -1,5 +1,4 @@
 const follow_btns = document.getElementsByClassName("follow")
-console.log(follow_btns)
 Array.from(follow_btns).forEach(follow_btn => {
     follow_btn.addEventListener("click", (event) => {
         options.body = JSON.stringify({
@@ -9,7 +8,6 @@ Array.from(follow_btns).forEach(follow_btn => {
         const icon = document.getElementById("icon-" + event.target.id)
         icon.classList.toggle("fill-letterboxd-4");
         let username = getCookie('username');
-        console.log(`${username} interact with ${profile_username}`);
         const url = `/${username}/follow/` + profile_username;
         fetch(url, options);
     });

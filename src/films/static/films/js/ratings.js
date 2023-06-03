@@ -20,7 +20,6 @@ Array.from(stars_btns).forEach(btn => {
         if (document.querySelector("#watch-btn")) {
             if (! document.querySelector("#watch-btn").checked) {
                 
-                console.log("hiid")
                 watch_btn.checked = true;
                 const icon = document.querySelector("#watch-icon");
                 icon.classList.toggle("fill-letterboxd-4");
@@ -37,7 +36,6 @@ if (rating_remove) {
 
         Array.from(stars_btns).forEach(element => {
             element.checked = false
-            console.log(element)
         })
         fetch("/film/ratingremove", options)
             .then(response => response.json())

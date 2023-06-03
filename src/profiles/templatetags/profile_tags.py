@@ -45,7 +45,6 @@ def is_following_tag(follower,username):
 @register.simple_tag
 def get_year_films_count(user):
     current_year = datetime.datetime.today().year
-    print(current_year)
     return  user.diary_log.filter(date__year=current_year).count()
 
 
@@ -88,9 +87,9 @@ def get_poster_path(top):
 
 
 @register.simple_tag
-def topPosterPath(top):
+def topPosterPath(top,res):
     if top:
-        return "https://image.tmdb.org/t/p/w200" + top.poster_path
+        return f"https://image.tmdb.org/t/p/{res}" + top.poster_path
     return static("main/image/defaultposter.png")
 
 

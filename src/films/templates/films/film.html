@@ -22,11 +22,11 @@
     {% include 'main/navbar.html' %}
 
 
-    <main class="relative flex-cols mt-0 md:mt-6">
+    <main class="relative flex-cols mt-10 md:mt-0 ">
 
-        <img data-src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}"
+        <img alt="{{movie.id}}" data-src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}"
             src="https://image.tmdb.org/t/p/w200{{movie.backdrop_path}}"
-            class="lozad h-64  mt-10 w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
+            class="lozad h-64  w-full object-cover gradient-mask-b-40 z-0 absolute md:h-[500px]">
 
         <div id="empty-space-for-image" class="relative h-52 md:h-96">
         </div>
@@ -69,7 +69,7 @@
                         <div
                             class="w-28 md:w-32 card relative rounded-md md:rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
                             <a href="">
-                                <img class="lozad object-cover"
+                                <img alt="{{movie.title}}" class="lozad object-cover"
                                     data-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
                                     src="https://image.tmdb.org/t/p/w200{{movie.poster_path}}">
                             </a>
@@ -178,14 +178,15 @@
 
 
             <section id="this_is_cast_crew_section" class="cast-crew-div">
-                <div class="mb-3 text-letterboxd-4 border-b border-letterboxd-3 flex gap-3 font-myfontLight">
-                    <div class=""> CAST </div>
+                <div class="mb-3 border-b border-letterboxd-3 flex gap-3 font-myfontLight">
+                    <div class="text-letterboxd-4"> CAST </div>
                     <div> CREW </div>
                 </div>
                 <div id="cast" class="flex flex-wrap gap-3">
                     {% for cast in movie.casts.cast %}
-                    <div class="bg-gray-700 text-xs sm:text-sm md:text-md rounded-sm shadow-black y-1 px-1">
-                        {{cast.original_name}}</div>
+                    <div class="bg-gray-700 text-xs hover:bg-opacity-60 sm:text-sm md:text-md rounded-sm shadow-black y-1 px-1">
+                       <a href="{% url 'filmsabout:actor' cast.id %}">{{cast.original_name}}</a> 
+                    </div>
                     {% endfor %}
                 </div>
                 <div id="crew" ,class="hidden">
@@ -302,21 +303,24 @@
 
                 <div class="flex mt-3 scrollbar-none w-full overflow-x-auto gap-x-3">
                     {% for smovies in similar_movies %}
+                    {% if smovies.poster_path == None %}
+                    {% else %}
                     <div class="w-24 sm:w-28 md:w-32 grow-0 shrink-0">
                         <div
                             class="card relative hover:scale-95 duration-300 hover:shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)] hover:shadow:black rounded-md md:rounded-lg  shadow-inner shadow-blue-500 overflow-hidden">
                             <a href="{% url 'filmsabout:film' smovies.id %}">
-                                <img class="object-cover lozad"
+                                <img alt="{{ smovies.title }}" class="object-cover lozad"
                                     data-src="https://image.tmdb.org/t/p/original{{ smovies.poster_path }}"
                                     src="https://image.tmdb.org/t/p/w200{{ smovies.poster_path }}">
 
                                 <div
-                                    class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
+                                    class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)]  shadow-white top-0 left-0 right-0 bottom-0">
                                 </div>
                             </a>
                         </div>
 
                     </div>
+                    {% endif %}
                     {% endfor %}
 
                 </div>
@@ -386,7 +390,7 @@
                             <div
                                 class="w-20 card relative rounded-md md:rounded-md  shadow-inner shadow-blue-500 overflow-hidden">
                                 <a href="">
-                                    <img class="object-cover lozad"
+                                    <img alt="{{movie.title}}" class="object-cover lozad"
                                         data-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"
                                         src="https://image.tmdb.org/t/p/w200{{movie.poster_path}}">
                                 </a>
@@ -398,20 +402,20 @@
                         <div class="flex flex-col text-white ">
                             <div class="font-abrilbold text-2xl">{{ movie.title }} <span
                                     class="font-myfontLight">{{ release_year }}</span></div>
-                            <div class="mt-1 font-myfontLight text-bold tracking-wider"> <input checked type="checkbox"
+                            <div class="mt-1 font-myfontLight text-bold tracking-wider"> <input type="checkbox"
                                     name="shouldlog" id="">
-                                Watched on (add to diary) <input
+                                Watched on (add to diary) <input 
                                     class="focus:outline-none text-letterboxd-6 bg-letterboxd-2 rounded-sm p-1 text-xs"
                                     type="date" name="date" id="datePicker">
                             </div>
                         </div>
                         <div class="">
-                            <button id="review-cancel-btn">
+                            <div id="review-cancel-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
-                            </button>
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -434,12 +438,12 @@
     </main>
     <div id="end-spacing" class="h-16 w-screen"></div>
     {% include 'main/footer.html' %}
-
-</body>
 <script src="{% static 'main/js/utilitesFunction.js' %}"></script>
 <script src="{% static 'films/js/script.js' %}"></script>
 <script src="{% static 'films/js/chart.js' %}"></script>
 <script src="{% static 'films/js/ratings.js' %}"></script>
 <script src="{% static 'main/js/navbar.js' %}"></script>
 
+
+</body>
 </html>

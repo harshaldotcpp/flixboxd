@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a86a73b359c9f5d9319936f4307a8e17156129436654eeb9ff61a676ea740344"
+            "sha256": "fa1268f3fdb4645fbafecc64cd61bca25f88f150c095b8ec915244b521a9c090"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -168,6 +168,14 @@
             "index": "pypi",
             "version": "==1.4.2"
         },
+        "django-pipeline": {
+            "hashes": [
+                "sha256:36a6ce56fdf1d0811e4d51897f534acca35ebb35be699d9d0fd9970e634792a4",
+                "sha256:e91627faee22c4c65eb7d134ef53a9d97253c99e4dd914af8ea9c8c58c01de93"
+            ],
+            "index": "pypi",
+            "version": "==2.1.0"
+        },
         "django-resized": {
             "hashes": [
                 "sha256:52d727860f64ef4fdadbe2e74b66231c71c59df4d95949e338fcd320450f77fa",
@@ -191,6 +199,13 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==3.4"
+        },
+        "jsmin": {
+            "hashes": [
+                "sha256:c0959a121ef94542e807a674142606f7e90214a2b3d1eb17300244bbb5cc2bfc"
+            ],
+            "index": "pypi",
+            "version": "==3.0.1"
         },
         "mod-wsgi": {
             "hashes": [
@@ -299,11 +314,11 @@
         },
         "requests": {
             "hashes": [
-                "sha256:64299f4909223da747622c030b781c0d7811e359c37124b4bd368fb8c6518baa",
-                "sha256:98b1b2782e3c6c4904938b84c0eb932721069dfdb9134313beff7c83c2df24bf"
+                "sha256:e8f3c9be120d3333921d213eef078af392fba3933ab7ed2d1cba3b56f2568c3b",
+                "sha256:f2e34a75f4749019bb0e3effb66683630e4ffeaf75819fb51bebef1bf5aef059"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4'",
-            "version": "==2.28.2"
+            "index": "pypi",
+            "version": "==2.29.0"
         },
         "six": {
             "hashes": [

@@ -42,15 +42,16 @@ class Profile(models.Model):
         image = crop_image(image)
         image.save(self.profile_picture.path)
 
-    def filmExist(self,tmdb_id):
+    @staticmethod
+    def filmExist(tmdb_id):
         film = Film.objects.filter(tmdb_id = tmdb_id)
         if film:
             return film[0]
         return False
     
-  
-    def createFilm(self,movie):
-        film = self.filmExist(movie["tmdb_id"]) 
+    @classmethod
+    def createFilm(cls,movie):
+        film = cls.filmExist(movie["tmdb_id"]) 
         if film:
             return film
 
@@ -103,10 +104,8 @@ class Profile(models.Model):
         
     def remove_from_watchlist(self,tmdb_id):
         film = self.filmExist(tmdb_id)
-        print("heyy",film)
         if film and film.watchlisted_by.filter(username=self.user.username):
             film.watchlisted_by.remove(self.user)
-            print("removed")
             return True
         return False
         
@@ -160,8 +159,6 @@ class Profile(models.Model):
         return False
 
     def addList(self,list,movies):
-        print("this is list info",list)  
-        print("this is moves",movies)
         user_list = List.objects.create(name=list['list_name'],user=self.user,description=list['list_desc'])
         user_list.save()
         for movie in movies:

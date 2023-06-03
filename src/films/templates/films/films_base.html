@@ -9,9 +9,9 @@
     <script src="{% static 'main/js/lazyload.js' %}"></script>
     <title>films - {{ page }} </title>
 </head>
-<body class="bg-gradient-to-tl from-[#2A394E] to-[#0E0E0F] overflow-x-hidden  max-w-screen min-h-screen scrollbar-thin scrollbar-track-[#2A394E] scrollbar-thumb-letterboxd-1">
+<body class="bg-gradient-to-tl from-[#2A394E] to-[#0E0E0F] overflow-x-hidden  max-w-screen scrollbar-thin scrollbar-track-[#2A394E] scrollbar-thumb-letterboxd-1">
     {% include "main/navbar.html" %}
-    <div class="mt-16 md:mt-28  text-white mx-6 sm:mx-12 md:mx-24 lg:mx-48">
+    <main class="mt-16 md:mt-28  text-white mx-6 sm:mx-12 md:mx-24 lg:mx-40 min-h-screen">
 
         <div id="use" class="flex items-center rounded-lg px-3 py-2 drop-shadow-lg shadow-black gap-x-5 text-3xl md:text-4xl">
        
@@ -22,9 +22,10 @@
 
         {% block content %}
         {% endblock %}
-    </div>
 
-    
+    </main>
+
+    {% include 'main/footer.html' %} 
 </body>
  <script src="{% static 'main/js/utilitesFunction.js' %}"></script>
  <script src="{% static 'films/js/ratings.js' %}"></script>

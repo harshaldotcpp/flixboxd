@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Html page</title>
-  </head>
-  <body>
-        <img id="image" src="jwuwh" >
-  </body>
-    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
-        <script>eruda.init();</script>
-        <script>
-            let img = document.querySelector("#image");
-            console.log(img);
-            fetch("https://api.themoviedb.org/3/movie/414906?api_key=88e01c9c6c65ce312ee50a4358e089ac&language=en-US&include_adult=false")
-.then((response)=> response.json()).then((data)=>{
-          img.src = "https://image.tmdb.org/t/p/original/"+data["backdrop_path"];
-    console.log(data);
-    }
+</head>
 
-);
-        </script>
+<body>
+    <img id="image" src="jwuwh">
+</body>
+<script>
+    let img = document.querySelector("#image");
+    fetch("https://api.themoviedb.org/3/movie/414906?api_key=88e01c9c6c65ce312ee50a4358e089ac&language=en-US&include_adult=false")
+        .then((response) => response.json()).then((data) => {
+                img.src = "https://image.tmdb.org/t/p/original/" + data["backdrop_path"];
+            }
+
+        );
+</script>
+
 </html>
