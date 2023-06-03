@@ -1,0 +1,25 @@
+LoadFile "C:/Users/HEAD HUNTER/AppData/Local/Programs/Python/Python38/python38.dll"
+LoadModule wsgi_module "C:/Users/HEAD HUNTER/.virtualenvs/flixboxd-5-kUy6hJ/lib/site-packages/mod_wsgi/server/mod_wsgi.cp38-win_amd64.pyd"       
+WSGIPythonHome "C:/Users/HEAD HUNTER/.virtualenvs/flixboxd-5-kUy6hJ"
+
+
+
+# <VirtualHost *:80>
+# ServerAlias localhost 
+# ServerName  localhost 
+# ServerAdmin harshalmahapure44@gmail.com
+# WSGIScriptAlias / "D:/project/flixboxd/src/wsgi.py"
+#   <Directory "D:/project/flixboxd/src">
+#     <Files wsgi.py>
+#       Require all granted
+#     </Files>
+#   </Directory>
+
+# Alias /static/ "D:/project/flixboxd/cdn_static"
+#   <Directory "D:/project/flixboxd/cdn_static">
+#     Require all granted
+#   </Directory>
+
+# ErrorLog "D:/project/flixboxd/src/logs/apache.error.log"
+# CustomLog "S:/path/to/project-root/logs/apache.custom.log" common
+# </VirtualHost>

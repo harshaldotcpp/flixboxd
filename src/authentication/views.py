@@ -17,6 +17,7 @@ tmdb.debug = True
 
 # Create your views here.
 def home(request):
+    print(os.environ.get("TMDB_API_KEY"))
     movie = Movie()
     populer_movies = movie.popular()[0:6]
 
