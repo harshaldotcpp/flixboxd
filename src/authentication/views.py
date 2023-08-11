@@ -9,7 +9,7 @@ from itertools import chain
 import os
 
 tmdb = TMDb()
-tmdb.api_key = os.environ.get("TMDB_API_KEY")
+tmdb.api_key = '88e01c9c6c65ce312ee50a4358e089ac'
 tmdb.language = 'en'
 tmdb.debug = True
 
