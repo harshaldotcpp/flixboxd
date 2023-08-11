@@ -1,0 +1,40 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+.rate {
+    display: inline-block;
+    border: 0;
+}
+.rate > input {
+    display: none;
+}
+
+.rate > label {
+    float: right;
+}
+
+.rate > label:before {
+    display: inline-block;
+    font-size: 2rem;
+    padding: .3rem .2rem;
+    margin: 0;
+    cursor: pointer;
+    font-family: FontAwesome;
+    content: "\f005 ";
+}
+.star-size-diary > label:before {
+    font-size: 1rem !important;
+}
+
+.rate .half:before {
+    content: "\f089 "; 
+    position: absolute;
+    padding-right: 0;
+}
+
+.rate > input:checked ~ label, 
+.rate > label:hover, label:hover ~ label { color: #00B021;  } 
+
+.rate > input:checked + label:hover, input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label, 
+.rate > label:hover ~ input:checked ~ label { color: #40bcf4;  } 
+
+
