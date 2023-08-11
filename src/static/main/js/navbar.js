@@ -168,8 +168,13 @@ if (frontend_alert_btn) {
     });
 }
 
-search_content_btn.addEventListener("click", (event) => {
-    const content = document.querySelector("#search_content").value;
+
+
+function onClickSearchFilm(event){
+    let mobileOrDesktop = ( event.currentTarget.id != null && event.currentTarget.id === "search-btn-mobile")? "mobile" : "";
+    
+    
+    const content = document.querySelector(`#search_content_${mobileOrDesktop}`).value;
     
     
     if (content.length === 0) {
@@ -183,9 +188,16 @@ search_content_btn.addEventListener("click", (event) => {
     }
     const action_url = "/film/search/" + content;
     location.href = action_url;
-});
+}
 
 
+
+search_content_btn.addEventListener("click",onClickSearchFilm);
+
+document.querySelector("#search-btn-mobile").addEventListener("click",onClickSearchFilm);
+
+
+/*
 desktop_signin = document.getElementById("desktop-signin");
 if (desktop_signin) {
     desktop_signin.addEventListener("click", (event) => {
@@ -198,6 +210,8 @@ if (desktop_signin) {
 
 
 }
+
+*/
 
 desktop_signin_form_cancel = document.getElementById("desktop-sigin-form-cancel");
 if (desktop_signin_form_cancel) {
