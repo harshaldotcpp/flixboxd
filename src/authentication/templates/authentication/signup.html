@@ -9,26 +9,26 @@
                    <button>
 
                 </div>
-               <form action="{% url 'authentication:signup' %}" method="post" class="flex flex-col gap-4 text-sm text-white text-opacity-80">
+               <form id="signup-form"  action="{% url 'authentication:signup' %}" method="post" class="flex flex-col gap-4 text-sm text-white text-opacity-80">
                    {% csrf_token %}
                    <div>
                    <label class="">Email Address</label> <br>
-                   <input name="email_address" type=email class="p-2 text-gray-700 my-1 h-8 w-full rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
+                   <input id="email"  name="email_address" type=email class="p-2 text-gray-700 my-1 h-8 w-full rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
                   </div>
                   
                   <div>
                    <label class="">First Name</label> <br>
-                   <input name="first_name" type=text class="p-2 text-gray-700 my-1 h-8 w-1/2 rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
+                   <input id="first_name" name="first_name" type=text class="p-2 text-gray-700 my-1 h-8 w-1/2 rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
                   </div>
                   
                    <div>
                    <label class="">Last Name</label> <br>
-                   <input name="last_name" type=text class="p-2 text-gray-700 my-1 h-8 w-1/2 rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
+                   <input id="last_name" name="last_name" type=text class="p-2 text-gray-700 my-1 h-8 w-1/2 rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
                   </div>
                   
                   <div>
                    <label class="">Username</label> <br>
-                   <input name="username" type=text class="p-2 text-gray-700 my-1 h-8 w-1/2 rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
+                   <input id="username" name="username" type=text class="p-2 text-gray-700 my-1 h-8 w-1/2 rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg" >
                   </div>
                   
                   <div>
@@ -40,7 +40,7 @@
                    <input id="confirm_password" name="confirm_password" type="password" class="p-2 text-gray-700 my-2 h-8 w-1/2 rounded-sm bg-letterboxd-6 focus:outline-0 focus:bg-white focus:shadow-lg">
                  </div> 
                  <div>
-                   <button type=submit class="font-myfont tracking-widest hover:bg-letterboxd-5 bg-letterboxd-4 text-xs px-3 py-2 rounded-sm">
+                   <button id="signup-btn" type=submit class="font-myfont tracking-widest hover:bg-letterboxd-5 bg-letterboxd-4 text-xs px-3 py-2 rounded-sm">
                        SIGN UP
                     </button>
         </div>
