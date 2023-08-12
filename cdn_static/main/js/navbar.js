@@ -197,21 +197,6 @@ search_content_btn.addEventListener("click",onClickSearchFilm);
 document.querySelector("#search-btn-mobile").addEventListener("click",onClickSearchFilm);
 
 
-/*
-desktop_signin = document.getElementById("desktop-signin");
-if (desktop_signin) {
-    desktop_signin.addEventListener("click", (event) => {
-        const desktop_signin_form = document.getElementById("desktop-signin-form");
-        desktop_signin_form.classList.remove("hidden");
-
-        const navbar = document.getElementById("main-navbar");
-        navbar.classList.add("opacity-0");
-    });
-
-
-}
-
-*/
 
 desktop_signin_form_cancel = document.getElementById("desktop-sigin-form-cancel");
 if (desktop_signin_form_cancel) {
