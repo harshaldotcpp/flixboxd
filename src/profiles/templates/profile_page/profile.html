@@ -11,13 +11,13 @@
     <script src="{% static 'main/js/lazyload.js' %}"></script>
 </head>
 
-<body class="bg-gradient-to-tl  from-[#2A394E] to-[#0E0E0F] scrollbar-thin scrollbar-track-transparent scrollbar-thumb-letterboxd-2  min-h-screen  font-myfontLight text-xs sm:text-sm md:text-md lg:text-lg text-white">
+<body class="bg-gradient-to-tl  from-[#2A394E] to-[#0E0E0F] scrollbar-thin scrollbar-track-transparent scrollbar-thumb-letterboxd-2  font-myfontLight text-xs sm:text-sm md:text-md lg:text-lg text-white">
 
 
 
     {% include 'main/navbar.html' %}
 
-    <main class="mt-20 md:mt-28 px-5 sm:px-12 md:px-24 lg:px-64 ">
+    <main class="mt-20 md:mt-28 px-5 sm:px-12 md:px-24 lg:px-64  min-h-screen ">
 
         <div id="profile-intro" class="flex flex-col border-b border-letterboxd-2 pb-4  lg:flex-row gap-y-4 justify-center md:justify-between items-center">
             <div id="pfp-name" class="basis-1/2 shrink-0 flex gap-4">
@@ -87,10 +87,10 @@
         <section class="mt-14 gap-x-24 gap-y-6 grid grid-rows-[auto,auto,auto,auto,auto] md:grid-rows-[auto,auto,auto,auto] grid-cols-1 md:grid-cols-[auto,auto]">
 
             {% if favs %}
-            <div class="text-letterboxd-3"> No Favroite </div>
+            <div class="text-letterboxd-3 w-100 text-center"> No Favroite </div>
             {% else %}
             <div class="grid grid-cols-4 grid-row-[auto,auto] gap-2 mt-2">
-                <h1 class=" text-letterboxd-3 border-b col-span-4 border-letterboxd-2 py-1">favroite films</h1>
+                <h1 class=" text-letterboxd-3 border-b col-span-4 border-letterboxd-2 py-1">FAVOURITE FILMS</h1>
                 <div>
                     <div class=" card relative hover:border border-white shadow-md shadow-black  overflow-hidden">
                         {% topTmdb_id top4.one as tmdb_id %}
@@ -136,25 +136,29 @@
             </div>
             {% endif %}
 
-            <div class="side-bar row-span-4 w-auto md:w-44">
+            <div class="side-bar row-span-4 w-auto md:w-44 text-letterboxd-3">
                 <div class="watchlist  text-sm text-letterboxd">
-                    <h1 class="py-1 flex justify-between text-xs border-b border-letterboxd-2 uppercase text-letterboxd-3">
+                    <h1 class="py-1 flex justify-between text-xs border-b border-letterboxd-2 uppercase ">
                         <a href="{% url 'filmsabout:showWatchlist' username %}">Watchlist</a> <a>all</a></h1>
-                    <div class="mt-2 gap-2 grid grid-cols-4">
-                        {% for film in watchlist %}
-                        <div class="">
+                    {% if watchlist %}
+                        <div class="mt-2 gap-2 grid grid-cols-4">
+                           
+                            {% for film in watchlist %}
+                            <div class="">
                             <div class=" w-auto md:w-24 card relative  shadow-black rounded-lg overflow-hidden">
-                                <a href="">
+                                <a href="{% url 'filmsabout:film' tmdb_id %}">
                                     <img class="object-cover lozad" data-src="https://image.tmdb.org/t/p/original{{ film.poster_path }}" src="https://image.tmdb.org/t/p/w92{{ film.poster_path }}">
                                     <div class="absolute shadow-[inset_0.1px_0.1px_3px_rgba(0,0,0,0.2)] shadow-white top-0 left-0 right-0 bottom-0">
                                     </div>
                                 </a>
                             </div>
                         </div>
+                            {% endfor %}
 
-
-                        {% endfor %}
-                    </div>
+                        </div>
+                        {% else %}
+                            <div class="p-3 text-center w-100"> No Film in Watchlist </div>
+                    {% endif %}
                 </div>
             </div>
 
@@ -237,7 +241,8 @@
                 </div>
                 {% endfor %}
             </div>
-            {% endif %} {% if followings %}
+            {% endif %} 
+            {% if followings %}
             <div id="user_followings" class="mb-14">
                 <h1 class="text-letterboxd-3 border-b border-letterboxd-3">Following</h1>
                 <div class="flex overflow-x-scroll py-2 gap-2">

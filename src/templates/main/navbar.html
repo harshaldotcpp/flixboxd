@@ -184,7 +184,9 @@
             <div class="flex items-center gap-x-2 py-2 px-3">
                 <img class="w-7 md:w-8 object-cover rounded-full" src="{{ user.profile.profile_picture.url }}">
                 <div id="username" class="text-lg md:text-2xl font-myfont">
-                    {{ user.username }}
+                   <a href="{% url 'profiles:user_profile' user.username %}"> 
+                       {{ user.username }}
+                   </a>
                 </div>
             </div>
 

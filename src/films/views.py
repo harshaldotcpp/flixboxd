@@ -416,7 +416,7 @@ def getStars(request,film_id):
 def directLogged(request):
 
     if request.method == "POST":
-        print(request.POST)
+        
         liked = request.POST.get("ready-log-liked",False)
         if liked:
             request.user.profile.liked(request.POST)
