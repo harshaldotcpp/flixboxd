@@ -128,7 +128,7 @@
         </div>
     </div>
 
-
+   <!-- mobile drop down sign in menu -->
     {% if user.is_authenticated == False %}
     <div id="signin_menu"
         class="w-screen bg-letterboxd-1 overflow-hidden hidden px-2 md:py-2 md:px-16 text-letterboxd-3 drop-shadow-2xl">
@@ -159,7 +159,7 @@
         </form>
     </div>
     {% endif %}
-    <!----- search ------>
+    <!----- search mobile ------>
     <div id="search_feild" class="hidden bg-letterboxd-1 p-4 md:px-20 text-gray-500 ">
         <div class="relative ">
             <input id="search_content_mobile" type="text" 
@@ -176,7 +176,7 @@
         </div>
     </div>
 
-    <!------ list ------>
+    <!------ Mobile list ------>
     <div id="menu_field" class="hidden duration-1000 overflow-hidden">
         {% if user.is_authenticated %}
         <div id="loggedinMenu" class="md:px-20 flex flex-col font-myfontLight text-letterboxd-3 text-sm md:text-lg">

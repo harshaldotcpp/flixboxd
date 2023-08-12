@@ -26,6 +26,9 @@ def crop_image(image):
         image = image.crop([0,offset,width,height-offset])
     return image 
     
+    
+    
+    
 class Profile(models.Model):
     bio = models.CharField(max_length=1500,null=True,blank=True)
     country = models.CharField(max_length=50,blank=True)

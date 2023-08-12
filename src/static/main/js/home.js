@@ -1,12 +1,13 @@
 
-console.log("hii")
+function toggleLogSearchField(event){
+    document.getElementById("log-result_list").innerHTML = "";
+    $("#log-search-field-top").toggleClass("hidden");
+}
 
 
 $("#direct-log-btn").click((event) => {
     document.querySelector("#log-movie-search").focus();
-    console.log(document.querySelector("#log-movie-search"))
-    $("#log-search-field-top").toggleClass("hidden");
-
+    toggleLogSearchField(event);
 });
 
 
@@ -40,10 +41,8 @@ $("#log-movie-search").on("input", (event) => {
 });
 
 
-$("#log-search-cancel").click(event => {
-    document.getElementById("log-result_list").innerHTML = "";
-    $("#log-search-field-top").toggleClass("hidden");
-});
+
+$("#log-search-cancel").click(toggleLogSearchField);
 
 
 
