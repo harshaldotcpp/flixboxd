@@ -81,6 +81,11 @@ def signup(request):
             messages.error(request,f"{user_details['email_address']} This Email Already Registered!")
             return redirect("authentication:home")
         
+        if user_details["password"] is not user_details["confirm_password"]:
+            messages.error(request,f"Password Doesn't Match")
+            return redirect("authentication:home")
+            
+            
         new_user = User.objects.create_user(user_details["username"],user_details["email_address"],user_details["password"])
         new_user.first_name = user_details["first_name"]
         new_user.last_name = user_details["last_name"]
